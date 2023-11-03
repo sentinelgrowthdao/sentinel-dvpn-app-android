@@ -5,13 +5,15 @@ import co.uk.basedapps.domain_wireguard.core.repo.WireguardRepository
 import javax.inject.Inject
 
 class DdsConfigurator @Inject constructor(
-    private val wireguardRepository: WireguardRepository,
+  private val wireguardRepository: WireguardRepository,
 ) {
 
   suspend fun getDefaultDns(): Dns {
     val currentDns = wireguardRepository.getDefaultDns()
     return Dns.values().first { it.address == currentDns }
   }
+
+  fun getDnsList(): List<Dns> = listOf(Dns.Cloudflare, Dns.Google, Dns.Handshake)
 
   suspend fun setDns(dns: Dns): Either<Unit, Unit> =
     wireguardRepository.updateDns(dns.address)

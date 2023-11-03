@@ -27,6 +27,7 @@ wireguard = "1.0.20230706"
 hiltNavigation = "1.0.0"
 mapBox = "11.0.0-beta.1"
 mapBoxCompose = "0.1.0"
+ktorVersion = "2.1.3"
 
 [libraries]
 # Android
@@ -72,6 +73,14 @@ map-box-android = { module = "com.mapbox.maps:android", version.ref = "mapBox" }
 map-box-compose = { module = "com.mapbox.extension:maps-compose", version.ref = "mapBoxCompose" }
 # Storage
 mmkv = { module = "com.tencent:mmkv-static", version = "1.2.15" }
+# Ktor
+ktor-server = { module = "io.ktor:ktor-server-core-jvm", version.ref = "ktorVersion" }
+ktor-server-netty = { module = "io.ktor:ktor-server-netty-jvm", version.ref = "ktorVersion" }
+ktor-socket = { module = "io.ktor:ktor-server-websockets-jvm", version.ref = "ktorVersion" }
+ktor-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation-jvm", version.ref = "ktorVersion" }
+ktor-gson = { module = "io.ktor:ktor-serialization-gson-jvm", version.ref = "ktorVersion" }
+ktor-call-logging = { module = "io.ktor:ktor-server-call-logging", version.ref = "ktorVersion" }
+ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktorVersion" }
 
 # Other
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
@@ -98,4 +107,14 @@ compose = [
     "compose-ui-tooling",
     "compose-ui-tooling-preview",
     "kotlin-collection-immutable",
+]
+
+ktor = [
+    "ktor-server",
+    "ktor-server-netty",
+    "ktor-socket",
+    "ktor-content-negotiation",
+    "ktor-gson",
+    "ktor-call-logging",
+    "ktor-server-cors",
 ]
