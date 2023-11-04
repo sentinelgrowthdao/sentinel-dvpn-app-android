@@ -9,7 +9,7 @@ android {
     namespace 'co.uk.basedapps.vpn'
 
     defaultConfig {
-        applicationId "com.bagimsizvpn.app"
+        applicationId "com.whitelabel.app"
 
         minSdk libs.versions.minSdk.get().toInteger()
         targetSdk libs.versions.compileSdk.get().toInteger()

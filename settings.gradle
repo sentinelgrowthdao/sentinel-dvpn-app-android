@@ -26,7 +26,7 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "Bagimsiz VPN"
+rootProject.name = "WhiteLabel VPN"
 include ':app',
         ':domain',
         ':v2ray',
