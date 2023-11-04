@@ -21,7 +21,7 @@ class StorageModule {
     @ApplicationContext context: Context,
     provider: AppDetailsProvider,
   ): SharedPreferences =
-    context.getSharedPreferences(provider.getPackage(), Context.MODE_PRIVATE)
+    context.getSharedPreferences(provider.getSharedPrefsName(), Context.MODE_PRIVATE)
 
   @Provides
   @Singleton

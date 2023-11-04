@@ -1,8 +1,8 @@
 package co.uk.basedapps.vpn.network
 
 import android.content.SharedPreferences
-import co.uk.basedapps.vpn.prefs.delegate
-import co.uk.basedapps.vpn.prefs.getValue
+import co.uk.basedapps.vpn.common.prefs.delegate
+import co.uk.basedapps.vpn.common.prefs.getValue
 import okhttp3.Interceptor
 import okhttp3.Response
 

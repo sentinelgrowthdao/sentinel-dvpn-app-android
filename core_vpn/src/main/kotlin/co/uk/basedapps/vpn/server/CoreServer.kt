@@ -1,6 +1,8 @@
 package co.uk.basedapps.vpn.server
 
 import co.uk.basedapps.vpn.server.routers.routeDns
+import co.uk.basedapps.vpn.server.routers.routeRegistry
+import co.uk.basedapps.vpn.storage.BasedStorage
 import co.uk.basedapps.vpn.vpn.DdsConfigurator
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
@@ -27,6 +29,7 @@ class CoreServer
 @Inject
 constructor(
   private val dnsConfigurator: DdsConfigurator,
+  private val storage: BasedStorage,
 ) {
 
   fun init() {
@@ -65,6 +68,7 @@ constructor(
 
   private fun Application.configureRouting() {
     routeDns(dnsConfigurator)
+    routeRegistry(storage)
   }
 
   private fun Application.configureSerialization() {

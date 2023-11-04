@@ -17,7 +17,7 @@ class ApplicationModule {
   fun provideAppDetailsProvider(): AppDetailsProvider =
     object : AppDetailsProvider {
       override fun getAppVersion() = BuildConfig.VERSION_NAME
-      override fun getPackage() = "co.uk.basedapps.vpn"
+      override fun getSharedPrefsName() = "co.uk.basedapps.vpn"
       override fun getBaseUrl() = BuildConfig.API_URL
     }
 }

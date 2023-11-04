@@ -1,4 +1,4 @@
-package co.uk.basedapps.vpn.prefs
+package co.uk.basedapps.vpn.common.prefs
 
 import android.content.SharedPreferences
 
