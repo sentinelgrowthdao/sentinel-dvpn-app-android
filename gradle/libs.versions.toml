@@ -65,7 +65,7 @@ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 http-logger = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
-gson-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+scalar-converter = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "retrofit" }
 # Navigation
 navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 # Maps

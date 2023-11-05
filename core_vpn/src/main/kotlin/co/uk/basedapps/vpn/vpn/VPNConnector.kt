@@ -60,23 +60,25 @@ class VPNConnector @Inject constructor(
     }
   }
 
+  // todo
   private suspend fun getCredentials(city: SelectedCity): Either<Error, Unit> {
-    val protocol = storage.getVpnProtocol()
-      .takeIf { it != Protocol.NONE }
-    val credentialsRes = repository.getCredentials(
-      countryId = city.countryId,
-      cityId = city.id,
-      protocol = protocol,
-    )
-    return credentialsRes.foldSuspend(
-      fnL = { Either.Left(parseError(it)) },
-      fnR = { credentials ->
-        getVPNProfile(
-          serverId = city.serverId,
-          credentials = credentials.data,
-        )
-      },
-    )
+//    val protocol = storage.getVpnProtocol()
+//      .takeIf { it != Protocol.NONE }
+//    val credentialsRes = repository.getCredentials(
+//      countryId = city.countryId,
+//      cityId = city.id,
+//      protocol = protocol,
+//    )
+//    return credentialsRes.foldSuspend(
+//      fnL = { Either.Left(parseError(it)) },
+//      fnR = { credentials ->
+//        getVPNProfile(
+//          serverId = city.serverId,
+//          credentials = credentials.data,
+//        )
+//      },
+//    )
+    return Either.Left(Error.ParseProfile)
   }
 
   private fun parseError(exception: Exception): Error {

@@ -1,6 +1,9 @@
 package co.uk.basedapps.vpn.server
 
+import co.uk.basedapps.vpn.common.provider.AppDetailsProvider
+import co.uk.basedapps.vpn.network.repository.BasedRepository
 import co.uk.basedapps.vpn.server.routers.routeDns
+import co.uk.basedapps.vpn.server.routers.routeProxy
 import co.uk.basedapps.vpn.server.routers.routeRegistry
 import co.uk.basedapps.vpn.storage.BasedStorage
 import co.uk.basedapps.vpn.vpn.DdsConfigurator
@@ -28,13 +31,15 @@ import org.slf4j.event.Level
 class CoreServer
 @Inject
 constructor(
+  private val provider: AppDetailsProvider,
   private val dnsConfigurator: DdsConfigurator,
   private val storage: BasedStorage,
+  private val repository: BasedRepository,
 ) {
 
   fun init() {
     GlobalScope.launch {
-      embeddedServer(Netty, 3876, "127.0.0.1") {
+      embeddedServer(Netty, provider.getServerPort(), "127.0.0.1") {
         configureCors()
         configureSockets()
         configureRouting()
@@ -69,6 +74,7 @@ constructor(
   private fun Application.configureRouting() {
     routeDns(dnsConfigurator)
     routeRegistry(storage)
+    routeProxy(repository)
   }
 
   private fun Application.configureSerialization() {
