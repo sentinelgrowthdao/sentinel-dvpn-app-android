@@ -4,6 +4,11 @@ import androidx.annotation.StringRes
 import co.uk.basedapps.vpn.R
 import com.google.gson.annotations.SerializedName
 
+data class DataObj<T>(
+  @SerializedName("data")
+  val data: T,
+)
+
 data class Credentials(
   @SerializedName("protocol")
   val protocol: Protocol,

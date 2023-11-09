@@ -2,7 +2,6 @@ package co.uk.basedapps.vpn.vpn
 
 import co.uk.basedapps.domain.functional.Either
 import co.uk.basedapps.domain.functional.getOrNull
-import co.uk.basedapps.domain.functional.requireLeft
 import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.domain.models.VpnTunnel
 import co.uk.basedapps.domain_v2ray.V2RayRepository
@@ -11,33 +10,41 @@ import co.uk.basedapps.domain_wireguard.core.init.DefaultTunnelName
 import co.uk.basedapps.domain_wireguard.core.model.WireguardVpnProfile
 import co.uk.basedapps.domain_wireguard.core.repo.WireguardRepository
 import co.uk.basedapps.vpn.common.BaseError
-import co.uk.basedapps.vpn.network.repository.BasedRepository
 import co.uk.basedapps.vpn.network.model.Credentials
 import co.uk.basedapps.vpn.network.model.Protocol
-import co.uk.basedapps.vpn.storage.BasedStorage
-import co.uk.basedapps.vpn.storage.LogsStorage
-import co.uk.basedapps.vpn.storage.SelectedCity
+import co.uk.basedapps.vpn.network.repository.BasedRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
 
+@Singleton
 class VPNConnector @Inject constructor(
   private val repository: BasedRepository,
   private val wireguardRepository: WireguardRepository,
   private val v2RayRepository: V2RayRepository,
-  private val storage: BasedStorage,
-  private val logsStorage: LogsStorage,
 ) {
 
-  suspend fun connect(city: SelectedCity): Either<Error, Unit> {
+  val permissionFlow = MutableSharedFlow<PermissionStatus>(
+    extraBufferCapacity = 1,
+    onBufferOverflow = BufferOverflow.DROP_OLDEST,
+  )
+
+  suspend fun connect(credentials: Credentials): Either<Error, Unit> {
     return withContext(Dispatchers.IO) {
-      getCredentials(city)
-        .also {
-          if (it is Either.Left) {
-            logsStorage.writeToLog(it.requireLeft())
-          }
-        }
+      permissionFlow.emit(PermissionStatus.Requested)
+      val response = permissionFlow.first { it != PermissionStatus.Requested }
+      if (response == PermissionStatus.Allowed) {
+        getVPNProfile(
+          serverId = credentials.payload,
+          credentials = credentials,
+        )
+      } else {
+        Either.Left(Error.RequestPermissions)
+      }
     }
   }
 
@@ -50,53 +57,8 @@ class VPNConnector @Inject constructor(
     }
   }
 
-  suspend fun getConnection(): VpnTunnel? {
-    return withContext(Dispatchers.IO) {
-      when {
-        wireguardRepository.isConnected() -> wireguardRepository.getTunnel()
-        v2RayRepository.isConnected() -> v2RayRepository.getTunnel()
-        else -> null
-      }
-    }
-  }
-
-  // todo
-  private suspend fun getCredentials(city: SelectedCity): Either<Error, Unit> {
-//    val protocol = storage.getVpnProtocol()
-//      .takeIf { it != Protocol.NONE }
-//    val credentialsRes = repository.getCredentials(
-//      countryId = city.countryId,
-//      cityId = city.id,
-//      protocol = protocol,
-//    )
-//    return credentialsRes.foldSuspend(
-//      fnL = { Either.Left(parseError(it)) },
-//      fnR = { credentials ->
-//        getVPNProfile(
-//          serverId = city.serverId,
-//          credentials = credentials.data,
-//        )
-//      },
-//    )
-    return Either.Left(Error.ParseProfile)
-  }
-
-  private fun parseError(exception: Exception): Error {
-    return when (exception) {
-      is HttpException -> {
-        val response = exception.response()
-        when (response?.code()) {
-          401 -> Error.TokenExpired
-          403 -> Error.Banned
-          425 -> Error.NotEnrolled
-          else -> Error.GetCredentials(
-            response?.run { "$this ${errorBody()?.string()}" },
-          )
-        }
-      }
-
-      else -> Error.GetCredentials(exception.message)
-    }
+  suspend fun isConnected(): Boolean {
+    return wireguardRepository.isConnected() || v2RayRepository.isConnected()
   }
 
   private suspend fun getVPNProfile(
@@ -201,6 +163,10 @@ class VPNConnector @Inject constructor(
       override val message: String = "Parse profile error"
     }
 
+    data object RequestPermissions : Error {
+      override val message: String = "VPN Permission wasn't granted"
+    }
+
     data object CreateTunnel : Error {
       override val message: String = "Create Wireguard tunnel error"
     }
@@ -213,4 +179,8 @@ class VPNConnector @Inject constructor(
       override val message: String = "Start V2Ray error"
     }
   }
+}
+
+enum class PermissionStatus {
+  Requested, Allowed, Denied
 }

@@ -5,8 +5,10 @@ import co.uk.basedapps.vpn.network.repository.BasedRepository
 import co.uk.basedapps.vpn.server.routers.routeDns
 import co.uk.basedapps.vpn.server.routers.routeProxy
 import co.uk.basedapps.vpn.server.routers.routeRegistry
+import co.uk.basedapps.vpn.server.routers.routeVpn
 import co.uk.basedapps.vpn.storage.BasedStorage
 import co.uk.basedapps.vpn.vpn.DdsConfigurator
+import co.uk.basedapps.vpn.vpn.VPNConnector
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
 import io.ktor.serialization.gson.GsonWebsocketContentConverter
@@ -35,6 +37,7 @@ constructor(
   private val dnsConfigurator: DdsConfigurator,
   private val storage: BasedStorage,
   private val repository: BasedRepository,
+  private val vpnConnector: VPNConnector,
 ) {
 
   fun init() {
@@ -75,6 +78,7 @@ constructor(
     routeDns(dnsConfigurator)
     routeRegistry(storage)
     routeProxy(repository)
+    routeVpn(vpnConnector)
   }
 
   private fun Application.configureSerialization() {
