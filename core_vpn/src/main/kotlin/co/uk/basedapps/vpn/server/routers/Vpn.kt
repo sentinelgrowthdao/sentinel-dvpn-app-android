@@ -1,7 +1,6 @@
 package co.uk.basedapps.vpn.server.routers
 
 import co.uk.basedapps.vpn.network.model.Credentials
-import co.uk.basedapps.vpn.network.model.DataObj
 import co.uk.basedapps.vpn.server.error.HttpError.Companion.badRequest
 import co.uk.basedapps.vpn.server.models.TunnelStatusResponse
 import co.uk.basedapps.vpn.vpn.VPNConnector
@@ -20,11 +19,11 @@ fun Application.routeVpn(
 
   routing {
     post("/api/connect") {
-      val request = kotlin.runCatching { call.receive<DataObj<Credentials>>() }.getOrNull() ?: let {
+      val request = kotlin.runCatching { call.receive<Credentials>() }.getOrNull() ?: let {
         return@post call.respond(HttpStatusCode.BadRequest, badRequest)
       }
 
-      val result = vpnConnector.connect(request.data)
+      val result = vpnConnector.connect(request)
       call.respond(HttpStatusCode.OK, TunnelStatusResponse(result.isRight))
     }
 

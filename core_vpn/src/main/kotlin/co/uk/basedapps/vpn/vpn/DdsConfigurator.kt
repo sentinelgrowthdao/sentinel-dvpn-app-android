@@ -3,7 +3,9 @@ package co.uk.basedapps.vpn.vpn
 import co.uk.basedapps.domain.functional.Either
 import co.uk.basedapps.domain_wireguard.core.repo.WireguardRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class DdsConfigurator @Inject constructor(
   private val wireguardRepository: WireguardRepository,
 ) {

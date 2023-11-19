@@ -1,0 +1,79 @@
+plugins {
+    alias libs.plugins.android.library
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.kotlin.kapt
+    alias libs.plugins.dagger.hilt
+}
+
+android {
+    namespace 'co.sentinel.cosmos'
+
+    compileSdkVersion 32
+
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 31
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "GRPC_BASE_URL", '"lcd-sentinel.dvpn.solar"')
+            buildConfigField("Integer", "GRPC_PORT", '993')
+        }
+        debug {
+            buildConfigField("String", "GRPC_BASE_URL", '"lcd-sentinel.dvpn.solar"')
+            buildConfigField("Integer", "GRPC_PORT", '993')
+        }
+        staging {
+            initWith(buildTypes.debug)
+            buildConfigField("String", "GRPC_BASE_URL", '"128.199.90.172"')
+            buildConfigField("Integer", "GRPC_PORT", '9090')
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures.buildConfig true
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation "io.grpc:grpc-okhttp:1.57.1"
+    implementation("io.grpc:grpc-protobuf:1.57.1") {
+        exclude group: 'com.google.api'
+        exclude group: 'com.google.protobuf.GoGoProtos', module: "protobuf-java"
+        exclude group: 'com.google.protobuf.AnyProto', module: "protobuf-java"
+        exclude group: 'com.google.protobuf.AnyOrBuilder', module: "protobuf-java"
+    }
+    implementation "io.grpc:grpc-stub:1.57.1"
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
+    implementation libs.dagger.hilt
+    implementation libs.kotlin.stdlib
+    implementation libs.timber
+    implementation libs.retrofit
+    implementation libs.gson.converter
+    implementation "org.bitcoinj:bitcoinj-core:0.15.2"
+    implementation "com.fasterxml.jackson.core:jackson-core:2.7.3"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:2.7.3"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-joda:2.7.3"
+    implementation "com.google.guava:guava:22.0-android"
+    implementation "org.apache.commons:commons-lang3:3.6"
+    implementation "net.zetetic:android-database-sqlcipher:3.5.9@aar"
+    implementation "org.web3j:core:4.6.0-android"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-guava:1.2.1"
+
+    kapt libs.hilt.compiler
+}

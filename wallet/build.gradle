@@ -1,0 +1,49 @@
+plugins {
+    alias libs.plugins.android.library
+    alias libs.plugins.kotlin.android
+    alias libs.plugins.kotlin.kapt
+    alias libs.plugins.dagger.hilt
+}
+
+android {
+    namespace 'co.sentinel.wallet'
+
+    compileSdkVersion 32
+
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 31
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation project(path: ':domain')
+    implementation project(path: ':cosmos')
+
+    implementation libs.dagger.hilt
+    implementation libs.kotlin.stdlib
+    implementation libs.coroutines.core
+    implementation libs.timber
+    implementation libs.retrofit
+    implementation libs.gson.converter
+
+    kapt libs.hilt.compiler
+}

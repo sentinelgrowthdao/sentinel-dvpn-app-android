@@ -32,4 +32,6 @@ include ':app',
         ':v2ray',
         ':domain_v2ray',
         ':domain_wireguard',
-        ':core_vpn'
+        ':core_vpn',
+        ':cosmos',
+        ':wallet'

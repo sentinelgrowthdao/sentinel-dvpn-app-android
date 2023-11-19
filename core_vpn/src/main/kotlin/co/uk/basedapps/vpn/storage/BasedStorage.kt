@@ -1,7 +1,9 @@
 package co.uk.basedapps.vpn.storage
 
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class BasedStorage
 @Inject constructor(
   private val plainStorage: PlainStorage,

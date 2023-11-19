@@ -54,4 +54,5 @@ dependencies {
     implementation project(path: ':v2ray')
     implementation project(path: ':domain_v2ray')
     implementation project(path: ':domain_wireguard')
+    implementation project(path: ':wallet')
 }
