@@ -34,4 +34,5 @@ include ':app',
         ':domain_wireguard',
         ':core_vpn',
         ':cosmos',
-        ':wallet'
+        ':wallet',
+        ':hub'

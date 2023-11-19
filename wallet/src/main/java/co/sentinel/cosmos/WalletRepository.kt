@@ -160,7 +160,7 @@ class WalletRepository
       .getOrNull() ?: Either.Left(Unit)
   }
 
-  suspend fun generateKeywords(): Either<Unit, GeneratedKeyword> {
+  fun generateKeywords(): Either<Unit, GeneratedKeyword> {
     return kotlin.runCatching {
       val entropy = WKey.getEntropy()
       val entropyString = WUtil.ByteArrayToHexString(entropy)
