@@ -17,7 +17,7 @@ object QueryPlans {
   suspend fun execute(
     chain: BaseChain,
     offset: Long = 0,
-    limit: Long = 30,
+    limit: Long = 10,
   ) = kotlin.runCatching {
     val stub = QueryServiceGrpc.newFutureStub(ChannelBuilder.getChain(chain))
       .withDeadlineAfter(TIME_OUT.toLong(), TimeUnit.SECONDS)
@@ -28,7 +28,8 @@ object QueryPlans {
           Pagination.PageRequest.newBuilder()
             .setLimit(limit)
             .setOffset(offset),
-        ).build(),
+        )
+        .build(),
     ).await()
     Either.Right(response)
   }.onFailure { Timber.e(it) }

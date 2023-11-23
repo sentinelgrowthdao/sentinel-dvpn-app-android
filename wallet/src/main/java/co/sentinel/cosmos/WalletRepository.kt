@@ -17,20 +17,20 @@ import co.sentinel.cosmos.model.type.AccountBalance
 import co.sentinel.cosmos.model.type.Coin
 import co.sentinel.cosmos.model.type.Fee
 import co.sentinel.cosmos.network.station.StationApi
-import co.sentinel.cosmos.task.UserTask.GenerateAccountTask
-import co.sentinel.cosmos.task.UserTask.GenerateSentinelAccountTask
 import co.sentinel.cosmos.task.gRpcTask.AllRewardGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.AuthGrpcTask
-import co.sentinel.cosmos.task.gRpcTask.BalanceGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.BondedValidatorsGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.DelegationsGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.NodeInfoGrpcTask
+import co.sentinel.cosmos.task.gRpcTask.QueryBalancesTask
 import co.sentinel.cosmos.task.gRpcTask.UnBondedValidatorsGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.UnBondingValidatorsGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.UnDelegationsGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.broadcast.BroadcastNodeSubscribeGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.broadcast.ConnectToNodeGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.broadcast.GenericGrpcTask
+import co.sentinel.cosmos.task.userTask.GenerateAccountTask
+import co.sentinel.cosmos.task.userTask.GenerateSentinelAccountTask
 import co.sentinel.cosmos.utils.DEFAULT_FEE
 import co.sentinel.cosmos.utils.DEFAULT_FEE_AMOUNT
 import co.sentinel.cosmos.utils.DEFAULT_GAS
@@ -39,9 +39,13 @@ import co.sentinel.cosmos.utils.WKey
 import co.sentinel.cosmos.utils.WUtil
 import co.sentinel.cosmos.utils.denom
 import co.sentinel.cosmos.utils.toByteArray
+import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.functional.Either
+import co.uk.basedapps.domain.functional.map
+import co.uk.basedapps.domain.functional.requireRight
+import com.google.protobuf.util.JsonFormat
 import com.google.protobuf2.Any
-import cosmos.base.v1beta1.CoinOuterClass
+import cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse
 import cosmos.distribution.v1beta1.Distribution
 import cosmos.staking.v1beta1.Staking
 import javax.inject.Inject
@@ -62,6 +66,8 @@ class WalletRepository
 ) {
   private val prefsStore = PrefsStore(app)
   private val balanceStore = BalanceStoreImpl(app)
+  private val jsonFormatter = JsonFormat.printer()
+    .includingDefaultValueFields()
 
   suspend fun generateAccount(): Either<Unit, Unit> {
     return kotlin.runCatching {
@@ -391,12 +397,33 @@ class WalletRepository
     }.onFailure { Timber.e(it) }
       .getOrNull() ?: Either.Left(Unit)
 
+  private suspend fun getBalancesByAddress(
+    baseChain: String,
+    address: String,
+  ): Either<Failure, QueryAllBalancesResponse> = kotlin.runCatching {
+    QueryBalancesTask.execute(
+      chain = BaseChain.getChain(baseChain),
+      address = address,
+    )
+  }.onFailure { Timber.e(it) }
+    .getOrNull() ?: Either.Left(Failure.AppError)
+
+  suspend fun getBalancesByAddressJson(
+    baseChain: String,
+    address: String,
+  ): Either<Failure, String> = getBalancesByAddress(address = address, baseChain = baseChain)
+    .map { result -> jsonFormatter.print(result) }
+
   suspend fun fetchBalance(account: Account): Either<Unit, Unit> =
     kotlin.runCatching {
       val chain = BaseChain.getChain(account.baseChain)
-      BalanceGrpcTask(app, chain, account.address).run().let {
-        if (it.resultData is ArrayList<*>) {
-          val balance = it.resultData as ArrayList<CoinOuterClass.Coin>
+      val result = getBalancesByAddress(
+        baseChain = chain.chain,
+        address = account.address,
+      )
+      when {
+        result.isRight -> {
+          val balance = result.requireRight().balancesList
           app.baseDao.mGrpcBalance.clear()
           if (balance.size > 0) {
             for (coin in balance) {
@@ -418,27 +445,12 @@ class WalletRepository
             ),
           )
           Either.Right(Unit)
-        } else {
-          Either.Left(Unit)
         }
+
+        else -> Either.Left(Unit)
       }
     }.onFailure { Timber.e(it) }
       .getOrNull() ?: Either.Left(Unit)
-
-  suspend fun getBalancesByAddress(
-    address: String,
-    baseChain: String,
-  ): Either<Unit, List<Pair<Long, String>>> = kotlin.runCatching {
-    val chain = BaseChain.getChain(baseChain)
-    val response = BalanceGrpcTask(app, chain, address).run()
-    if (response.resultData is ArrayList<*>) {
-      val balance = response.resultData as ArrayList<CoinOuterClass.Coin>
-      Either.Right(balance.map { it.amount.toLong() to it.denom })
-    } else {
-      Either.Left(Unit)
-    }
-  }.onFailure { Timber.e(it) }
-    .getOrNull() ?: Either.Left(Unit)
 
   suspend fun fetchDelegations(account: Account): Either<Unit, Unit> =
     kotlin.runCatching {

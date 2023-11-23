@@ -28,7 +28,8 @@ object QueryNodes {
           Pagination.PageRequest.newBuilder()
             .setLimit(limit)
             .setOffset(offset),
-        ).build(),
+        )
+        .build(),
     ).await()
     Either.Right(response)
   }.onFailure { Timber.e(it) }
@@ -50,7 +51,8 @@ object QueryNodes {
           Pagination.PageRequest.newBuilder()
             .setLimit(limit)
             .setOffset(offset),
-        ).build(),
+        )
+        .build(),
     ).await()
     Either.Right(response)
   }.onFailure { Timber.e(it) }

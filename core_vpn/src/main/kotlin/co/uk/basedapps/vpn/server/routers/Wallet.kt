@@ -5,7 +5,6 @@ import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.vpn.server.error.HttpError.Companion.badRequest
 import co.uk.basedapps.vpn.server.error.HttpError.Companion.internalServer
 import co.uk.basedapps.vpn.server.error.HttpError.Companion.notFound
-import co.uk.basedapps.vpn.server.models.Balance
 import co.uk.basedapps.vpn.server.models.RestoreWalletRequest
 import co.uk.basedapps.vpn.server.models.WalletResponse
 import io.ktor.http.HttpStatusCode
@@ -56,13 +55,12 @@ fun Application.routeWallet(
     get("/api/blockchain/wallet/{address}/balance") {
       val address = call.parameters["address"]
         ?: return@get call.respond(HttpStatusCode.BadRequest, badRequest)
-      val result = walletRepository.getBalancesByAddress(
+      val result = walletRepository.getBalancesByAddressJson(
         address = address,
         baseChain = "sentinel-mainnet",
       )
       if (result.isRight) {
-        val response = result.requireRight().map { Balance(it.first, it.second) }
-        call.respond(HttpStatusCode.OK, response)
+        call.respond(HttpStatusCode.OK, result.requireRight())
       } else {
         call.respond(HttpStatusCode.NotFound, notFound)
       }

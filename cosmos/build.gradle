@@ -48,7 +48,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(path: ':domain')
 
     implementation "io.grpc:grpc-okhttp:1.57.1"
     implementation("io.grpc:grpc-protobuf:1.57.1") {

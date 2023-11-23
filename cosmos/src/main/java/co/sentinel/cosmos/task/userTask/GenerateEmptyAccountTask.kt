@@ -1,4 +1,4 @@
-package co.sentinel.cosmos.task.UserTask
+package co.sentinel.cosmos.task.userTask
 
 import co.sentinel.cosmos.base.BaseConstant
 import co.sentinel.cosmos.base.BaseCosmosApp
