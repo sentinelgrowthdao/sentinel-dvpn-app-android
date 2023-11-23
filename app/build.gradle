@@ -74,6 +74,7 @@ dependencies {
     implementation libs.accompanist.systemuicontroller
     implementation libs.map.box.compose
     implementation libs.map.box.android
+    implementation libs.webkit
 
     kapt libs.hilt.compiler
     implementation project(path: ':core_vpn')

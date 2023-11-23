@@ -1,5 +1,6 @@
 package co.uk.basedapps.vpn
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.webkit.WebView
@@ -34,11 +35,21 @@ class MainActivity : ComponentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val vebView = WebView(this).apply {
-      loadUrl("http://127.0.0.1:3876/api/dns/list")
-    }
-    setContentView(vebView)
+    val webView = WebView(this)
+    setupWebView(webView)
+    setContentView(webView)
     subscribeToPermissionsRequest()
+  }
+
+  @SuppressLint("SetJavaScriptEnabled")
+  private fun setupWebView(webView: WebView) {
+    webView.apply {
+      with(settings) {
+        javaScriptEnabled = true
+        domStorageEnabled = true
+      }
+      loadUrl("http://127.0.0.1:3876/")
+    }
   }
 
   private fun subscribeToPermissionsRequest() {

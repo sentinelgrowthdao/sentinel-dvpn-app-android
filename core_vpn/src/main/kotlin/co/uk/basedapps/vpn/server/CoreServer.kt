@@ -6,6 +6,7 @@ import co.uk.basedapps.vpn.network.repository.BasedRepository
 import co.uk.basedapps.vpn.server.routers.routeDns
 import co.uk.basedapps.vpn.server.routers.routeProxy
 import co.uk.basedapps.vpn.server.routers.routeRegistry
+import co.uk.basedapps.vpn.server.routers.routeStatic
 import co.uk.basedapps.vpn.server.routers.routeVpn
 import co.uk.basedapps.vpn.server.routers.routeWallet
 import co.uk.basedapps.vpn.storage.BasedStorage
@@ -22,7 +23,6 @@ import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.callloging.CallLogging
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
-import io.ktor.server.request.path
 import io.ktor.server.websocket.WebSockets
 import io.ktor.server.websocket.pingPeriod
 import io.ktor.server.websocket.timeout
@@ -46,11 +46,11 @@ constructor(
   fun init() {
     GlobalScope.launch {
       embeddedServer(Netty, provider.getServerPort(), "127.0.0.1") {
+        configureMonitoring()
         configureCors()
         configureSockets()
         configureRouting()
         configureSerialization()
-        configureMonitoring()
       }.start(wait = true)
     }
   }
@@ -78,6 +78,7 @@ constructor(
   }
 
   private fun Application.configureRouting() {
+    routeStatic()
     routeDns(dnsConfigurator)
     routeRegistry(storage)
     routeProxy(repository)
@@ -96,7 +97,6 @@ constructor(
   private fun Application.configureMonitoring() {
     install(CallLogging) {
       level = Level.INFO
-      filter { call -> call.request.path().startsWith("/") }
     }
   }
 }

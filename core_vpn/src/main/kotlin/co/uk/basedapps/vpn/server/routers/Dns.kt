@@ -19,7 +19,6 @@ import io.ktor.server.routing.routing
 fun Application.routeDns(
   configurator: DdsConfigurator,
 ) {
-
   routing {
     get("/api/dns/current") {
       val defaultDns = configurator.getDefaultDns()
