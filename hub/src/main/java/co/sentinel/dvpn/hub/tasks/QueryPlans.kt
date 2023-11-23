@@ -8,43 +8,21 @@ import co.uk.basedapps.domain.functional.Either
 import cosmos.base.query.v1beta1.Pagination
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.guava.await
-import sentinel.node.v2.Querier
-import sentinel.node.v2.QueryServiceGrpc
+import sentinel.plan.v2.Querier
+import sentinel.plan.v2.QueryServiceGrpc
 import sentinel.types.v1.StatusOuterClass
 import timber.log.Timber
 
-object QueryNodes {
+object QueryPlans {
   suspend fun execute(
     chain: BaseChain,
     offset: Long = 0,
-    limit: Long = 10,
+    limit: Long = 30,
   ) = kotlin.runCatching {
     val stub = QueryServiceGrpc.newFutureStub(ChannelBuilder.getChain(chain))
       .withDeadlineAfter(TIME_OUT.toLong(), TimeUnit.SECONDS)
-    val response = stub.queryNodes(
-      Querier.QueryNodesRequest.newBuilder()
-        .setStatus(StatusOuterClass.Status.STATUS_ACTIVE)
-        .setPagination(
-          Pagination.PageRequest.newBuilder()
-            .setLimit(limit)
-            .setOffset(offset),
-        ).build(),
-    ).await()
-    Either.Right(response)
-  }.onFailure { Timber.e(it) }
-    .getOrNull() ?: Either.Left(Failure.AppError)
-
-  suspend fun execute(
-    chain: BaseChain,
-    planId: Long,
-    offset: Long = 0,
-    limit: Long = 10,
-  ) = kotlin.runCatching {
-    val stub = QueryServiceGrpc.newFutureStub(ChannelBuilder.getChain(chain))
-      .withDeadlineAfter(TIME_OUT.toLong(), TimeUnit.SECONDS)
-    val response = stub.queryNodesForPlan(
-      Querier.QueryNodesForPlanRequest.newBuilder()
-        .setId(planId)
+    val response = stub.queryPlans(
+      Querier.QueryPlansRequest.newBuilder()
         .setStatus(StatusOuterClass.Status.STATUS_ACTIVE)
         .setPagination(
           Pagination.PageRequest.newBuilder()

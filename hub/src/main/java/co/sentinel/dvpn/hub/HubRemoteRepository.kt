@@ -23,13 +23,16 @@ import co.sentinel.dvpn.hub.tasks.GenerateStopActiveSessionMessages
 import co.sentinel.dvpn.hub.tasks.GetOwnIP
 import co.sentinel.dvpn.hub.tasks.QueryNode
 import co.sentinel.dvpn.hub.tasks.QueryNodes
+import co.sentinel.dvpn.hub.tasks.QueryPlans
 import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.functional.Either
 import co.uk.basedapps.domain.functional.getOrElse
 import co.uk.basedapps.domain.functional.getOrNull
+import co.uk.basedapps.domain.functional.map
 import co.uk.basedapps.domain.functional.requireLeft
 import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.domain.models.KeyPair
+import com.google.protobuf.util.JsonFormat
 import com.google.protobuf2.Any
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -39,6 +42,9 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
+import sentinel.node.v2.Querier.QueryNodesForPlanResponse
+import sentinel.node.v2.Querier.QueryNodesResponse
+import sentinel.plan.v2.Querier.QueryPlansResponse
 import sentinel.types.v1.StatusOuterClass
 import timber.log.Timber
 
@@ -48,53 +54,97 @@ class HubRemoteRepository
   private val app: BaseCosmosApp,
 ) {
 
-  suspend fun fetchNodes(offset: Long, limit: Long) = kotlin.runCatching {
-    supervisorScope {
-      val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
-        ?: return@supervisorScope Either.Left(Failure.AppError)
-      val queryResult = QueryNodes.execute(
-        chain = BaseChain.getChain(account.baseChain),
-        offset = offset,
-        limit = limit,
-      )
-      val nodeInfoResult = async { FetchNodeInfo.execute(queryResult.getOrElse(listOf())) }
-      val subscriptions =
-        async { fetchSubscriptions().getOrElse(null) ?: listOf() }
+  private val jsonFormatter = JsonFormat.printer()
+    .includingDefaultValueFields()
 
-      nodeInfoResult.await().mapNotNull {
-        fixNodeInfoPrice(it)
-      }.map { nodeInfo ->
-        NodeData(
-          nodeInfo = nodeInfo,
-          subscription = subscriptions.await().filter { nodeInfo.address == it.node }
-            .maxByOrNull { it.id },
-        )
-      }.let {
-        Either.Right(it)
-      }
-    }
+  private suspend fun fetchPlans(
+    offset: Long,
+    limit: Long,
+  ): Either<Failure, QueryPlansResponse> = kotlin.runCatching {
+    val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
+      ?: return Either.Left(Failure.AppError)
+    QueryPlans.execute(
+      chain = BaseChain.getChain(account.baseChain),
+      offset = offset,
+      limit = limit,
+    )
   }.onFailure { Timber.e(it) }
     .getOrNull() ?: Either.Left(Failure.AppError)
 
-  suspend fun fetchNodes(): Either<Failure, List<NodeData>> = kotlin.runCatching {
+  suspend fun fetchPlansJson(
+    offset: Long = 0,
+    limit: Long = 10,
+  ): Either<Failure, String> = fetchPlans(offset = offset, limit = limit)
+    .map { result -> jsonFormatter.print(result) }
+
+  private suspend fun fetchNodes(
+    offset: Long,
+    limit: Long,
+  ): Either<Failure, QueryNodesResponse> = kotlin.runCatching {
+    val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
+      ?: return@runCatching Either.Left(Failure.AppError)
+    QueryNodes.execute(
+      chain = BaseChain.getChain(account.baseChain),
+      offset = offset,
+      limit = limit,
+    )
+  }.onFailure { Timber.e(it) }
+    .getOrNull() ?: Either.Left(Failure.AppError)
+
+  suspend fun fetchNodesJson(
+    offset: Long = 0,
+    limit: Long = 10,
+  ): Either<Failure, String> = fetchNodes(offset = offset, limit = limit)
+    .map { result -> jsonFormatter.print(result) }
+
+  private suspend fun fetchNodesForPlan(
+    planId: Long,
+    offset: Long,
+    limit: Long,
+  ): Either<Failure, QueryNodesForPlanResponse> =
+    kotlin.runCatching {
+      val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
+        ?: return@runCatching Either.Left(Failure.AppError)
+      QueryNodes.execute(
+        chain = BaseChain.getChain(account.baseChain),
+        planId = planId,
+        offset = offset,
+        limit = limit,
+      )
+    }.onFailure { Timber.e(it) }
+      .getOrNull() ?: Either.Left(Failure.AppError)
+
+  suspend fun fetchNodesForPlanJson(
+    planId: Long,
+    offset: Long = 0,
+    limit: Long = 10,
+  ): Either<Failure, String> = fetchNodesForPlan(planId = planId, offset = offset, limit = limit)
+    .map { result -> jsonFormatter.print(result) }
+
+  suspend fun fetchNodesWithDetails(
+    offset: Long = 0,
+    limit: Long = 10,
+  ) = kotlin.runCatching {
     supervisorScope {
-      val queryResult = QueryNodes.execute(chain = BaseChain.SENTINEL_MAIN)
-      val nodeInfoResult = async { FetchNodeInfo.execute(queryResult.getOrElse(listOf())) }
-      val subscriptions =
-        async {
-          fetchSubscriptions().getOrElse(null) ?: listOf()
-        }
-      nodeInfoResult.await().mapNotNull {
-        fixNodeInfoPrice(it)
-      }.map { nodeInfo ->
-        NodeData(
-          nodeInfo = nodeInfo,
-          subscription = subscriptions.await().filter { nodeInfo.address == it.node }
-            .maxByOrNull { it.id },
+      val queryResult = fetchNodes(offset = offset, limit = limit)
+      val nodeInfoResult = async {
+        FetchNodeInfo.execute(
+          queryResult.getOrNull()?.nodesList.orEmpty(),
         )
-      }.let {
-        Either.Right(it)
       }
+      val subscriptions = async { fetchSubscriptions().getOrElse(null) ?: listOf() }
+
+      nodeInfoResult.await()
+        .mapNotNull { fixNodeInfoPrice(it) }
+        .map { nodeInfo ->
+          NodeData(
+            nodeInfo = nodeInfo,
+            subscription = subscriptions.await()
+              .filter { nodeInfo.address == it.node }
+              .maxByOrNull { it.id },
+          )
+        }
+        .let { Either.Right(it) }
     }
   }.onFailure { Timber.e(it) }
     .getOrNull() ?: Either.Left(Failure.AppError)
