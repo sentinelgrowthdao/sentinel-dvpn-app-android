@@ -55,10 +55,7 @@ fun Application.routeWallet(
     get("/api/blockchain/wallet/{address}/balance") {
       val address = call.parameters["address"]
         ?: return@get call.respond(HttpStatusCode.BadRequest, badRequest)
-      val result = walletRepository.getBalancesByAddressJson(
-        address = address,
-        baseChain = "sentinel-mainnet",
-      )
+      val result = walletRepository.getBalancesByAddressJson(address = address)
       if (result.isRight) {
         call.respond(HttpStatusCode.OK, result.requireRight())
       } else {

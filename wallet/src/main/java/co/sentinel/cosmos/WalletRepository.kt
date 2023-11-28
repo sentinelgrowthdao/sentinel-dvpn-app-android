@@ -200,7 +200,6 @@ class WalletRepository
       fetchAll(account)
       BroadcastNodeSubscribeGrpcTask(
         app,
-        BaseChain.getChain(account.baseChain),
         account,
         nodeAddress,
         subscribeMessage,
@@ -237,7 +236,6 @@ class WalletRepository
 
       GenericGrpcTask(
         app,
-        BaseChain.getChain(account.baseChain),
         account,
         messages,
         fee,
@@ -285,11 +283,10 @@ class WalletRepository
       val account = getAccount() ?: return@runCatching Either.Left(Unit)
       fetchAuthorization(account)
       if (app.baseDao.chainIdGrpc.isEmpty()) {
-        fetchNodeInfo(account)
+        fetchNodeInfo()
       }
       ConnectToNodeGrpcTask(
         app,
-        BaseChain.getChain(account.baseChain),
         account,
         messages,
         DEFAULT_FEE,
@@ -320,9 +317,9 @@ class WalletRepository
       .getOrNull() ?: Either.Left(Unit)
   }
 
-  suspend fun fetchNodeInfo(account: Account): Either<Unit, Unit> =
+  suspend fun fetchNodeInfo(): Either<Unit, Unit> =
     kotlin.runCatching {
-      NodeInfoGrpcTask(app, BaseChain.getChain(account.baseChain)).run().let {
+      NodeInfoGrpcTask(app).run().let {
         if (it.resultData is Types.DefaultNodeInfo) {
           app.baseDao.mGRpcNodeInfo = it.resultData as Types.DefaultNodeInfo
           Either.Right(Unit)
@@ -335,7 +332,7 @@ class WalletRepository
 
   suspend fun fetchAuthorization(account: Account): Either<Unit, Unit> =
     kotlin.runCatching {
-      AuthGrpcTask(app, BaseChain.getChain(account.baseChain), account.address).run().let {
+      AuthGrpcTask(app, account.address).run().let {
         if (it.resultData is Any) {
           app.baseDao.mGRpcAccount = it.resultData as Any
           Either.Right(Unit)
@@ -363,9 +360,9 @@ class WalletRepository
     }.onFailure { Timber.e(it) }
       .getOrNull() ?: Either.Left(Unit)
 
-  suspend fun fetchUnbondedValidators(account: Account): Either<Unit, Unit> =
+  suspend fun fetchUnbondedValidators(): Either<Unit, Unit> =
     kotlin.runCatching {
-      UnBondedValidatorsGrpcTask(app, BaseChain.getChain(account.baseChain)).run()
+      UnBondedValidatorsGrpcTask(app).run()
         .let { result ->
           if (result.resultData is ArrayList<*> && (result.resultData as ArrayList<*>).firstOrNull()
               ?.let { it is Staking.Validator } == true
@@ -380,9 +377,9 @@ class WalletRepository
     }.onFailure { Timber.e(it) }
       .getOrNull() ?: Either.Left(Unit)
 
-  suspend fun fetchUnbondingValidators(account: Account): Either<Unit, Unit> =
+  suspend fun fetchUnbondingValidators(): Either<Unit, Unit> =
     kotlin.runCatching {
-      UnBondingValidatorsGrpcTask(app, BaseChain.getChain(account.baseChain)).run()
+      UnBondingValidatorsGrpcTask(app).run()
         .let { result ->
           if (result.resultData is ArrayList<*> && (result.resultData as ArrayList<*>).firstOrNull()
               ?.let { it is Staking.Validator } == true
@@ -398,29 +395,21 @@ class WalletRepository
       .getOrNull() ?: Either.Left(Unit)
 
   private suspend fun getBalancesByAddress(
-    baseChain: String,
     address: String,
   ): Either<Failure, QueryAllBalancesResponse> = kotlin.runCatching {
-    QueryBalancesTask.execute(
-      chain = BaseChain.getChain(baseChain),
-      address = address,
-    )
+    QueryBalancesTask.execute(address = address)
   }.onFailure { Timber.e(it) }
     .getOrNull() ?: Either.Left(Failure.AppError)
 
   suspend fun getBalancesByAddressJson(
-    baseChain: String,
     address: String,
-  ): Either<Failure, String> = getBalancesByAddress(address = address, baseChain = baseChain)
+  ): Either<Failure, String> = getBalancesByAddress(address = address)
     .map { result -> jsonFormatter.print(result) }
 
   suspend fun fetchBalance(account: Account): Either<Unit, Unit> =
     kotlin.runCatching {
       val chain = BaseChain.getChain(account.baseChain)
-      val result = getBalancesByAddress(
-        baseChain = chain.chain,
-        address = account.address,
-      )
+      val result = getBalancesByAddress(address = account.address)
       when {
         result.isRight -> {
           val balance = result.requireRight().balancesList
@@ -454,7 +443,7 @@ class WalletRepository
 
   suspend fun fetchDelegations(account: Account): Either<Unit, Unit> =
     kotlin.runCatching {
-      DelegationsGrpcTask(app, BaseChain.getChain(account.baseChain), account).run()
+      DelegationsGrpcTask(app, account).run()
         .let { result ->
           if (result.resultData is ArrayList<*> && (result.resultData as ArrayList<*>).firstOrNull()
               ?.let { it is Staking.DelegationResponse } == true
@@ -472,7 +461,7 @@ class WalletRepository
 
   suspend fun fetchUnboundingDelegations(account: Account): Either<Unit, Unit> =
     kotlin.runCatching {
-      UnDelegationsGrpcTask(app, BaseChain.getChain(account.baseChain), account).run()
+      UnDelegationsGrpcTask(app, account).run()
         .let { result ->
           if (result.resultData is ArrayList<*> && (result.resultData as ArrayList<*>).firstOrNull()
               ?.let { it is Staking.UnbondingDelegation } == true
@@ -490,7 +479,7 @@ class WalletRepository
 
   suspend fun fetchRewards(account: Account): Either<Unit, Unit> =
     kotlin.runCatching {
-      AllRewardGrpcTask(app, BaseChain.getChain(account.baseChain), account).run()
+      AllRewardGrpcTask(app, account).run()
         .let { result ->
           if (result.resultData is ArrayList<*> && (result.resultData as ArrayList<*>).firstOrNull()
               ?.let { it is Distribution.DelegationDelegatorReward } == true
@@ -521,11 +510,11 @@ class WalletRepository
     kotlin.runCatching {
       withContext(Dispatchers.Default) {
         listOf(
-          async(start = CoroutineStart.LAZY) { fetchNodeInfo(account) },
+          async(start = CoroutineStart.LAZY) { fetchNodeInfo() },
           async(start = CoroutineStart.LAZY) { fetchAuthorization(account) },
           async(start = CoroutineStart.LAZY) { fetchBondedValidators(account) },
-          async(start = CoroutineStart.LAZY) { fetchUnbondedValidators(account) },
-          async(start = CoroutineStart.LAZY) { fetchUnbondingValidators(account) },
+          async(start = CoroutineStart.LAZY) { fetchUnbondedValidators() },
+          async(start = CoroutineStart.LAZY) { fetchUnbondingValidators() },
           async(start = CoroutineStart.LAZY) { fetchBalance(account) },
           async(start = CoroutineStart.LAZY) { fetchDelegations(account) },
           async(start = CoroutineStart.LAZY) { fetchUnboundingDelegations(account) },

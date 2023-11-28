@@ -1,6 +1,5 @@
 package co.sentinel.cosmos.task.gRpcTask
 
-import co.sentinel.cosmos.base.BaseChain
 import co.sentinel.cosmos.network.ChannelBuilder
 import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.functional.Either
@@ -12,10 +11,9 @@ import timber.log.Timber
 
 object QueryBalancesTask {
   suspend fun execute(
-    chain: BaseChain,
     address: String,
   ) = kotlin.runCatching {
-    val stub = QueryGrpc.newFutureStub(ChannelBuilder.getChain(chain))
+    val stub = QueryGrpc.newFutureStub(ChannelBuilder.getMainChannel())
       .withDeadlineAfter(ChannelBuilder.TIME_OUT.toLong(), TimeUnit.SECONDS)
     val request = QueryOuterClass.QueryAllBalancesRequest.newBuilder()
       .setAddress(address)

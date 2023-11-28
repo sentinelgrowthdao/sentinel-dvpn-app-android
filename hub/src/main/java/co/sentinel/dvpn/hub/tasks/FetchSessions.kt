@@ -1,6 +1,5 @@
 package co.sentinel.dvpn.hub.tasks
 
-import co.sentinel.cosmos.base.BaseChain
 import co.sentinel.cosmos.dao.Account
 import co.sentinel.cosmos.network.ChannelBuilder
 import co.uk.basedapps.domain.exception.Failure
@@ -14,8 +13,7 @@ import timber.log.Timber
 
 object FetchSessions {
   suspend fun execute(account: Account) = kotlin.runCatching {
-    val chain = BaseChain.getChain(account.baseChain)
-    val stub = QueryServiceGrpc.newFutureStub(ChannelBuilder.getChain(chain))
+    val stub = QueryServiceGrpc.newFutureStub(ChannelBuilder.getMainChannel())
       .withDeadlineAfter(ChannelBuilder.TIME_OUT.toLong(), TimeUnit.SECONDS)
     val response = stub.querySessionsForAccount(
       Querier.QuerySessionsForAccountRequest.newBuilder()

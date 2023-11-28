@@ -3,7 +3,6 @@ package co.sentinel.dvpn.hub
 import android.content.Context
 import android.net.wifi.WifiManager
 import android.text.format.Formatter
-import co.sentinel.cosmos.base.BaseChain
 import co.sentinel.cosmos.base.BaseCosmosApp
 import co.sentinel.cosmos.network.ChannelBuilder
 import co.sentinel.dvpn.hub.mapper.SessionMapper
@@ -60,16 +59,8 @@ class HubRemoteRepository
   private suspend fun fetchPlans(
     offset: Long,
     limit: Long,
-  ): Either<Failure, QueryPlansResponse> = kotlin.runCatching {
-    val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
-      ?: return Either.Left(Failure.AppError)
-    QueryPlans.execute(
-      chain = BaseChain.getChain(account.baseChain),
-      offset = offset,
-      limit = limit,
-    )
-  }.onFailure { Timber.e(it) }
-    .getOrNull() ?: Either.Left(Failure.AppError)
+  ): Either<Failure, QueryPlansResponse> =
+    QueryPlans.execute(offset = offset, limit = limit)
 
   suspend fun fetchPlansJson(
     offset: Long = 0,
@@ -80,16 +71,8 @@ class HubRemoteRepository
   private suspend fun fetchNodes(
     offset: Long,
     limit: Long,
-  ): Either<Failure, QueryNodesResponse> = kotlin.runCatching {
-    val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
-      ?: return@runCatching Either.Left(Failure.AppError)
-    QueryNodes.execute(
-      chain = BaseChain.getChain(account.baseChain),
-      offset = offset,
-      limit = limit,
-    )
-  }.onFailure { Timber.e(it) }
-    .getOrNull() ?: Either.Left(Failure.AppError)
+  ): Either<Failure, QueryNodesResponse> =
+    QueryNodes.execute(offset = offset, limit = limit)
 
   suspend fun fetchNodesJson(
     offset: Long = 0,
@@ -102,17 +85,7 @@ class HubRemoteRepository
     offset: Long,
     limit: Long,
   ): Either<Failure, QueryNodesForPlanResponse> =
-    kotlin.runCatching {
-      val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
-        ?: return@runCatching Either.Left(Failure.AppError)
-      QueryNodes.execute(
-        chain = BaseChain.getChain(account.baseChain),
-        planId = planId,
-        offset = offset,
-        limit = limit,
-      )
-    }.onFailure { Timber.e(it) }
-      .getOrNull() ?: Either.Left(Failure.AppError)
+    QueryNodes.execute(planId = planId, offset = offset, limit = limit)
 
   suspend fun fetchNodesForPlanJson(
     planId: Long,
@@ -197,12 +170,7 @@ class HubRemoteRepository
       .getOrNull() ?: Either.Left(Failure.AppError)
   }
 
-  suspend fun fetchNode(nodeAddress: String) = kotlin.runCatching {
-    val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
-      ?: return Either.Left(Failure.AppError)
-    QueryNode.execute(nodeAddress, BaseChain.getChain(account.baseChain))
-  }.onFailure { Timber.e(it) }
-    .getOrNull() ?: Either.Left(Failure.AppError)
+  suspend fun fetchNode(nodeAddress: String) = QueryNode.execute(nodeAddress)
 
   suspend fun fetchNodeDataWithoutSubscription(nodeAddress: String): Either<Failure, NodeData> {
     val fetchNodeResult = fetchNode(nodeAddress)
@@ -257,9 +225,7 @@ class HubRemoteRepository
     .getOrNull() ?: Either.Left(Failure.AppError)
 
   suspend fun fetchSubscription(subscriptionId: Long) = kotlin.runCatching {
-    val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
-      ?: return Either.Left(Failure.AppError)
-    val result = FetchSubscription.execute(account, subscriptionId)
+    val result = FetchSubscription.execute(subscriptionId)
     result.getOrNull()
       ?.let(SubscriptionMapper::map)
       ?.let { Either.Right(it) }

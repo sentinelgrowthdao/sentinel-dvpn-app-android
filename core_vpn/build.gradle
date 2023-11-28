@@ -56,4 +56,5 @@ dependencies {
     implementation project(path: ':domain_wireguard')
     implementation project(path: ':wallet')
     implementation project(path: ':hub')
+    implementation project(path: ':cosmos')
 }
