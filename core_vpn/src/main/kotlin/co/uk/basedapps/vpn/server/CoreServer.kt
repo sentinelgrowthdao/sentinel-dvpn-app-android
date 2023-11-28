@@ -86,7 +86,7 @@ constructor(
     routeRegistry(storage)
     routeProxy(repository)
     routeVpn(vpnConnector)
-    routeWallet(walletRepository)
+    routeWallet(walletRepository, hubRepository)
     routeCommon(hubRepository)
   }
 

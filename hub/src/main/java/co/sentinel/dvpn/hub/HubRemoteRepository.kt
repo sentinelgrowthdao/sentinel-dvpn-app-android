@@ -236,10 +236,14 @@ class HubRemoteRepository
   suspend fun fetchSubscriptions() = kotlin.runCatching {
     val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
       ?: return Either.Left(Failure.AppError)
-    val subscriptions = FetchSubscriptions.execute(account)
+    val subscriptions = fetchSubscriptionsForAddress(
+      address = account.address,
+      offset = 0,
+      limit = 1000,
+    )
     if (subscriptions.isRight) {
       Either.Right(
-        subscriptions.requireRight()
+        subscriptions.requireRight().subscriptionsList
           .mapNotNull(SubscriptionMapper::map),
       )
     } else {
@@ -249,6 +253,19 @@ class HubRemoteRepository
     Timber.e(it)
   }
     .getOrNull() ?: Either.Left(Failure.AppError)
+
+  suspend fun fetchSubscriptionsForAddressJson(
+    address: String,
+    offset: Long,
+    limit: Long,
+  ) = fetchSubscriptionsForAddress(address = address, offset = offset, limit = limit)
+    .map { result -> jsonFormatter.print(result) }
+
+  private suspend fun fetchSubscriptionsForAddress(
+    address: String,
+    offset: Long,
+    limit: Long,
+  ) = FetchSubscriptions.execute(address = address, offset = offset, limit = limit)
 
   suspend fun fetchOwnIp() = GetOwnIP.execute().let {
     it.runCatching {

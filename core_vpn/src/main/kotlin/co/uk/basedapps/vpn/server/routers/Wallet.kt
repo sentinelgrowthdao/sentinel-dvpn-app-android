@@ -1,6 +1,7 @@
 package co.uk.basedapps.vpn.server.routers
 
 import co.sentinel.cosmos.WalletRepository
+import co.sentinel.dvpn.hub.HubRemoteRepository
 import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.vpn.server.error.HttpError.Companion.badRequest
 import co.uk.basedapps.vpn.server.error.HttpError.Companion.internalServer
@@ -19,6 +20,7 @@ import io.ktor.server.routing.routing
 
 fun Application.routeWallet(
   walletRepository: WalletRepository,
+  hubRepository: HubRemoteRepository,
 ) {
 
   routing {
@@ -63,6 +65,21 @@ fun Application.routeWallet(
       }
     }
 
-    // todo: GET /api/blockchain/wallet/:address/subscriptions
+    get("/api/blockchain/wallet/{address}/subscriptions") {
+      val address = call.parameters["address"]
+        ?: return@get call.respond(HttpStatusCode.BadRequest, badRequest)
+      val offset = call.request.queryParameters["offset"]?.toLongOrNull() ?: 0L
+      val limit = call.request.queryParameters["limit"]?.toLongOrNull() ?: 10L
+      val result = hubRepository.fetchSubscriptionsForAddressJson(
+        address = address,
+        offset = offset,
+        limit = limit,
+      )
+      if (result.isRight) {
+        call.respond(HttpStatusCode.OK, result.requireRight())
+      } else {
+        call.respond(HttpStatusCode.NotFound, notFound)
+      }
+    }
   }
 }
