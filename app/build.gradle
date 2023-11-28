@@ -15,8 +15,8 @@ android {
         targetSdk libs.versions.compileSdk.get().toInteger()
         compileSdk libs.versions.compileSdk.get().toInteger()
 
-        versionCode 11
-        versionName "1.0.11"
+        versionCode 1
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,7 +34,7 @@ android {
             buildConfigField "String", "API_URL", "\"https://vpn-api.basedapps.co.uk\""
         }
         release {
-            minifyEnabled true
+            minifyEnabled false // fix
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "API_URL", "\"https://vpn-api.basedapps.co.uk\""
         }
