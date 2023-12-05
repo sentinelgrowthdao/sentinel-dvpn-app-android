@@ -12,6 +12,7 @@ import co.sentinel.dvpn.hub.model.NodeInfo
 import co.sentinel.dvpn.hub.model.Session
 import co.sentinel.dvpn.hub.tasks.CancelNodeSubscription
 import co.sentinel.dvpn.hub.tasks.CreateNodeSubscription
+import co.sentinel.dvpn.hub.tasks.CreatePlanSubscription
 import co.sentinel.dvpn.hub.tasks.FetchNodeInfo
 import co.sentinel.dvpn.hub.tasks.FetchSessions
 import co.sentinel.dvpn.hub.tasks.FetchSubscription
@@ -185,7 +186,7 @@ class HubRemoteRepository
     return Either.Right(NodeData(nodeInfo = fixedNodeData, subscription = null))
   }
 
-  fun generateSubscribePayload(
+  fun generateNodeSubscriptionPayload(
     nodeAddress: String,
     denom: String,
     gigabytes: Long,
@@ -199,6 +200,21 @@ class HubRemoteRepository
       denom = denom,
       gigabytes = gigabytes,
       hours = hours,
+    )
+    Either.Right(result)
+  }.onFailure { Timber.e(it) }
+    .getOrNull() ?: Either.Left(Failure.AppError)
+
+  fun generatePlanSubscriptionPayload(
+    planId: Long,
+    denom: String,
+  ): Either<Failure, Any> = kotlin.runCatching {
+    val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
+      ?: return Either.Left(Failure.AppError)
+    val result = CreatePlanSubscription.execute(
+      walletAddress = account.address,
+      planId = planId,
+      denom = denom,
     )
     Either.Right(result)
   }.onFailure { Timber.e(it) }

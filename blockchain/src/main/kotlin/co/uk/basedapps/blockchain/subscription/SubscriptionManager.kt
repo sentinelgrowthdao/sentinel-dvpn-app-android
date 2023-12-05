@@ -22,7 +22,7 @@ class SubscriptionManager
     gasPrice: Long,
     chainId: String,
   ): Either<Unit, Unit> {
-    val subscribePayload = hubRepository.generateSubscribePayload(
+    val subscribePayload = hubRepository.generateNodeSubscriptionPayload(
       nodeAddress = nodeAddress,
       denom = denom,
       gigabytes = gigabytes,
@@ -34,6 +34,29 @@ class SubscriptionManager
 
     return walletRepository.signSubscribedRequestAndBroadcast(
       nodeAddress = nodeAddress,
+      subscribeMessage = subscribePayload.requireRight(),
+      gasPrice = gasPrice,
+      chainId = chainId,
+    )
+  }
+
+  suspend fun subscribeToPlan(
+    planId: Long,
+    denom: String,
+    providerAddress: String,
+    gasPrice: Long,
+    chainId: String,
+  ): Either<Unit, Unit> {
+    val subscribePayload = hubRepository.generatePlanSubscriptionPayload(
+      planId = planId,
+      denom = denom,
+    )
+    if (subscribePayload.isLeft) {
+      return Either.Left(Unit)
+    }
+
+    return walletRepository.signSubscribedRequestAndBroadcast(
+      nodeAddress = providerAddress,
       subscribeMessage = subscribePayload.requireRight(),
       gasPrice = gasPrice,
       chainId = chainId,

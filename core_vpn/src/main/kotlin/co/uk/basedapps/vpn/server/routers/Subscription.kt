@@ -18,17 +18,6 @@ fun Application.routeSubscription(
 ) {
 
   routing {
-    post("/api/blockchain/plans/{planId}/subscription") {
-      val planId = call.parameters["planId"]
-      val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
-      val chanId = call.request.headers["x-chain-id"]
-      val request = kotlin.runCatching { call.receive<PlanSubscriptionRequest>() }.getOrNull()
-      if (planId == null || gasPrice == null || chanId == null || request == null) {
-        return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
-      }
-      call.respond(HttpStatusCode.NotImplemented)
-    }
-
     post("/api/blockchain/nodes/{nodeAddress}/subscription") {
       val nodeAddress = call.parameters["nodeAddress"]
       val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
@@ -42,6 +31,28 @@ fun Application.routeSubscription(
         denom = request.denom,
         gigabytes = request.gigabytes,
         hours = request.hours,
+        gasPrice = gasPrice,
+        chainId = chainId,
+      )
+      if (result.isRight) {
+        call.respond(HttpStatusCode.OK)
+      } else {
+        call.respond(HttpStatusCode.InternalServerError, internalServer)
+      }
+    }
+
+    post("/api/blockchain/plans/{planId}/subscription") {
+      val planId = call.parameters["planId"]?.toLongOrNull()
+      val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
+      val chainId = call.request.headers["x-chain-id"]
+      val request = kotlin.runCatching { call.receive<PlanSubscriptionRequest>() }.getOrNull()
+      if (planId == null || gasPrice == null || chainId == null || request == null) {
+        return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
+      }
+      val result = subscriptionManager.subscribeToPlan(
+        planId = planId,
+        denom = request.denom,
+        providerAddress = request.providerAddress,
         gasPrice = gasPrice,
         chainId = chainId,
       )
