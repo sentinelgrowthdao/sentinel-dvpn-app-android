@@ -17,3 +17,12 @@ data class NodeSubscriptionRequest(
   @SerializedName("hours")
   val hours: Long,
 )
+
+data class DirectPaymentRequest(
+  @SerializedName("amount")
+  val amount: String,
+  @SerializedName("denom")
+  val denom: String,
+  @SerializedName("memo")
+  val memo: String?,
+)

@@ -11,6 +11,7 @@ import co.sentinel.dvpn.hub.model.NodeData
 import co.sentinel.dvpn.hub.model.NodeInfo
 import co.sentinel.dvpn.hub.model.Session
 import co.sentinel.dvpn.hub.tasks.CancelNodeSubscription
+import co.sentinel.dvpn.hub.tasks.CreateDirectTransaction
 import co.sentinel.dvpn.hub.tasks.CreateNodeSubscription
 import co.sentinel.dvpn.hub.tasks.CreatePlanSubscription
 import co.sentinel.dvpn.hub.tasks.FetchNodeInfo
@@ -305,6 +306,23 @@ class HubRemoteRepository
     offset: Long,
     limit: Long,
   ) = FetchSubscriptions.execute(address = address, offset = offset, limit = limit)
+
+  fun generateDirectTransferPayload(
+    recipientAddress: String,
+    amount: String,
+    denom: String,
+  ): Either<Failure, Any> = kotlin.runCatching {
+    val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
+      ?: return Either.Left(Failure.AppError)
+    val result = CreateDirectTransaction.execute(
+      walletAddress = account.address,
+      recipientAddress = recipientAddress,
+      amount = amount,
+      denom = denom,
+    )
+    Either.Right(result)
+  }.onFailure { Timber.e(it) }
+    .getOrNull() ?: Either.Left(Failure.AppError)
 
   suspend fun fetchOwnIp() = GetOwnIP.execute().let {
     it.runCatching {

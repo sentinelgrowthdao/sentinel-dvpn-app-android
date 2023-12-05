@@ -8,7 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SubscriptionManager
+class TransactionManager
 @Inject constructor(
   private val walletRepository: WalletRepository,
   private val hubRepository: HubRemoteRepository,
@@ -57,6 +57,30 @@ class SubscriptionManager
 
     return walletRepository.signSubscribedRequestAndBroadcast(
       nodeAddress = providerAddress,
+      subscribeMessage = subscribePayload.requireRight(),
+      gasPrice = gasPrice,
+      chainId = chainId,
+    )
+  }
+
+  suspend fun makeDirectTransfer(
+    recipientAddress: String,
+    amount: String,
+    denom: String,
+    gasPrice: Long,
+    chainId: String,
+  ): Either<Unit, Unit> {
+    val subscribePayload = hubRepository.generateDirectTransferPayload(
+      recipientAddress = recipientAddress,
+      amount = amount,
+      denom = denom,
+    )
+    if (subscribePayload.isLeft) {
+      return Either.Left(Unit)
+    }
+
+    return walletRepository.signSubscribedRequestAndBroadcast(
+      nodeAddress = recipientAddress,
       subscribeMessage = subscribePayload.requireRight(),
       gasPrice = gasPrice,
       chainId = chainId,
