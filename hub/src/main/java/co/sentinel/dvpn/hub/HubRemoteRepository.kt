@@ -41,9 +41,12 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
+import org.json.JSONObject
 import sentinel.node.v2.Querier.QueryNodesForPlanResponse
 import sentinel.node.v2.Querier.QueryNodesResponse
 import sentinel.plan.v2.Querier.QueryPlansResponse
+import sentinel.subscription.v2.Subscription
 import sentinel.types.v1.StatusOuterClass
 import timber.log.Timber
 
@@ -183,17 +186,19 @@ class HubRemoteRepository
   }
 
   fun generateSubscribePayload(
-    address: String,
+    nodeAddress: String,
     denom: String,
-    gigabytes: Int,
+    gigabytes: Long,
+    hours: Long,
   ): Either<Failure, Any> = kotlin.runCatching {
     val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
       ?: return Either.Left(Failure.AppError)
     val result = CreateNodeSubscription.execute(
-      account = account,
-      address = address,
+      walletAddress = account.address,
+      nodeAddress = nodeAddress,
       denom = denom,
-      gigabytes = gigabytes.toLong(),
+      gigabytes = gigabytes,
+      hours = hours,
     )
     Either.Right(result)
   }.onFailure { Timber.e(it) }
@@ -239,7 +244,7 @@ class HubRemoteRepository
     val subscriptions = fetchSubscriptionsForAddress(
       address = account.address,
       offset = 0,
-      limit = 1000,
+      limit = Long.MAX_VALUE,
     )
     if (subscriptions.isRight) {
       Either.Right(
@@ -259,7 +264,25 @@ class HubRemoteRepository
     offset: Long,
     limit: Long,
   ) = fetchSubscriptionsForAddress(address = address, offset = offset, limit = limit)
-    .map { result -> jsonFormatter.print(result) }
+    .map { response ->
+      val nodeSubscriptions = mutableListOf<Subscription.NodeSubscription>()
+      val planSubscriptions = mutableListOf<Subscription.PlanSubscription>()
+      response.subscriptionsList.forEach { subscription ->
+        when {
+          subscription.`is`(Subscription.NodeSubscription::class.java) ->
+            subscription.unpack(Subscription.NodeSubscription::class.java)
+              .also { nodeSubscriptions.add(it) }
+
+          subscription.`is`(Subscription.PlanSubscription::class.java) ->
+            subscription.unpack(Subscription.PlanSubscription::class.java)
+              .also { planSubscriptions.add(it) }
+        }
+      }
+      JSONObject().apply {
+        put("nodeSubscriptions", JSONArray(nodeSubscriptions.map { JSONObject(jsonFormatter.print(it)) }))
+        put("planSubscriptions", JSONArray(planSubscriptions.map { JSONObject(jsonFormatter.print(it)) }))
+      }.toString()
+    }
 
   private suspend fun fetchSubscriptionsForAddress(
     address: String,

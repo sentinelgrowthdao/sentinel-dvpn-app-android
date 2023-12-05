@@ -15,7 +15,6 @@ import co.sentinel.cosmos.dto.GeneratedKeyword
 import co.sentinel.cosmos.dto.Session
 import co.sentinel.cosmos.model.type.AccountBalance
 import co.sentinel.cosmos.model.type.Coin
-import co.sentinel.cosmos.model.type.Fee
 import co.sentinel.cosmos.network.station.StationApi
 import co.sentinel.cosmos.task.gRpcTask.AllRewardGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.AuthGrpcTask
@@ -31,13 +30,10 @@ import co.sentinel.cosmos.task.gRpcTask.broadcast.ConnectToNodeGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.broadcast.GenericGrpcTask
 import co.sentinel.cosmos.task.userTask.GenerateAccountTask
 import co.sentinel.cosmos.task.userTask.GenerateSentinelAccountTask
-import co.sentinel.cosmos.utils.DEFAULT_FEE
-import co.sentinel.cosmos.utils.DEFAULT_FEE_AMOUNT
-import co.sentinel.cosmos.utils.DEFAULT_GAS
+import co.sentinel.cosmos.utils.GasFee
 import co.sentinel.cosmos.utils.WDp
 import co.sentinel.cosmos.utils.WKey
 import co.sentinel.cosmos.utils.WUtil
-import co.sentinel.cosmos.utils.denom
 import co.sentinel.cosmos.utils.toByteArray
 import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.functional.Either
@@ -194,17 +190,25 @@ class WalletRepository
   suspend fun signSubscribedRequestAndBroadcast(
     nodeAddress: String,
     subscribeMessage: Any,
+    gasPrice: Long? = null,
+    chainId: String? = null,
   ): Either<Unit, Unit> {
     return kotlin.runCatching {
       val account = getAccount() ?: return@runCatching Either.Left(Unit)
+      val fee = if (gasPrice != null) {
+        GasFee.composeFee(gasPrice)
+      } else {
+        GasFee.DEFAULT_FEE
+      }
+      val chainIdLocal = chainId ?: app.baseDao.chainIdGrpc
       fetchAll(account)
       BroadcastNodeSubscribeGrpcTask(
         app,
         account,
         nodeAddress,
         subscribeMessage,
-        DEFAULT_FEE,
-        app.baseDao.chainIdGrpc,
+        fee,
+        chainIdLocal,
       ).run(prefsStore.retrievePasscode()) // password confirmation
         .let {
           if (!it.isSuccess) {
@@ -229,16 +233,11 @@ class WalletRepository
       val account = getAccount() ?: return@runCatching Either.Left(Unit)
       fetchAll(account)
 
-      val gas = DEFAULT_GAS + (DEFAULT_GAS / 10 * gasFactor)
-      val feePrice = DEFAULT_FEE_AMOUNT + (DEFAULT_FEE_AMOUNT / 10 * gasFactor)
-
-      val fee = Fee(gas.toString(), arrayListOf(Coin(denom, feePrice.toString())))
-
       GenericGrpcTask(
         app,
         account,
         messages,
-        fee,
+        GasFee.DEFAULT_FEE,
         app.baseDao.chainIdGrpc,
       ).run(prefsStore.retrievePasscode()) // password confirmation
         .let {
@@ -289,7 +288,7 @@ class WalletRepository
         app,
         account,
         messages,
-        DEFAULT_FEE,
+        GasFee.DEFAULT_FEE,
         app.baseDao.chainIdGrpc,
       ).run(prefsStore.retrievePasscode()) // password confirmation
         .let { result ->

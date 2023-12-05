@@ -35,4 +35,5 @@ include ':app',
         ':core_vpn',
         ':cosmos',
         ':wallet',
-        ':hub'
+        ':hub',
+        ':blockchain'

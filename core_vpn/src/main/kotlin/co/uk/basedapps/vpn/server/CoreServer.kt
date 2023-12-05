@@ -2,6 +2,7 @@ package co.uk.basedapps.vpn.server
 
 import co.sentinel.cosmos.WalletRepository
 import co.sentinel.dvpn.hub.HubRemoteRepository
+import co.uk.basedapps.blockchain.subscription.SubscriptionManager
 import co.uk.basedapps.vpn.common.provider.AppDetailsProvider
 import co.uk.basedapps.vpn.network.repository.BasedRepository
 import co.uk.basedapps.vpn.server.routers.routeCommon
@@ -9,6 +10,7 @@ import co.uk.basedapps.vpn.server.routers.routeDns
 import co.uk.basedapps.vpn.server.routers.routeProxy
 import co.uk.basedapps.vpn.server.routers.routeRegistry
 import co.uk.basedapps.vpn.server.routers.routeStatic
+import co.uk.basedapps.vpn.server.routers.routeSubscription
 import co.uk.basedapps.vpn.server.routers.routeVpn
 import co.uk.basedapps.vpn.server.routers.routeWallet
 import co.uk.basedapps.vpn.storage.BasedStorage
@@ -44,6 +46,7 @@ constructor(
   private val vpnConnector: VPNConnector,
   private val walletRepository: WalletRepository,
   private val hubRepository: HubRemoteRepository,
+  private val subscriptionManager: SubscriptionManager,
 ) {
 
   fun init() {
@@ -88,6 +91,7 @@ constructor(
     routeVpn(vpnConnector)
     routeWallet(walletRepository, hubRepository)
     routeCommon(hubRepository)
+    routeSubscription(subscriptionManager)
   }
 
   private fun Application.configureSerialization() {
