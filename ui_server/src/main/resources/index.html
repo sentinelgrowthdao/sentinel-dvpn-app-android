@@ -6,11 +6,26 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#26304C" />
     <title>Application</title>
-    <script type="module" crossorigin src="/assets/index-b808d304.js"></script>
-    <link rel="stylesheet" href="/assets/index-5eea950d.css">
   </head>
   <body>
-    <div id="root"></div>
+    <h1>Hola!</h1>
+    <p id="address"></p>
+    <p id="balance"></p>
+    <script>
+      fetch('http://127.0.0.1:3876/api/blockchain/wallet/sent10760psyujn3myu8vquyylna74ewlvv237lyp6a/balance')
+        .then(response => response.json())
+        .then(data => {
+          balance = data.balances[0]
+          document.getElementById("balance").innerHTML = 'Balance: ' + balance.amount + ' ' + balance.denom
+        })
+        .catch(error => console.error(error));
 
+        fetch('http://127.0.0.1:3876/api/blockchain/wallet')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("address").innerHTML = 'Address: ' + data.address
+        })
+        .catch(error => console.error(error));
+    </script>
   </body>
 </html>
