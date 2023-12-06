@@ -1,6 +1,6 @@
 package co.uk.basedapps.vpn.server.routers
 
-import co.uk.basedapps.blockchain.subscription.TransactionManager
+import co.uk.basedapps.blockchain.transaction.TransactionManager
 import co.uk.basedapps.vpn.server.error.HttpError
 import co.uk.basedapps.vpn.server.error.HttpError.Companion.internalServer
 import co.uk.basedapps.vpn.server.models.DirectPaymentRequest

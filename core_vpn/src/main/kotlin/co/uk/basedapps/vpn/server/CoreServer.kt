@@ -2,7 +2,7 @@ package co.uk.basedapps.vpn.server
 
 import co.sentinel.cosmos.WalletRepository
 import co.sentinel.dvpn.hub.HubRemoteRepository
-import co.uk.basedapps.blockchain.subscription.TransactionManager
+import co.uk.basedapps.blockchain.transaction.TransactionManager
 import co.uk.basedapps.vpn.common.provider.AppDetailsProvider
 import co.uk.basedapps.vpn.network.repository.BasedRepository
 import co.uk.basedapps.vpn.server.routers.routeCommon

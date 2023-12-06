@@ -1,4 +1,4 @@
-package co.uk.basedapps.blockchain.subscription
+package co.uk.basedapps.blockchain.transaction
 
 import co.sentinel.cosmos.WalletRepository
 import co.sentinel.dvpn.hub.HubRemoteRepository

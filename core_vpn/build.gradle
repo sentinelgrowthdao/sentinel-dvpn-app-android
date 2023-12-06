@@ -30,7 +30,6 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
-    sourceSets.main.res.srcDirs += 'src/main/res-flags'
 }
 
 dependencies {
