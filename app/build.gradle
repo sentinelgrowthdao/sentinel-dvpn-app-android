@@ -77,6 +77,6 @@ dependencies {
     implementation libs.webkit
 
     kapt libs.hilt.compiler
-    implementation project(path: ':core_vpn')
+    implementation project(path: ':ui_server')
 
 }
