@@ -18,7 +18,6 @@ import co.uk.basedapps.vpn.vpn.DdsConfigurator
 import co.uk.basedapps.vpn.vpn.VPNConnector
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
-import io.ktor.serialization.gson.GsonWebsocketContentConverter
 import io.ktor.serialization.gson.gson
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
@@ -27,10 +26,9 @@ import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.callloging.CallLogging
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
-import io.ktor.server.websocket.WebSockets
-import io.ktor.server.websocket.pingPeriod
-import io.ktor.server.websocket.timeout
-import java.time.Duration
+import io.ktor.server.request.httpMethod
+import io.ktor.server.request.path
+import io.ktor.util.logging.KtorSimpleLogger
 import javax.inject.Inject
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -52,11 +50,10 @@ constructor(
   fun init() {
     GlobalScope.launch {
       embeddedServer(Netty, provider.getServerPort(), "127.0.0.1") {
-        configureMonitoring()
         configureCors()
-        configureSockets()
         configureRouting()
         configureSerialization()
+        configureMonitoring()
       }.start(wait = true)
     }
   }
@@ -70,16 +67,6 @@ constructor(
       allowMethod(HttpMethod.Put)
       allowMethod(HttpMethod.Delete)
       anyHost()
-    }
-  }
-
-  private fun Application.configureSockets() {
-    install(WebSockets) {
-      contentConverter = GsonWebsocketContentConverter()
-      pingPeriod = Duration.ofSeconds(15)
-      timeout = Duration.ofSeconds(15)
-      maxFrameSize = Long.MAX_VALUE
-      masking = false
     }
   }
 
@@ -105,6 +92,14 @@ constructor(
   private fun Application.configureMonitoring() {
     install(CallLogging) {
       level = Level.INFO
+      logger = KtorSimpleLogger("ServerLog")
+      format { call ->
+        val status = call.response.status()
+        val httpMethod = call.request.httpMethod.value
+        val path = call.request.path()
+        "REQ: $status, $httpMethod, $path"
+      }
+      filter { call -> call.request.path().startsWith("/api") }
     }
   }
 }

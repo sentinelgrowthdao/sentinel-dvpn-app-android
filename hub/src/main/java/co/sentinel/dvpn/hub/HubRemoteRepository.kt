@@ -227,10 +227,11 @@ class HubRemoteRepository
     val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
       ?: return Either.Left(Failure.AppError)
     // fetch active sessions and stop them to successfully cancel subscription
-    val activeSessions = FetchSessions.execute(account)
+    val activeSessions = FetchSessions.execute(account.address)
       .getOrElse(listOf())
       .filter { subscriptionIds.contains(it.subscriptionId) }
       .filter { it.status == StatusOuterClass.Status.STATUS_ACTIVE }
+      .map { it.id }
     val stopMessages = GenerateStopActiveSessionMessages.execute(account, activeSessions)
     val result = stopMessages.toMutableList().apply {
       subscriptionIds.map { subscriptionId ->
@@ -349,11 +350,12 @@ class HubRemoteRepository
   ): Either<Failure, List<Any>> = kotlin.runCatching {
     val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
       ?: return Either.Left(Failure.AppError)
-    val sessions = FetchSessions.execute(account)
+    val sessions = FetchSessions.execute(account.address)
     if (sessions.isRight) {
       val activeSessions = sessions
         .requireRight()
         .filter { it.status == StatusOuterClass.Status.STATUS_ACTIVE }
+        .map { it.id }
       val stopMessages = GenerateStopActiveSessionMessages.execute(account, activeSessions)
       return buildList<Any> {
         addAll(stopMessages)
@@ -371,16 +373,49 @@ class HubRemoteRepository
   }.onFailure { Timber.e(it) }
     .getOrNull() ?: Either.Left(Failure.AppError)
 
-  suspend fun loadActiveSession() = kotlin.runCatching {
+  fun generateConnectToNodeMessages(
+    subscriptionId: Long,
+    nodeAddress: String,
+    activeSessionId: Long?,
+  ): Either<Failure, List<Any>> = kotlin.runCatching {
     val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
       ?: return Either.Left(Failure.AppError)
-    FetchSessions.execute(account)
+    val activeSessions = activeSessionId?.let(::listOf) ?: emptyList()
+    val stopMessages = GenerateStopActiveSessionMessages.execute(account, activeSessions)
+    return buildList<Any> {
+      addAll(stopMessages)
+      add(
+        GenerateStartActiveSessionMessage.execute(
+          account,
+          subscriptionId,
+          nodeAddress,
+        ),
+      )
+    }.let { Either.Right(it) }
+  }.onFailure { Timber.e(it) }
+    .getOrNull() ?: Either.Left(Failure.AppError)
+
+  private suspend fun loadActiveSessionForAccount(address: String) = kotlin.runCatching {
+    FetchSessions.execute(address)
       .getOrElse(listOf())
       .firstOrNull { it.status == StatusOuterClass.Status.STATUS_ACTIVE }
-      ?.let { Either.Right(SessionMapper.map(it)) }
+      ?.let { Either.Right(it) }
       ?: Either.Left(Failure.AppError)
   }.onFailure { Timber.e(it) }
     .getOrNull() ?: Either.Left(Failure.AppError)
+
+  suspend fun loadActiveSession(): Either<Failure.AppError, Session> {
+    val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
+      ?: return Either.Left(Failure.AppError)
+    return loadActiveSessionForAccount(account.address)
+      .map { SessionMapper.map(it) }
+  }
+
+  suspend fun loadActiveSessionForAccountJson(
+    address: String,
+  ): Either<Failure, String> =
+    loadActiveSessionForAccount(address)
+      .map { result -> jsonFormatter.print(result) }
 
   suspend fun fetchVpnProfile(
     session: Session,

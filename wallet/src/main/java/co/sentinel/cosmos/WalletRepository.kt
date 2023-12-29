@@ -277,9 +277,19 @@ class WalletRepository
     }
   }
 
-  suspend fun startNodeSession(messages: List<Any>): Either<Unit, Unit> {
+  suspend fun startNodeSession(
+    messages: List<Any>,
+    gasPrice: Long? = null,
+    chainId: String? = null,
+  ): Either<Unit, Unit> {
     return kotlin.runCatching {
       val account = getAccount() ?: return@runCatching Either.Left(Unit)
+      val fee = if (gasPrice != null) {
+        GasFee.composeFee(gasPrice)
+      } else {
+        GasFee.DEFAULT_FEE
+      }
+      val chainIdLocal = chainId ?: app.baseDao.chainIdGrpc
       fetchAuthorization(account)
       if (app.baseDao.chainIdGrpc.isEmpty()) {
         fetchNodeInfo()
@@ -288,8 +298,8 @@ class WalletRepository
         app,
         account,
         messages,
-        GasFee.DEFAULT_FEE,
-        app.baseDao.chainIdGrpc,
+        fee,
+        chainIdLocal,
       ).run(prefsStore.retrievePasscode()) // password confirmation
         .let { result ->
           if (!result.isSuccess) {

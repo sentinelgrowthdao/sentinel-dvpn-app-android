@@ -6,6 +6,7 @@ import co.uk.basedapps.vpn.server.error.HttpError.Companion.internalServer
 import co.uk.basedapps.vpn.server.models.DirectPaymentRequest
 import co.uk.basedapps.vpn.server.models.NodeSubscriptionRequest
 import co.uk.basedapps.vpn.server.models.PlanSubscriptionRequest
+import co.uk.basedapps.vpn.server.models.SessionStartRequest
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -76,6 +77,28 @@ fun Application.routeTransaction(
         recipientAddress = recipientAddress,
         amount = request.amount,
         denom = request.denom,
+        gasPrice = gasPrice,
+        chainId = chainId,
+      )
+      if (result.isRight) {
+        call.respond(HttpStatusCode.OK)
+      } else {
+        call.respond(HttpStatusCode.InternalServerError, internalServer)
+      }
+    }
+
+    post("/api/blockchain/wallet/{address}/session") {
+      val recipientAddress = call.parameters["address"]
+      val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
+      val chainId = call.request.headers["x-chain-id"]
+      val request = kotlin.runCatching { call.receive<SessionStartRequest>() }.getOrNull()
+      if (recipientAddress == null || gasPrice == null || chainId == null || request == null) {
+        return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
+      }
+      val result = transactionManager.startSession(
+        subscriptionId = request.subscriptionId,
+        nodeAddress = request.nodeAddress,
+        activeSession = request.activeSession,
         gasPrice = gasPrice,
         chainId = chainId,
       )

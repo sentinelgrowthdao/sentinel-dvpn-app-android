@@ -26,3 +26,12 @@ data class DirectPaymentRequest(
   @SerializedName("memo")
   val memo: String?,
 )
+
+data class SessionStartRequest(
+  @SerializedName("subscriptionID")
+  val subscriptionId: Long,
+  @SerializedName("node")
+  val nodeAddress: String,
+  @SerializedName("activeSession")
+  val activeSession: Long?,
+)

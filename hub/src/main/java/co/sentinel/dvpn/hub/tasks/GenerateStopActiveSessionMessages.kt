@@ -3,16 +3,15 @@ package co.sentinel.dvpn.hub.tasks
 import co.sentinel.cosmos.dao.Account
 import com.google.protobuf2.Any
 import sentinel.session.v2.Msg
-import sentinel.session.v2.SessionOuterClass
 
 object GenerateStopActiveSessionMessages {
-  fun execute(account: Account, sessions: List<SessionOuterClass.Session>) =
-    sessions.map { session ->
+  fun execute(account: Account, sessions: List<Long>) =
+    sessions.map { sessionId ->
       Any.newBuilder()
         .setTypeUrl("/sentinel.session.v2.MsgEndRequest")
         .setValue(
           Msg.MsgEndRequest.newBuilder()
-            .setId(session.id)
+            .setId(sessionId)
             .setFrom(account.address)
             .build().toByteString(),
         )

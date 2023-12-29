@@ -86,4 +86,27 @@ class TransactionManager
       chainId = chainId,
     )
   }
+
+  suspend fun startSession(
+    subscriptionId: Long,
+    nodeAddress: String,
+    activeSession: Long?,
+    gasPrice: Long,
+    chainId: String,
+  ): Either<Unit, Unit> {
+    val connectMessage = hubRepository.generateConnectToNodeMessages(
+      subscriptionId = subscriptionId,
+      nodeAddress = nodeAddress,
+      activeSessionId = activeSession,
+    )
+    if (connectMessage.isLeft) {
+      return Either.Left(Unit)
+    }
+
+    return walletRepository.startNodeSession(
+      messages = connectMessage.requireRight(),
+      gasPrice = gasPrice,
+      chainId = chainId,
+    )
+  }
 }

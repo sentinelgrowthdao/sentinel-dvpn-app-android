@@ -81,5 +81,16 @@ fun Application.routeWallet(
         call.respond(HttpStatusCode.NotFound, notFound)
       }
     }
+
+    get("/api/blockchain/wallet/{address}/session") {
+      val address = call.parameters["address"]
+        ?: return@get call.respond(HttpStatusCode.BadRequest, badRequest)
+      val result = hubRepository.loadActiveSessionForAccountJson(address)
+      if (result.isRight) {
+        call.respond(HttpStatusCode.OK, result.requireRight())
+      } else {
+        call.respond(HttpStatusCode.NotFound, notFound)
+      }
+    }
   }
 }
