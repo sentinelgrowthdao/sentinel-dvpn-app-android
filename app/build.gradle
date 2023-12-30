@@ -9,7 +9,7 @@ android {
     namespace 'co.uk.basedapps.vpn'
 
     defaultConfig {
-        applicationId "com.whitelabel.app"
+        applicationId "co.sentinel.dvpnapp"
 
         minSdk libs.versions.minSdk.get().toInteger()
         targetSdk libs.versions.compileSdk.get().toInteger()
@@ -30,7 +30,6 @@ android {
 
     buildTypes {
         debug {
-            // buildConfigField "String", "API_URL", "\"https://vpn-api-staging.basedapps.co.uk\""
             buildConfigField "String", "API_URL", "\"https://vpn-api.basedapps.co.uk\""
         }
         release {
