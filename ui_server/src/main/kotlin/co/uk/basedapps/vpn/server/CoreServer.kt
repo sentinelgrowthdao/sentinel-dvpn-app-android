@@ -16,6 +16,7 @@ import co.uk.basedapps.vpn.server.routers.routeWallet
 import co.uk.basedapps.vpn.storage.BasedStorage
 import co.uk.basedapps.vpn.vpn.DdsConfigurator
 import co.uk.basedapps.vpn.vpn.VPNConnector
+import co.uk.basedapps.vpn.vpn.VPNProfileFetcher
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
 import io.ktor.serialization.gson.gson
@@ -40,11 +41,12 @@ constructor(
   private val provider: AppDetailsProvider,
   private val dnsConfigurator: DdsConfigurator,
   private val storage: BasedStorage,
-  private val repository: BasedRepository,
+  private val restRepository: BasedRepository,
   private val vpnConnector: VPNConnector,
   private val walletRepository: WalletRepository,
   private val hubRepository: HubRemoteRepository,
   private val transactionManager: TransactionManager,
+  private val profileFetcher: VPNProfileFetcher,
 ) {
 
   fun init() {
@@ -74,9 +76,9 @@ constructor(
     routeStatic()
     routeDns(dnsConfigurator)
     routeRegistry(storage)
-    routeProxy(repository)
+    routeProxy(restRepository)
     routeVpn(vpnConnector)
-    routeWallet(walletRepository, hubRepository)
+    routeWallet(walletRepository, hubRepository, profileFetcher)
     routeCommon(hubRepository)
     routeTransaction(transactionManager)
   }

@@ -12,7 +12,6 @@ import co.sentinel.cosmos.crypto.CryptoHelper
 import co.sentinel.cosmos.dao.Account
 import co.sentinel.cosmos.dto.CurrentPrice
 import co.sentinel.cosmos.dto.GeneratedKeyword
-import co.sentinel.cosmos.dto.Session
 import co.sentinel.cosmos.model.type.AccountBalance
 import co.sentinel.cosmos.model.type.Coin
 import co.sentinel.cosmos.network.station.StationApi
@@ -259,8 +258,8 @@ class WalletRepository
       .getOrNull() ?: Either.Left(Unit)
   }
 
-  suspend fun getSignature(session: Session): String? {
-    val account = getAccount() ?: return null
+  fun getSignature(sessionId: Long): Either<Unit, String> {
+    val account = getAccount() ?: return Either.Left(Unit)
     val entropy = CryptoHelper.doDecryptData(
       app.context.getString(R.string.key_mnemonic) + account.uuid,
       account.resource,
@@ -272,8 +271,8 @@ class WalletRepository
       account.path.toInt(),
       account.newBip44,
     )
-    return Signer.getGrpcByteSingleSignature(deterministicKey, session.id.toByteArray()).let {
-      Base64.encodeToString(it, Base64.DEFAULT)
+    return Signer.getGrpcByteSingleSignature(deterministicKey, sessionId.toByteArray()).let {
+      Either.Right(Base64.encodeToString(it, Base64.DEFAULT))
     }
   }
 

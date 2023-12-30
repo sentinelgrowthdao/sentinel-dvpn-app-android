@@ -1,8 +1,11 @@
 package co.uk.basedapps.vpn.network.repository
 
 import co.uk.basedapps.vpn.network.Api
+import co.uk.basedapps.vpn.network.ConnectApi
 import co.uk.basedapps.vpn.network.NetResult
 import co.uk.basedapps.vpn.network.execute
+import co.uk.basedapps.vpn.network.model.ConnectResponse
+import co.uk.basedapps.vpn.network.model.StartSessionRequest
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
@@ -13,6 +16,7 @@ import okhttp3.OkHttpClient
 class BasedRepository
 @Inject constructor(
   private val api: Api,
+  private val connectApi: ConnectApi,
   private val client: OkHttpClient,
 ) {
 
@@ -39,6 +43,13 @@ class BasedRepository
     headers: Map<String, String>,
     body: String,
   ): NetResult<String> = execute { api.pupProxy(path, headers, body) }
+
+  suspend fun connect(
+    url: String,
+    body: StartSessionRequest,
+  ): NetResult<ConnectResponse> = execute {
+    connectApi.connect(url, body)
+  }
 
   suspend fun resetConnection() {
     withContext(Dispatchers.IO) {

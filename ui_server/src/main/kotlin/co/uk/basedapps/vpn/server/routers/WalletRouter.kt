@@ -6,8 +6,10 @@ import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.vpn.server.error.HttpError.Companion.badRequest
 import co.uk.basedapps.vpn.server.error.HttpError.Companion.internalServer
 import co.uk.basedapps.vpn.server.error.HttpError.Companion.notFound
+import co.uk.basedapps.vpn.server.models.CredentialsRequest
 import co.uk.basedapps.vpn.server.models.RestoreWalletRequest
 import co.uk.basedapps.vpn.server.models.WalletResponse
+import co.uk.basedapps.vpn.vpn.VPNProfileFetcher
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -21,6 +23,7 @@ import io.ktor.server.routing.routing
 fun Application.routeWallet(
   walletRepository: WalletRepository,
   hubRepository: HubRemoteRepository,
+  profileFetcher: VPNProfileFetcher,
 ) {
 
   routing {
@@ -90,6 +93,18 @@ fun Application.routeWallet(
         call.respond(HttpStatusCode.OK, result.requireRight())
       } else {
         call.respond(HttpStatusCode.NotFound, notFound)
+      }
+    }
+
+    post("/api/blockchain/wallet/connect") {
+      val request = kotlin.runCatching { call.receive<CredentialsRequest>() }.getOrNull()
+        ?: return@post call.respond(HttpStatusCode.BadRequest, badRequest)
+
+      val credentialsRes = profileFetcher.fetch(request)
+      if (credentialsRes.isRight) {
+        call.respond(HttpStatusCode.OK, credentialsRes.requireRight())
+      } else {
+        return@post call.respond(HttpStatusCode.InternalServerError, internalServer)
       }
     }
   }

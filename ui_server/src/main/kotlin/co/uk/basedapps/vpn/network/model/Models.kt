@@ -13,6 +13,11 @@ data class Credentials(
   val privateKey: String,
 )
 
+data class DataWrapper<T>(
+  @SerializedName("data")
+  val data: T,
+)
+
 enum class Protocol(
   val strValue: String,
   @StringRes val labelRes: Int,
@@ -24,6 +29,18 @@ enum class Protocol(
 
   companion object {
     fun fromString(strValue: String) =
-      values().firstOrNull { it.strValue == strValue } ?: NONE
+      entries.firstOrNull { it.strValue.equals(strValue, true) } ?: NONE
   }
 }
+
+data class StartSessionRequest(
+  @SerializedName("key")
+  val key: String,
+  @SerializedName("signature")
+  val signature: String,
+)
+
+data class ConnectResponse(
+  @SerializedName("result")
+  val result: String,
+)
