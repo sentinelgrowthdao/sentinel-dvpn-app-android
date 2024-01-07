@@ -10,6 +10,7 @@ import co.sentinel.dvpn.hub.mapper.SubscriptionMapper
 import co.sentinel.dvpn.hub.model.NodeData
 import co.sentinel.dvpn.hub.model.NodeInfo
 import co.sentinel.dvpn.hub.model.Session
+import co.sentinel.dvpn.hub.model.nodeSubscriptions
 import co.sentinel.dvpn.hub.tasks.CancelNodeSubscription
 import co.sentinel.dvpn.hub.tasks.CreateDirectTransaction
 import co.sentinel.dvpn.hub.tasks.CreateNodeSubscription
@@ -48,7 +49,7 @@ import org.json.JSONObject
 import sentinel.node.v2.Querier.QueryNodesForPlanResponse
 import sentinel.node.v2.Querier.QueryNodesResponse
 import sentinel.plan.v2.Querier.QueryPlansResponse
-import sentinel.subscription.v2.Subscription
+import sentinel.subscription.v2.Subscription as GrpcSubscription
 import sentinel.types.v1.StatusOuterClass
 import timber.log.Timber
 
@@ -110,7 +111,12 @@ class HubRemoteRepository
           queryResult.getOrNull()?.nodesList.orEmpty(),
         )
       }
-      val subscriptions = async { fetchSubscriptions().getOrElse(null) ?: listOf() }
+      val subscriptions = async {
+        fetchSubscriptions().getOrElse(null)
+          ?.nodeSubscriptions()
+          ?.filter { it.nodeAddress.isNotEmpty() }
+          ?: listOf()
+      }
 
       nodeInfoResult.await()
         .mapNotNull { fixNodeInfoPrice(it) }
@@ -118,8 +124,8 @@ class HubRemoteRepository
           NodeData(
             nodeInfo = nodeInfo,
             subscription = subscriptions.await()
-              .filter { nodeInfo.address == it.node }
-              .maxByOrNull { it.id },
+              .filter { nodeInfo.address == it.nodeAddress }
+              .maxByOrNull { it.base.id },
           )
         }
         .let { Either.Right(it) }
@@ -143,13 +149,14 @@ class HubRemoteRepository
     return kotlin.runCatching {
       val subscriptions =
         fetchSubscriptions().getOrElse(null)
-          ?.filter { it.node.isNotEmpty() } ?: listOf()
+          ?.nodeSubscriptions()
+          ?: listOf()
       withContext(Dispatchers.Default) {
         val subscribedNodesResponse =
-          subscriptions.map { sub ->
+          subscriptions.map { subscription ->
             async(start = CoroutineStart.LAZY) {
               fetchNode(
-                sub.node,
+                subscription.nodeAddress,
               )
             }
           }.awaitAll()
@@ -164,8 +171,8 @@ class HubRemoteRepository
         }.map { nodeInfo ->
           NodeData(
             nodeInfo = nodeInfo,
-            subscription = subscriptions.filter { nodeInfo.address == it.node }
-              .maxByOrNull { it.id },
+            subscription = subscriptions.filter { nodeInfo.address == it.nodeAddress }
+              .maxByOrNull { it.base.id },
           )
         }.let {
           Either.Right(it)
@@ -283,16 +290,16 @@ class HubRemoteRepository
     limit: Long,
   ) = fetchSubscriptionsForAddress(address = address, offset = offset, limit = limit)
     .map { response ->
-      val nodeSubscriptions = mutableListOf<Subscription.NodeSubscription>()
-      val planSubscriptions = mutableListOf<Subscription.PlanSubscription>()
+      val nodeSubscriptions = mutableListOf<GrpcSubscription.NodeSubscription>()
+      val planSubscriptions = mutableListOf<GrpcSubscription.PlanSubscription>()
       response.subscriptionsList.forEach { subscription ->
         when {
-          subscription.`is`(Subscription.NodeSubscription::class.java) ->
-            subscription.unpack(Subscription.NodeSubscription::class.java)
+          subscription.`is`(GrpcSubscription.NodeSubscription::class.java) ->
+            subscription.unpack(GrpcSubscription.NodeSubscription::class.java)
               .also { nodeSubscriptions.add(it) }
 
-          subscription.`is`(Subscription.PlanSubscription::class.java) ->
-            subscription.unpack(Subscription.PlanSubscription::class.java)
+          subscription.`is`(GrpcSubscription.PlanSubscription::class.java) ->
+            subscription.unpack(GrpcSubscription.PlanSubscription::class.java)
               .also { planSubscriptions.add(it) }
         }
       }

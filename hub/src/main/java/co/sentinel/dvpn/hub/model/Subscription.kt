@@ -2,11 +2,32 @@ package co.sentinel.dvpn.hub.model
 
 import java.time.Instant
 
-data class Subscription(
+sealed interface Subscription {
+
+  data class Node(
+    val base: BaseSubscription,
+    val nodeAddress: String,
+    val gigabytes: Long,
+    val hours: Long,
+    val deposit: Coin,
+  ) : Subscription
+
+  data class Plan(
+    val base: BaseSubscription,
+    val planId: Long,
+    val denom: String,
+  ) : Subscription
+}
+
+data class BaseSubscription(
   val id: Long,
-  val node: String,
-  val deposit: Coin,
-  val denom: String,
+  val walletAddress: String,
   val expirationDate: Instant,
-  var isActive: Boolean,
+  val isActive: Boolean,
 )
+
+fun List<Subscription>.nodeSubscriptions(): List<Subscription.Node> =
+  this.mapNotNull { if (it is Subscription.Node) it else null }
+
+fun List<Subscription>.planSubscriptions(): List<Subscription.Plan> =
+  this.mapNotNull { if (it is Subscription.Plan) it else null }
