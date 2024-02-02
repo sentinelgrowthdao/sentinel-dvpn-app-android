@@ -73,8 +73,6 @@ dependencies {
     implementation libs.bundles.compose
     implementation libs.navigation
     implementation libs.accompanist.systemuicontroller
-    implementation libs.map.box.compose
-    implementation libs.map.box.android
     implementation libs.webkit
     implementation platform(libs.google.firebase.bom)
     implementation libs.google.firebase.crashlytics
