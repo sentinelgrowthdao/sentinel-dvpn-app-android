@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1031649651679",
+    "project_id": "sentinel-dvpnapp",
+    "storage_bucket": "sentinel-dvpnapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031649651679:android:5bd8668a9f3155d225326a",
+        "android_client_info": {
+          "package_name": "co.sentinel.dvpnapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq8FVj_e6X80BCcikhsyVzcjyf5jTfesU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

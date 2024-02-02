@@ -3,6 +3,8 @@ plugins {
     alias libs.plugins.kotlin.android
     alias libs.plugins.kotlin.kapt
     alias libs.plugins.dagger.hilt
+    alias libs.plugins.google.services
+    alias libs.plugins.google.crashlytics
 }
 
 android {
@@ -74,6 +76,9 @@ dependencies {
     implementation libs.map.box.compose
     implementation libs.map.box.android
     implementation libs.webkit
+    implementation platform(libs.google.firebase.bom)
+    implementation libs.google.firebase.crashlytics
+    implementation libs.google.firebase.analytics
 
     kapt libs.hilt.compiler
     implementation project(path: ':ui_server')
