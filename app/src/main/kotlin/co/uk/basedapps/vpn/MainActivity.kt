@@ -7,6 +7,7 @@ import android.webkit.WebView
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
+import co.uk.basedapps.vpn.server.CoreServer
 import co.uk.basedapps.vpn.vpn.PermissionStatus
 import co.uk.basedapps.vpn.vpn.VPNConnector
 import co.uk.basedapps.vpn.vpn.getVpnPermissionRequest
@@ -18,6 +19,9 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+  @Inject
+  lateinit var coreServer: CoreServer
 
   @Inject
   lateinit var vpnConnector: VPNConnector
@@ -37,10 +41,15 @@ class MainActivity : ComponentActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    startUiServer()
     val webView = WebView(this)
     setupWebView(webView)
     setContentView(webView)
     subscribeToPermissionsRequest()
+  }
+
+  private fun startUiServer() {
+    coreServer.init()
   }
 
   @SuppressLint("SetJavaScriptEnabled")
