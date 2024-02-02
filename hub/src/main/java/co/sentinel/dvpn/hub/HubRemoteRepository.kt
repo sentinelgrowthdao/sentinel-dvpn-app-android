@@ -342,8 +342,7 @@ class HubRemoteRepository
     }.onFailure { Timber.e(it) }.getOrNull() ?: ""
   }
 
-  fun resetConnectionBackoff() {
-    // todo replace with a better solution, hopefully grpc supported like resetConnectionBackoff
+  fun resetConnection() {
     ChannelBuilder.resetSentinelMain()
   }
 

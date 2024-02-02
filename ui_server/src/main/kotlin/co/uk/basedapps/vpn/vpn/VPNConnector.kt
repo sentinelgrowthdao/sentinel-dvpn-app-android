@@ -1,5 +1,6 @@
 package co.uk.basedapps.vpn.vpn
 
+import co.sentinel.dvpn.hub.HubRemoteRepository
 import co.uk.basedapps.domain.functional.Either
 import co.uk.basedapps.domain.functional.getOrNull
 import co.uk.basedapps.domain.functional.requireRight
@@ -17,6 +18,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
@@ -24,6 +26,7 @@ import kotlinx.coroutines.withContext
 @Singleton
 class VPNConnector @Inject constructor(
   private val repository: BasedRepository,
+  private val hub: HubRemoteRepository,
   private val wireguardRepository: WireguardRepository,
   private val v2RayRepository: V2RayRepository,
 ) {
@@ -37,14 +40,18 @@ class VPNConnector @Inject constructor(
     return withContext(Dispatchers.IO) {
       permissionFlow.emit(PermissionStatus.Requested)
       val response = permissionFlow.first { it != PermissionStatus.Requested }
-      if (response == PermissionStatus.Allowed) {
-        getVPNProfile(
-          serverId = credentials.payload,
-          credentials = credentials,
-        )
-      } else {
-        Either.Left(Error.RequestPermissions)
+      if (response != PermissionStatus.Allowed) {
+        return@withContext Either.Left(Error.RequestPermissions)
       }
+      val result = getVPNProfile(
+        serverId = credentials.payload,
+        credentials = credentials,
+      )
+      if (result.isRight) {
+        delay(500)
+        resetConnections()
+      }
+      result
     }
   }
 
@@ -54,6 +61,8 @@ class VPNConnector @Inject constructor(
         wireguardRepository.isConnected() -> disconnectWireguard()
         v2RayRepository.isConnected() -> disconnectV2Ray()
       }
+      delay(500)
+      resetConnections()
     }
   }
 
@@ -106,8 +115,6 @@ class VPNConnector @Inject constructor(
     ).getOrNull()
       ?: return Either.Left(Error.SetTunnelState)
 
-    repository.resetConnection()
-
     return Either.Right(Unit)
   }
 
@@ -122,8 +129,6 @@ class VPNConnector @Inject constructor(
       serverName = "BasedVPN server",
     ).getOrNull()
       ?: return Either.Left(Error.StartV2Ray)
-
-    repository.resetConnection()
 
     return Either.Right(Unit)
   }
@@ -140,6 +145,11 @@ class VPNConnector @Inject constructor(
       tunnelName = tunnel.name,
       tunnelState = VpnTunnel.State.DOWN,
     )
+  }
+
+  private suspend fun resetConnections() {
+    repository.resetConnection()
+    hub.resetConnection()
   }
 
   sealed interface Error : BaseError {
