@@ -12,6 +12,8 @@ import co.uk.basedapps.vpn.vpn.VPNConnector
 import co.uk.basedapps.vpn.vpn.getVpnPermissionRequest
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -48,7 +50,11 @@ class MainActivity : ComponentActivity() {
         javaScriptEnabled = true
         domStorageEnabled = true
       }
-      loadUrl("http://127.0.0.1:3876/")
+      // wait until web server started
+      lifecycleScope.launch(Dispatchers.Main) {
+        delay(1000)
+        loadUrl("http://127.0.0.1:3876/")
+      }
     }
   }
 
