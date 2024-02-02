@@ -31,13 +31,13 @@ import io.ktor.server.request.httpMethod
 import io.ktor.server.request.path
 import io.ktor.util.logging.KtorSimpleLogger
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.slf4j.event.Level
 
-class CoreServer
-@Inject
-constructor(
+@Singleton
+class CoreServer @Inject constructor(
   private val provider: AppDetailsProvider,
   private val dnsConfigurator: DdsConfigurator,
   private val storage: BasedStorage,
@@ -49,7 +49,11 @@ constructor(
   private val profileFetcher: VPNProfileFetcher,
 ) {
 
+  private var isRunning = false
+
   fun init() {
+    if (isRunning) return
+    isRunning = true
     GlobalScope.launch {
       embeddedServer(Netty, provider.getServerPort(), "127.0.0.1") {
         configureCors()
