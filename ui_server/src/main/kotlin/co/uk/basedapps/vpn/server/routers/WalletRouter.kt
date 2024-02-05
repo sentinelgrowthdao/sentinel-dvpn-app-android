@@ -9,6 +9,7 @@ import co.uk.basedapps.vpn.server.error.HttpError.Companion.notFound
 import co.uk.basedapps.vpn.server.models.CredentialsRequest
 import co.uk.basedapps.vpn.server.models.RestoreWalletRequest
 import co.uk.basedapps.vpn.server.models.WalletResponse
+import co.uk.basedapps.vpn.server.utils.VpnConnectTag
 import co.uk.basedapps.vpn.vpn.VPNProfileFetcher
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
@@ -19,6 +20,7 @@ import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
+import timber.log.Timber
 
 fun Application.routeWallet(
   walletRepository: WalletRepository,
@@ -73,14 +75,17 @@ fun Application.routeWallet(
         ?: return@get call.respond(HttpStatusCode.BadRequest, badRequest)
       val offset = call.request.queryParameters["offset"]?.toLongOrNull() ?: 0L
       val limit = call.request.queryParameters["limit"]?.toLongOrNull() ?: 10L
+      Timber.tag(VpnConnectTag).d("Fetch subscriptions:")
       val result = hubRepository.fetchSubscriptionsForAddressJson(
         address = address,
         offset = offset,
         limit = limit,
       )
       if (result.isRight) {
+        Timber.tag(VpnConnectTag).d("Active subscriptions: ${result.requireRight()}")
         call.respond(HttpStatusCode.OK, result.requireRight())
       } else {
+        Timber.tag(VpnConnectTag).d("No active subscriptions")
         call.respond(HttpStatusCode.NotFound, notFound)
       }
     }
@@ -88,10 +93,13 @@ fun Application.routeWallet(
     get("/api/blockchain/wallet/{address}/session") {
       val address = call.parameters["address"]
         ?: return@get call.respond(HttpStatusCode.BadRequest, badRequest)
+      Timber.tag(VpnConnectTag).d("Fetch active sessions:")
       val result = hubRepository.loadActiveSessionForAccountJson(address)
       if (result.isRight) {
+        Timber.tag(VpnConnectTag).d("Active sessions: ${result.requireRight()}")
         call.respond(HttpStatusCode.OK, result.requireRight())
       } else {
+        Timber.tag(VpnConnectTag).d("No active sessions")
         call.respond(HttpStatusCode.NotFound, notFound)
       }
     }
@@ -99,7 +107,7 @@ fun Application.routeWallet(
     post("/api/blockchain/wallet/connect") {
       val request = kotlin.runCatching { call.receive<CredentialsRequest>() }.getOrNull()
         ?: return@post call.respond(HttpStatusCode.BadRequest, badRequest)
-
+      Timber.tag(VpnConnectTag).d("Connect to node: $request")
       val credentialsRes = profileFetcher.fetch(request)
       if (credentialsRes.isRight) {
         call.respond(HttpStatusCode.OK, credentialsRes.requireRight())

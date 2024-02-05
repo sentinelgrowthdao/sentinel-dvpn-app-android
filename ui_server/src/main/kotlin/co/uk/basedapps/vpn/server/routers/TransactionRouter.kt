@@ -7,6 +7,7 @@ import co.uk.basedapps.vpn.server.models.DirectPaymentRequest
 import co.uk.basedapps.vpn.server.models.NodeSubscriptionRequest
 import co.uk.basedapps.vpn.server.models.PlanSubscriptionRequest
 import co.uk.basedapps.vpn.server.models.SessionStartRequest
+import co.uk.basedapps.vpn.server.utils.VpnConnectTag
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -14,6 +15,7 @@ import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
+import timber.log.Timber
 
 fun Application.routeTransaction(
   transactionManager: TransactionManager,
@@ -28,6 +30,7 @@ fun Application.routeTransaction(
       if (nodeAddress == null || gasPrice == null || chainId == null || request == null) {
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
+      Timber.tag(VpnConnectTag).d("Create node subscription $request")
       val result = transactionManager.subscribeToNode(
         nodeAddress = nodeAddress,
         denom = request.denom,
@@ -37,8 +40,10 @@ fun Application.routeTransaction(
         chainId = chainId,
       )
       if (result.isRight) {
+        Timber.tag(VpnConnectTag).d("Subscription created")
         call.respond(HttpStatusCode.OK)
       } else {
+        Timber.tag(VpnConnectTag).d("Subscription failed")
         call.respond(HttpStatusCode.InternalServerError, internalServer)
       }
     }
@@ -51,6 +56,7 @@ fun Application.routeTransaction(
       if (planId == null || gasPrice == null || chainId == null || request == null) {
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
+      Timber.tag(VpnConnectTag).d("Create node subscription $request")
       val result = transactionManager.subscribeToPlan(
         planId = planId,
         denom = request.denom,
@@ -59,8 +65,10 @@ fun Application.routeTransaction(
         chainId = chainId,
       )
       if (result.isRight) {
+        Timber.tag(VpnConnectTag).d("Subscription created")
         call.respond(HttpStatusCode.OK)
       } else {
+        Timber.tag(VpnConnectTag).d("Subscription failed")
         call.respond(HttpStatusCode.InternalServerError, internalServer)
       }
     }
@@ -95,6 +103,10 @@ fun Application.routeTransaction(
       if (recipientAddress == null || gasPrice == null || chainId == null || request == null) {
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
+      Timber.tag(VpnConnectTag).d(
+        "Start new session on subscription (${request.subscriptionId}) " +
+          "and node (${request.nodeAddress}). Stop old session (${request.activeSession})",
+      )
       val result = transactionManager.startSession(
         subscriptionId = request.subscriptionId,
         nodeAddress = request.nodeAddress,
