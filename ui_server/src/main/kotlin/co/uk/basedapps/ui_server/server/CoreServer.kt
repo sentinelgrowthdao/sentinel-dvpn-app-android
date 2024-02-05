@@ -3,8 +3,10 @@ package co.uk.basedapps.ui_server.server
 import co.sentinel.cosmos.WalletRepository
 import co.sentinel.dvpn.hub.HubRemoteRepository
 import co.uk.basedapps.blockchain.transaction.TransactionManager
+import co.uk.basedapps.ui_server.BuildConfig
 import co.uk.basedapps.ui_server.common.provider.AppDetailsProvider
 import co.uk.basedapps.ui_server.network.repository.BasedRepository
+import co.uk.basedapps.ui_server.server.error.HttpError
 import co.uk.basedapps.ui_server.server.routers.routeCommon
 import co.uk.basedapps.ui_server.server.routers.routeDns
 import co.uk.basedapps.ui_server.server.routers.routeProxy
@@ -19,8 +21,11 @@ import co.uk.basedapps.ui_server.vpn.VPNConnector
 import co.uk.basedapps.ui_server.vpn.VPNProfileFetcher
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
+import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.gson.gson
 import io.ktor.server.application.Application
+import io.ktor.server.application.ApplicationCallPipeline
+import io.ktor.server.application.call
 import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
@@ -29,6 +34,7 @@ import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.request.httpMethod
 import io.ktor.server.request.path
+import io.ktor.server.response.respond
 import io.ktor.util.logging.KtorSimpleLogger
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -57,6 +63,7 @@ class CoreServer @Inject constructor(
     GlobalScope.launch {
       embeddedServer(Netty, provider.getServerPort(), "127.0.0.1") {
         configureCors()
+        configureSecureHeader()
         configureRouting()
         configureSerialization()
         configureMonitoring()
@@ -85,6 +92,17 @@ class CoreServer @Inject constructor(
     routeWallet(walletRepository, hubRepository, profileFetcher)
     routeCommon(hubRepository)
     routeTransaction(transactionManager)
+  }
+
+  private fun Application.configureSecureHeader() {
+    intercept(ApplicationCallPipeline.Plugins) {
+      if (call.request.path().startsWith("/api") &&
+        call.request.headers["x-key"] != BuildConfig.SECURITY_TOKEN
+      ) {
+        call.respond(HttpStatusCode.Forbidden, HttpError.accessDenied)
+        return@intercept finish()
+      }
+    }
   }
 
   private fun Application.configureSerialization() {

@@ -21,6 +21,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "SECURITY_TOKEN", "\"${System.getenv("SENTINEL_TOKEN")}\""
+        }
+        debug {
+            buildConfigField "String", "SECURITY_TOKEN", "\"${System.getenv("SENTINEL_TOKEN")}\""
         }
     }
     compileOptions {
@@ -32,6 +36,9 @@ android {
     }
     packagingOptions {
         resources.excludes.add("META-INF/*")
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
 
