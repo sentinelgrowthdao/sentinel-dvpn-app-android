@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'co.uk.basedapps.vpn'
+    namespace 'co.uk.basedapps.ui_server'
 
     defaultConfig {
         minSdk libs.versions.minSdk.get().toInteger()
@@ -29,6 +29,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '17'
+    }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
     }
 }
 

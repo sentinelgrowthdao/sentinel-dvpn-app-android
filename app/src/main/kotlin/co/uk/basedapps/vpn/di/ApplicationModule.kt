@@ -1,7 +1,7 @@
 package co.uk.basedapps.vpn.di
 
+import co.uk.basedapps.ui_server.common.provider.AppDetailsProvider
 import co.uk.basedapps.vpn.BuildConfig
-import co.uk.basedapps.vpn.common.provider.AppDetailsProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

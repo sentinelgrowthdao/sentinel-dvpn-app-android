@@ -7,10 +7,10 @@ import android.webkit.WebView
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
-import co.uk.basedapps.vpn.server.CoreServer
-import co.uk.basedapps.vpn.vpn.PermissionStatus
-import co.uk.basedapps.vpn.vpn.VPNConnector
-import co.uk.basedapps.vpn.vpn.getVpnPermissionRequest
+import co.uk.basedapps.ui_server.server.CoreServer
+import co.uk.basedapps.ui_server.vpn.PermissionStatus
+import co.uk.basedapps.ui_server.vpn.VPNConnector
+import co.uk.basedapps.ui_server.vpn.getVpnPermissionRequest
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
