@@ -302,8 +302,11 @@ class WalletRepository
       ).run(prefsStore.retrievePasscode()) // password confirmation
         .let { result ->
           if (!result.isSuccess) {
-            val typeUrls = messages.map { "${it.typeUrl}\n" }
-            Timber.e("$typeUrls\n${result.errorMsg}")
+            val typeUrls = messages.joinToString(separator = "\n") { it.typeUrl }
+            Timber.e(
+              "Failed to start a new session!\nMessages sent:\n$typeUrls\n" +
+                "Error code: ${result.errorCode}\nError message: ${result.errorMsg}",
+            )
             when (result.errorCode) {
               BaseConstant.ERROR_CODE_NETWORK -> {
                 Either.Left(Unit)
