@@ -19,3 +19,8 @@ data class PostRegistryRequest(
   @SerializedName("is_secure")
   val isSecure: Boolean,
 )
+
+data class AppVersionResponse(
+  @SerializedName("version")
+  val version: String,
+)

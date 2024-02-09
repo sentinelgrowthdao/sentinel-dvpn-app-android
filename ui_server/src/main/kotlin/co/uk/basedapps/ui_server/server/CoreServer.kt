@@ -86,7 +86,7 @@ class CoreServer @Inject constructor(
   private fun Application.configureRouting() {
     routeStatic()
     routeDns(dnsConfigurator)
-    routeRegistry(storage)
+    routeRegistry(storage, provider)
     routeProxy(restRepository)
     routeVpn(vpnConnector)
     routeWallet(walletRepository, hubRepository, profileFetcher)

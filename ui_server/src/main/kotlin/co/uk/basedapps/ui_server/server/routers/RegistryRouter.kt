@@ -1,6 +1,8 @@
 package co.uk.basedapps.ui_server.server.routers
 
+import co.uk.basedapps.ui_server.common.provider.AppDetailsProvider
 import co.uk.basedapps.ui_server.server.error.HttpError
+import co.uk.basedapps.ui_server.server.models.AppVersionResponse
 import co.uk.basedapps.ui_server.server.models.GetRegistryResponse
 import co.uk.basedapps.ui_server.server.models.PostRegistryRequest
 import co.uk.basedapps.ui_server.storage.BasedStorage
@@ -16,6 +18,7 @@ import io.ktor.server.routing.routing
 
 fun Application.routeRegistry(
   storage: BasedStorage,
+  appDetailsProvider: AppDetailsProvider,
 ) {
 
   routing {
@@ -57,6 +60,11 @@ fun Application.routeRegistry(
         isSecure = request.isSecure,
       )
       return@post call.respond(HttpStatusCode.OK)
+    }
+
+    get("/api/registry/version") {
+      val response = AppVersionResponse(appDetailsProvider.getAppVersion())
+      call.respond(HttpStatusCode.OK, response)
     }
   }
 }
