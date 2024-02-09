@@ -2,12 +2,17 @@ package co.uk.basedapps.vpn
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebView
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
+import co.uk.basedapps.ui_server.logs.FileLogTree
+import co.uk.basedapps.ui_server.logs.ShareLogsEvent
 import co.uk.basedapps.ui_server.server.CoreServer
+import co.uk.basedapps.ui_server.server.utils.EventBus
 import co.uk.basedapps.ui_server.vpn.PermissionStatus
 import co.uk.basedapps.ui_server.vpn.VPNConnector
 import co.uk.basedapps.ui_server.vpn.getVpnPermissionRequest
@@ -25,6 +30,12 @@ class MainActivity : ComponentActivity() {
 
   @Inject
   lateinit var vpnConnector: VPNConnector
+
+  @Inject
+  lateinit var fileLogTree: FileLogTree
+
+  @Inject
+  lateinit var eventBus: EventBus
 
   private val vpnPermissionRequest = registerForActivityResult(
     ActivityResultContracts.StartActivityForResult(),
@@ -46,6 +57,7 @@ class MainActivity : ComponentActivity() {
     setupWebView(webView)
     setContentView(webView)
     subscribeToPermissionsRequest()
+    subscribeToEventBus()
   }
 
   private fun startUiServer() {
@@ -79,6 +91,31 @@ class MainActivity : ComponentActivity() {
           }
         }
       }
+    }
+  }
+
+  private fun subscribeToEventBus() {
+    lifecycleScope.launch {
+      eventBus.eventsFlow.collect { event ->
+        when (event) {
+          ShareLogsEvent -> shareLogs()
+        }
+      }
+    }
+  }
+
+  private fun shareLogs() {
+    val file = fileLogTree.getLogsFile() ?: return
+    val intentShareFile = Intent(Intent.ACTION_SEND)
+    if (file.exists()) {
+      val fileUri = FileProvider.getUriForFile(
+        this@MainActivity,
+        "co.sentinel.dvpnapp.provider",
+        file,
+      )
+      intentShareFile.setType("text/plain")
+      intentShareFile.putExtra(Intent.EXTRA_STREAM, fileUri)
+      startActivity(Intent.createChooser(intentShareFile, "Share Logs file"))
     }
   }
 }

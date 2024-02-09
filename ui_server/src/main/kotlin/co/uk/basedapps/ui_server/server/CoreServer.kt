@@ -15,6 +15,7 @@ import co.uk.basedapps.ui_server.server.routers.routeStatic
 import co.uk.basedapps.ui_server.server.routers.routeTransaction
 import co.uk.basedapps.ui_server.server.routers.routeVpn
 import co.uk.basedapps.ui_server.server.routers.routeWallet
+import co.uk.basedapps.ui_server.server.utils.EventBus
 import co.uk.basedapps.ui_server.storage.BasedStorage
 import co.uk.basedapps.ui_server.vpn.DdsConfigurator
 import co.uk.basedapps.ui_server.vpn.VPNConnector
@@ -53,6 +54,7 @@ class CoreServer @Inject constructor(
   private val hubRepository: HubRemoteRepository,
   private val transactionManager: TransactionManager,
   private val profileFetcher: VPNProfileFetcher,
+  private val eventBus: EventBus,
 ) {
 
   private var isRunning = false
@@ -86,7 +88,7 @@ class CoreServer @Inject constructor(
   private fun Application.configureRouting() {
     routeStatic()
     routeDns(dnsConfigurator)
-    routeRegistry(storage, provider)
+    routeRegistry(storage, provider, eventBus)
     routeProxy(restRepository)
     routeVpn(vpnConnector)
     routeWallet(walletRepository, hubRepository, profileFetcher)
