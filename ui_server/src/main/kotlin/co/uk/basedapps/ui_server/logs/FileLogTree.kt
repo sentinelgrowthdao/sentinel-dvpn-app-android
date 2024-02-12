@@ -25,14 +25,18 @@ class FileLogTree @Inject constructor(
 
   override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
     val date = System.currentTimeMillis().formatDate()
-    accumulatedLogs.add("$date – $message")
+    accumulatedLogs.add(":> $date: [$tag] $message")
   }
 
   fun getLogsFile(): File? {
     val file = context.createFile("Logs.txt")
     return try {
       file.apply {
-        bufferedWriter().use { it.write(accumulatedLogs.toString()) }
+        bufferedWriter().use { buffer ->
+          accumulatedLogs.forEach { line ->
+            buffer.write(line)
+          }
+        }
       }
     } catch (e: Exception) {
       Timber.e(e)
