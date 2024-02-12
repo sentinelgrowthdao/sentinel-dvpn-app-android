@@ -209,10 +209,13 @@ class WalletRepository
         fee,
         chainIdLocal,
       ).run(prefsStore.retrievePasscode()) // password confirmation
-        .let {
-          if (!it.isSuccess) {
-            Timber.e("${subscribeMessage.typeUrl}\n${it.errorMsg}")
-            when (it.errorCode) {
+        .let { result ->
+          if (!result.isSuccess) {
+            Timber.e(
+              "Failed to broadcast message!\nMessage sent:\n${subscribeMessage.typeUrl}\n" +
+                "Error code: ${result.errorCode}\nError message: ${result.errorMsg}",
+            )
+            when (result.errorCode) {
               BaseConstant.ERROR_CODE_NETWORK -> Either.Left(Unit)
               else -> Either.Left(Unit)
             }

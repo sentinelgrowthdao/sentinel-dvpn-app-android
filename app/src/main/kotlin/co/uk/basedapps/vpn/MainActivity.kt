@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.webkit.WebView
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
@@ -53,9 +54,10 @@ class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     startUiServer()
-    val webView = WebView(this)
-    setupWebView(webView)
-    setContentView(webView)
+    setContentView(R.layout.main_activity)
+    setupWebView(findViewById(R.id.webView))
+    findViewById<View>(R.id.logsBtn)
+      .setOnClickListener { shareLogs() }
     subscribeToPermissionsRequest()
     subscribeToEventBus()
   }

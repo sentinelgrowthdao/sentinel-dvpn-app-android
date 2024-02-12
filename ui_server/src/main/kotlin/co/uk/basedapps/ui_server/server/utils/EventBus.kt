@@ -7,7 +7,8 @@ import kotlinx.coroutines.flow.asSharedFlow
 class EventBus {
 
   private val eventsMutableFlow = MutableStateFlow<EventBusEvent?>(null)
-  val eventsFlow: SharedFlow<EventBusEvent?> = eventsMutableFlow.asSharedFlow()
+  val eventsFlow: SharedFlow<EventBusEvent?>
+    get() = eventsMutableFlow.asSharedFlow()
 
   suspend fun emitEvent(event: EventBusEvent) {
     eventsMutableFlow.emit(event)
