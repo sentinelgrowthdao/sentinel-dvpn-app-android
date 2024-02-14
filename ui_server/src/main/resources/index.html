@@ -11,27 +11,63 @@
     <h1>Hola!</h1>
     <p id="address"></p>
     <p id="balance"></p>
+    <br>
+    <form id="myForm">
+      <label for="textInput">Enter mnemonic here:</label><br><br>
+      <input type="text" id="textInput" name="textInput"><br><br>
+      <button type="submit">Submit</button>
+    </form>
     <script>
-        fetch('http://127.0.0.1:3876/api/blockchain/wallet')
-        .then(response => response.json())
-        .then(data => {
-          if (data.address == undefined) {
-             document.getElementById("address").innerHTML = 'No account'
-          } else {
-            document.getElementById("address").innerHTML = 'Address: ' + data.address
+      function fetchData() {
+        fetch('http://127.0.0.1:3876/api/blockchain/wallet', {
+              method: "GET",
+              headers: {
+                "x-key": "SnLnkORrZuzYsEPb"
+              },
+            })
+          .then(response => response.json())
+          .then(data => {
+            if (data.address == undefined) {
+               document.getElementById("address").innerHTML = 'No account'
+            } else {
+              document.getElementById("address").innerHTML = 'Address: ' + data.address
 
-            fetch('http://127.0.0.1:3876/api/blockchain/wallet/' + data.address + '/balance')
-              .then(response => response.json())
-              .then(data => {
-                balance = data.balances[0]
-                document.getElementById("balance").innerHTML = 'Balance: ' + balance.amount + ' ' + balance.denom
+              fetch('http://127.0.0.1:3876/api/blockchain/wallet/' + data.address + '/balance', {
+                method: "GET",
+                headers: {
+                  "x-key": "SnLnkORrZuzYsEPb"
+                },
               })
-              .catch(error => console.error(error));
-          }
-        })
-        .catch(error => {
-          document.getElementById("address").innerHTML = 'No account'
-          console.error(error)
+                .then(response => response.json())
+                .then(data => {
+                  balance = data.balances[0]
+                  document.getElementById("balance").innerHTML = 'Balance: ' + balance.amount + ' ' + balance.denom
+                })
+                .catch(error => console.error(error));
+            }
+          })
+          .catch(error => {
+            document.getElementById("address").innerHTML = 'No account'
+            console.error(error)
+          });
+       }
+
+       fetchData()
+
+
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var inputValue = document.getElementById("textInput").value;
+            fetch("http://127.0.0.1:3876/api/blockchain/wallet", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "x-key": "SnLnkORrZuzYsEPb"
+              },
+              body: JSON.stringify({ mnemonic: inputValue })
+            })
+            .then(response => fetchData())
+            .catch(error => fetchData());
         });
     </script>
   </body>
