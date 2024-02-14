@@ -18,11 +18,13 @@
       <button type="submit">Submit</button>
     </form>
     <script>
+      var key = "" // place key here
+
       function fetchData() {
         fetch('http://127.0.0.1:3876/api/blockchain/wallet', {
               method: "GET",
               headers: {
-                "x-key": "SnLnkORrZuzYsEPb"
+                "x-key": key
               },
             })
           .then(response => response.json())
@@ -35,7 +37,7 @@
               fetch('http://127.0.0.1:3876/api/blockchain/wallet/' + data.address + '/balance', {
                 method: "GET",
                 headers: {
-                  "x-key": "SnLnkORrZuzYsEPb"
+                  "x-key": key
                 },
               })
                 .then(response => response.json())
@@ -62,7 +64,7 @@
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                "x-key": "SnLnkORrZuzYsEPb"
+                "x-key": key
               },
               body: JSON.stringify({ mnemonic: inputValue })
             })
