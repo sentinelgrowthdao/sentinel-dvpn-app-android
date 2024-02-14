@@ -1,14 +1,13 @@
 package co.uk.basedapps.ui_server.server.utils
 
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 
 class EventBus {
 
-  private val eventsMutableFlow = MutableStateFlow<EventBusEvent?>(null)
+  private val eventsMutableFlow = MutableSharedFlow<EventBusEvent>()
   val eventsFlow: SharedFlow<EventBusEvent?>
-    get() = eventsMutableFlow.asSharedFlow()
+    get() = eventsMutableFlow
 
   suspend fun emitEvent(event: EventBusEvent) {
     eventsMutableFlow.emit(event)
