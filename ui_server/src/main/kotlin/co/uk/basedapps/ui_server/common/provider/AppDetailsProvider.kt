@@ -5,4 +5,5 @@ interface AppDetailsProvider {
   fun getSharedPrefsName(): String
   fun getBaseUrl(): String
   fun getServerPort(): Int
+  fun getAppToken(): String
 }

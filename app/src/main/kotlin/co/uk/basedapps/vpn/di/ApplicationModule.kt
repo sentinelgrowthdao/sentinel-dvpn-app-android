@@ -20,5 +20,7 @@ class ApplicationModule {
       override fun getSharedPrefsName() = "co.uk.basedapps.vpn"
       override fun getBaseUrl() = BuildConfig.API_URL
       override fun getServerPort(): Int = 3876
+      override fun getAppToken(): String =
+        "PWevNoVDoz3eVkIeLul8cMTuEEFX4p7Kkft5aPANVTTWxaesnvqm0WJZXv2zfkH8GYdwSNVujPKBquUxdOraJ1N6C6JmrqvlttcvYeg3pB4xru5FUmUIedDc2rt6ZIJB"
     }
 }
