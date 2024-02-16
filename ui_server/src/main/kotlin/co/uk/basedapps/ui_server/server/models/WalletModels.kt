@@ -22,3 +22,8 @@ data class CredentialsRequest(
   @SerializedName("session")
   val session: Long,
 )
+
+data class KeywordsResponse(
+  @SerializedName("keywords")
+  val keywords: List<String>,
+)

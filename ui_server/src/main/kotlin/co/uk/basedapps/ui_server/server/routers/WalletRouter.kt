@@ -7,6 +7,7 @@ import co.uk.basedapps.ui_server.server.error.HttpError.Companion.badRequest
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.internalServer
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.notFound
 import co.uk.basedapps.ui_server.server.models.CredentialsRequest
+import co.uk.basedapps.ui_server.server.models.KeywordsResponse
 import co.uk.basedapps.ui_server.server.models.RestoreWalletRequest
 import co.uk.basedapps.ui_server.server.models.WalletResponse
 import co.uk.basedapps.ui_server.server.utils.VpnConnectTag
@@ -29,6 +30,17 @@ fun Application.routeWallet(
 ) {
 
   routing {
+    get("/api/blockchain/keywords") {
+      val result = walletRepository.generateKeywords()
+      if (result.isRight) {
+        val data = result.requireRight()
+        val response = KeywordsResponse(data.keywords)
+        call.respond(HttpStatusCode.OK, response)
+      } else {
+        call.respond(HttpStatusCode.InternalServerError, internalServer)
+      }
+    }
+
     get("/api/blockchain/wallet") {
       val address = walletRepository.getAccountAddress()
       if (address != null) {
