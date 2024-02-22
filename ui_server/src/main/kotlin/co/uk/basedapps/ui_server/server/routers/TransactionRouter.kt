@@ -26,7 +26,12 @@ fun Application.routeTransaction(
       val nodeAddress = call.parameters["nodeAddress"]
       val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
       val chainId = call.request.headers["x-chain-id"]
-      val request = kotlin.runCatching { call.receive<NodeSubscriptionRequest>() }.getOrNull()
+      val request = try {
+        call.receive<NodeSubscriptionRequest>()
+      } catch (e: Exception) {
+        Timber.e(e)
+        null
+      }
       if (nodeAddress == null || gasPrice == null || chainId == null || request == null) {
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
@@ -52,7 +57,12 @@ fun Application.routeTransaction(
       val planId = call.parameters["planId"]?.toLongOrNull()
       val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
       val chainId = call.request.headers["x-chain-id"]
-      val request = kotlin.runCatching { call.receive<PlanSubscriptionRequest>() }.getOrNull()
+      val request = try {
+        call.receive<PlanSubscriptionRequest>()
+      } catch (e: Exception) {
+        Timber.e(e)
+        null
+      }
       if (planId == null || gasPrice == null || chainId == null || request == null) {
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
@@ -77,7 +87,12 @@ fun Application.routeTransaction(
       val recipientAddress = call.parameters["address"]
       val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
       val chainId = call.request.headers["x-chain-id"]
-      val request = kotlin.runCatching { call.receive<DirectPaymentRequest>() }.getOrNull()
+      val request = try {
+        call.receive<DirectPaymentRequest>()
+      } catch (e: Exception) {
+        Timber.e(e)
+        null
+      }
       if (recipientAddress == null || gasPrice == null || chainId == null || request == null) {
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
@@ -99,7 +114,12 @@ fun Application.routeTransaction(
       val recipientAddress = call.parameters["address"]
       val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
       val chainId = call.request.headers["x-chain-id"]
-      val request = kotlin.runCatching { call.receive<SessionStartRequest>() }.getOrNull()
+      val request = try {
+        call.receive<SessionStartRequest>()
+      } catch (e: Exception) {
+        Timber.e(e)
+        null
+      }
       if (recipientAddress == null || gasPrice == null || chainId == null || request == null) {
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }

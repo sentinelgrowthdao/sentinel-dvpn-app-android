@@ -52,9 +52,10 @@ fun Application.routeWallet(
     }
 
     post("/api/blockchain/wallet") {
-      val request = kotlin.runCatching {
+      val request = try {
         call.receive<RestoreWalletRequest>()
-      }.getOrNull() ?: let {
+      } catch (e: Exception) {
+        Timber.e(e)
         return@post call.respond(HttpStatusCode.BadRequest, badRequest)
       }
       walletRepository.clearWallet()
@@ -117,8 +118,12 @@ fun Application.routeWallet(
     }
 
     post("/api/blockchain/wallet/connect") {
-      val request = kotlin.runCatching { call.receive<CredentialsRequest>() }.getOrNull()
-        ?: return@post call.respond(HttpStatusCode.BadRequest, badRequest)
+      val request = try {
+        call.receive<CredentialsRequest>()
+      } catch (e: Exception) {
+        Timber.e(e)
+        return@post call.respond(HttpStatusCode.BadRequest, badRequest)
+      }
       Timber.tag(VpnConnectTag).d("Connect to node: $request")
       val credentialsRes = profileFetcher.fetch(request)
       if (credentialsRes.isRight) {

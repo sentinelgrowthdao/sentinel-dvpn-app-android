@@ -15,6 +15,7 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.get
 import io.ktor.server.routing.put
 import io.ktor.server.routing.routing
+import timber.log.Timber
 
 fun Application.routeDns(
   configurator: DdsConfigurator,
@@ -33,13 +34,14 @@ fun Application.routeDns(
     }
 
     put("/api/dns") {
-      val request = kotlin.runCatching {
+      val request = try {
         call.receive<DnsRequest>()
-      }.getOrNull() ?: let {
+      } catch (e: Exception) {
+        Timber.e(e)
         return@put call.respond(HttpStatusCode.BadRequest, badRequest)
       }
 
-      val dns = DdsConfigurator.Dns.values().firstOrNull {
+      val dns = DdsConfigurator.Dns.entries.firstOrNull {
         it.name.equals(request.server, ignoreCase = true)
       } ?: return@put call.respond(HttpStatusCode.BadRequest, badRequest)
 

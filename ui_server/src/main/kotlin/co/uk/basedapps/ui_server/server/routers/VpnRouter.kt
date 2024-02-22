@@ -13,6 +13,7 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
+import timber.log.Timber
 
 fun Application.routeVpn(
   vpnConnector: VPNConnector,
@@ -20,9 +21,10 @@ fun Application.routeVpn(
 
   routing {
     post("/api/connect") {
-      val request = kotlin.runCatching {
+      val request = try {
         call.receive<DataWrapper<Credentials>>()
-      }.getOrNull() ?: let {
+      } catch (e: Exception) {
+        Timber.e(e)
         return@post call.respond(HttpStatusCode.BadRequest, badRequest)
       }
 

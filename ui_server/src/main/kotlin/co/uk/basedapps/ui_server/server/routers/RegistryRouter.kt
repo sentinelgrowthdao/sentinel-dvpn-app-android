@@ -17,6 +17,7 @@ import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
+import timber.log.Timber
 
 fun Application.routeRegistry(
   storage: BasedStorage,
@@ -53,7 +54,10 @@ fun Application.routeRegistry(
     }
 
     post("/api/registry") {
-      val request = kotlin.runCatching { call.receive<PostRegistryRequest>() }.getOrNull() ?: let {
+      val request = try {
+        call.receive<PostRegistryRequest>()
+      } catch (e: Exception) {
+        Timber.e(e)
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
 

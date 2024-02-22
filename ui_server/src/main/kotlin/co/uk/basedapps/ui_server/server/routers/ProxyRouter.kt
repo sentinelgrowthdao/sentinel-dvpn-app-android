@@ -19,6 +19,7 @@ import io.ktor.server.routing.post
 import io.ktor.server.routing.put
 import io.ktor.server.routing.routing
 import retrofit2.HttpException
+import timber.log.Timber
 
 private const val ProxyPath = "api/proxy/"
 
@@ -44,9 +45,10 @@ fun Application.routeProxy(
     post("$ProxyPath{...}") {
       val path = call.getPath()
       val headers: Map<String, String> = call.getHeaders()
-      val body = kotlin.runCatching {
+      val body = try {
         call.receive<String>()
-      }.getOrNull() ?: let {
+      } catch (e: Exception) {
+        Timber.e(e)
         return@post call.respond(HttpStatusCode.BadRequest, badRequest)
       }
 
@@ -76,9 +78,10 @@ fun Application.routeProxy(
     put("$ProxyPath{...}") {
       val path = call.getPath()
       val headers: Map<String, String> = call.getHeaders()
-      val body = kotlin.runCatching {
+      val body = try {
         call.receive<String>()
-      }.getOrNull() ?: let {
+      } catch (e: Exception) {
+        Timber.e(e)
         return@put call.respond(HttpStatusCode.BadRequest, badRequest)
       }
 
