@@ -57,7 +57,7 @@ dependencies {
     implementation libs.converter.gson
     implementation libs.bundles.ktor
     implementation libs.security.crypto
-    implementation(libs.slf4j.android)
+    implementation libs.slf4j.android
 
     kapt libs.hilt.compiler
 

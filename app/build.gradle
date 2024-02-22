@@ -17,8 +17,8 @@ android {
         targetSdk libs.versions.compileSdk.get().toInteger()
         compileSdk libs.versions.compileSdk.get().toInteger()
 
-        versionCode 13
-        versionName "1.0.13"
+        versionCode 15
+        versionName "1.0.15"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,7 +35,7 @@ android {
             buildConfigField "String", "API_URL", "\"https://vpn-api.basedapps.co.uk\""
         }
         release {
-            minifyEnabled false // fix
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "API_URL", "\"https://vpn-api.basedapps.co.uk\""
         }
@@ -54,7 +54,11 @@ android {
         kotlinCompilerExtensionVersion libs.versions.composeCompiler.get()
     }
     packagingOptions {
-        resources.excludes.add("META-INF/*")
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+        // This fix aab issue
+        jniLibs.useLegacyPackaging = true
     }
     buildFeatures {
         buildConfig = true
