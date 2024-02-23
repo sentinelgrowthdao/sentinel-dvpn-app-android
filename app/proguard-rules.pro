@@ -16,6 +16,7 @@
 # Application
 -keep class com.v2ray.ang.dto.** { *; }
 -keep class co.uk.basedapps.ui_server.server.models.** { *; }
+-keep class co.uk.basedapps.ui_server.network.model.** { *; }
 -keep class co.sentinel.cosmos.network.station.** { *; }
 -keep class io.netty.** { *; }
 -keep class kotlin.coroutines.intrinsics.IntrinsicsKt
