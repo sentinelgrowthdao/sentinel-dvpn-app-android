@@ -3,7 +3,6 @@ package co.uk.basedapps.ui_server.di
 import co.uk.basedapps.ui_server.common.provider.AppDetailsProvider
 import co.uk.basedapps.ui_server.network.Api
 import co.uk.basedapps.ui_server.network.ConnectApi
-import co.uk.basedapps.ui_server.network.HeadersInterceptor
 import co.uk.basedapps.ui_server.network.utils.getUnsafeOkHttpClientBuilder
 import dagger.Module
 import dagger.Provides
@@ -28,19 +27,11 @@ class NetworkModule {
 
   @Provides
   @Singleton
-  fun provideHeadersInterceptor(
-    provider: AppDetailsProvider,
-  ): HeadersInterceptor = HeadersInterceptor(provider)
-
-  @Provides
-  @Singleton
   fun provideOkHttp(
-    headersInterceptor: HeadersInterceptor,
     loggingInterceptor: HttpLoggingInterceptor,
   ): OkHttpClient = OkHttpClient.Builder()
     .connectTimeout(60, TimeUnit.SECONDS)
     .readTimeout(60, TimeUnit.SECONDS)
-    .addInterceptor(headersInterceptor)
     .addInterceptor(loggingInterceptor)
     .build()
 

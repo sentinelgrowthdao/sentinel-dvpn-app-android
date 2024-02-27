@@ -104,6 +104,7 @@ private fun ApplicationCall.getHeaders(): Map<String, String> {
   return request.headers.entries()
     .associate { it.key to it.value.firstOrNull() }
     .filter { it.key.startsWith("x-") && it.value != null }
+    .filter { it.key != "x-key" }
     as Map<String, String>
 }
 
