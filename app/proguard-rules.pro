@@ -18,17 +18,19 @@
 -keep class co.uk.basedapps.ui_server.server.models.** { *; }
 -keep class co.uk.basedapps.ui_server.network.model.** { *; }
 -keep class co.sentinel.cosmos.network.station.** { *; }
--keep class io.netty.** { *; }
--keep class kotlin.coroutines.intrinsics.IntrinsicsKt
 
 # Proto
 -keep class cosmos.** { *; }
 -keep class sentinel.** { *; }
 -keep class com.google.protobuf.** { *; }
 
-# Sqlcipher
+# SqlCipher
 -keep class net.sqlcipher.** { *; }
 -keep class net.sqlcipher.database.* { *; }
+
+# Other
+-keep class io.netty.** { *; }
+-keep class org.bitcoinj.crypto.** { *; }
 
 # Please add these rules to your existing keep rules in order to suppress warnings.
 # This is generated automatically by the Android Gradle plugin.
