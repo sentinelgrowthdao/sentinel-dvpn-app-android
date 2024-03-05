@@ -112,8 +112,8 @@ fun Application.routeWallet(
         Timber.tag(VpnConnectTag).d("Active sessions: ${result.requireRight()}")
         call.respond(HttpStatusCode.OK, result.requireRight())
       } else {
-        Timber.tag(VpnConnectTag).d("No active sessions")
-        call.respond(HttpStatusCode.NotFound, notFound)
+        Timber.tag(VpnConnectTag).d("Failed to fetch active sessions")
+        call.respond(HttpStatusCode.InternalServerError, internalServer)
       }
     }
 
