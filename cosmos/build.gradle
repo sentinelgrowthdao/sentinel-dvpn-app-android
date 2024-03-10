@@ -22,11 +22,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "GRPC_BASE_URL", '"grpc.sentinel.co"')
+            buildConfigField("String", "GRPC_BASE_URL", '"172.105.118.223"')
             buildConfigField("Integer", "GRPC_PORT", '9090')
         }
         debug {
-            buildConfigField("String", "GRPC_BASE_URL", '"grpc.sentinel.co"')
+            buildConfigField("String", "GRPC_BASE_URL", '"172.105.118.223"')
             buildConfigField("Integer", "GRPC_PORT", '9090')
         }
         staging {
