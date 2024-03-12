@@ -5,7 +5,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
@@ -37,6 +39,8 @@ class MainActivity : ComponentActivity() {
   @Inject
   lateinit var eventBus: EventBus
 
+  private var isBackToastShown: Boolean = false
+
   private val vpnPermissionRequest = registerForActivityResult(
     ActivityResultContracts.StartActivityForResult(),
   ) { result ->
@@ -56,6 +60,7 @@ class MainActivity : ComponentActivity() {
     val webView = WebView(this)
     setupWebView(webView)
     setContentView(webView)
+    handleBackButton(webView)
     subscribeToPermissionsRequest()
     subscribeToEventBus()
   }
@@ -75,6 +80,24 @@ class MainActivity : ComponentActivity() {
       lifecycleScope.launch(Dispatchers.Main) {
         delay(1000)
         loadUrl("http://127.0.0.1:3876/")
+      }
+    }
+  }
+
+  private fun handleBackButton(webView: WebView) {
+    onBackPressedDispatcher.addCallback(this) {
+      when {
+        webView.canGoBack() -> {
+          isBackToastShown = false
+          webView.goBack()
+        }
+
+        isBackToastShown -> finish()
+
+        else -> {
+          isBackToastShown = true
+          Toast.makeText(this@MainActivity, "Press again to exit", Toast.LENGTH_SHORT).show()
+        }
       }
     }
   }
