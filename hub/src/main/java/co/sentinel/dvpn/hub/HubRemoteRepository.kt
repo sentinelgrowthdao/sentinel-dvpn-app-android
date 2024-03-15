@@ -406,11 +406,11 @@ class HubRemoteRepository
       .getOrElse(listOf())
       .firstOrNull { it.status == StatusOuterClass.Status.STATUS_ACTIVE }
       ?.let { Either.Right(it) }
-      ?: Either.Left(Failure.AppError)
+      ?: Either.Left(Failure.NotFound)
   }.onFailure { Timber.e(it) }
     .getOrNull() ?: Either.Left(Failure.AppError)
 
-  suspend fun loadActiveSession(): Either<Failure.AppError, Session> {
+  suspend fun loadActiveSession(): Either<Failure, Session> {
     val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
       ?: return Either.Left(Failure.AppError)
     return loadActiveSessionForAccount(account.address)

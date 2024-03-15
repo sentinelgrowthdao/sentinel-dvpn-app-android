@@ -6,27 +6,17 @@ package co.uk.basedapps.domain.exception
  */
 sealed class Failure {
   /**
-   * Generic network connection error.
+   * Generic network connection error. For more specific ones, extend [FeatureFailure].
    */
   object NetworkConnection : Failure()
 
-  /**
-   * Generic server error. For more specific ones, extend [FeatureFailure].
-   */
   object ServerError : Failure()
 
-  /**
-   * Generic api error. For more specific ones, extend [FeatureFailure].
-   */
   object ApiError : Failure()
 
-  /**
-   * Generic app error. For more specific ones, extend [FeatureFailure].
-   */
   object AppError : Failure()
 
-  /**
-   * Extend this class for feature specific failures.
-   */
+  object NotFound : Failure()
+
   abstract class FeatureFailure : Failure()
 }

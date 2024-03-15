@@ -2,6 +2,9 @@ package co.uk.basedapps.ui_server.server.routers
 
 import co.sentinel.cosmos.WalletRepository
 import co.sentinel.dvpn.hub.HubRemoteRepository
+import co.uk.basedapps.domain.exception.Failure
+import co.uk.basedapps.domain.functional.Either
+import co.uk.basedapps.domain.functional.requireLeft
 import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.badRequest
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.internalServer
@@ -108,12 +111,21 @@ fun Application.routeWallet(
         ?: return@get call.respond(HttpStatusCode.BadRequest, badRequest)
       Timber.tag(VpnConnectTag).d("Fetch active sessions:")
       val result = hubRepository.loadActiveSessionForAccountJson(address)
-      if (result.isRight) {
-        Timber.tag(VpnConnectTag).d("Active sessions: ${result.requireRight()}")
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        Timber.tag(VpnConnectTag).d("Failed to fetch active sessions")
-        call.respond(HttpStatusCode.InternalServerError, internalServer)
+      when {
+        result is Either.Right -> {
+          Timber.tag(VpnConnectTag).d("Active sessions: ${result.requireRight()}")
+          call.respond(HttpStatusCode.OK, result.requireRight())
+        }
+
+        result.requireLeft() is Failure.NotFound -> {
+          Timber.tag(VpnConnectTag).d("No active session")
+          call.respond(HttpStatusCode.NotFound, notFound)
+        }
+
+        else -> {
+          Timber.tag(VpnConnectTag).d("Failed to fetch active sessions")
+          call.respond(HttpStatusCode.InternalServerError, internalServer)
+        }
       }
     }
 
