@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Theme.BasedVPN" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">#0B1D43</item>
+        <item name="android:statusBarColor">#000610</item>
     </style>
 </resources>
