@@ -25,7 +25,7 @@ class FileLogTree @Inject constructor(
 
   override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
     val date = System.currentTimeMillis().formatDate()
-    accumulatedLogs.add(":> $date: [$tag] $message\n")
+    accumulatedLogs.add("--> $date: [$tag] $message\n")
   }
 
   fun getLogsFile(): File? {
