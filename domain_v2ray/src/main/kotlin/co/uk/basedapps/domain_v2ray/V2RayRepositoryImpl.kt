@@ -29,8 +29,18 @@ class V2RayRepositoryImpl(
   private val stateReceiver = object : BroadcastReceiver() {
     override fun onReceive(ctx: Context?, intent: Intent?) {
       val state = intent?.getIntExtra("key", 0)
-      isRunning.value = state == AppConfig.MSG_STATE_START_SUCCESS
+      isRunning.value = when (state) {
+        AppConfig.MSG_STATE_RUNNING,
+        AppConfig.MSG_STATE_START_SUCCESS,
+        -> true
+
+        else -> false
+      }
     }
+  }
+
+  init {
+    startListenBroadcast()
   }
 
   override suspend fun startV2Ray(
@@ -38,7 +48,6 @@ class V2RayRepositoryImpl(
     serverId: String,
     serverName: String,
   ): Either<Unit, Unit> = withContext(Dispatchers.Main) {
-    startListenBroadcast()
     val server = String.format(V2RayConfig.config, profile.address, profile.listenPort, profile.uid)
     V2RayServiceManager.setV2RayServer(server)
     V2RayServiceManager.startV2Ray(context)
@@ -56,7 +65,6 @@ class V2RayRepositoryImpl(
   override suspend fun stopV2ray() {
     withContext(Dispatchers.Main) {
       V2RayServiceManager.stopV2Ray(context)
-      stopListenBroadcast()
     }
   }
 
@@ -74,7 +82,6 @@ class V2RayRepositoryImpl(
   }
 
   private fun startListenBroadcast() {
-    isRunning.value = false
     ContextCompat.registerReceiver(
       context.applicationContext,
       stateReceiver,
@@ -82,10 +89,5 @@ class V2RayRepositoryImpl(
       ContextCompat.RECEIVER_NOT_EXPORTED,
     )
     MessageUtil.sendMsg2Service(context.applicationContext, AppConfig.MSG_REGISTER_CLIENT, "")
-  }
-
-  private fun stopListenBroadcast() {
-    context.applicationContext.unregisterReceiver(stateReceiver)
-    isRunning.value = false
   }
 }
