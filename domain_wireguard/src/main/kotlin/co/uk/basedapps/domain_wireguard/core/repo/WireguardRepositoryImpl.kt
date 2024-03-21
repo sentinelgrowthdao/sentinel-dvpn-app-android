@@ -3,6 +3,7 @@ package co.uk.basedapps.domain_wireguard.core.repo
 import android.annotation.SuppressLint
 import android.content.Context
 import co.uk.basedapps.domain.functional.Either
+import co.uk.basedapps.domain.functional.getOrNull
 import co.uk.basedapps.domain.models.KeyPair as DomainKeyPair
 import co.uk.basedapps.domain.models.VpnTunnel
 import co.uk.basedapps.domain_wireguard.core.init.DefaultTunnelName
@@ -235,7 +236,10 @@ class WireguardRepositoryImpl(
   override suspend fun isConnected(): Boolean {
     isInitialized.first { it }
     return getTunnel(DefaultTunnelName)
-      ?.let { it.state == VpnTunnel.State.UP }
+      ?.let {
+        Timber.d("Wireguard check state: ${it.state}")
+        it.state == VpnTunnel.State.UP
+      }
       ?: false
   }
 
@@ -426,6 +430,7 @@ class WireguardRepositoryImpl(
     kotlin.runCatching {
       tunnelCacheStore.getTunnelList()[tunnelName]?.let { tunnel ->
         setTunnelState(tunnel, DomainStateToStateMapper.map(tunnelState))
+          .also { Timber.d("Wireguard set state: ${it.getOrNull()?.state ?: "Failed to set tunnel state"}") }
       }
     }.onFailure { Timber.e(it) }
       .getOrNull() ?: Either.Left(Unit)

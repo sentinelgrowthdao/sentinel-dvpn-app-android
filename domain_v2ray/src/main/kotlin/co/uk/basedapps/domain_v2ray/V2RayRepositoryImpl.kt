@@ -18,6 +18,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class V2RayRepositoryImpl(
   private val context: Context,
@@ -30,11 +31,20 @@ class V2RayRepositoryImpl(
     override fun onReceive(ctx: Context?, intent: Intent?) {
       val state = intent?.getIntExtra("key", 0)
       isRunning.value = when (state) {
-        AppConfig.MSG_STATE_RUNNING,
-        AppConfig.MSG_STATE_START_SUCCESS,
-        -> true
+        AppConfig.MSG_STATE_RUNNING -> {
+          Timber.d("V2Ray state: RUNNING ($state)")
+          true
+        }
 
-        else -> false
+        AppConfig.MSG_STATE_START_SUCCESS -> {
+          Timber.d("V2Ray state: START_SUCCESS ($state)")
+          true
+        }
+
+        else -> {
+          Timber.d("V2Ray state: OTHER ($state)")
+          false
+        }
       }
     }
   }
