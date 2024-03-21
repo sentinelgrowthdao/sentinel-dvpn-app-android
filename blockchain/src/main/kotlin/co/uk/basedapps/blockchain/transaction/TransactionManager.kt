@@ -4,6 +4,7 @@ import co.sentinel.cosmos.WalletRepository
 import co.sentinel.dvpn.hub.HubRemoteRepository
 import co.sentinel.dvpn.hub.model.nodeSubscriptions
 import co.sentinel.dvpn.hub.model.planSubscriptions
+import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.functional.Either
 import co.uk.basedapps.domain.functional.getOrElse
 import co.uk.basedapps.domain.functional.requireRight
@@ -26,7 +27,7 @@ class TransactionManager
     hours: Long,
     gasPrice: Long,
     chainId: String,
-  ): Either<Unit, Unit> {
+  ): Either<Failure, Unit> {
     Timber.d("Subscribe to node $nodeAddress")
     val subscribePayload = hubRepository.generateNodeSubscriptionPayload(
       nodeAddress = nodeAddress,
@@ -36,7 +37,7 @@ class TransactionManager
     )
     if (subscribePayload.isLeft) {
       Timber.e("Subscribe to node failed: can't create payload message")
-      return Either.Left(Unit)
+      return Either.Left(Failure.AppError)
     }
 
     val result = walletRepository.signSubscribedRequestAndBroadcast(
@@ -61,7 +62,7 @@ class TransactionManager
 
   private suspend fun waitForNodeSubscription(
     nodeAddress: String,
-  ): Either<Unit, Unit> {
+  ): Either<Failure, Unit> {
     repeat(5) { attempt ->
       Timber.d("Check created node subscription: ${attempt + 1}")
       val subscriptions = hubRepository.fetchSubscriptions()
@@ -74,7 +75,7 @@ class TransactionManager
       }
       delay(2000)
     }
-    return Either.Left(Unit)
+    return Either.Left(Failure.AppError)
   }
 
   suspend fun subscribeToPlan(
@@ -83,7 +84,7 @@ class TransactionManager
     providerAddress: String,
     gasPrice: Long,
     chainId: String,
-  ): Either<Unit, Unit> {
+  ): Either<Failure, Unit> {
     Timber.d("Subscribe to plan $planId")
     val subscribePayload = hubRepository.generatePlanSubscriptionPayload(
       planId = planId,
@@ -91,7 +92,7 @@ class TransactionManager
     )
     if (subscribePayload.isLeft) {
       Timber.d("Subscribe to plan failed: can't  create payload message")
-      return Either.Left(Unit)
+      return Either.Left(Failure.AppError)
     }
 
     val result = walletRepository.signSubscribedRequestAndBroadcast(
@@ -116,7 +117,7 @@ class TransactionManager
 
   private suspend fun waitForPlanSubscription(
     planId: Long,
-  ): Either<Unit, Unit> {
+  ): Either<Failure, Unit> {
     repeat(5) { attempt ->
       Timber.d("Check created plan subscription: ${attempt + 1}")
       val subscriptions = hubRepository.fetchSubscriptions()
@@ -129,7 +130,7 @@ class TransactionManager
       }
       delay(2000)
     }
-    return Either.Left(Unit)
+    return Either.Left(Failure.AppError)
   }
 
   suspend fun makeDirectTransfer(
@@ -138,14 +139,14 @@ class TransactionManager
     denom: String,
     gasPrice: Long,
     chainId: String,
-  ): Either<Unit, Unit> {
+  ): Either<Failure, Unit> {
     val subscribePayload = hubRepository.generateDirectTransferPayload(
       recipientAddress = recipientAddress,
       amount = amount,
       denom = denom,
     )
     if (subscribePayload.isLeft) {
-      return Either.Left(Unit)
+      return Either.Left(Failure.AppError)
     }
 
     return walletRepository.signSubscribedRequestAndBroadcast(
@@ -162,14 +163,14 @@ class TransactionManager
     activeSession: Long?,
     gasPrice: Long,
     chainId: String,
-  ): Either<Unit, Unit> {
+  ): Either<Failure, Unit> {
     val connectMessage = hubRepository.generateConnectToNodeMessages(
       subscriptionId = subscriptionId,
       nodeAddress = nodeAddress,
       activeSessionId = activeSession,
     )
     if (connectMessage.isLeft) {
-      return Either.Left(Unit)
+      return Either.Left(Failure.AppError)
     }
 
     return walletRepository.startNodeSession(

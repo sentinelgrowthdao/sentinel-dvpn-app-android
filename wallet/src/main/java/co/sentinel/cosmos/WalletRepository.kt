@@ -191,9 +191,9 @@ class WalletRepository
     subscribeMessage: Any,
     gasPrice: Long? = null,
     chainId: String? = null,
-  ): Either<Unit, Unit> {
+  ): Either<Failure, Unit> {
     return kotlin.runCatching {
-      val account = getAccount() ?: return@runCatching Either.Left(Unit)
+      val account = getAccount() ?: return@runCatching Either.Left(Failure.AppError)
       val fee = if (gasPrice != null) {
         GasFee.composeFee(gasPrice)
       } else {
@@ -216,15 +216,16 @@ class WalletRepository
                 "Error code: ${result.errorCode}\nError message: ${result.errorMsg}",
             )
             when (result.errorCode) {
-              BaseConstant.ERROR_CODE_NETWORK -> Either.Left(Unit)
-              else -> Either.Left(Unit)
+              BaseConstant.ERROR_CODE_NETWORK -> Either.Left(Failure.NetworkConnection)
+              BaseConstant.ERROR_INSUFFICIENT_FUNDS -> Either.Left(Failure.InsufficientFunds)
+              else -> Either.Left(Failure.AppError)
             }
           } else {
             Either.Right(Unit)
           }
         }
     }.onFailure { Timber.e(it) }
-      .getOrNull() ?: Either.Left(Unit)
+      .getOrNull() ?: Either.Left(Failure.AppError)
   }
 
   suspend fun signRequestAndBroadcast(
@@ -283,9 +284,9 @@ class WalletRepository
     messages: List<Any>,
     gasPrice: Long? = null,
     chainId: String? = null,
-  ): Either<Unit, Unit> {
+  ): Either<Failure, Unit> {
     return kotlin.runCatching {
-      val account = getAccount() ?: return@runCatching Either.Left(Unit)
+      val account = getAccount() ?: return@runCatching Either.Left(Failure.AppError)
       val fee = if (gasPrice != null) {
         GasFee.composeFee(gasPrice)
       } else {
@@ -311,24 +312,16 @@ class WalletRepository
                 "Error code: ${result.errorCode}\nError message: ${result.errorMsg}",
             )
             when (result.errorCode) {
-              BaseConstant.ERROR_CODE_NETWORK -> {
-                Either.Left(Unit)
-              }
-
-              BaseConstant.ERROR_INSUFFICIENT_FUNDS -> {
-                Either.Left(Unit)
-              }
-
-              else -> {
-                Either.Left(Unit)
-              }
+              BaseConstant.ERROR_CODE_NETWORK -> Either.Left(Failure.NetworkConnection)
+              BaseConstant.ERROR_INSUFFICIENT_FUNDS -> Either.Left(Failure.InsufficientFunds)
+              else -> Either.Left(Failure.AppError)
             }
           } else {
             Either.Right(Unit)
           }
         }
     }.onFailure { Timber.e(it) }
-      .getOrNull() ?: Either.Left(Unit)
+      .getOrNull() ?: Either.Left(Failure.AppError)
   }
 
   suspend fun fetchNodeInfo(): Either<Unit, Unit> =

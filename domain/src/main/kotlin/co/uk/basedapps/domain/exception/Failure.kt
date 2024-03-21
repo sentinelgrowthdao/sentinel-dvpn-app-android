@@ -18,5 +18,7 @@ sealed class Failure {
 
   object NotFound : Failure()
 
+  object InsufficientFunds : Failure()
+
   abstract class FeatureFailure : Failure()
 }
