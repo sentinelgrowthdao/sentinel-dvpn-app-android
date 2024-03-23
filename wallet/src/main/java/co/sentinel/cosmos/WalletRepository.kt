@@ -187,7 +187,6 @@ class WalletRepository
   fun getAccountAddress(): String? = getAccount()?.address
 
   suspend fun signSubscribedRequestAndBroadcast(
-    nodeAddress: String,
     subscribeMessage: Any,
     gasPrice: Long? = null,
     chainId: String? = null,
@@ -204,7 +203,6 @@ class WalletRepository
       BroadcastNodeSubscribeGrpcTask(
         app,
         account,
-        nodeAddress,
         subscribeMessage,
         fee,
         chainIdLocal,

@@ -70,7 +70,6 @@ fun Application.routeTransaction(
       val result = transactionManager.subscribeToPlan(
         planId = planId,
         denom = request.denom,
-        providerAddress = request.providerAddress,
         gasPrice = gasPrice,
         chainId = chainId,
       )

@@ -41,7 +41,6 @@ class TransactionManager
     }
 
     val result = walletRepository.signSubscribedRequestAndBroadcast(
-      nodeAddress = nodeAddress,
       subscribeMessage = subscribePayload.requireRight(),
       gasPrice = gasPrice,
       chainId = chainId,
@@ -81,7 +80,6 @@ class TransactionManager
   suspend fun subscribeToPlan(
     planId: Long,
     denom: String,
-    providerAddress: String,
     gasPrice: Long,
     chainId: String,
   ): Either<Failure, Unit> {
@@ -96,7 +94,6 @@ class TransactionManager
     }
 
     val result = walletRepository.signSubscribedRequestAndBroadcast(
-      nodeAddress = providerAddress,
       subscribeMessage = subscribePayload.requireRight(),
       gasPrice = gasPrice,
       chainId = chainId,
@@ -150,7 +147,6 @@ class TransactionManager
     }
 
     return walletRepository.signSubscribedRequestAndBroadcast(
-      nodeAddress = recipientAddress,
       subscribeMessage = subscribePayload.requireRight(),
       gasPrice = gasPrice,
       chainId = chainId,

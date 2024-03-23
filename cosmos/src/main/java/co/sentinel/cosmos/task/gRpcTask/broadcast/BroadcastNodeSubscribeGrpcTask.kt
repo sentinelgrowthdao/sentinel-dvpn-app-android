@@ -25,7 +25,6 @@ import timber.log.Timber
 class BroadcastNodeSubscribeGrpcTask(
   app: BaseCosmosApp,
   private val mAccount: Account,
-  private val mToAddress: String,
   private val mMessage: Any,
   private val mFees: Fee,
   private val mChainId: String,
@@ -58,7 +57,6 @@ class BroadcastNodeSubscribeGrpcTask(
       val txService = ServiceGrpc.newFutureStub(ChannelBuilder.getMainChannel())
       val broadcastTxRequest = Signer.getGrpcNodeSubscribeReq(
         mAuthResponse,
-        mToAddress,
         mFees,
         mMessage,
         deterministicKey,

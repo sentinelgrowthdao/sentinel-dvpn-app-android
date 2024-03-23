@@ -103,7 +103,7 @@ public class Signer {
     }
 
     //gRpc Singer
-    public static ServiceOuterClass.BroadcastTxRequest getGrpcNodeSubscribeReq(QueryOuterClass.QueryAccountResponse auth, String toAccount, Fee fee, Any msgSendAny, DeterministicKey pKey, String chainId) {
+    public static ServiceOuterClass.BroadcastTxRequest getGrpcNodeSubscribeReq(QueryOuterClass.QueryAccountResponse auth, Fee fee, Any msgSendAny, DeterministicKey pKey, String chainId) {
         TxOuterClass.TxBody txBody = getGrpcTxBody(msgSendAny, "");
         TxOuterClass.SignerInfo signerInfo = getGrpcSignerInfo(auth, pKey);
         TxOuterClass.AuthInfo authInfo = getGrpcAuthInfo(signerInfo, fee);
