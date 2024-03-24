@@ -24,8 +24,6 @@ import co.sentinel.cosmos.task.gRpcTask.QueryBalancesTask
 import co.sentinel.cosmos.task.gRpcTask.UnBondedValidatorsGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.UnBondingValidatorsGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.UnDelegationsGrpcTask
-import co.sentinel.cosmos.task.gRpcTask.broadcast.BroadcastNodeSubscribeGrpcTask
-import co.sentinel.cosmos.task.gRpcTask.broadcast.ConnectToNodeGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.broadcast.GenericGrpcTask
 import co.sentinel.cosmos.task.userTask.GenerateAccountTask
 import co.sentinel.cosmos.task.userTask.GenerateSentinelAccountTask
@@ -186,80 +184,6 @@ class WalletRepository
 
   fun getAccountAddress(): String? = getAccount()?.address
 
-  suspend fun signSubscribedRequestAndBroadcast(
-    subscribeMessage: Any,
-    gasPrice: Long? = null,
-    chainId: String? = null,
-  ): Either<Failure, Unit> {
-    return kotlin.runCatching {
-      val account = getAccount() ?: return@runCatching Either.Left(Failure.AppError)
-      val fee = if (gasPrice != null) {
-        GasFee.composeFee(gasPrice)
-      } else {
-        GasFee.DEFAULT_FEE
-      }
-      val chainIdLocal = chainId ?: app.baseDao.chainIdGrpc
-      fetchAll(account)
-      BroadcastNodeSubscribeGrpcTask(
-        app,
-        account,
-        subscribeMessage,
-        fee,
-        chainIdLocal,
-      ).run(prefsStore.retrievePasscode()) // password confirmation
-        .let { result ->
-          if (!result.isSuccess) {
-            Timber.e(
-              "Failed to broadcast message!\nMessage sent:\n${subscribeMessage.typeUrl}\n" +
-                "Error code: ${result.errorCode}\nError message: ${result.errorMsg}",
-            )
-            when (result.errorCode) {
-              BaseConstant.ERROR_CODE_NETWORK -> Either.Left(Failure.NetworkConnection)
-              BaseConstant.ERROR_INSUFFICIENT_FUNDS -> Either.Left(Failure.InsufficientFunds)
-              else -> Either.Left(Failure.AppError)
-            }
-          } else {
-            Either.Right(Unit)
-          }
-        }
-    }.onFailure { Timber.e(it) }
-      .getOrNull() ?: Either.Left(Failure.AppError)
-  }
-
-  suspend fun signRequestAndBroadcast(
-    gasFactor: Int,
-    messages: List<Any>,
-  ): Either<Unit, Unit> {
-    return kotlin.runCatching {
-      val account = getAccount() ?: return@runCatching Either.Left(Unit)
-      fetchAll(account)
-
-      GenericGrpcTask(
-        app,
-        account,
-        messages,
-        GasFee.DEFAULT_FEE,
-        app.baseDao.chainIdGrpc,
-      ).run(prefsStore.retrievePasscode()) // password confirmation
-        .let {
-          if (!it.isSuccess) {
-            when (it.errorCode) {
-              BaseConstant.ERROR_CODE_NETWORK -> {
-                Either.Left(Unit)
-              }
-
-              else -> {
-                Either.Left(Unit)
-              }
-            }
-          } else {
-            Either.Right(Unit)
-          }
-        }
-    }.onFailure { Timber.e(it) }
-      .getOrNull() ?: Either.Left(Unit)
-  }
-
   fun getSignature(sessionId: Long): Either<Unit, String> {
     val account = getAccount() ?: return Either.Left(Unit)
     val entropy = CryptoHelper.doDecryptData(
@@ -278,7 +202,7 @@ class WalletRepository
     }
   }
 
-  suspend fun startNodeSession(
+  suspend fun signRequestAndBroadcast(
     messages: List<Any>,
     gasPrice: Long? = null,
     chainId: String? = null,
@@ -291,11 +215,8 @@ class WalletRepository
         GasFee.DEFAULT_FEE
       }
       val chainIdLocal = chainId ?: app.baseDao.chainIdGrpc
-      fetchAuthorization(account)
-      if (app.baseDao.chainIdGrpc.isEmpty()) {
-        fetchNodeInfo()
-      }
-      ConnectToNodeGrpcTask(
+      fetchAll(account)
+      GenericGrpcTask(
         app,
         account,
         messages,
@@ -306,7 +227,7 @@ class WalletRepository
           if (!result.isSuccess) {
             val typeUrls = messages.joinToString(separator = "\n") { it.typeUrl }
             Timber.e(
-              "Failed to start a new session!\nMessages sent:\n$typeUrls\n" +
+              "Failed to broadcast message!\nMessage sent:\n$typeUrls\n" +
                 "Error code: ${result.errorCode}\nError message: ${result.errorMsg}",
             )
             when (result.errorCode) {

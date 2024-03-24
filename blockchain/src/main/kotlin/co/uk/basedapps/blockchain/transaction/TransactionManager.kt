@@ -40,8 +40,8 @@ class TransactionManager
       return Either.Left(Failure.AppError)
     }
 
-    val result = walletRepository.signSubscribedRequestAndBroadcast(
-      subscribeMessage = subscribePayload.requireRight(),
+    val result = walletRepository.signRequestAndBroadcast(
+      messages = listOf(subscribePayload.requireRight()),
       gasPrice = gasPrice,
       chainId = chainId,
     )
@@ -93,8 +93,8 @@ class TransactionManager
       return Either.Left(Failure.AppError)
     }
 
-    val result = walletRepository.signSubscribedRequestAndBroadcast(
-      subscribeMessage = subscribePayload.requireRight(),
+    val result = walletRepository.signRequestAndBroadcast(
+      messages = listOf(subscribePayload.requireRight()),
       gasPrice = gasPrice,
       chainId = chainId,
     )
@@ -137,17 +137,17 @@ class TransactionManager
     gasPrice: Long,
     chainId: String,
   ): Either<Failure, Unit> {
-    val subscribePayload = hubRepository.generateDirectTransferPayload(
+    val transferPayload = hubRepository.generateDirectTransferPayload(
       recipientAddress = recipientAddress,
       amount = amount,
       denom = denom,
     )
-    if (subscribePayload.isLeft) {
+    if (transferPayload.isLeft) {
       return Either.Left(Failure.AppError)
     }
 
-    return walletRepository.signSubscribedRequestAndBroadcast(
-      subscribeMessage = subscribePayload.requireRight(),
+    return walletRepository.signRequestAndBroadcast(
+      messages = listOf(transferPayload.requireRight()),
       gasPrice = gasPrice,
       chainId = chainId,
     )
@@ -169,7 +169,7 @@ class TransactionManager
       return Either.Left(Failure.AppError)
     }
 
-    return walletRepository.startNodeSession(
+    return walletRepository.signRequestAndBroadcast(
       messages = connectMessage.requireRight(),
       gasPrice = gasPrice,
       chainId = chainId,
