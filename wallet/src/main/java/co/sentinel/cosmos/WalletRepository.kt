@@ -15,6 +15,7 @@ import co.sentinel.cosmos.dto.GeneratedKeyword
 import co.sentinel.cosmos.model.type.AccountBalance
 import co.sentinel.cosmos.model.type.Coin
 import co.sentinel.cosmos.network.station.StationApi
+import co.sentinel.cosmos.task.TaskResult
 import co.sentinel.cosmos.task.gRpcTask.AllRewardGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.AuthGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.BondedValidatorsGrpcTask
@@ -34,6 +35,7 @@ import co.sentinel.cosmos.utils.WUtil
 import co.sentinel.cosmos.utils.toByteArray
 import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.functional.Either
+import co.uk.basedapps.domain.functional.flatMap
 import co.uk.basedapps.domain.functional.map
 import co.uk.basedapps.domain.functional.requireRight
 import com.google.protobuf.util.JsonFormat
@@ -180,7 +182,12 @@ class WalletRepository
       .getOrNull() ?: Either.Left(Unit)
   }
 
-  fun getAccount() = app.baseDao.onSelectAccount(app.baseDao.lastUser)
+  private fun getAccount(): Account? = try {
+    app.baseDao.onSelectAccount(app.baseDao.lastUser)
+  } catch (e: Exception) {
+    Timber.e("Failed to get account: $e")
+    null
+  }
 
   fun getAccountAddress(): String? = getAccount()?.address
 
@@ -202,45 +209,64 @@ class WalletRepository
     }
   }
 
-  suspend fun signRequestAndBroadcast(
+  private suspend fun signRequestAndBroadcast(
+    messages: List<Any>,
+    gasPrice: Long? = null,
+    chainId: String? = null,
+  ): Either<Failure, TaskResult> {
+    val account = getAccount() ?: return Either.Left(Failure.AppError)
+    val fee = gasPrice?.let(GasFee::composeFee) ?: GasFee.DEFAULT_FEE
+    val chainIdLocal = chainId ?: app.baseDao.chainIdGrpc
+    fetchAll(account)
+    val result = GenericGrpcTask(app, account, messages, fee, chainIdLocal)
+      .run(prefsStore.retrievePasscode()) // password confirmation
+    return Either.Right(result)
+  }
+
+  suspend fun signRequestAndBroadcastResult(
     messages: List<Any>,
     gasPrice: Long? = null,
     chainId: String? = null,
   ): Either<Failure, Unit> {
-    return kotlin.runCatching {
-      val account = getAccount() ?: return@runCatching Either.Left(Failure.AppError)
-      val fee = if (gasPrice != null) {
-        GasFee.composeFee(gasPrice)
-      } else {
-        GasFee.DEFAULT_FEE
-      }
-      val chainIdLocal = chainId ?: app.baseDao.chainIdGrpc
-      fetchAll(account)
-      GenericGrpcTask(
-        app,
-        account,
-        messages,
-        fee,
-        chainIdLocal,
-      ).run(prefsStore.retrievePasscode()) // password confirmation
-        .let { result ->
-          if (!result.isSuccess) {
-            val typeUrls = messages.joinToString(separator = "\n") { it.typeUrl }
-            Timber.e(
-              "Failed to broadcast message!\nMessage sent:\n$typeUrls\n" +
-                "Error code: ${result.errorCode}\nError message: ${result.errorMsg}",
-            )
-            when (result.errorCode) {
-              BaseConstant.ERROR_CODE_NETWORK -> Either.Left(Failure.NetworkConnection)
-              BaseConstant.ERROR_INSUFFICIENT_FUNDS -> Either.Left(Failure.InsufficientFunds)
-              else -> Either.Left(Failure.AppError)
-            }
-          } else {
-            Either.Right(Unit)
-          }
+    val taskResult = signRequestAndBroadcast(messages, gasPrice, chainId)
+    return taskResult.flatMap { result ->
+      if (!result.isSuccess) {
+        val typeUrls = messages.joinToString(separator = "\n") { it.typeUrl }
+        Timber.e(
+          "Failed to broadcast message!\nMessages sent:\n$typeUrls\n" +
+            "Error code: ${result.errorCode}\nError message: ${result.errorMsg}\n" +
+            "Error response: ${result.resultJson}",
+        )
+        when (result.errorCode) {
+          BaseConstant.ERROR_CODE_NETWORK -> Either.Left(Failure.NetworkConnection)
+          BaseConstant.ERROR_INSUFFICIENT_FUNDS -> Either.Left(Failure.InsufficientFunds)
+          else -> Either.Left(Failure.AppError)
         }
-    }.onFailure { Timber.e(it) }
-      .getOrNull() ?: Either.Left(Failure.AppError)
+      } else {
+        Either.Right(Unit)
+      }
+    }
+  }
+
+  suspend fun signRequestAndBroadcastJson(
+    messages: List<Any>,
+    gasPrice: Long? = null,
+    chainId: String? = null,
+  ): Either<Failure, String> {
+    val taskResult = signRequestAndBroadcast(messages, gasPrice, chainId)
+    return taskResult.map { result ->
+      val typeUrls = messages.joinToString(separator = "\n") { it.typeUrl }
+      if (result.isSuccess) {
+        Timber.d("Broadcast was successful:\nMessages sent:\n$typeUrls\n")
+      } else {
+        Timber.e(
+          "Failed to broadcast message!\nMessages sent:\n$typeUrls\n" +
+            "Error code: ${result.errorCode}\nError message: ${result.errorMsg}\n" +
+            "Error response: ${result.resultJson}",
+        )
+      }
+      result.resultJson.orEmpty()
+    }
   }
 
   suspend fun fetchNodeInfo(): Either<Unit, Unit> =

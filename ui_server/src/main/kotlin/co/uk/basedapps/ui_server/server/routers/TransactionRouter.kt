@@ -1,6 +1,7 @@
 package co.uk.basedapps.ui_server.server.routers
 
 import co.uk.basedapps.blockchain.transaction.TransactionManager
+import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.ui_server.server.error.HttpError
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.internalServer
 import co.uk.basedapps.ui_server.server.models.DirectPaymentRequest
@@ -45,10 +46,10 @@ fun Application.routeTransaction(
         chainId = chainId,
       )
       if (result.isRight) {
-        Timber.tag(VpnConnectTag).d("Subscription created")
-        call.respond(HttpStatusCode.OK)
+        Timber.tag(VpnConnectTag).d("Subscription request broadcast")
+        call.respond(HttpStatusCode.OK, result.requireRight())
       } else {
-        Timber.tag(VpnConnectTag).d("Subscription failed")
+        Timber.tag(VpnConnectTag).d("Subscription broadcast failed")
         call.respond(HttpStatusCode.InternalServerError, internalServer)
       }
     }
@@ -74,10 +75,10 @@ fun Application.routeTransaction(
         chainId = chainId,
       )
       if (result.isRight) {
-        Timber.tag(VpnConnectTag).d("Subscription created")
-        call.respond(HttpStatusCode.OK)
+        Timber.tag(VpnConnectTag).d("Subscription request broadcast")
+        call.respond(HttpStatusCode.OK, result.requireRight())
       } else {
-        Timber.tag(VpnConnectTag).d("Subscription failed")
+        Timber.tag(VpnConnectTag).d("Subscription broadcast failed")
         call.respond(HttpStatusCode.InternalServerError, internalServer)
       }
     }
@@ -103,8 +104,10 @@ fun Application.routeTransaction(
         chainId = chainId,
       )
       if (result.isRight) {
-        call.respond(HttpStatusCode.OK)
+        Timber.tag(VpnConnectTag).d("Transfer request broadcast")
+        call.respond(HttpStatusCode.OK, result.requireRight())
       } else {
+        Timber.tag(VpnConnectTag).d("Transfer broadcast failed")
         call.respond(HttpStatusCode.InternalServerError, internalServer)
       }
     }
@@ -134,8 +137,10 @@ fun Application.routeTransaction(
         chainId = chainId,
       )
       if (result.isRight) {
-        call.respond(HttpStatusCode.OK)
+        Timber.tag(VpnConnectTag).d("Session request broadcast")
+        call.respond(HttpStatusCode.OK, result.requireRight())
       } else {
+        Timber.tag(VpnConnectTag).d("Session broadcast failed")
         call.respond(HttpStatusCode.InternalServerError, internalServer)
       }
     }
