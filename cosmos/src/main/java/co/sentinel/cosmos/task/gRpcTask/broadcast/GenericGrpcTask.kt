@@ -80,7 +80,7 @@ class GenericGrpcTask(
         mResult.isSuccess = true
       }
     } catch (e: Exception) {
-      Timber.e("GenericGrpcTask " + e.message)
+      Timber.e("GenericGrpcTask exception: " + e.message)
       if (e.cause?.cause is UnknownHostException) {
         mResult.errorCode = BaseConstant.ERROR_CODE_NETWORK
         mResult.errorMsg = e.message.toString()

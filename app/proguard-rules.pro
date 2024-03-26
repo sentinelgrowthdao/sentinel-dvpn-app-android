@@ -23,6 +23,7 @@
 -keep class cosmos.** { *; }
 -keep class sentinel.** { *; }
 -keep class com.google.protobuf.** { *; }
+-keep class com.google.protobuf2.** { *; }
 
 # SqlCipher
 -keep class net.sqlcipher.** { *; }
