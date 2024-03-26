@@ -464,13 +464,14 @@ class WalletRepository
         listOf(
           async(start = CoroutineStart.LAZY) { fetchNodeInfo() },
           async(start = CoroutineStart.LAZY) { fetchAuthorization(account) },
-          async(start = CoroutineStart.LAZY) { fetchBondedValidators(account) },
-          async(start = CoroutineStart.LAZY) { fetchUnbondedValidators() },
-          async(start = CoroutineStart.LAZY) { fetchUnbondingValidators() },
-          async(start = CoroutineStart.LAZY) { fetchBalance(account) },
-          async(start = CoroutineStart.LAZY) { fetchDelegations(account) },
-          async(start = CoroutineStart.LAZY) { fetchUnboundingDelegations(account) },
-          async(start = CoroutineStart.LAZY) { fetchRewards(account) },
+          // not necessary for now
+//          async(start = CoroutineStart.LAZY) { fetchBondedValidators(account) },
+//          async(start = CoroutineStart.LAZY) { fetchUnbondedValidators() },
+//          async(start = CoroutineStart.LAZY) { fetchUnbondingValidators() },
+//          async(start = CoroutineStart.LAZY) { fetchBalance(account) },
+//          async(start = CoroutineStart.LAZY) { fetchDelegations(account) },
+//          async(start = CoroutineStart.LAZY) { fetchUnboundingDelegations(account) },
+//          async(start = CoroutineStart.LAZY) { fetchRewards(account) },
         ).awaitAll().let { results ->
           if (results.any { it.isLeft }) {
             Either.Left(Unit)
