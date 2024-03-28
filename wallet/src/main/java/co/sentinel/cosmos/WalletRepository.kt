@@ -254,18 +254,29 @@ class WalletRepository
     chainId: String? = null,
   ): Either<Failure, String> {
     val taskResult = signRequestAndBroadcast(messages, gasPrice, chainId)
-    return taskResult.map { result ->
+    return taskResult.flatMap { result ->
       val typeUrls = messages.joinToString(separator = "\n") { it.typeUrl }
-      if (result.isSuccess) {
-        Timber.d("Broadcast was successful:\nMessages sent:\n$typeUrls\n")
-      } else {
-        Timber.e(
-          "Failed to broadcast message!\nMessages sent:\n$typeUrls\n" +
-            "Error code: ${result.errorCode}\nError message: ${result.errorMsg}\n" +
-            "Error response: ${result.resultJson}",
-        )
+      when {
+        result.isSuccess -> {
+          Timber.d("Broadcast was successful:\nMessages sent:\n$typeUrls\n")
+          Either.Right(result.resultJson.orEmpty())
+        }
+
+        result.errorCode == BaseConstant.ERROR_CODE_UNKNOWN ||
+          result.errorCode == BaseConstant.ERROR_CODE_NETWORK -> {
+          Timber.e("Broadcasting failed with an exception!")
+          Either.Left(Failure.AppError)
+        }
+
+        else -> {
+          Timber.e(
+            "Failed to broadcast message!\nMessages sent:\n$typeUrls\n" +
+              "Error code: ${result.errorCode}\nError message: ${result.errorMsg}\n" +
+              "Error response: ${result.resultJson}",
+          )
+          Either.Right(result.resultJson.orEmpty())
+        }
       }
-      result.resultJson.orEmpty()
     }
   }
 
