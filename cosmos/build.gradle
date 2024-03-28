@@ -22,16 +22,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "GRPC_BASE_URL", '"172.105.118.223"')
+            buildConfigField("String", "GRPC_BASE_URL", '"grpc.dvpn.me"')
             buildConfigField("Integer", "GRPC_PORT", '9090')
         }
         debug {
-            buildConfigField("String", "GRPC_BASE_URL", '"172.105.118.223"')
-            buildConfigField("Integer", "GRPC_PORT", '9090')
-        }
-        staging {
-            initWith(buildTypes.debug)
-            buildConfigField("String", "GRPC_BASE_URL", '"128.199.90.172"')
+            buildConfigField("String", "GRPC_BASE_URL", '"grpc.dvpn.me"')
             buildConfigField("Integer", "GRPC_PORT", '9090')
         }
     }
