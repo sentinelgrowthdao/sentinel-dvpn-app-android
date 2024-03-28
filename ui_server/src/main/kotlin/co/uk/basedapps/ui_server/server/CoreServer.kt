@@ -89,7 +89,7 @@ class CoreServer @Inject constructor(
     routeStatic()
     routeDns(dnsConfigurator)
     routeRegistry(storage, provider, eventBus)
-    routeProxy(restRepository)
+    routeProxy(restRepository, eventBus)
     routeVpn(vpnConnector)
     routeWallet(walletRepository, hubRepository, profileFetcher)
     routeCommon(hubRepository)

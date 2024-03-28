@@ -1,11 +1,15 @@
 package co.uk.basedapps.ui_server.server.routers
 
+import android.webkit.URLUtil
 import co.uk.basedapps.domain.functional.requireLeft
 import co.uk.basedapps.domain.functional.requireRight
+import co.uk.basedapps.ui_server.logs.OpenBrowserEvent
 import co.uk.basedapps.ui_server.network.NetResult
 import co.uk.basedapps.ui_server.network.repository.BasedRepository
 import co.uk.basedapps.ui_server.server.error.HttpError
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.badRequest
+import co.uk.basedapps.ui_server.server.models.BrowserProxyRequest
+import co.uk.basedapps.ui_server.server.utils.EventBus
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
@@ -25,6 +29,7 @@ private const val ProxyPath = "api/proxy/"
 
 fun Application.routeProxy(
   repository: BasedRepository,
+  eventBus: EventBus,
 ) {
 
   routing {
@@ -92,6 +97,21 @@ fun Application.routeProxy(
         val error = result.parseError()
         call.respond(status = error.first, message = error.second)
       }
+    }
+
+    post("$ProxyPath/browser") {
+      val url = try {
+        call.receive<BrowserProxyRequest>().url
+      } catch (e: Exception) {
+        Timber.e(e)
+        return@post call.respond(HttpStatusCode.BadRequest, badRequest)
+      }
+      if (!URLUtil.isValidUrl(url)) {
+        Timber.e("Url is not valid")
+        return@post call.respond(HttpStatusCode.BadRequest, badRequest)
+      }
+      eventBus.emitEvent(OpenBrowserEvent(url))
+      call.respond(HttpStatusCode.OK)
     }
   }
 }

@@ -3,6 +3,7 @@ package co.uk.basedapps.vpn
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.webkit.WebView
 import android.widget.Toast
@@ -12,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import co.uk.basedapps.ui_server.logs.FileLogTree
+import co.uk.basedapps.ui_server.logs.OpenBrowserEvent
 import co.uk.basedapps.ui_server.logs.ShareLogsEvent
 import co.uk.basedapps.ui_server.server.CoreServer
 import co.uk.basedapps.ui_server.server.utils.EventBus
@@ -23,6 +25,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -121,7 +124,8 @@ class MainActivity : ComponentActivity() {
     lifecycleScope.launch {
       eventBus.eventsFlow.collect { event ->
         when (event) {
-          ShareLogsEvent -> shareLogs()
+          is ShareLogsEvent -> shareLogs()
+          is OpenBrowserEvent -> openBrowser(event.url)
         }
       }
     }
@@ -139,6 +143,14 @@ class MainActivity : ComponentActivity() {
       intentShareFile.setType("text/plain")
       intentShareFile.putExtra(Intent.EXTRA_STREAM, fileUri)
       startActivity(Intent.createChooser(intentShareFile, "Share Logs file"))
+    }
+  }
+
+  private fun openBrowser(url: String) {
+    try {
+      startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+    } catch (e: Exception) {
+      Timber.e("Can't open browser url ($url): ${e.message}")
     }
   }
 }
