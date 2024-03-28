@@ -12,7 +12,8 @@ public class ChannelBuilder {
     private static int portSentinelMain = BuildConfig.GRPC_PORT;
 
 
-    public final static int TIME_OUT = 30;
+    public final static long TIME_OUT = 30L;
+    public final static long TIME_OUT_BROADCAST = 60L;
 
     //Channel for sentinel main
     private static ManagedChannel channel_sentinel_main = null;

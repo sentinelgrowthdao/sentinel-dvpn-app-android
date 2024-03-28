@@ -19,6 +19,7 @@ import cosmos.auth.v1beta1.QueryOuterClass
 import cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse
 import cosmos.tx.v1beta1.ServiceGrpc
 import java.net.UnknownHostException
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.guava.await
 import org.bitcoinj.crypto.DeterministicKey
 import timber.log.Timber
@@ -54,6 +55,7 @@ class GenericGrpcTask(
         mAccount.newBip44,
       )
       val authStub = QueryGrpc.newFutureStub(ChannelBuilder.getMainChannel())
+        .withDeadlineAfter(ChannelBuilder.TIME_OUT_BROADCAST, TimeUnit.SECONDS)
       val request =
         QueryOuterClass.QueryAccountRequest.newBuilder().setAddress(mAccount.address)
           .build()
