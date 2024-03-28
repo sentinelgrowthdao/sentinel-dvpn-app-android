@@ -11,6 +11,8 @@ import co.uk.basedapps.domain_v2ray.core.V2RayUserPreferenceStore
 import co.uk.basedapps.domain_v2ray.model.V2RayTunnel
 import co.uk.basedapps.domain_v2ray.model.V2RayVpnProfile
 import com.v2ray.ang.AppConfig
+import com.v2ray.ang.dto.EConfigType
+import com.v2ray.ang.dto.ServerConfig
 import com.v2ray.ang.service.V2RayServiceManager
 import com.v2ray.ang.util.MessageUtil
 import kotlinx.coroutines.Dispatchers
@@ -58,8 +60,8 @@ class V2RayRepositoryImpl(
     serverId: String,
     serverName: String,
   ): Either<Unit, Unit> = withContext(Dispatchers.Main) {
-    val server = String.format(V2RayConfig.config, profile.address, profile.listenPort, profile.uid)
-    V2RayServiceManager.setV2RayServer(server)
+    val config = composeConfig(profile, serverId)
+    V2RayServiceManager.setV2RayConfig(config)
     V2RayServiceManager.startV2Ray(context)
     userPreferenceStore.setServerId(serverId)
     // wait 5 seconds to connect
@@ -99,5 +101,30 @@ class V2RayRepositoryImpl(
       ContextCompat.RECEIVER_NOT_EXPORTED,
     )
     MessageUtil.sendMsg2Service(context.applicationContext, AppConfig.MSG_REGISTER_CLIENT, "")
+  }
+
+  private fun composeConfig(
+    profile: V2RayVpnProfile,
+    serverId: String,
+  ) = ServerConfig.create(EConfigType.VMESS).apply {
+    remarks = serverId
+    outboundBean?.settings?.vnext?.get(0)?.let { vnext ->
+      vnext.address = profile.address
+      vnext.port = profile.listenPort.toInt()
+      vnext.users[0].id = profile.uid
+      vnext.users[0].alterId = 0
+      vnext.users[0].security = "auto"
+    }
+    outboundBean?.streamSettings?.populateTransportSettings(
+      transport = "grpc",
+      headerType = "gun",
+      host = "",
+      path = "",
+      seed = "",
+      quicSecurity = "",
+      key = "",
+      mode = "gun",
+      serviceName = "",
+    )
   }
 }

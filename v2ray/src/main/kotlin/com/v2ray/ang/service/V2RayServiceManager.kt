@@ -6,7 +6,6 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Context.RECEIVER_NOT_EXPORTED
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
@@ -15,15 +14,12 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.google.gson.Gson
 import com.tencent.mmkv.MMKV
 import com.v2ray.ang.AppConfig
 import com.v2ray.ang.AppConfig.ANG_LOGS_TAG
 import com.v2ray.ang.AppConfig.TAG_DIRECT
 import com.v2ray.ang.R
-import com.v2ray.ang.dto.EConfigType
 import com.v2ray.ang.dto.ServerConfig
-import com.v2ray.ang.dto.V2rayConfig
 import com.v2ray.ang.extension.toSpeedString
 import com.v2ray.ang.extension.toast
 import com.v2ray.ang.util.MessageUtil
@@ -55,7 +51,6 @@ object V2RayServiceManager {
   private val mMsgReceive = ReceiveMessageHandler()
   private val mainStorage by lazy { MMKV.mmkvWithID(MmkvManager.ID_MAIN, MMKV.MULTI_PROCESS_MODE) }
   private val settingsStorage by lazy { MMKV.mmkvWithID(MmkvManager.ID_SETTING, MMKV.MULTI_PROCESS_MODE) }
-  private val serverRawStorage by lazy { MMKV.mmkvWithID(MmkvManager.ID_SERVER_RAW, MMKV.MULTI_PROCESS_MODE) }
 
   var serviceControl: SoftReference<ServiceControl>? = null
     set(value) {
@@ -70,13 +65,9 @@ object V2RayServiceManager {
   private var speedNotificationJob: Job? = null
   private var mNotificationManager: NotificationManager? = null
 
-  fun setV2RayServer(server: String) {
+  fun setV2RayConfig(config: ServerConfig) {
     MmkvManager.removeAllServer()
-    val config = ServerConfig.create(EConfigType.CUSTOM)
-    config.remarks = System.currentTimeMillis().toString()
-    config.fullConfig = Gson().fromJson(server, V2rayConfig::class.java)
-    val key = MmkvManager.encodeServerConfig("", config)
-    serverRawStorage?.encode(key, server)
+    MmkvManager.encodeServerConfig("", config)
   }
 
   fun startV2Ray(context: Context) {
