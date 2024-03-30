@@ -2,19 +2,17 @@ package com.v2ray.ang.extension
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
-import com.v2ray.ang.AppConfig
 import java.net.URI
 import java.net.URLConnection
 import org.json.JSONObject
+import timber.log.Timber
 
 /**
  * Some extensions
  */
 
 fun Context.toast(message: Int) {
-  Log.d(AppConfig.ANG_LOGS_TAG, "Toast msg: $message")
-  // Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+  Timber.tag("v2ray_lib").d(runCatching { getString(message) }.getOrNull())
 }
 
 fun JSONObject.putOpt(pair: Pair<String, Any>) = putOpt(pair.first, pair.second)

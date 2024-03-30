@@ -13,6 +13,10 @@
 }
 -keep,allowobfuscation @interface com.google.gson.annotations.SerializedName
 
+# Gson Serialization
+-keep class com.google.gson.reflect.TypeToken { *; }
+-keep class * extends com.google.gson.reflect.TypeToken
+
 # Application
 -keep class com.v2ray.ang.dto.** { *; }
 -keep class co.uk.basedapps.ui_server.server.models.** { *; }
