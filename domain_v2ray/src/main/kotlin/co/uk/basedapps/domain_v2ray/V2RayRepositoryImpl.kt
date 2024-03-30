@@ -60,7 +60,7 @@ class V2RayRepositoryImpl(
     serverId: String,
     serverName: String,
   ): Either<Unit, Unit> = withContext(Dispatchers.Main) {
-    val config = composeConfig(profile, serverId)
+    val config = composeConfig(profile)
     V2RayServiceManager.setV2RayConfig(config)
     V2RayServiceManager.startV2Ray(context)
     userPreferenceStore.setServerId(serverId)
@@ -103,28 +103,27 @@ class V2RayRepositoryImpl(
     MessageUtil.sendMsg2Service(context.applicationContext, AppConfig.MSG_REGISTER_CLIENT, "")
   }
 
-  private fun composeConfig(
-    profile: V2RayVpnProfile,
-    serverId: String,
-  ) = ServerConfig.create(EConfigType.VMESS).apply {
-    remarks = serverId
-    outboundBean?.settings?.vnext?.get(0)?.let { vnext ->
-      vnext.address = profile.address
-      vnext.port = profile.listenPort.toInt()
-      vnext.users[0].id = profile.uid
-      vnext.users[0].alterId = 0
-      vnext.users[0].security = "auto"
+  private fun composeConfig(profile: V2RayVpnProfile): ServerConfig {
+    return ServerConfig.create(EConfigType.VMESS).apply {
+      remarks = "v2ray is connected"
+      outboundBean?.settings?.vnext?.get(0)?.let { vnext ->
+        vnext.address = profile.address
+        vnext.port = profile.listenPort.toInt()
+        vnext.users[0].id = profile.uid
+        vnext.users[0].alterId = 0
+        vnext.users[0].security = "auto"
+      }
+      outboundBean?.streamSettings?.populateTransportSettings(
+        transport = "grpc",
+        headerType = "gun",
+        host = "",
+        path = "",
+        seed = "",
+        quicSecurity = "",
+        key = "",
+        mode = "gun",
+        serviceName = "",
+      )
     }
-    outboundBean?.streamSettings?.populateTransportSettings(
-      transport = "grpc",
-      headerType = "gun",
-      host = "",
-      path = "",
-      seed = "",
-      quicSecurity = "",
-      key = "",
-      mode = "gun",
-      serviceName = "",
-    )
   }
 }
