@@ -10,6 +10,7 @@ import co.uk.basedapps.ui_server.server.error.HttpError
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.badRequest
 import co.uk.basedapps.ui_server.server.models.BrowserProxyRequest
 import co.uk.basedapps.ui_server.server.utils.EventBus
+import co.uk.basedapps.ui_server.server.utils.isValidMailTo
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
@@ -106,7 +107,7 @@ fun Application.routeProxy(
         Timber.e(e)
         return@post call.respond(HttpStatusCode.BadRequest, badRequest)
       }
-      if (!URLUtil.isValidUrl(url)) {
+      if (!URLUtil.isValidUrl(url) && !url.isValidMailTo()) {
         Timber.e("Url is not valid")
         return@post call.respond(HttpStatusCode.BadRequest, badRequest)
       }
