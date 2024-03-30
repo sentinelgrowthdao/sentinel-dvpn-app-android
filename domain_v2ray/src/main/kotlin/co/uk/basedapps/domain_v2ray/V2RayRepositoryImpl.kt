@@ -114,15 +114,15 @@ class V2RayRepositoryImpl(
         vnext.users[0].security = "auto"
       }
       outboundBean?.streamSettings?.populateTransportSettings(
-        transport = "grpc",
-        headerType = "gun",
-        host = "",
-        path = "",
-        seed = "",
-        quicSecurity = "",
-        key = "",
-        mode = "gun",
-        serviceName = "",
+        transport = profile.transport,
+        headerType = null,
+        host = null,
+        path = null,
+        seed = null,
+        quicSecurity = null,
+        key = null,
+        mode = null,
+        serviceName = null,
       )
     }
   }
