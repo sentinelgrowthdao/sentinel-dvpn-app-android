@@ -93,6 +93,10 @@ class V2RayRepositoryImpl(
     }
   }
 
+  override fun updateDns(dns: String) {
+    V2RayServiceManager.updateDns(dns)
+  }
+
   private fun startListenBroadcast() {
     ContextCompat.registerReceiver(
       context.applicationContext,

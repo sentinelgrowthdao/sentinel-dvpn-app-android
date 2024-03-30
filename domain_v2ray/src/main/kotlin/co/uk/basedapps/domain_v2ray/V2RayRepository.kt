@@ -17,4 +17,6 @@ interface V2RayRepository {
   fun isConnected(): Boolean
 
   suspend fun getTunnel(tunnelName: String = ""): VpnTunnel?
+
+  fun updateDns(dns: String)
 }

@@ -70,6 +70,10 @@ object V2RayServiceManager {
     MmkvManager.encodeServerConfig("", config)
   }
 
+  fun updateDns(dns: String) {
+    settingsStorage?.encode(AppConfig.PREF_VPN_DNS, dns)
+  }
+
   fun startV2Ray(context: Context) {
     if (settingsStorage?.decodeBool(AppConfig.PREF_PROXY_SHARING) == true) {
       context.toast(R.string.toast_warning_pref_proxysharing_short)

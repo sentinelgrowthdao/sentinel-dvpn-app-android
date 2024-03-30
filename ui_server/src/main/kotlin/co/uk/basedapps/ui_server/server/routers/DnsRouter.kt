@@ -1,8 +1,6 @@
 package co.uk.basedapps.ui_server.server.routers
 
-import co.uk.basedapps.domain.functional.Either
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.badRequest
-import co.uk.basedapps.ui_server.server.error.HttpError.Companion.internalServer
 import co.uk.basedapps.ui_server.server.models.DnsListResponse
 import co.uk.basedapps.ui_server.server.models.DnsRequest
 import co.uk.basedapps.ui_server.server.models.DnsResponse
@@ -45,10 +43,8 @@ fun Application.routeDns(
         it.name.equals(request.server, ignoreCase = true)
       } ?: return@put call.respond(HttpStatusCode.BadRequest, badRequest)
 
-      return@put when (configurator.setDns(dns)) {
-        is Either.Right -> call.respond(HttpStatusCode.OK)
-        is Either.Left -> call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+      configurator.setDns(dns)
+      call.respond(HttpStatusCode.OK)
     }
   }
 }
