@@ -39,4 +39,5 @@ dependencies {
     implementation libs.android.core.ktx
     implementation libs.kotlin.stdlib
     implementation libs.coroutines.core
+    implementation libs.timber
 }

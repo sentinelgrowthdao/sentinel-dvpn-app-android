@@ -9,4 +9,5 @@ class TaskResult {
   var errorMsg: String = ""
   var resultData: Any? = null
   var resultJson: String? = null
+  var exception: Exception? = null
 }

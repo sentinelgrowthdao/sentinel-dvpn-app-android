@@ -36,6 +36,7 @@ import co.sentinel.cosmos.utils.WKey
 import co.sentinel.cosmos.utils.WUtil
 import co.sentinel.cosmos.utils.toByteArray
 import co.uk.basedapps.domain.exception.Failure
+import co.uk.basedapps.domain.exception.logNonFatal
 import co.uk.basedapps.domain.functional.Either
 import co.uk.basedapps.domain.functional.flatMap
 import co.uk.basedapps.domain.functional.map
@@ -220,9 +221,10 @@ class WalletRepository
     val fee = gasPrice?.let(GasFee::composeFee) ?: GasFee.DEFAULT_FEE
     val chainIdLocal = chainId ?: app.baseDao.chainIdGrpc
     fetchAll(account)
-    val result = GenericGrpcTask(app, account, messages, fee, chainIdLocal)
+    val taskResult = GenericGrpcTask(app, account, messages, fee, chainIdLocal)
       .run(prefsStore.retrievePasscode()) // password confirmation
-    return Either.Right(result)
+    taskResult.log()
+    return Either.Right(taskResult)
   }
 
   suspend fun signRequestAndBroadcastResult(
@@ -286,6 +288,7 @@ class WalletRepository
     Timber.d("Fetch transaction by hash: $txHash")
     val taskResult = FetchTransactionTask(app, txHash)
       .run(prefsStore.retrievePasscode())
+    taskResult.log()
     return Either.Right(taskResult)
   }
 
@@ -538,5 +541,15 @@ class WalletRepository
   fun clearWallet() {
     prefsStore.clear()
     app.baseDao.clearDB()
+  }
+
+  private fun TaskResult.log() {
+    if (!isSuccess) {
+      logNonFatal(
+        message = resultJson ?: "Transaction failed",
+        throwable = exception,
+        tag = "Error code: $errorCode",
+      )
+    }
   }
 }

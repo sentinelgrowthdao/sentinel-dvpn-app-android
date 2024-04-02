@@ -87,6 +87,7 @@ class GenericGrpcTask(
         mResult.errorCode = BaseConstant.ERROR_CODE_NETWORK
         mResult.errorMsg = e.message.toString()
       }
+      mResult.exception = e
       mResult.isSuccess = false
     }
     return mResult

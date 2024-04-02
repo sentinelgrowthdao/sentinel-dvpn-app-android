@@ -1,6 +1,7 @@
 package co.uk.basedapps.ui_server.logs
 
 import android.content.Context
+import co.uk.basedapps.domain.exception.NonFatalException
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.File
 import java.text.SimpleDateFormat
@@ -24,6 +25,7 @@ class FileLogTree @Inject constructor(
   private val dateFormat = SimpleDateFormat(ANDROID_LOG_TIME_FORMAT, Locale.US)
 
   override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
+    if (t is NonFatalException) return
     val date = System.currentTimeMillis().formatDate()
     accumulatedLogs.add("--> $date: [$tag] $message\n")
   }

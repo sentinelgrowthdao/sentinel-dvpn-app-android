@@ -48,6 +48,7 @@ class FetchTransactionTask(
       if ((e as StatusRuntimeException).status.code == Code.NOT_FOUND) {
         mResult.errorCode = TxNotFound
       }
+      mResult.exception = e
       mResult.errorMsg = e.message.toString()
       mResult.isSuccess = false
     }
