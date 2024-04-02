@@ -1,9 +1,12 @@
 package co.uk.basedapps.ui_server.server.routers
 
 import co.uk.basedapps.blockchain.transaction.TransactionManager
+import co.uk.basedapps.domain.exception.Failure
+import co.uk.basedapps.domain.functional.requireLeft
 import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.ui_server.server.error.HttpError
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.internalServer
+import co.uk.basedapps.ui_server.server.error.HttpError.Companion.notFound
 import co.uk.basedapps.ui_server.server.models.DirectPaymentRequest
 import co.uk.basedapps.ui_server.server.models.NodeSubscriptionRequest
 import co.uk.basedapps.ui_server.server.models.PlanSubscriptionRequest
@@ -14,6 +17,7 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
+import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
 import timber.log.Timber
@@ -142,6 +146,21 @@ fun Application.routeTransaction(
       } else {
         Timber.tag(VpnConnectTag).d("Session broadcast failed")
         call.respond(HttpStatusCode.InternalServerError, internalServer)
+      }
+    }
+
+    get("/api/blockchain/transactions/{txHash}") {
+      val txHash = call.parameters["txHash"]
+      if (txHash.isNullOrBlank()) {
+        return@get call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
+      }
+      val result = transactionManager.fetchTransaction(txHash)
+      if (result.isRight) {
+        return@get call.respond(HttpStatusCode.OK, result.requireRight())
+      }
+      when (result.requireLeft()) {
+        Failure.NotFound -> call.respond(HttpStatusCode.NotFound, notFound)
+        else -> call.respond(HttpStatusCode.InternalServerError, internalServer)
       }
     }
   }

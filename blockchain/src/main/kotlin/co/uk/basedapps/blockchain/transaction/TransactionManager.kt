@@ -111,4 +111,8 @@ class TransactionManager
       chainId = chainId,
     )
   }
+
+  suspend fun fetchTransaction(txHash: String): Either<Failure, String> {
+    return walletRepository.fetchTransactionJson(txHash)
+  }
 }

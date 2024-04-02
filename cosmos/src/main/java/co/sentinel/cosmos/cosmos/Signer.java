@@ -108,7 +108,7 @@ public class Signer {
         TxOuterClass.SignerInfo signerInfo = getGrpcSignerInfo(auth, pKey);
         TxOuterClass.AuthInfo authInfo = getGrpcAuthInfo(signerInfo, fee);
         TxOuterClass.TxRaw rawTx = getGrpcRawTx(auth, txBody, authInfo, pKey, chainId);
-        return ServiceOuterClass.BroadcastTxRequest.newBuilder().setModeValue(ServiceOuterClass.BroadcastMode.BROADCAST_MODE_BLOCK.getNumber()).setTxBytes(rawTx.toByteString()).build();
+        return ServiceOuterClass.BroadcastTxRequest.newBuilder().setModeValue(ServiceOuterClass.BroadcastMode.BROADCAST_MODE_SYNC.getNumber()).setTxBytes(rawTx.toByteString()).build();
     }
 
 

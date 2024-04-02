@@ -25,7 +25,9 @@ import co.sentinel.cosmos.task.gRpcTask.QueryBalancesTask
 import co.sentinel.cosmos.task.gRpcTask.UnBondedValidatorsGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.UnBondingValidatorsGrpcTask
 import co.sentinel.cosmos.task.gRpcTask.UnDelegationsGrpcTask
+import co.sentinel.cosmos.task.gRpcTask.broadcast.FetchTransactionTask
 import co.sentinel.cosmos.task.gRpcTask.broadcast.GenericGrpcTask
+import co.sentinel.cosmos.task.gRpcTask.broadcast.TxNotFound
 import co.sentinel.cosmos.task.userTask.GenerateAccountTask
 import co.sentinel.cosmos.task.userTask.GenerateSentinelAccountTask
 import co.sentinel.cosmos.utils.GasFee
@@ -271,6 +273,45 @@ class WalletRepository
         else -> {
           Timber.e(
             "Failed to broadcast message!\nMessages sent:\n$typeUrls\n" +
+              "Error code: ${result.errorCode}\nError message: ${result.errorMsg}\n" +
+              "Error response: ${result.resultJson}",
+          )
+          Either.Right(result.resultJson.orEmpty())
+        }
+      }
+    }
+  }
+
+  private suspend fun fetchTransaction(txHash: String): Either<Failure, TaskResult> {
+    Timber.d("Fetch transaction by hash: $txHash")
+    val taskResult = FetchTransactionTask(app, txHash)
+      .run(prefsStore.retrievePasscode())
+    return Either.Right(taskResult)
+  }
+
+  suspend fun fetchTransactionJson(txHash: String): Either<Failure, String> {
+    val taskResult = fetchTransaction(txHash)
+    return taskResult.flatMap { result ->
+      when {
+        result.isSuccess -> {
+          Timber.d("Fetched transaction is successful!")
+          Either.Right(result.resultJson.orEmpty())
+        }
+
+        result.errorCode == TxNotFound -> {
+          Timber.e("Transaction was not found!")
+          Either.Left(Failure.NotFound)
+        }
+
+        result.errorCode == BaseConstant.ERROR_CODE_UNKNOWN ||
+          result.errorCode == BaseConstant.ERROR_CODE_NETWORK -> {
+          Timber.e("Failed to fetch transaction!")
+          Either.Left(Failure.AppError)
+        }
+
+        else -> {
+          Timber.e(
+            "Fetched transaction is failed!\n" +
               "Error code: ${result.errorCode}\nError message: ${result.errorMsg}\n" +
               "Error response: ${result.resultJson}",
           )
