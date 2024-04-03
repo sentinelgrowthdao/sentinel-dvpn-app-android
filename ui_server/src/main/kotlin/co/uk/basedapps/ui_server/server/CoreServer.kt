@@ -63,7 +63,7 @@ class CoreServer @Inject constructor(
     if (isRunning) return
     isRunning = true
     GlobalScope.launch {
-      embeddedServer(Netty, provider.getServerPort(), "127.0.0.1") {
+      embeddedServer(Netty, provider.getServerPort(), provider.getServerHost()) {
         configureCors()
         configureSecureHeader()
         configureRouting()

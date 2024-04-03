@@ -11,7 +11,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import co.uk.basedapps.ui_server.common.provider.AppDetailsProvider
 import co.uk.basedapps.ui_server.logs.FileLogTree
 import co.uk.basedapps.ui_server.logs.OpenBrowserEvent
 import co.uk.basedapps.ui_server.logs.ShareLogsEvent
@@ -20,10 +23,9 @@ import co.uk.basedapps.ui_server.server.utils.EventBus
 import co.uk.basedapps.ui_server.vpn.PermissionStatus
 import co.uk.basedapps.ui_server.vpn.VPNConnector
 import co.uk.basedapps.ui_server.vpn.getVpnPermissionRequest
+import co.uk.basedapps.ui_server.webview.UiWebViewClient
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -41,6 +43,9 @@ class MainActivity : ComponentActivity() {
 
   @Inject
   lateinit var eventBus: EventBus
+
+  @Inject
+  lateinit var provider: AppDetailsProvider
 
   private var isBackToastShown: Boolean = false
 
@@ -75,15 +80,17 @@ class MainActivity : ComponentActivity() {
   @SuppressLint("SetJavaScriptEnabled")
   private fun setupWebView(webView: WebView) {
     webView.apply {
+      isInvisible = true
       with(settings) {
         javaScriptEnabled = true
         domStorageEnabled = true
       }
-      // wait until web server started
-      lifecycleScope.launch(Dispatchers.Main) {
-        delay(1000)
-        loadUrl("http://127.0.0.1:3876/")
-      }
+      webViewClient = UiWebViewClient(
+        scope = lifecycleScope,
+        isLoaded = { webView.isVisible = true },
+        reload = { loadUrl(provider.getServerUrl()) },
+      )
+      loadUrl(provider.getServerUrl())
     }
   }
 
