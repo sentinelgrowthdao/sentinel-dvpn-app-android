@@ -544,7 +544,7 @@ class WalletRepository
   }
 
   private fun TaskResult.log() {
-    if (!isSuccess) {
+    if (!isSuccess && errorCode != TxNotFound) {
       logNonFatal(
         message = resultJson ?: "Transaction failed",
         throwable = exception,
