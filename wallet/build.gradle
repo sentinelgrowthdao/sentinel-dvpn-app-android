@@ -8,11 +8,10 @@ plugins {
 android {
     namespace 'co.sentinel.wallet'
 
-    compileSdkVersion 32
-
     defaultConfig {
-        minSdkVersion 26
-        targetSdkVersion 31
+        minSdkVersion libs.versions.minSdk.get().toInteger()
+        targetSdkVersion libs.versions.compileSdk.get().toInteger()
+        compileSdk libs.versions.compileSdk.get().toInteger()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -25,12 +24,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility libs.versions.targetJvm.get()
+        targetCompatibility libs.versions.targetJvm.get()
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = '17'
     }
 }
 

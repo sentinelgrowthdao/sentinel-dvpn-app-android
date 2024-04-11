@@ -57,6 +57,8 @@ android {
         resources.excludes.add("META-INF/*")
         // This fix aab issue
         jniLibs.useLegacyPackaging = true
+        // Fix building aab (bitcoinj issue)
+        exclude 'lib/x86_64/darwin/libscrypt.dylib'
     }
     buildFeatures {
         buildConfig = true
