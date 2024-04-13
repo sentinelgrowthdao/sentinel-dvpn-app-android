@@ -23,6 +23,7 @@ class App : Application() {
   override fun onCreate() {
     super.onCreate()
     setupTimber()
+    logAppVersion()
     vpnInitializer.setupVPN(this)
   }
 
@@ -32,5 +33,9 @@ class App : Application() {
       fileLogTree,
       nonFatalReportTree,
     )
+  }
+
+  private fun logAppVersion() {
+    Timber.d("App version: ${BuildConfig.VERSION_NAME}(${BuildConfig.VERSION_CODE})")
   }
 }
