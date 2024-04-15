@@ -24,3 +24,8 @@ data class AppVersionResponse(
   @SerializedName("version")
   val version: String,
 )
+
+data class ClipboardResponse(
+  @SerializedName("text")
+  val text: String? = null,
+)

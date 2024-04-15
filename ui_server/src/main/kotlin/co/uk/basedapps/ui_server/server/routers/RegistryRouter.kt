@@ -1,9 +1,11 @@
 package co.uk.basedapps.ui_server.server.routers
 
+import co.uk.basedapps.ui_server.common.clipboard.ClipboardManager
 import co.uk.basedapps.ui_server.common.provider.AppDetailsProvider
 import co.uk.basedapps.ui_server.logs.ShareLogsEvent
 import co.uk.basedapps.ui_server.server.error.HttpError
 import co.uk.basedapps.ui_server.server.models.AppVersionResponse
+import co.uk.basedapps.ui_server.server.models.ClipboardResponse
 import co.uk.basedapps.ui_server.server.models.GetRegistryResponse
 import co.uk.basedapps.ui_server.server.models.PostRegistryRequest
 import co.uk.basedapps.ui_server.server.utils.EventBus
@@ -22,6 +24,7 @@ import timber.log.Timber
 fun Application.routeRegistry(
   storage: BasedStorage,
   appDetailsProvider: AppDetailsProvider,
+  clipboard: ClipboardManager,
   eventBus: EventBus,
 ) {
 
@@ -77,6 +80,11 @@ fun Application.routeRegistry(
     get("/api/registry/logs") {
       eventBus.emitEvent(ShareLogsEvent)
       call.respond(HttpStatusCode.OK)
+    }
+
+    get("/api/registry/clipboard") {
+      val response = ClipboardResponse(clipboard.getFromClipboard())
+      call.respond(HttpStatusCode.OK, response)
     }
   }
 }

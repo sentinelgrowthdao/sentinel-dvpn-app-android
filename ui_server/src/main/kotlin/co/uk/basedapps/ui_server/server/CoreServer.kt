@@ -4,6 +4,7 @@ import co.sentinel.cosmos.WalletRepository
 import co.sentinel.dvpn.hub.HubRemoteRepository
 import co.uk.basedapps.blockchain.transaction.TransactionManager
 import co.uk.basedapps.ui_server.BuildConfig
+import co.uk.basedapps.ui_server.common.clipboard.ClipboardManager
 import co.uk.basedapps.ui_server.common.provider.AppDetailsProvider
 import co.uk.basedapps.ui_server.network.repository.BasedRepository
 import co.uk.basedapps.ui_server.server.error.HttpError
@@ -55,6 +56,7 @@ class CoreServer @Inject constructor(
   private val transactionManager: TransactionManager,
   private val profileFetcher: VPNProfileFetcher,
   private val eventBus: EventBus,
+  private val clipboard: ClipboardManager,
 ) {
 
   private var isRunning = false
@@ -88,7 +90,7 @@ class CoreServer @Inject constructor(
   private fun Application.configureRouting() {
     routeStatic()
     routeDns(dnsConfigurator)
-    routeRegistry(storage, provider, eventBus)
+    routeRegistry(storage, provider, clipboard, eventBus)
     routeProxy(restRepository, eventBus)
     routeVpn(vpnConnector)
     routeWallet(walletRepository, hubRepository, profileFetcher)
