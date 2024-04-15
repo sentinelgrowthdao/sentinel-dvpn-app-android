@@ -23,6 +23,7 @@ class TransactionManager
     hours: Long,
     gasPrice: Long,
     chainId: String,
+    granter: String?,
   ): Either<Failure, String> {
     Timber.d("Subscribe to node $nodeAddress")
     val subscribePayload = hubRepository.generateNodeSubscriptionPayload(
@@ -40,6 +41,7 @@ class TransactionManager
       messages = listOf(subscribePayload.requireRight()),
       gasPrice = gasPrice,
       chainId = chainId,
+      granter = granter,
     )
   }
 
@@ -48,6 +50,7 @@ class TransactionManager
     denom: String,
     gasPrice: Long,
     chainId: String,
+    granter: String?,
   ): Either<Failure, String> {
     Timber.d("Subscribe to plan $planId")
     val subscribePayload = hubRepository.generatePlanSubscriptionPayload(
@@ -63,6 +66,7 @@ class TransactionManager
       messages = listOf(subscribePayload.requireRight()),
       gasPrice = gasPrice,
       chainId = chainId,
+      granter = granter,
     )
   }
 
@@ -72,6 +76,7 @@ class TransactionManager
     denom: String,
     gasPrice: Long,
     chainId: String,
+    granter: String?,
   ): Either<Failure, String> {
     val transferPayload = hubRepository.generateDirectTransferPayload(
       recipientAddress = recipientAddress,
@@ -86,6 +91,7 @@ class TransactionManager
       messages = listOf(transferPayload.requireRight()),
       gasPrice = gasPrice,
       chainId = chainId,
+      granter = granter,
     )
   }
 
@@ -95,6 +101,7 @@ class TransactionManager
     activeSession: Long?,
     gasPrice: Long,
     chainId: String,
+    granter: String?,
   ): Either<Failure, String> {
     val connectMessage = hubRepository.generateConnectToNodeMessages(
       subscriptionId = subscriptionId,
@@ -109,6 +116,7 @@ class TransactionManager
       messages = connectMessage.requireRight(),
       gasPrice = gasPrice,
       chainId = chainId,
+      granter = granter,
     )
   }
 

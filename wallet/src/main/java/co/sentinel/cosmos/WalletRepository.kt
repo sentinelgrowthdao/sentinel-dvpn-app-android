@@ -216,9 +216,10 @@ class WalletRepository
     messages: List<Any>,
     gasPrice: Long? = null,
     chainId: String? = null,
+    granter: String? = null,
   ): Either<Failure, TaskResult> {
     val account = getAccount() ?: return Either.Left(Failure.AppError)
-    val fee = gasPrice?.let(GasFee::composeFee) ?: GasFee.DEFAULT_FEE
+    val fee = gasPrice?.let { GasFee.composeFee(gasPrice, granter) } ?: GasFee.DEFAULT_FEE
     val chainIdLocal = chainId ?: app.baseDao.chainIdGrpc
     fetchAll(account)
     val taskResult = GenericGrpcTask(app, account, messages, fee, chainIdLocal)
@@ -231,8 +232,9 @@ class WalletRepository
     messages: List<Any>,
     gasPrice: Long? = null,
     chainId: String? = null,
+    granter: String? = null,
   ): Either<Failure, Unit> {
-    val taskResult = signRequestAndBroadcast(messages, gasPrice, chainId)
+    val taskResult = signRequestAndBroadcast(messages, gasPrice, chainId, granter)
     return taskResult.flatMap { result ->
       if (!result.isSuccess) {
         val typeUrls = messages.joinToString(separator = "\n") { it.typeUrl }
@@ -256,8 +258,9 @@ class WalletRepository
     messages: List<Any>,
     gasPrice: Long? = null,
     chainId: String? = null,
+    granter: String? = null,
   ): Either<Failure, String> {
-    val taskResult = signRequestAndBroadcast(messages, gasPrice, chainId)
+    val taskResult = signRequestAndBroadcast(messages, gasPrice, chainId, granter)
     return taskResult.flatMap { result ->
       val typeUrls = messages.joinToString(separator = "\n") { it.typeUrl }
       when {

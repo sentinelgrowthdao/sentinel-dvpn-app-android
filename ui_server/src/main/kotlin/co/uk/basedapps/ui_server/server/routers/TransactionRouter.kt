@@ -31,6 +31,7 @@ fun Application.routeTransaction(
       val nodeAddress = call.parameters["nodeAddress"]
       val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
       val chainId = call.request.headers["x-chain-id"]
+      val granter = call.request.headers["x-fee-granter"]
       val request = try {
         call.receive<NodeSubscriptionRequest>()
       } catch (e: Exception) {
@@ -48,6 +49,7 @@ fun Application.routeTransaction(
         hours = request.hours,
         gasPrice = gasPrice,
         chainId = chainId,
+        granter = granter,
       )
       if (result.isRight) {
         Timber.tag(VpnConnectTag).d("Subscription request broadcast")
@@ -62,6 +64,7 @@ fun Application.routeTransaction(
       val planId = call.parameters["planId"]?.toLongOrNull()
       val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
       val chainId = call.request.headers["x-chain-id"]
+      val granter = call.request.headers["x-fee-granter"]
       val request = try {
         call.receive<PlanSubscriptionRequest>()
       } catch (e: Exception) {
@@ -77,6 +80,7 @@ fun Application.routeTransaction(
         denom = request.denom,
         gasPrice = gasPrice,
         chainId = chainId,
+        granter = granter,
       )
       if (result.isRight) {
         Timber.tag(VpnConnectTag).d("Subscription request broadcast")
@@ -91,6 +95,7 @@ fun Application.routeTransaction(
       val recipientAddress = call.parameters["address"]
       val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
       val chainId = call.request.headers["x-chain-id"]
+      val granter = call.request.headers["x-fee-granter"]
       val request = try {
         call.receive<DirectPaymentRequest>()
       } catch (e: Exception) {
@@ -106,6 +111,7 @@ fun Application.routeTransaction(
         denom = request.denom,
         gasPrice = gasPrice,
         chainId = chainId,
+        granter = granter,
       )
       if (result.isRight) {
         Timber.tag(VpnConnectTag).d("Transfer request broadcast")
@@ -120,6 +126,7 @@ fun Application.routeTransaction(
       val recipientAddress = call.parameters["address"]
       val gasPrice = call.request.headers["x-gas-prices"]?.toLongOrNull()
       val chainId = call.request.headers["x-chain-id"]
+      val granter = call.request.headers["x-fee-granter"]
       val request = try {
         call.receive<SessionStartRequest>()
       } catch (e: Exception) {
@@ -139,6 +146,7 @@ fun Application.routeTransaction(
         activeSession = request.activeSession,
         gasPrice = gasPrice,
         chainId = chainId,
+        granter = granter,
       )
       if (result.isRight) {
         Timber.tag(VpnConnectTag).d("Session request broadcast")

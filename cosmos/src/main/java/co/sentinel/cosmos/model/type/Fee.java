@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
+import javax.annotation.Nullable;
+
 public class Fee implements Parcelable {
 
     @SerializedName("gas")
@@ -15,13 +17,18 @@ public class Fee implements Parcelable {
     @SerializedName("amount")
     public ArrayList<Coin> amount;
 
+    @Nullable
+    @SerializedName("granter")
+    public String granter;
+
 
     public Fee() {
     }
 
-    public Fee(String gas, ArrayList<Coin> amount) {
+    public Fee(String gas, ArrayList<Coin> amount, @Nullable String granter) {
         this.gas = gas;
         this.amount = amount;
+        this.granter = granter;
     }
 
     protected Fee(Parcel in) {
@@ -32,6 +39,7 @@ public class Fee implements Parcelable {
         gas = in.readString();
         amount = new ArrayList<>();
         in.readTypedList(amount, Coin.CREATOR);
+        granter = in.readString();
     }
 
     @Override
@@ -43,6 +51,7 @@ public class Fee implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(gas);
         dest.writeTypedList(amount);
+        dest.writeString(granter);
     }
 
     public static final Creator<Fee> CREATOR = new Creator<Fee>() {

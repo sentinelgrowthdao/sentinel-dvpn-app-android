@@ -133,7 +133,12 @@ public class Signer {
 
     public static TxOuterClass.AuthInfo getGrpcAuthInfo(TxOuterClass.SignerInfo signerInfo, Fee fee) {
         CoinOuterClass.Coin feeCoin = CoinOuterClass.Coin.newBuilder().setAmount(fee.amount.get(0).amount).setDenom(fee.amount.get(0).denom).build();
-        TxOuterClass.Fee txFee = TxOuterClass.Fee.newBuilder().addAmount(feeCoin).setGasLimit(Long.parseLong(fee.gas)).build();
+        TxOuterClass.Fee.Builder builder = TxOuterClass.Fee.newBuilder();
+        builder.addAmount(feeCoin).setGasLimit(Long.parseLong(fee.gas));
+        if (fee.granter != null) {
+            builder.setGranter(fee.granter);
+        }
+        TxOuterClass.Fee txFee = builder.build();
         return TxOuterClass.AuthInfo.newBuilder().setFee(txFee).addSignerInfos(signerInfo).build();
     }
 
