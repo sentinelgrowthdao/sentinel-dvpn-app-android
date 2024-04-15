@@ -18,7 +18,7 @@ import co.uk.basedapps.ui_server.server.routers.routeVpn
 import co.uk.basedapps.ui_server.server.routers.routeWallet
 import co.uk.basedapps.ui_server.server.utils.EventBus
 import co.uk.basedapps.ui_server.storage.BasedStorage
-import co.uk.basedapps.ui_server.vpn.DdsConfigurator
+import co.uk.basedapps.ui_server.vpn.dns.DdsConfigurator
 import co.uk.basedapps.ui_server.vpn.VPNConnector
 import co.uk.basedapps.ui_server.vpn.VPNProfileFetcher
 import io.ktor.http.HttpHeaders

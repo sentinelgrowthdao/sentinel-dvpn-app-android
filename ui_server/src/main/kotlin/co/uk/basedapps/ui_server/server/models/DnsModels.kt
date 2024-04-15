@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class DnsResponse(
   @SerializedName("name")
-  val name: String, // "handshake"
+  val name: String,
   @SerializedName("addresses")
-  val addresses: String, // "103.196.38.38, 103.196.38.39"
+  val addresses: String,
 )
 
 data class DnsListResponse(
@@ -15,6 +15,6 @@ data class DnsListResponse(
 )
 
 data class DnsRequest(
-  @SerializedName("server")
-  val server: String, // "handshake"
+  @SerializedName("addresses")
+  val addresses: String,
 )

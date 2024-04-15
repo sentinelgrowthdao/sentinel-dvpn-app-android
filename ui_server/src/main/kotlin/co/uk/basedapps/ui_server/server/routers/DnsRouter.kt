@@ -4,7 +4,7 @@ import co.uk.basedapps.ui_server.server.error.HttpError.Companion.badRequest
 import co.uk.basedapps.ui_server.server.models.DnsListResponse
 import co.uk.basedapps.ui_server.server.models.DnsRequest
 import co.uk.basedapps.ui_server.server.models.DnsResponse
-import co.uk.basedapps.ui_server.vpn.DdsConfigurator
+import co.uk.basedapps.ui_server.vpn.dns.DdsConfigurator
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -20,7 +20,7 @@ fun Application.routeDns(
 ) {
   routing {
     get("/api/dns/current") {
-      val defaultDns = configurator.getDefaultDns()
+      val defaultDns = configurator.getCurrentDns()
       val response = DnsResponse(defaultDns.name, defaultDns.address)
       call.respond(HttpStatusCode.OK, response)
     }
@@ -39,11 +39,11 @@ fun Application.routeDns(
         return@put call.respond(HttpStatusCode.BadRequest, badRequest)
       }
 
-      val dns = DdsConfigurator.Dns.entries.firstOrNull {
-        it.name.equals(request.server, ignoreCase = true)
-      } ?: return@put call.respond(HttpStatusCode.BadRequest, badRequest)
+      if (request.addresses.isBlank()) {
+        return@put call.respond(HttpStatusCode.BadRequest, badRequest)
+      }
 
-      configurator.setDns(dns)
+      configurator.setDns(request.addresses)
       call.respond(HttpStatusCode.OK)
     }
   }

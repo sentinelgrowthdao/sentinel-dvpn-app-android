@@ -66,7 +66,7 @@ object AppConfig {
   const val promotionUrl = "aHR0cHM6Ly85LjIzNDQ1Ni54eXovYWJjLmh0bWw="
   const val geoUrl = "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/"
 
-  const val DNS_AGENT = "1.1.1.1"
+  const val DNS_AGENT = "1.1.1.1, 1.0.0.1"
   const val DNS_DIRECT = "223.5.5.5"
 
   const val PORT_LOCAL_DNS = "10853"
