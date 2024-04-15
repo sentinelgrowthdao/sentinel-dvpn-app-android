@@ -24,7 +24,6 @@ import co.uk.basedapps.ui_server.vpn.PermissionStatus
 import co.uk.basedapps.ui_server.vpn.VPNConnector
 import co.uk.basedapps.ui_server.vpn.getVpnPermissionRequest
 import co.uk.basedapps.ui_server.webview.UiWebViewClient
-import co.uk.basedapps.ui_server.webview.WebViewInterface
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -85,7 +84,6 @@ class MainActivity : ComponentActivity() {
       with(settings) {
         javaScriptEnabled = true
         domStorageEnabled = true
-        addJavascriptInterface(WebViewInterface(webView.context), "NativeAndroid")
       }
       webViewClient = UiWebViewClient(
         scope = lifecycleScope,

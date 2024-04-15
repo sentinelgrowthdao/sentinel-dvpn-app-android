@@ -1,6 +1,5 @@
 package co.uk.basedapps.ui_server.webview
 
-import android.graphics.Bitmap
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -37,13 +36,5 @@ class UiWebViewClient(
         isLoaded()
       }
     }
-  }
-
-  override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-    super.onPageStarted(view, url, favicon)
-    view?.evaluateJavascript(
-      "javascript:navigator.clipboard.readText = () => { return NativeAndroid.getFromClipboard(); }",
-      null,
-    )
   }
 }
