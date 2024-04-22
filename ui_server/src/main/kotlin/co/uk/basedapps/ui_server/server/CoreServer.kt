@@ -1,6 +1,7 @@
 package co.uk.basedapps.ui_server.server
 
 import co.sentinel.cosmos.WalletRepository
+import co.sentinel.cosmos.base.BaseCosmosApp
 import co.sentinel.dvpn.hub.HubRemoteRepository
 import co.uk.basedapps.blockchain.transaction.TransactionManager
 import co.uk.basedapps.ui_server.BuildConfig
@@ -18,9 +19,9 @@ import co.uk.basedapps.ui_server.server.routers.routeVpn
 import co.uk.basedapps.ui_server.server.routers.routeWallet
 import co.uk.basedapps.ui_server.server.utils.EventBus
 import co.uk.basedapps.ui_server.storage.BasedStorage
-import co.uk.basedapps.ui_server.vpn.dns.DdsConfigurator
 import co.uk.basedapps.ui_server.vpn.VPNConnector
 import co.uk.basedapps.ui_server.vpn.VPNProfileFetcher
+import co.uk.basedapps.ui_server.vpn.dns.DdsConfigurator
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
@@ -57,6 +58,7 @@ class CoreServer @Inject constructor(
   private val profileFetcher: VPNProfileFetcher,
   private val eventBus: EventBus,
   private val clipboard: ClipboardManager,
+  private val cosmosApp: BaseCosmosApp,
 ) {
 
   private var isRunning = false
@@ -94,7 +96,7 @@ class CoreServer @Inject constructor(
     routeProxy(restRepository, eventBus)
     routeVpn(vpnConnector)
     routeWallet(walletRepository, hubRepository, profileFetcher)
-    routeCommon(hubRepository)
+    routeCommon(cosmosApp.channelBuilder, hubRepository)
     routeTransaction(transactionManager)
   }
 

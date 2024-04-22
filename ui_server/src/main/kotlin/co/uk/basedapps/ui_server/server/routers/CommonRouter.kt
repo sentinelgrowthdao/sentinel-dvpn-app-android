@@ -17,12 +17,13 @@ import io.ktor.server.routing.routing
 import timber.log.Timber
 
 fun Application.routeCommon(
+  channelBuilder: ChannelBuilder,
   repository: HubRemoteRepository,
 ) {
 
   routing {
     get("/api/blockchain/endpoint") {
-      val endpoint = ChannelBuilder.getEndpoint()
+      val endpoint = channelBuilder.getCurrentEndpoint()
       val response = EndpointModel(host = endpoint.first, port = endpoint.second)
       call.respond(HttpStatusCode.OK, response)
     }
@@ -34,7 +35,7 @@ fun Application.routeCommon(
         Timber.e(e)
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
-      ChannelBuilder.createCustomChannel(request.host, request.port)
+      channelBuilder.setCustomEndpoint(request.host, request.port)
       call.respond(HttpStatusCode.OK)
     }
 

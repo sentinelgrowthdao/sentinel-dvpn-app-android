@@ -1,7 +1,7 @@
 package co.sentinel.dvpn.hub.tasks
 
+import co.sentinel.cosmos.base.BaseCosmosApp
 import co.sentinel.cosmos.network.ChannelBuilder
-import co.sentinel.cosmos.network.ChannelBuilder.TIME_OUT
 import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.functional.Either
 import cosmos.base.query.v1beta1.Pagination
@@ -12,13 +12,15 @@ import sentinel.plan.v2.QueryServiceGrpc
 import sentinel.types.v1.StatusOuterClass
 import timber.log.Timber
 
-object QueryPlans {
+class QueryPlans(
+  private val app: BaseCosmosApp,
+) {
   suspend fun execute(
     offset: Long = 0,
     limit: Long = 10,
   ) = kotlin.runCatching {
-    val stub = QueryServiceGrpc.newFutureStub(ChannelBuilder.getMainChannel())
-      .withDeadlineAfter(TIME_OUT.toLong(), TimeUnit.SECONDS)
+    val stub = QueryServiceGrpc.newFutureStub(app.channelBuilder.getMainChannel())
+      .withDeadlineAfter(ChannelBuilder.TIME_OUT, TimeUnit.SECONDS)
     val response = stub.queryPlans(
       Querier.QueryPlansRequest.newBuilder()
         .setStatus(StatusOuterClass.Status.STATUS_ACTIVE)

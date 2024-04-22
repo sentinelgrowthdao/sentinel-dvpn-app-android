@@ -406,10 +406,15 @@ class WalletRepository
 
   private suspend fun getBalancesByAddress(
     address: String,
-  ): Either<Failure, QueryAllBalancesResponse> = kotlin.runCatching {
-    QueryBalancesTask.execute(address = address)
-  }.onFailure { Timber.e(it) }
-    .getOrNull() ?: Either.Left(Failure.AppError)
+  ): Either<Failure, QueryAllBalancesResponse> {
+    val balancesResult = QueryBalancesTask(app, address)
+      .run(prefsStore.retrievePasscode())
+    return if (balancesResult.isSuccess) {
+      Either.Right(balancesResult.resultData as QueryAllBalancesResponse)
+    } else {
+      Either.Left(Failure.AppError)
+    }
+  }
 
   suspend fun getBalancesByAddressJson(
     address: String,

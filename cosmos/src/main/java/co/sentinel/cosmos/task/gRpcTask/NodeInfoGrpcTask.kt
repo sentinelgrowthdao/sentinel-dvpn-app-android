@@ -16,8 +16,8 @@ class NodeInfoGrpcTask(app: BaseCosmosApp) : CommonTask(app) {
 
   init {
     mResult.taskType = BaseConstant.TASK_GRPC_FETCH_NODE_INFO
-    mStub = ServiceGrpc.newFutureStub(ChannelBuilder.getMainChannel())
-      .withDeadlineAfter(ChannelBuilder.TIME_OUT.toLong(), TimeUnit.SECONDS)
+    mStub = ServiceGrpc.newFutureStub(app.channelBuilder.getMainChannel())
+      .withDeadlineAfter(ChannelBuilder.TIME_OUT, TimeUnit.SECONDS)
   }
 
   override suspend fun doInBackground(vararg strings: String): TaskResult {

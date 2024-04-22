@@ -1,25 +1,39 @@
 package co.sentinel.cosmos.task.gRpcTask
 
+import co.sentinel.cosmos.base.BaseConstant
+import co.sentinel.cosmos.base.BaseCosmosApp
 import co.sentinel.cosmos.network.ChannelBuilder
-import co.uk.basedapps.domain.exception.Failure
-import co.uk.basedapps.domain.functional.Either
+import co.sentinel.cosmos.task.CommonTask
+import co.sentinel.cosmos.task.TaskResult
 import cosmos.bank.v1beta1.QueryGrpc
 import cosmos.bank.v1beta1.QueryOuterClass
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.guava.await
 import timber.log.Timber
 
-object QueryBalancesTask {
-  suspend fun execute(
-    address: String,
-  ) = kotlin.runCatching {
-    val stub = QueryGrpc.newFutureStub(ChannelBuilder.getMainChannel())
-      .withDeadlineAfter(ChannelBuilder.TIME_OUT.toLong(), TimeUnit.SECONDS)
-    val request = QueryOuterClass.QueryAllBalancesRequest.newBuilder()
-      .setAddress(address)
-      .build()
-    val response = stub.allBalances(request).await()
-    Either.Right(response)
-  }.onFailure { Timber.e(it) }
-    .getOrNull() ?: Either.Left(Failure.AppError)
+class QueryBalancesTask(
+  app: BaseCosmosApp,
+  private val address: String,
+) : CommonTask(app) {
+
+  private val mStub: QueryGrpc.QueryFutureStub
+
+  init {
+    mResult.taskType = BaseConstant.TASK_GRPC_FETCH_BALANCE
+    mStub = QueryGrpc.newFutureStub(app.channelBuilder.getMainChannel())
+      .withDeadlineAfter(ChannelBuilder.TIME_OUT, TimeUnit.SECONDS)
+  }
+
+  override suspend fun doInBackground(vararg strings: String): TaskResult {
+    try {
+      val request = QueryOuterClass.QueryAllBalancesRequest.newBuilder().setAddress(address).build()
+      val response = mStub.allBalances(request).await()
+      mResult.isSuccess = true
+      mResult.resultData = response
+    } catch (e: Exception) {
+      Timber.e("BalanceGrpcTask " + e.message)
+      mResult.exception = e
+    }
+    return mResult
+  }
 }

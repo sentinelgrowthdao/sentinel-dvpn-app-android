@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.wifi.WifiManager
 import android.text.format.Formatter
 import co.sentinel.cosmos.base.BaseCosmosApp
-import co.sentinel.cosmos.network.ChannelBuilder
 import co.sentinel.dvpn.hub.mapper.SessionMapper
 import co.sentinel.dvpn.hub.mapper.SubscriptionMapper
 import co.sentinel.dvpn.hub.model.NodeData
@@ -66,7 +65,7 @@ class HubRemoteRepository
     offset: Long,
     limit: Long,
   ): Either<Failure, QueryPlansResponse> =
-    QueryPlans.execute(offset = offset, limit = limit)
+    QueryPlans(app).execute(offset = offset, limit = limit)
 
   suspend fun fetchPlansJson(
     offset: Long = 0,
@@ -78,7 +77,7 @@ class HubRemoteRepository
     offset: Long,
     limit: Long,
   ): Either<Failure, QueryNodesResponse> =
-    QueryNodes.execute(offset = offset, limit = limit)
+    QueryNodes(app).execute(offset = offset, limit = limit)
 
   suspend fun fetchNodesJson(
     offset: Long = 0,
@@ -91,7 +90,7 @@ class HubRemoteRepository
     offset: Long,
     limit: Long,
   ): Either<Failure, QueryNodesForPlanResponse> =
-    QueryNodes.execute(planId = planId, offset = offset, limit = limit)
+    QueryNodes(app).execute(planId = planId, offset = offset, limit = limit)
 
   suspend fun fetchNodesForPlanJson(
     planId: Long,
@@ -182,7 +181,7 @@ class HubRemoteRepository
       .getOrNull() ?: Either.Left(Failure.AppError)
   }
 
-  suspend fun fetchNode(nodeAddress: String) = QueryNode.execute(nodeAddress)
+  suspend fun fetchNode(nodeAddress: String) = QueryNode(app).execute(nodeAddress)
 
   suspend fun fetchNodeDataWithoutSubscription(nodeAddress: String): Either<Failure, NodeData> {
     val fetchNodeResult = fetchNode(nodeAddress)
@@ -234,7 +233,7 @@ class HubRemoteRepository
     val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
       ?: return Either.Left(Failure.AppError)
     // fetch active sessions and stop them to successfully cancel subscription
-    val activeSessions = FetchSessions.execute(account.address)
+    val activeSessions = FetchSessions(app).execute(account.address)
       .getOrElse(listOf())
       .filter { subscriptionIds.contains(it.subscriptionId) }
       .filter { it.status == StatusOuterClass.Status.STATUS_ACTIVE }
@@ -255,7 +254,7 @@ class HubRemoteRepository
     .getOrNull() ?: Either.Left(Failure.AppError)
 
   suspend fun fetchSubscription(subscriptionId: Long) = kotlin.runCatching {
-    val result = FetchSubscription.execute(subscriptionId)
+    val result = FetchSubscription(app).execute(subscriptionId)
     result.getOrNull()
       ?.let(SubscriptionMapper::map)
       ?.let { Either.Right(it) }
@@ -313,7 +312,7 @@ class HubRemoteRepository
     address: String,
     offset: Long,
     limit: Long,
-  ) = FetchSubscriptions.execute(address = address, offset = offset, limit = limit)
+  ) = FetchSubscriptions(app).execute(address = address, offset = offset, limit = limit)
 
   fun generateDirectTransferPayload(
     recipientAddress: String,
@@ -342,9 +341,7 @@ class HubRemoteRepository
     }.onFailure { Timber.e(it) }.getOrNull() ?: ""
   }
 
-  fun resetConnection() {
-    ChannelBuilder.resetSentinelMain()
-  }
+  fun resetConnection() {}
 
   fun clearData() {
     app.baseDao.clearDB()
@@ -356,7 +353,7 @@ class HubRemoteRepository
   ): Either<Failure, List<Any>> = kotlin.runCatching {
     val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
       ?: return Either.Left(Failure.AppError)
-    val sessions = FetchSessions.execute(account.address)
+    val sessions = FetchSessions(app).execute(account.address)
     if (sessions.isRight) {
       val activeSessions = sessions
         .requireRight()
@@ -402,7 +399,7 @@ class HubRemoteRepository
     .getOrNull() ?: Either.Left(Failure.AppError)
 
   private suspend fun loadActiveSessionForAccount(address: String) = kotlin.runCatching {
-    FetchSessions.execute(address)
+    FetchSessions(app).execute(address)
       .getOrElse(listOf())
       .firstOrNull { it.status == StatusOuterClass.Status.STATUS_ACTIVE }
       ?.let { Either.Right(it) }

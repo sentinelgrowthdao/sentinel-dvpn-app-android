@@ -28,7 +28,7 @@ class FetchTransactionTask(
 
   override suspend fun doInBackground(vararg strings: String): TaskResult {
     try {
-      val txService = ServiceGrpc.newFutureStub(ChannelBuilder.getMainChannel())
+      val txService = ServiceGrpc.newFutureStub(app.channelBuilder.getMainChannel())
       val request = ServiceOuterClass.GetTxRequest.newBuilder().setHash(txHash).build()
       val response = txService.getTx(request).await()
       mResult.resultData = response.txResponse.txhash

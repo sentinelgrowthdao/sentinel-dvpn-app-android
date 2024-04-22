@@ -3,6 +3,7 @@ package co.sentinel.cosmos.di
 import android.content.Context
 import co.sentinel.cosmos.base.BaseCosmosApp
 import co.sentinel.cosmos.base.BaseData
+import co.sentinel.cosmos.network.ChannelBuilder
 import co.sentinel.cosmos.network.station.StationApi
 import dagger.Module
 import dagger.Provides
@@ -36,5 +37,6 @@ class CosmosModule {
   ): BaseCosmosApp = object : BaseCosmosApp {
     override val context: Context = context
     override val baseDao: BaseData = BaseData(context)
+    override val channelBuilder = ChannelBuilder(context)
   }
 }

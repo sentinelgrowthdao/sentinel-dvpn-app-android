@@ -24,8 +24,8 @@ class BondedValidatorsGrpcTask(app: BaseCosmosApp, private val mChain: BaseChain
 
   init {
     mResult.taskType = BaseConstant.TASK_GRPC_FETCH_BONDED_VALIDATORS
-    mStub = QueryGrpc.newFutureStub(ChannelBuilder.getMainChannel())
-      .withDeadlineAfter(ChannelBuilder.TIME_OUT.toLong(), TimeUnit.SECONDS)
+    mStub = QueryGrpc.newFutureStub(app.channelBuilder.getMainChannel())
+      .withDeadlineAfter(ChannelBuilder.TIME_OUT, TimeUnit.SECONDS)
   }
 
   override suspend fun doInBackground(vararg strings: String): TaskResult {

@@ -51,12 +51,12 @@ class SendGrpcTask(
         mAccount.path.toInt(),
         mAccount.newBip44,
       )
-      val authStub = QueryGrpc.newFutureStub(ChannelBuilder.getMainChannel())
+      val authStub = QueryGrpc.newFutureStub(app.channelBuilder.getMainChannel())
       val request = QueryAccountRequest.newBuilder().setAddress(mAccount.address).build()
       mAuthResponse = authStub.account(request).await()
 
       // broadCast
-      val txService = ServiceGrpc.newFutureStub(ChannelBuilder.getMainChannel())
+      val txService = ServiceGrpc.newFutureStub(app.channelBuilder.getMainChannel())
       val broadcastTxRequest = Signer.getGrpcSendReq(
         mAuthResponse,
         mToAddress,

@@ -54,7 +54,7 @@ class GenericGrpcTask(
         mAccount.path.toInt(),
         mAccount.newBip44,
       )
-      val authStub = QueryGrpc.newFutureStub(ChannelBuilder.getMainChannel())
+      val authStub = QueryGrpc.newFutureStub(app.channelBuilder.getMainChannel())
         .withDeadlineAfter(ChannelBuilder.TIME_OUT_BROADCAST, TimeUnit.SECONDS)
       val request =
         QueryOuterClass.QueryAccountRequest.newBuilder().setAddress(mAccount.address)
@@ -62,7 +62,7 @@ class GenericGrpcTask(
       mAuthResponse = authStub.account(request).await()
 
       // broadCast
-      val txService = ServiceGrpc.newFutureStub(ChannelBuilder.getMainChannel())
+      val txService = ServiceGrpc.newFutureStub(app.channelBuilder.getMainChannel())
       val broadcastTxRequest = Signer.getGrpcGenericReq(
         mAuthResponse,
         mFees,
