@@ -1,5 +1,7 @@
 package co.sentinel.cosmos.network;
 
+import android.util.Pair;
+
 import java.util.concurrent.Executors;
 
 import co.sentinel.cosmos.BuildConfig;
@@ -57,5 +59,9 @@ public class ChannelBuilder {
                     .executor(Executors.newSingleThreadExecutor())
                     .build();
         }
+    }
+
+    public static Pair<String, Integer> getEndpoint() {
+        return new Pair<>(grpcSentinelMain, portSentinelMain);
     }
 }

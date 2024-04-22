@@ -21,6 +21,12 @@ fun Application.routeCommon(
 ) {
 
   routing {
+    get("/api/blockchain/endpoint") {
+      val endpoint = ChannelBuilder.getEndpoint()
+      val response = EndpointModel(host = endpoint.first, port = endpoint.second)
+      call.respond(HttpStatusCode.OK, response)
+    }
+
     post("/api/blockchain/endpoint") {
       val request = try {
         call.receive<EndpointModel>()
