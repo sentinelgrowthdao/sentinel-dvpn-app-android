@@ -1,6 +1,8 @@
 package co.sentinel.cosmos
 
 import android.util.Base64
+import arrow.core.Either
+import arrow.core.flatMap
 import co.sentinel.cosmos.base.BaseChain
 import co.sentinel.cosmos.base.BaseConstant
 import co.sentinel.cosmos.base.BaseCosmosApp
@@ -37,10 +39,6 @@ import co.sentinel.cosmos.utils.WUtil
 import co.sentinel.cosmos.utils.toByteArray
 import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.exception.logNonFatal
-import co.uk.basedapps.domain.functional.Either
-import co.uk.basedapps.domain.functional.flatMap
-import co.uk.basedapps.domain.functional.map
-import co.uk.basedapps.domain.functional.requireRight
 import com.google.protobuf.util.JsonFormat
 import com.google.protobuf2.Any
 import cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse
@@ -425,34 +423,30 @@ class WalletRepository
     kotlin.runCatching {
       val chain = BaseChain.getChain(account.baseChain)
       val result = getBalancesByAddress(address = account.address)
-      when {
-        result.isRight -> {
-          val balance = result.requireRight().balancesList
-          app.baseDao.mGrpcBalance.clear()
-          if (balance.size > 0) {
-            for (coin in balance) {
-              app.baseDao.mGrpcBalance.add(Coin(coin.denom, coin.amount))
-            }
-          } else {
-            app.baseDao.mGrpcBalance.add(
-              Coin(WDp.mainDenom(chain), "0"),
-            )
+      result.map { response ->
+        val balance = response.balancesList
+        app.baseDao.mGrpcBalance.clear()
+        if (balance.size > 0) {
+          for (coin in balance) {
+            app.baseDao.mGrpcBalance.add(Coin(coin.denom, coin.amount))
           }
-
-          /**
-           * Save balance with fetch time in balance preferences.
-           */
-          balanceStore.storeBalance(
-            AccountBalance(
-              app.baseDao.mGrpcBalance,
-              System.currentTimeMillis(),
-            ),
+        } else {
+          app.baseDao.mGrpcBalance.add(
+            Coin(WDp.mainDenom(chain), "0"),
           )
-          Either.Right(Unit)
         }
 
-        else -> Either.Left(Unit)
+        /**
+         * Save balance with fetch time in balance preferences.
+         */
+        balanceStore.storeBalance(
+          AccountBalance(
+            app.baseDao.mGrpcBalance,
+            System.currentTimeMillis(),
+          ),
+        )
       }
+        .mapLeft { }
     }.onFailure { Timber.e(it) }
       .getOrNull() ?: Either.Left(Unit)
 
@@ -536,7 +530,7 @@ class WalletRepository
 //          async(start = CoroutineStart.LAZY) { fetchUnboundingDelegations(account) },
 //          async(start = CoroutineStart.LAZY) { fetchRewards(account) },
         ).awaitAll().let { results ->
-          if (results.any { it.isLeft }) {
+          if (results.any { it.isLeft() }) {
             Either.Left(Unit)
           } else {
             Either.Right(Unit)

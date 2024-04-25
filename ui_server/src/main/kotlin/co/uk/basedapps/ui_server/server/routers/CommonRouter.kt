@@ -2,7 +2,6 @@ package co.uk.basedapps.ui_server.server.routers
 
 import co.sentinel.cosmos.network.ChannelBuilder
 import co.sentinel.dvpn.hub.HubRemoteRepository
-import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.ui_server.server.error.HttpError
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.internalServer
 import co.uk.basedapps.ui_server.server.models.EndpointModel
@@ -42,23 +41,17 @@ fun Application.routeCommon(
     get("/api/blockchain/nodes") {
       val offset = call.request.queryParameters["offset"]?.toLongOrNull() ?: 0L
       val limit = call.request.queryParameters["limit"]?.toLongOrNull() ?: 10L
-      val result = repository.fetchNodesJson(offset = offset, limit = limit)
-      if (result.isRight) {
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+      repository.fetchNodesJson(offset = offset, limit = limit)
+        .onRight { call.respond(HttpStatusCode.OK, it) }
+        .onLeft { call.respond(HttpStatusCode.InternalServerError, internalServer) }
     }
 
     get("/api/blockchain/plans") {
       val offset = call.request.queryParameters["offset"]?.toLongOrNull() ?: 0L
       val limit = call.request.queryParameters["limit"]?.toLongOrNull() ?: 10L
-      val result = repository.fetchPlansJson(offset = offset, limit = limit)
-      if (result.isRight) {
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+      repository.fetchPlansJson(offset = offset, limit = limit)
+        .onRight { call.respond(HttpStatusCode.OK, it) }
+        .onLeft { call.respond(HttpStatusCode.InternalServerError, internalServer) }
     }
 
     get("/api/blockchain/plans/{planId}/nodes") {
@@ -66,12 +59,9 @@ fun Application.routeCommon(
         ?: return@get call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       val offset = call.request.queryParameters["offset"]?.toLongOrNull() ?: 0L
       val limit = call.request.queryParameters["limit"]?.toLongOrNull() ?: 10L
-      val result = repository.fetchNodesForPlanJson(planId = planId, offset = offset, limit = limit)
-      if (result.isRight) {
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+      repository.fetchNodesForPlanJson(planId = planId, offset = offset, limit = limit)
+        .onRight { call.respond(HttpStatusCode.OK, it) }
+        .onLeft { call.respond(HttpStatusCode.InternalServerError, internalServer) }
     }
   }
 }

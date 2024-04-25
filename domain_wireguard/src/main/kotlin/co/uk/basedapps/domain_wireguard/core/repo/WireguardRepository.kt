@@ -1,6 +1,6 @@
 package co.uk.basedapps.domain_wireguard.core.repo
 
-import co.uk.basedapps.domain.functional.Either
+import arrow.core.Either
 import co.uk.basedapps.domain.models.KeyPair
 import co.uk.basedapps.domain.models.VpnTunnel
 import co.uk.basedapps.domain_wireguard.core.init.DefaultTunnelName

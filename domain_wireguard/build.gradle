@@ -39,6 +39,7 @@ dependencies {
     implementation libs.wireguard
     implementation libs.datastore
     implementation libs.timber
+    implementation libs.arrow.core
 
     implementation project(path: ':domain')
 }

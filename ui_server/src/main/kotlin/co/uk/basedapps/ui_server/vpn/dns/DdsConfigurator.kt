@@ -1,6 +1,6 @@
 package co.uk.basedapps.ui_server.vpn.dns
 
-import co.uk.basedapps.domain_v2ray.V2RayRepository
+import co.sentinel.vpn.v2ray.repo.V2RayRepository
 import co.uk.basedapps.domain_wireguard.core.repo.WireguardRepository
 import javax.inject.Inject
 import javax.inject.Singleton

@@ -3,6 +3,8 @@ package co.sentinel.dvpn.hub
 import android.content.Context
 import android.net.wifi.WifiManager
 import android.text.format.Formatter
+import arrow.core.Either
+import arrow.core.getOrElse
 import co.sentinel.cosmos.base.BaseCosmosApp
 import co.sentinel.dvpn.hub.mapper.SessionMapper
 import co.sentinel.dvpn.hub.mapper.SubscriptionMapper
@@ -26,12 +28,6 @@ import co.sentinel.dvpn.hub.tasks.QueryNode
 import co.sentinel.dvpn.hub.tasks.QueryNodes
 import co.sentinel.dvpn.hub.tasks.QueryPlans
 import co.uk.basedapps.domain.exception.Failure
-import co.uk.basedapps.domain.functional.Either
-import co.uk.basedapps.domain.functional.getOrElse
-import co.uk.basedapps.domain.functional.getOrNull
-import co.uk.basedapps.domain.functional.map
-import co.uk.basedapps.domain.functional.requireLeft
-import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.domain.models.KeyPair
 import com.google.protobuf.util.JsonFormat
 import com.google.protobuf2.Any
@@ -111,7 +107,7 @@ class HubRemoteRepository
         )
       }
       val subscriptions = async {
-        fetchSubscriptions().getOrElse(null)
+        fetchSubscriptions().getOrNull()
           ?.nodeSubscriptions()
           ?.filter { it.nodeAddress.isNotEmpty() }
           ?: listOf()
@@ -147,7 +143,7 @@ class HubRemoteRepository
   suspend fun fetchSubscribedNodes(): Either<Failure, List<NodeData>> {
     return kotlin.runCatching {
       val subscriptions =
-        fetchSubscriptions().getOrElse(null)
+        fetchSubscriptions().getOrNull()
           ?.nodeSubscriptions()
           ?: listOf()
       withContext(Dispatchers.Default) {
@@ -162,8 +158,7 @@ class HubRemoteRepository
 
         val nodeInfoResult =
           FetchNodeInfo.execute(
-            subscribedNodesResponse.filter { it.isRight }
-              .map { it.requireRight() },
+            subscribedNodesResponse.mapNotNull { it.getOrNull() },
           )
         nodeInfoResult.mapNotNull {
           fixNodeInfoPrice(it)
@@ -185,8 +180,7 @@ class HubRemoteRepository
 
   suspend fun fetchNodeDataWithoutSubscription(nodeAddress: String): Either<Failure, NodeData> {
     val fetchNodeResult = fetchNode(nodeAddress)
-    if (fetchNodeResult.isLeft) return Either.Left(Failure.AppError)
-    val node = fetchNodeResult.requireRight()
+    val node = fetchNodeResult.getOrNull() ?: return Either.Left(Failure.AppError)
     val nodeInfo = FetchNodeInfo.execute(listOf(node))
       .firstOrNull() ?: return Either.Left(Failure.AppError)
     val fixedNodeData = fixNodeInfoPrice(nodeInfo) ?: return Either.Left(Failure.AppError)
@@ -234,7 +228,7 @@ class HubRemoteRepository
       ?: return Either.Left(Failure.AppError)
     // fetch active sessions and stop them to successfully cancel subscription
     val activeSessions = FetchSessions(app).execute(account.address)
-      .getOrElse(listOf())
+      .getOrElse { listOf() }
       .filter { subscriptionIds.contains(it.subscriptionId) }
       .filter { it.status == StatusOuterClass.Status.STATUS_ACTIVE }
       .map { it.id }
@@ -270,13 +264,9 @@ class HubRemoteRepository
       offset = 0,
       limit = Long.MAX_VALUE,
     )
-    if (subscriptions.isRight) {
-      Either.Right(
-        subscriptions.requireRight().subscriptionsList
-          .mapNotNull(SubscriptionMapper::map),
-      )
-    } else {
-      Either.Left(Failure.AppError)
+    subscriptions.map { response ->
+      response.subscriptionsList
+        .mapNotNull(SubscriptionMapper::map)
     }
   }.onFailure {
     Timber.e(it)
@@ -354,9 +344,8 @@ class HubRemoteRepository
     val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
       ?: return Either.Left(Failure.AppError)
     val sessions = FetchSessions(app).execute(account.address)
-    if (sessions.isRight) {
-      val activeSessions = sessions
-        .requireRight()
+    sessions.map { response ->
+      val activeSessions = response
         .filter { it.status == StatusOuterClass.Status.STATUS_ACTIVE }
         .map { it.id }
       val stopMessages = GenerateStopActiveSessionMessages.execute(account, activeSessions)
@@ -370,8 +359,6 @@ class HubRemoteRepository
           ),
         )
       }.let { Either.Right(it) }
-    } else {
-      Either.Left(sessions.requireLeft())
     }
   }.onFailure { Timber.e(it) }
     .getOrNull() ?: Either.Left(Failure.AppError)
@@ -400,7 +387,7 @@ class HubRemoteRepository
 
   private suspend fun loadActiveSessionForAccount(address: String) = kotlin.runCatching {
     FetchSessions(app).execute(address)
-      .getOrElse(listOf())
+      .getOrElse { listOf() }
       .firstOrNull { it.status == StatusOuterClass.Status.STATUS_ACTIVE }
       ?.let { Either.Right(it) }
       ?: Either.Left(Failure.NotFound)
@@ -428,16 +415,14 @@ class HubRemoteRepository
     val account = app.baseDao.onSelectAccount(app.baseDao.lastUser)
       ?: return Either.Left(Failure.AppError)
     val nodeResult = fetchNode(session.node)
-    if (nodeResult.isRight) {
+    nodeResult.map { response ->
       FetchVpnProfile.execute(
         account = account,
-        remoteUrl = nodeResult.requireRight().remoteUrl,
+        remoteUrl = response.remoteUrl,
         sessionId = session.id,
         keyPair = keyPair,
         signature = signature,
       )
-    } else {
-      Either.Left(nodeResult.requireLeft())
     }
   }.onFailure { Timber.e(it) }
     .getOrNull() ?: Either.Left(Failure.AppError)

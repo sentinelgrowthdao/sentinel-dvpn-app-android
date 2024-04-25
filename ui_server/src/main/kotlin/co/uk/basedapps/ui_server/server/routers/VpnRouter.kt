@@ -29,7 +29,7 @@ fun Application.routeVpn(
       }
 
       val result = vpnConnector.connect(request.data)
-      call.respond(HttpStatusCode.OK, TunnelStatusResponse(result.isRight))
+      call.respond(HttpStatusCode.OK, TunnelStatusResponse(result.isRight()))
     }
 
     post("/api/disconnect") {

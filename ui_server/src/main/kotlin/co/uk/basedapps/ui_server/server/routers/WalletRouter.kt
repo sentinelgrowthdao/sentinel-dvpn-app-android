@@ -1,11 +1,9 @@
 package co.uk.basedapps.ui_server.server.routers
 
+import arrow.core.Either
 import co.sentinel.cosmos.WalletRepository
 import co.sentinel.dvpn.hub.HubRemoteRepository
 import co.uk.basedapps.domain.exception.Failure
-import co.uk.basedapps.domain.functional.Either
-import co.uk.basedapps.domain.functional.requireLeft
-import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.badRequest
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.internalServer
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.notFound
@@ -34,14 +32,9 @@ fun Application.routeWallet(
 
   routing {
     get("/api/blockchain/keywords") {
-      val result = walletRepository.generateKeywords()
-      if (result.isRight) {
-        val data = result.requireRight()
-        val response = KeywordsResponse(data.keywords)
-        call.respond(HttpStatusCode.OK, response)
-      } else {
-        call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+      walletRepository.generateKeywords()
+        .onRight { call.respond(HttpStatusCode.OK, KeywordsResponse(it.keywords)) }
+        .onLeft { call.respond(HttpStatusCode.InternalServerError, internalServer) }
     }
 
     get("/api/blockchain/wallet") {
@@ -62,12 +55,9 @@ fun Application.routeWallet(
         return@post call.respond(HttpStatusCode.BadRequest, badRequest)
       }
       walletRepository.clearWallet()
-      val result = walletRepository.restoreAccount(request.mnemonic)
-      if (result.isRight) {
-        call.respond(HttpStatusCode.OK)
-      } else {
-        call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+      walletRepository.restoreAccount(request.mnemonic)
+        .onRight { call.respond(HttpStatusCode.OK) }
+        .onLeft { call.respond(HttpStatusCode.InternalServerError, internalServer) }
     }
 
     delete("/api/blockchain/wallet") {
@@ -78,12 +68,9 @@ fun Application.routeWallet(
     get("/api/blockchain/wallet/{address}/balance") {
       val address = call.parameters["address"]
         ?: return@get call.respond(HttpStatusCode.BadRequest, badRequest)
-      val result = walletRepository.getBalancesByAddressJson(address = address)
-      if (result.isRight) {
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        call.respond(HttpStatusCode.NotFound, notFound)
-      }
+      walletRepository.getBalancesByAddressJson(address = address)
+        .onRight { call.respond(HttpStatusCode.OK, it) }
+        .onLeft { call.respond(HttpStatusCode.NotFound, notFound) }
     }
 
     get("/api/blockchain/wallet/{address}/subscriptions") {
@@ -97,9 +84,10 @@ fun Application.routeWallet(
         offset = offset,
         limit = limit,
       )
-      if (result.isRight) {
-        Timber.tag(VpnConnectTag).d("Active subscriptions: ${result.requireRight()}")
-        call.respond(HttpStatusCode.OK, result.requireRight())
+      if (result.isRight()) {
+        val subscriptions = result.getOrNull().orEmpty()
+        Timber.tag(VpnConnectTag).d("Active subscriptions: $subscriptions")
+        call.respond(HttpStatusCode.OK, subscriptions)
       } else {
         Timber.tag(VpnConnectTag).d("No active subscriptions")
         call.respond(HttpStatusCode.NotFound, notFound)
@@ -113,11 +101,12 @@ fun Application.routeWallet(
       val result = hubRepository.loadActiveSessionForAccountJson(address)
       when {
         result is Either.Right -> {
-          Timber.tag(VpnConnectTag).d("Active sessions: ${result.requireRight()}")
-          call.respond(HttpStatusCode.OK, result.requireRight())
+          val session = result.getOrNull().orEmpty()
+          Timber.tag(VpnConnectTag).d("Active sessions: $session")
+          call.respond(HttpStatusCode.OK, session)
         }
 
-        result.requireLeft() is Failure.NotFound -> {
+        result.leftOrNull() is Failure.NotFound -> {
           Timber.tag(VpnConnectTag).d("No active session")
           call.respond(HttpStatusCode.NotFound, notFound)
         }
@@ -137,12 +126,9 @@ fun Application.routeWallet(
         return@post call.respond(HttpStatusCode.BadRequest, badRequest)
       }
       Timber.tag(VpnConnectTag).d("Connect to node: $request")
-      val credentialsRes = profileFetcher.fetch(request)
-      if (credentialsRes.isRight) {
-        call.respond(HttpStatusCode.OK, credentialsRes.requireRight())
-      } else {
-        return@post call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+      profileFetcher.fetch(request)
+        .onRight { call.respond(HttpStatusCode.OK, it) }
+        .onLeft { call.respond(HttpStatusCode.InternalServerError, internalServer) }
     }
   }
 }

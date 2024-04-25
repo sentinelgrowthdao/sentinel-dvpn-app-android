@@ -86,6 +86,8 @@ ktor-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation-j
 ktor-gson = { module = "io.ktor:ktor-serialization-gson-jvm", version.ref = "ktorVersion" }
 ktor-call-logging = { module = "io.ktor:ktor-server-call-logging", version.ref = "ktorVersion" }
 ktor-server-cors = { module = "io.ktor:ktor-server-cors", version.ref = "ktorVersion" }
+# VPN
+vpn-v2ray = { module = "co.sentinel.vpn:v2ray", version = "0.0.2" }
 
 # Other
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
@@ -94,6 +96,7 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 wireguard = { module = "com.wireguard.android:tunnel", version.ref = "wireguard" }
 webkit = { group = "androidx.webkit", name = "webkit", version = "1.8.0" }
+arrow-core = { module = "io.arrow-kt:arrow-core", version = "1.2.0" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,9 +1,9 @@
 package co.sentinel.dvpn.hub.tasks
 
+import arrow.core.Either
 import co.sentinel.cosmos.base.BaseCosmosApp
 import co.sentinel.cosmos.network.ChannelBuilder
 import co.uk.basedapps.domain.exception.Failure
-import co.uk.basedapps.domain.functional.Either
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.guava.await
 import sentinel.node.v2.Querier

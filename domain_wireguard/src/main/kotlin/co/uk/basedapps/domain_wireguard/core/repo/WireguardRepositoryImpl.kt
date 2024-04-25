@@ -2,8 +2,7 @@ package co.uk.basedapps.domain_wireguard.core.repo
 
 import android.annotation.SuppressLint
 import android.content.Context
-import co.uk.basedapps.domain.functional.Either
-import co.uk.basedapps.domain.functional.getOrNull
+import arrow.core.Either
 import co.uk.basedapps.domain.models.KeyPair as DomainKeyPair
 import co.uk.basedapps.domain.models.VpnTunnel
 import co.uk.basedapps.domain_wireguard.core.init.DefaultTunnelName
@@ -358,7 +357,7 @@ class WireguardRepositoryImpl(
               ),
             ),
           ).let {
-            if (it.isRight) {
+            if (it.isRight()) {
               Either.Right(Unit)
             } else {
               Either.Left(Unit)

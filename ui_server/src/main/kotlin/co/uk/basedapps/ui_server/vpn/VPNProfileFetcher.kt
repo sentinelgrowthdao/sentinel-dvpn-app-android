@@ -1,9 +1,9 @@
 package co.uk.basedapps.ui_server.vpn
 
 import android.util.Base64
+import arrow.core.Either
+import arrow.core.flatMap
 import co.sentinel.cosmos.WalletRepository
-import co.uk.basedapps.domain.functional.Either
-import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.domain.models.KeyPair
 import co.uk.basedapps.domain_wireguard.core.repo.WireguardRepository
 import co.uk.basedapps.ui_server.network.model.Credentials
@@ -44,24 +44,22 @@ class VPNProfileFetcher @Inject constructor(
     session: Long,
   ): Either<Unit, Credentials> {
     val keyPair = wgRepository.generateKeyPair()
-    val signature = walletRepository.getSignature(session)
-    if (signature.isLeft) return Either.Left(Unit)
-    val result = fetchProfile(
-      url = url,
-      keyPair = keyPair,
-      signature = signature.requireRight(),
-    )
-    return if (result.isRight) {
-      Either.Right(
+    return walletRepository.getSignature(session)
+      .flatMap { signature ->
+        fetchProfile(
+          url = url,
+          keyPair = keyPair,
+          signature = signature,
+        )
+      }
+      .map { profile ->
         Credentials(
           protocol = Protocol.WIREGUARD,
-          payload = result.requireRight().result,
+          payload = profile.result,
           privateKey = keyPair.privateKey,
-        ),
-      )
-    } else {
-      Either.Left(Unit)
-    }
+        )
+      }
+      .mapLeft { }
   }
 
   private suspend fun connectV2Ray(
@@ -69,23 +67,22 @@ class VPNProfileFetcher @Inject constructor(
     session: Long,
   ): Either<Unit, Credentials> {
     val keyPair = generateKeyPair()
-    val signature = walletRepository.getSignature(session)
-    val result = fetchProfile(
-      url = url,
-      keyPair = keyPair,
-      signature = signature.requireRight(),
-    )
-    return if (result.isRight) {
-      Either.Right(
+    return walletRepository.getSignature(session)
+      .flatMap { signature ->
+        fetchProfile(
+          url = url,
+          keyPair = keyPair,
+          signature = signature,
+        )
+      }
+      .map { profile ->
         Credentials(
           protocol = Protocol.V2RAY,
-          payload = result.requireRight().result,
+          payload = profile.result,
           privateKey = keyPair.privateKey,
-        ),
-      )
-    } else {
-      Either.Left(Unit)
-    }
+        )
+      }
+      .mapLeft { }
   }
 
   private suspend fun fetchProfile(

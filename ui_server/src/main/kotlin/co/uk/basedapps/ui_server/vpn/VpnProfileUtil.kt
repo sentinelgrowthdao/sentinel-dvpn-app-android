@@ -1,8 +1,8 @@
 package co.uk.basedapps.ui_server.vpn
 
 import android.util.Base64
+import co.sentinel.vpn.v2ray.model.V2RayVpnProfile
 import co.uk.basedapps.domain.extension.bytesToUnsignedShort
-import co.uk.basedapps.domain_v2ray.model.V2RayVpnProfile
 import co.uk.basedapps.domain_wireguard.core.model.WireguardVpnProfile
 
 fun decodeWireguardVpnProfile(payload: String): WireguardVpnProfile? {

@@ -1,9 +1,9 @@
 package co.sentinel.dvpn.hub.tasks
 
+import arrow.core.Either
 import co.sentinel.cosmos.dao.Account
 import co.sentinel.dvpn.hub.core.extensions.await
 import co.sentinel.dvpn.hub.model.VpnProfileResponse
-import co.uk.basedapps.domain.functional.Either
 import co.uk.basedapps.domain.models.KeyPair
 import com.google.gson.Gson
 import com.google.gson.JsonObject

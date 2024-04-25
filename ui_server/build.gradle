@@ -60,12 +60,12 @@ dependencies {
     implementation libs.slf4j.android
     implementation platform(libs.google.firebase.bom)
     implementation libs.google.firebase.crashlytics
+    implementation libs.arrow.core
+    implementation libs.vpn.v2ray
 
     kapt libs.hilt.compiler
 
     implementation project(path: ':domain')
-    implementation project(path: ':v2ray')
-    implementation project(path: ':domain_v2ray')
     implementation project(path: ':domain_wireguard')
     implementation project(path: ':wallet')
     implementation project(path: ':hub')

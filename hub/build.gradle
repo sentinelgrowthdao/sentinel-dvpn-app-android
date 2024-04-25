@@ -51,6 +51,7 @@ dependencies {
     implementation libs.timber
     implementation libs.retrofit
     implementation libs.gson.converter
+    implementation libs.arrow.core
 
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-guava:1.2.1"

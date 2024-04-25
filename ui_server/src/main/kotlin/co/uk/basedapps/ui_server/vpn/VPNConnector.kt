@@ -1,12 +1,10 @@
 package co.uk.basedapps.ui_server.vpn
 
+import arrow.core.Either
 import co.sentinel.dvpn.hub.HubRemoteRepository
-import co.uk.basedapps.domain.functional.Either
-import co.uk.basedapps.domain.functional.getOrNull
-import co.uk.basedapps.domain.functional.requireRight
+import co.sentinel.vpn.v2ray.model.V2RayVpnProfile
+import co.sentinel.vpn.v2ray.repo.V2RayRepository
 import co.uk.basedapps.domain.models.VpnTunnel
-import co.uk.basedapps.domain_v2ray.V2RayRepository
-import co.uk.basedapps.domain_v2ray.model.V2RayVpnProfile
 import co.uk.basedapps.domain_wireguard.core.init.DefaultTunnelName
 import co.uk.basedapps.domain_wireguard.core.model.WireguardVpnProfile
 import co.uk.basedapps.domain_wireguard.core.repo.WireguardRepository
@@ -47,7 +45,7 @@ class VPNConnector @Inject constructor(
         serverId = credentials.payload,
         credentials = credentials,
       )
-      if (result.isRight) {
+      if (result.isRight()) {
         delay(500)
         resetConnections()
       }
@@ -105,12 +103,11 @@ class VPNConnector @Inject constructor(
       keyPair = keyPair,
       serverId = serverId,
     )
-    createTunnelRes
-      .getOrNull()
+    val tunnelName = createTunnelRes.getOrNull()?.name
       ?: return Either.Left(Error.CreateTunnel)
 
     wireguardRepository.setTunnelState(
-      tunnelName = createTunnelRes.requireRight().name,
+      tunnelName = tunnelName,
       tunnelState = VpnTunnel.State.UP,
     ).getOrNull()
       ?: return Either.Left(Error.SetTunnelState)
@@ -126,7 +123,6 @@ class VPNConnector @Inject constructor(
     v2RayRepository.startV2Ray(
       profile = profile,
       serverId = serverId,
-      serverName = "BasedVPN server",
     ).getOrNull()
       ?: return Either.Left(Error.StartV2Ray)
 

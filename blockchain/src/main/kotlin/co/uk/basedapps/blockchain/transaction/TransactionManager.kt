@@ -1,10 +1,10 @@
 package co.uk.basedapps.blockchain.transaction
 
+import arrow.core.Either
+import arrow.core.flatMap
 import co.sentinel.cosmos.WalletRepository
 import co.sentinel.dvpn.hub.HubRemoteRepository
 import co.uk.basedapps.domain.exception.Failure
-import co.uk.basedapps.domain.functional.Either
-import co.uk.basedapps.domain.functional.requireRight
 import javax.inject.Inject
 import javax.inject.Singleton
 import timber.log.Timber
@@ -32,17 +32,16 @@ class TransactionManager
       gigabytes = gigabytes,
       hours = hours,
     )
-    if (subscribePayload.isLeft) {
-      Timber.e("Subscribe to node failed: can't create payload message")
-      return Either.Left(Failure.AppError)
-    }
-
-    return walletRepository.signRequestAndBroadcastJson(
-      messages = listOf(subscribePayload.requireRight()),
-      gasPrice = gasPrice,
-      chainId = chainId,
-      granter = granter,
-    )
+    return subscribePayload
+      .onLeft { Timber.e("Subscribe to node failed: can't create payload message") }
+      .flatMap { payload ->
+        walletRepository.signRequestAndBroadcastJson(
+          messages = listOf(payload),
+          gasPrice = gasPrice,
+          chainId = chainId,
+          granter = granter,
+        )
+      }
   }
 
   suspend fun subscribeToPlan(
@@ -57,17 +56,16 @@ class TransactionManager
       planId = planId,
       denom = denom,
     )
-    if (subscribePayload.isLeft) {
-      Timber.d("Subscribe to plan failed: can't  create payload message")
-      return Either.Left(Failure.AppError)
-    }
-
-    return walletRepository.signRequestAndBroadcastJson(
-      messages = listOf(subscribePayload.requireRight()),
-      gasPrice = gasPrice,
-      chainId = chainId,
-      granter = granter,
-    )
+    return subscribePayload
+      .onLeft { Timber.d("Subscribe to plan failed: can't  create payload message") }
+      .flatMap { payload ->
+        walletRepository.signRequestAndBroadcastJson(
+          messages = listOf(payload),
+          gasPrice = gasPrice,
+          chainId = chainId,
+          granter = granter,
+        )
+      }
   }
 
   suspend fun makeDirectTransfer(
@@ -83,16 +81,15 @@ class TransactionManager
       amount = amount,
       denom = denom,
     )
-    if (transferPayload.isLeft) {
-      return Either.Left(Failure.AppError)
-    }
-
-    return walletRepository.signRequestAndBroadcastJson(
-      messages = listOf(transferPayload.requireRight()),
-      gasPrice = gasPrice,
-      chainId = chainId,
-      granter = granter,
-    )
+    return transferPayload
+      .flatMap { payload ->
+        walletRepository.signRequestAndBroadcastJson(
+          messages = listOf(payload),
+          gasPrice = gasPrice,
+          chainId = chainId,
+          granter = granter,
+        )
+      }
   }
 
   suspend fun startSession(
@@ -108,16 +105,15 @@ class TransactionManager
       nodeAddress = nodeAddress,
       activeSessionId = activeSession,
     )
-    if (connectMessage.isLeft) {
-      return Either.Left(Failure.AppError)
-    }
-
-    return walletRepository.signRequestAndBroadcastJson(
-      messages = connectMessage.requireRight(),
-      gasPrice = gasPrice,
-      chainId = chainId,
-      granter = granter,
-    )
+    return connectMessage
+      .flatMap { message ->
+        walletRepository.signRequestAndBroadcastJson(
+          messages = message,
+          gasPrice = gasPrice,
+          chainId = chainId,
+          granter = granter,
+        )
+      }
   }
 
   suspend fun fetchTransaction(txHash: String): Either<Failure, String> {

@@ -1,10 +1,7 @@
 package co.uk.basedapps.ui_server.server.routers
 
 import android.webkit.URLUtil
-import co.uk.basedapps.domain.functional.requireLeft
-import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.ui_server.logs.OpenBrowserEvent
-import co.uk.basedapps.ui_server.network.NetResult
 import co.uk.basedapps.ui_server.network.repository.BasedRepository
 import co.uk.basedapps.ui_server.server.error.HttpError
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.badRequest
@@ -39,13 +36,12 @@ fun Application.routeProxy(
       val headers: Map<String, String> = call.getHeaders()
       val queries = call.getQueries()
 
-      val result = repository.getProxy(path, headers, queries)
-      if (result.isRight) {
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        val error = result.parseError()
-        call.respond(status = error.first, message = error.second)
-      }
+      repository.getProxy(path, headers, queries)
+        .onRight { call.respond(HttpStatusCode.OK, it) }
+        .onLeft {
+          val error = it.parseError()
+          call.respond(status = error.first, message = error.second)
+        }
     }
 
     post("$ProxyPath{...}") {
@@ -58,13 +54,12 @@ fun Application.routeProxy(
         return@post call.respond(HttpStatusCode.BadRequest, badRequest)
       }
 
-      val result = repository.postProxy(path, headers, body)
-      if (result.isRight) {
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        val error = result.parseError()
-        call.respond(status = error.first, message = error.second)
-      }
+      repository.postProxy(path, headers, body)
+        .onRight { call.respond(HttpStatusCode.OK, it) }
+        .onLeft {
+          val error = it.parseError()
+          call.respond(status = error.first, message = error.second)
+        }
     }
 
     delete("$ProxyPath{...}") {
@@ -72,13 +67,12 @@ fun Application.routeProxy(
       val headers: Map<String, String> = call.getHeaders()
       val queries = call.getQueries()
 
-      val result = repository.deleteProxy(path, headers, queries)
-      if (result.isRight) {
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        val error = result.parseError()
-        call.respond(status = error.first, message = error.second)
-      }
+      repository.deleteProxy(path, headers, queries)
+        .onRight { call.respond(HttpStatusCode.OK, it) }
+        .onLeft {
+          val error = it.parseError()
+          call.respond(status = error.first, message = error.second)
+        }
     }
 
     put("$ProxyPath{...}") {
@@ -91,13 +85,12 @@ fun Application.routeProxy(
         return@put call.respond(HttpStatusCode.BadRequest, badRequest)
       }
 
-      val result = repository.putProxy(path, headers, body)
-      if (result.isRight) {
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        val error = result.parseError()
-        call.respond(status = error.first, message = error.second)
-      }
+      repository.putProxy(path, headers, body)
+        .onRight { call.respond(HttpStatusCode.OK, it) }
+        .onLeft {
+          val error = it.parseError()
+          call.respond(status = error.first, message = error.second)
+        }
     }
 
     post("$ProxyPath/browser") {
@@ -135,11 +128,11 @@ private fun ApplicationCall.getQueries(): Map<String, String> {
     as Map<String, String>
 }
 
-private fun NetResult<String>.parseError(): Pair<HttpStatusCode, Any> {
-  return when (val exception = requireLeft()) {
+private fun Exception.parseError(): Pair<HttpStatusCode, Any> {
+  return when (this) {
     is HttpException ->
-      HttpStatusCode.fromValue(exception.code()) to
-        (exception.response()?.errorBody()?.string() ?: exception.message())
+      HttpStatusCode.fromValue(this.code()) to
+        (this.response()?.errorBody()?.string() ?: this.message())
 
     else -> HttpStatusCode.InternalServerError to HttpError.internalServer
   }

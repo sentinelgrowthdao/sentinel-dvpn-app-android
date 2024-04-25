@@ -2,8 +2,6 @@ package co.uk.basedapps.ui_server.server.routers
 
 import co.uk.basedapps.blockchain.transaction.TransactionManager
 import co.uk.basedapps.domain.exception.Failure
-import co.uk.basedapps.domain.functional.requireLeft
-import co.uk.basedapps.domain.functional.requireRight
 import co.uk.basedapps.ui_server.server.error.HttpError
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.internalServer
 import co.uk.basedapps.ui_server.server.error.HttpError.Companion.notFound
@@ -42,7 +40,7 @@ fun Application.routeTransaction(
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
       Timber.tag(VpnConnectTag).d("Create node subscription $request")
-      val result = transactionManager.subscribeToNode(
+      transactionManager.subscribeToNode(
         nodeAddress = nodeAddress,
         denom = request.denom,
         gigabytes = request.gigabytes,
@@ -51,13 +49,14 @@ fun Application.routeTransaction(
         chainId = chainId,
         granter = granter,
       )
-      if (result.isRight) {
-        Timber.tag(VpnConnectTag).d("Subscription request broadcast")
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        Timber.tag(VpnConnectTag).d("Subscription broadcast failed")
-        call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+        .onRight {
+          Timber.tag(VpnConnectTag).d("Subscription request broadcast")
+          call.respond(HttpStatusCode.OK, it)
+        }
+        .onLeft {
+          Timber.tag(VpnConnectTag).d("Subscription broadcast failed")
+          call.respond(HttpStatusCode.InternalServerError, internalServer)
+        }
     }
 
     post("/api/blockchain/plans/{planId}/subscription") {
@@ -75,20 +74,21 @@ fun Application.routeTransaction(
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
       Timber.tag(VpnConnectTag).d("Create node subscription $request")
-      val result = transactionManager.subscribeToPlan(
+      transactionManager.subscribeToPlan(
         planId = planId,
         denom = request.denom,
         gasPrice = gasPrice,
         chainId = chainId,
         granter = granter,
       )
-      if (result.isRight) {
-        Timber.tag(VpnConnectTag).d("Subscription request broadcast")
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        Timber.tag(VpnConnectTag).d("Subscription broadcast failed")
-        call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+        .onRight {
+          Timber.tag(VpnConnectTag).d("Subscription request broadcast")
+          call.respond(HttpStatusCode.OK, it)
+        }
+        .onLeft {
+          Timber.tag(VpnConnectTag).d("Subscription broadcast failed")
+          call.respond(HttpStatusCode.InternalServerError, internalServer)
+        }
     }
 
     post("/api/blockchain/wallet/{address}/balance") {
@@ -105,7 +105,7 @@ fun Application.routeTransaction(
       if (recipientAddress == null || gasPrice == null || chainId == null || request == null) {
         return@post call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
-      val result = transactionManager.makeDirectTransfer(
+      transactionManager.makeDirectTransfer(
         recipientAddress = recipientAddress,
         amount = request.amount,
         denom = request.denom,
@@ -113,13 +113,14 @@ fun Application.routeTransaction(
         chainId = chainId,
         granter = granter,
       )
-      if (result.isRight) {
-        Timber.tag(VpnConnectTag).d("Transfer request broadcast")
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        Timber.tag(VpnConnectTag).d("Transfer broadcast failed")
-        call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+        .onRight {
+          Timber.tag(VpnConnectTag).d("Transfer request broadcast")
+          call.respond(HttpStatusCode.OK, it)
+        }
+        .onLeft {
+          Timber.tag(VpnConnectTag).d("Transfer broadcast failed")
+          call.respond(HttpStatusCode.InternalServerError, internalServer)
+        }
     }
 
     post("/api/blockchain/wallet/{address}/session") {
@@ -140,7 +141,7 @@ fun Application.routeTransaction(
         "Start new session on subscription (${request.subscriptionId}) " +
           "and node (${request.nodeAddress}). Stop old session (${request.activeSession})",
       )
-      val result = transactionManager.startSession(
+      transactionManager.startSession(
         subscriptionId = request.subscriptionId,
         nodeAddress = request.nodeAddress,
         activeSession = request.activeSession,
@@ -148,13 +149,14 @@ fun Application.routeTransaction(
         chainId = chainId,
         granter = granter,
       )
-      if (result.isRight) {
-        Timber.tag(VpnConnectTag).d("Session request broadcast")
-        call.respond(HttpStatusCode.OK, result.requireRight())
-      } else {
-        Timber.tag(VpnConnectTag).d("Session broadcast failed")
-        call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+        .onRight {
+          Timber.tag(VpnConnectTag).d("Session request broadcast")
+          call.respond(HttpStatusCode.OK, it)
+        }
+        .onLeft {
+          Timber.tag(VpnConnectTag).d("Session broadcast failed")
+          call.respond(HttpStatusCode.InternalServerError, internalServer)
+        }
     }
 
     get("/api/blockchain/transactions/{txHash}") {
@@ -162,14 +164,14 @@ fun Application.routeTransaction(
       if (txHash.isNullOrBlank()) {
         return@get call.respond(HttpStatusCode.BadRequest, HttpError.badRequest)
       }
-      val result = transactionManager.fetchTransaction(txHash)
-      if (result.isRight) {
-        return@get call.respond(HttpStatusCode.OK, result.requireRight())
-      }
-      when (result.requireLeft()) {
-        Failure.NotFound -> call.respond(HttpStatusCode.NotFound, notFound)
-        else -> call.respond(HttpStatusCode.InternalServerError, internalServer)
-      }
+      transactionManager.fetchTransaction(txHash)
+        .onRight { call.respond(HttpStatusCode.OK, it) }
+        .onLeft { failure ->
+          when (failure) {
+            Failure.NotFound -> call.respond(HttpStatusCode.NotFound, notFound)
+            else -> call.respond(HttpStatusCode.InternalServerError, internalServer)
+          }
+        }
     }
   }
 }
