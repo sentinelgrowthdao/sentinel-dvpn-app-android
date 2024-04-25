@@ -50,6 +50,16 @@ class ChannelBuilder(private val context: Context) {
     return address to port
   }
 
+  fun reset() {
+    synchronized(this) {
+      if (this.mainChannel != null) {
+        this.mainChannel!!.shutdownNow()
+        this.mainChannel = null
+      }
+      Timber.d("Cosmos endpoint has been reset")
+    }
+  }
+
   companion object {
     private const val PREFS_NAME = "CosmosChannelPrefs"
     private const val PREFS_ADDRESS = "PrefsAddress"

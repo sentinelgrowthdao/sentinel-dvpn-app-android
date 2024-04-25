@@ -331,7 +331,9 @@ class HubRemoteRepository
     }.onFailure { Timber.e(it) }.getOrNull() ?: ""
   }
 
-  fun resetConnection() {}
+  fun resetConnection() {
+    app.channelBuilder.reset()
+  }
 
   fun clearData() {
     app.baseDao.clearDB()
