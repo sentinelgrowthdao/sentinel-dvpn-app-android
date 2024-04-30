@@ -144,7 +144,7 @@ class MainActivity : ComponentActivity() {
     if (file.exists()) {
       val fileUri = FileProvider.getUriForFile(
         this@MainActivity,
-        "co.sentinel.dvpnapp.provider",
+        BuildConfig.APPLICATION_ID + ".provider",
         file,
       )
       intentShareFile.setType("text/plain")
