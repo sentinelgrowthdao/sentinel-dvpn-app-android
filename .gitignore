@@ -13,3 +13,5 @@ local.properties
 app/release
 app/debug
 /ui_server/src/main/resources/
+app/google-services.json
+
