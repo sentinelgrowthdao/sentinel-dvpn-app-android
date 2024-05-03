@@ -118,6 +118,20 @@ fun Application.routeWallet(
       }
     }
 
+    get("/api/blockchain/wallet/{address}/grants/{granter}") {
+      val address = call.parameters["address"]
+      val granter = call.parameters["granter"]
+      if (address == null || granter == null) {
+        return@get call.respond(HttpStatusCode.BadRequest, badRequest)
+      }
+      hubRepository.fetchFeegrantAllowanceJson(
+        grantee = address,
+        granter = granter,
+      )
+        .onRight { allowance -> call.respond(HttpStatusCode.OK, allowance) }
+        .onLeft { call.respond(HttpStatusCode.InternalServerError, internalServer) }
+    }
+
     post("/api/blockchain/wallet/connect") {
       val request = try {
         call.receive<CredentialsRequest>()

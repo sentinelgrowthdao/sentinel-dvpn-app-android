@@ -16,6 +16,7 @@ import co.sentinel.dvpn.hub.tasks.CancelNodeSubscription
 import co.sentinel.dvpn.hub.tasks.CreateDirectTransaction
 import co.sentinel.dvpn.hub.tasks.CreateNodeSubscription
 import co.sentinel.dvpn.hub.tasks.CreatePlanSubscription
+import co.sentinel.dvpn.hub.tasks.FetchFeegrant
 import co.sentinel.dvpn.hub.tasks.FetchNodeInfo
 import co.sentinel.dvpn.hub.tasks.FetchSessions
 import co.sentinel.dvpn.hub.tasks.FetchSubscription
@@ -29,8 +30,8 @@ import co.sentinel.dvpn.hub.tasks.QueryNodes
 import co.sentinel.dvpn.hub.tasks.QueryPlans
 import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.models.KeyPair
-import com.google.protobuf.util.JsonFormat
 import com.google.protobuf.Any
+import com.google.protobuf.util.JsonFormat
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineStart
@@ -407,6 +408,13 @@ class HubRemoteRepository
     address: String,
   ): Either<Failure, String> =
     loadActiveSessionForAccount(address)
+      .map { result -> jsonFormatter.print(result) }
+
+  suspend fun fetchFeegrantAllowanceJson(
+    grantee: String,
+    granter: String,
+  ): Either<Failure, String> =
+    FetchFeegrant(app).execute(grantee = grantee, granter = granter)
       .map { result -> jsonFormatter.print(result) }
 
   suspend fun fetchVpnProfile(
