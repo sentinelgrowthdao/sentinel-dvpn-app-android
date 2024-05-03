@@ -27,7 +27,7 @@ public final class Feegrant {
      *
      * <code>repeated .cosmos.base.v1beta1.Coin spend_limit = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-    java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> 
+    java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin>
         getSpendLimitList();
     /**
      * <pre>
@@ -58,7 +58,7 @@ public final class Feegrant {
      *
      * <code>repeated .cosmos.base.v1beta1.Coin spend_limit = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-    java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+    java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
         getSpendLimitOrBuilderList();
     /**
      * <pre>
@@ -166,7 +166,7 @@ public final class Feegrant {
      * <code>repeated .cosmos.base.v1beta1.Coin spend_limit = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @java.lang.Override
-    public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+    public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
         getSpendLimitOrBuilderList() {
       return spendLimit_;
     }
@@ -590,7 +590,7 @@ public final class Feegrant {
               spendLimitBuilder_ = null;
               spendLimit_ = other.spendLimit_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              spendLimitBuilder_ = 
+              spendLimitBuilder_ =
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getSpendLimitFieldBuilder() : null;
             } else {
@@ -949,7 +949,7 @@ public final class Feegrant {
        *
        * <code>repeated .cosmos.base.v1beta1.Coin spend_limit = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
        */
-      public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+      public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
            getSpendLimitOrBuilderList() {
         if (spendLimitBuilder_ != null) {
           return spendLimitBuilder_.getMessageOrBuilderList();
@@ -993,12 +993,12 @@ public final class Feegrant {
        *
        * <code>repeated .cosmos.base.v1beta1.Coin spend_limit = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
        */
-      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin.Builder> 
+      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin.Builder>
            getSpendLimitBuilderList() {
         return getSpendLimitFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
           getSpendLimitFieldBuilder() {
         if (spendLimitBuilder_ == null) {
           spendLimitBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
@@ -1154,7 +1154,7 @@ public final class Feegrant {
        * <code>.google.protobuf.Timestamp expiration = 2 [(.gogoproto.stdtime) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
           getExpirationFieldBuilder() {
         if (expirationBuilder_ == null) {
           expirationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1299,7 +1299,7 @@ public final class Feegrant {
      *
      * <code>repeated .cosmos.base.v1beta1.Coin period_spend_limit = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-    java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> 
+    java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin>
         getPeriodSpendLimitList();
     /**
      * <pre>
@@ -1327,7 +1327,7 @@ public final class Feegrant {
      *
      * <code>repeated .cosmos.base.v1beta1.Coin period_spend_limit = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-    java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+    java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
         getPeriodSpendLimitOrBuilderList();
     /**
      * <pre>
@@ -1347,7 +1347,7 @@ public final class Feegrant {
      *
      * <code>repeated .cosmos.base.v1beta1.Coin period_can_spend = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-    java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> 
+    java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin>
         getPeriodCanSpendList();
     /**
      * <pre>
@@ -1372,7 +1372,7 @@ public final class Feegrant {
      *
      * <code>repeated .cosmos.base.v1beta1.Coin period_can_spend = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-    java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+    java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
         getPeriodCanSpendOrBuilderList();
     /**
      * <pre>
@@ -1562,7 +1562,7 @@ public final class Feegrant {
      * <code>repeated .cosmos.base.v1beta1.Coin period_spend_limit = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @java.lang.Override
-    public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+    public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
         getPeriodSpendLimitOrBuilderList() {
       return periodSpendLimit_;
     }
@@ -1626,7 +1626,7 @@ public final class Feegrant {
      * <code>repeated .cosmos.base.v1beta1.Coin period_can_spend = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @java.lang.Override
-    public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+    public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
         getPeriodCanSpendOrBuilderList() {
       return periodCanSpend_;
     }
@@ -2137,7 +2137,7 @@ public final class Feegrant {
               periodSpendLimitBuilder_ = null;
               periodSpendLimit_ = other.periodSpendLimit_;
               bitField0_ = (bitField0_ & ~0x00000004);
-              periodSpendLimitBuilder_ = 
+              periodSpendLimitBuilder_ =
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getPeriodSpendLimitFieldBuilder() : null;
             } else {
@@ -2163,7 +2163,7 @@ public final class Feegrant {
               periodCanSpendBuilder_ = null;
               periodCanSpend_ = other.periodCanSpend_;
               bitField0_ = (bitField0_ & ~0x00000008);
-              periodCanSpendBuilder_ = 
+              periodCanSpendBuilder_ =
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getPeriodCanSpendFieldBuilder() : null;
             } else {
@@ -2406,7 +2406,7 @@ public final class Feegrant {
        * <code>.cosmos.feegrant.v1beta1.BasicAllowance basic = 1 [(.gogoproto.nullable) = false];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.feegrant.v1beta1.Feegrant.BasicAllowance, cosmos.feegrant.v1beta1.Feegrant.BasicAllowance.Builder, cosmos.feegrant.v1beta1.Feegrant.BasicAllowanceOrBuilder> 
+          cosmos.feegrant.v1beta1.Feegrant.BasicAllowance, cosmos.feegrant.v1beta1.Feegrant.BasicAllowance.Builder, cosmos.feegrant.v1beta1.Feegrant.BasicAllowanceOrBuilder>
           getBasicFieldBuilder() {
         if (basicBuilder_ == null) {
           basicBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2570,7 +2570,7 @@ public final class Feegrant {
        * <code>.google.protobuf.Duration period = 2 [(.gogoproto.nullable) = false, (.gogoproto.stdduration) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
+          com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>
           getPeriodFieldBuilder() {
         if (periodBuilder_ == null) {
           periodBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -2853,7 +2853,7 @@ public final class Feegrant {
        *
        * <code>repeated .cosmos.base.v1beta1.Coin period_spend_limit = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
        */
-      public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+      public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
            getPeriodSpendLimitOrBuilderList() {
         if (periodSpendLimitBuilder_ != null) {
           return periodSpendLimitBuilder_.getMessageOrBuilderList();
@@ -2894,12 +2894,12 @@ public final class Feegrant {
        *
        * <code>repeated .cosmos.base.v1beta1.Coin period_spend_limit = 3 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
        */
-      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin.Builder> 
+      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin.Builder>
            getPeriodSpendLimitBuilderList() {
         return getPeriodSpendLimitFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
           getPeriodSpendLimitFieldBuilder() {
         if (periodSpendLimitBuilder_ == null) {
           periodSpendLimitBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
@@ -3168,7 +3168,7 @@ public final class Feegrant {
        *
        * <code>repeated .cosmos.base.v1beta1.Coin period_can_spend = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
        */
-      public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+      public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
            getPeriodCanSpendOrBuilderList() {
         if (periodCanSpendBuilder_ != null) {
           return periodCanSpendBuilder_.getMessageOrBuilderList();
@@ -3206,12 +3206,12 @@ public final class Feegrant {
        *
        * <code>repeated .cosmos.base.v1beta1.Coin period_can_spend = 4 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
        */
-      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin.Builder> 
+      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin.Builder>
            getPeriodCanSpendBuilderList() {
         return getPeriodCanSpendFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
           getPeriodCanSpendFieldBuilder() {
         if (periodCanSpendBuilder_ == null) {
           periodCanSpendBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
@@ -3385,7 +3385,7 @@ public final class Feegrant {
        * <code>.google.protobuf.Timestamp period_reset = 5 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
           getPeriodResetFieldBuilder() {
         if (periodResetBuilder_ == null) {
           periodResetBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -4188,7 +4188,7 @@ public final class Feegrant {
        * <code>.google.protobuf.Any allowance = 1 [(.cosmos_proto.accepts_interface) = "FeeAllowanceI"];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>
           getAllowanceFieldBuilder() {
         if (allowanceBuilder_ == null) {
           allowanceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -4540,7 +4540,7 @@ public final class Feegrant {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         granter_ = s;
@@ -4560,7 +4560,7 @@ public final class Feegrant {
         getGranterBytes() {
       java.lang.Object ref = granter_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         granter_ = b;
@@ -4587,7 +4587,7 @@ public final class Feegrant {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         grantee_ = s;
@@ -4607,7 +4607,7 @@ public final class Feegrant {
         getGranteeBytes() {
       java.lang.Object ref = grantee_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         grantee_ = b;
@@ -4641,7 +4641,7 @@ public final class Feegrant {
      */
     @java.lang.Override
     public com.google.protobuf.Any getAllowance() {
-      return allowance_ == null ? com.google.protobuf.Any.getDefaultInstance() : allowance_;
+        return com.google.protobuf.Any.getDefaultInstance();
     }
     /**
      * <pre>
@@ -5078,7 +5078,7 @@ public final class Feegrant {
           getGranterBytes() {
         java.lang.Object ref = granter_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           granter_ = b;
@@ -5170,7 +5170,7 @@ public final class Feegrant {
           getGranteeBytes() {
         java.lang.Object ref = grantee_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           grantee_ = b;
@@ -5371,7 +5371,7 @@ public final class Feegrant {
        * <code>.google.protobuf.Any allowance = 3 [(.cosmos_proto.accepts_interface) = "FeeAllowanceI"];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>
           getAllowanceFieldBuilder() {
         if (allowanceBuilder_ == null) {
           allowanceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -5449,22 +5449,22 @@ public final class Feegrant {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_feegrant_v1beta1_BasicAllowance_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_feegrant_v1beta1_BasicAllowance_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_feegrant_v1beta1_PeriodicAllowance_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_feegrant_v1beta1_PeriodicAllowance_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_feegrant_v1beta1_AllowedMsgAllowance_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_feegrant_v1beta1_AllowedMsgAllowance_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_feegrant_v1beta1_Grant_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_feegrant_v1beta1_Grant_fieldAccessorTable;
 
