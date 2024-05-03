@@ -754,7 +754,7 @@ public final class Abci {
      */
     @java.lang.Override
     public com.google.protobuf.Any getTx() {
-      return tx_ == null ? com.google.protobuf.Any.getDefaultInstance() : tx_;
+      return com.google.protobuf.Any.getDefaultInstance();
     }
     /**
      * <pre>
