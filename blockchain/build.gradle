@@ -44,6 +44,8 @@ dependencies {
 
     kapt libs.hilt.compiler
 
+    implementation "com.google.protobuf:protobuf-java:3.23.4"
+
     implementation project(path: ':domain')
     implementation project(path: ':cosmos')
     implementation project(path: ':wallet')
