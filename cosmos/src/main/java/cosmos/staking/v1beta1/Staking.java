@@ -249,74 +249,6 @@ public final class Staking {
       return new HistoricalInfo();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private HistoricalInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tendermint.types.Types.Header.Builder subBuilder = null;
-              if (header_ != null) {
-                subBuilder = header_.toBuilder();
-              }
-              header_ = input.readMessage(tendermint.types.Types.Header.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(header_);
-                header_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                valset_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.Validator>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              valset_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Staking.Validator.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          valset_ = java.util.Collections.unmodifiableList(valset_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_HistoricalInfo_descriptor;
@@ -353,10 +285,11 @@ public final class Staking {
      */
     @java.lang.Override
     public tendermint.types.Types.HeaderOrBuilder getHeaderOrBuilder() {
-      return getHeader();
+      return header_ == null ? tendermint.types.Types.Header.getDefaultInstance() : header_;
     }
 
     public static final int VALSET_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Staking.Validator> valset_;
     /**
      * <code>repeated .cosmos.staking.v1beta1.Validator valset = 2 [(.gogoproto.nullable) = false];</code>
@@ -416,7 +349,7 @@ public final class Staking {
       for (int i = 0; i < valset_.size(); i++) {
         output.writeMessage(2, valset_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -433,7 +366,7 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, valset_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -455,7 +388,7 @@ public final class Staking {
       }
       if (!getValsetList()
           .equals(other.getValsetList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -474,7 +407,7 @@ public final class Staking {
         hash = (37 * hash) + VALSET_FIELD_NUMBER;
         hash = (53 * hash) + getValsetList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -523,11 +456,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.HistoricalInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.HistoricalInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -598,35 +533,30 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.HistoricalInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getValsetFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (headerBuilder_ == null) {
-          header_ = null;
-        } else {
-          header_ = null;
+        bitField0_ = 0;
+        header_ = null;
+        if (headerBuilder_ != null) {
+          headerBuilder_.dispose();
           headerBuilder_ = null;
         }
         if (valsetBuilder_ == null) {
           valset_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          valset_ = null;
           valsetBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -653,23 +583,31 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.HistoricalInfo buildPartial() {
         cosmos.staking.v1beta1.Staking.HistoricalInfo result = new cosmos.staking.v1beta1.Staking.HistoricalInfo(this);
-        int from_bitField0_ = bitField0_;
-        if (headerBuilder_ == null) {
-          result.header_ = header_;
-        } else {
-          result.header_ = headerBuilder_.build();
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.staking.v1beta1.Staking.HistoricalInfo result) {
         if (valsetBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             valset_ = java.util.Collections.unmodifiableList(valset_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.valset_ = valset_;
         } else {
           result.valset_ = valsetBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.HistoricalInfo result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.header_ = headerBuilder_ == null
+              ? header_
+              : headerBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -723,7 +661,7 @@ public final class Staking {
           if (!other.valset_.isEmpty()) {
             if (valset_.isEmpty()) {
               valset_ = other.valset_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
             } else {
               ensureValsetIsMutable();
               valset_.addAll(other.valset_);
@@ -736,7 +674,7 @@ public final class Staking {
               valsetBuilder_.dispose();
               valsetBuilder_ = null;
               valset_ = other.valset_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
               valsetBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getValsetFieldBuilder() : null;
@@ -745,7 +683,7 @@ public final class Staking {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -760,17 +698,50 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.HistoricalInfo parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getHeaderFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                cosmos.staking.v1beta1.Staking.Validator m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Staking.Validator.parser(),
+                        extensionRegistry);
+                if (valsetBuilder_ == null) {
+                  ensureValsetIsMutable();
+                  valset_.add(m);
+                } else {
+                  valsetBuilder_.addMessage(m);
+                }
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.HistoricalInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -783,7 +754,7 @@ public final class Staking {
        * @return Whether the header field is set.
        */
       public boolean hasHeader() {
-        return headerBuilder_ != null || header_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tendermint.types.Header header = 1 [(.gogoproto.nullable) = false];</code>
@@ -805,11 +776,11 @@ public final class Staking {
             throw new NullPointerException();
           }
           header_ = value;
-          onChanged();
         } else {
           headerBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -819,11 +790,11 @@ public final class Staking {
           tendermint.types.Types.Header.Builder builderForValue) {
         if (headerBuilder_ == null) {
           header_ = builderForValue.build();
-          onChanged();
         } else {
           headerBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -831,38 +802,38 @@ public final class Staking {
        */
       public Builder mergeHeader(tendermint.types.Types.Header value) {
         if (headerBuilder_ == null) {
-          if (header_ != null) {
-            header_ =
-              tendermint.types.Types.Header.newBuilder(header_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            header_ != null &&
+            header_ != tendermint.types.Types.Header.getDefaultInstance()) {
+            getHeaderBuilder().mergeFrom(value);
           } else {
             header_ = value;
           }
-          onChanged();
         } else {
           headerBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tendermint.types.Header header = 1 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearHeader() {
-        if (headerBuilder_ == null) {
-          header_ = null;
-          onChanged();
-        } else {
-          header_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        header_ = null;
+        if (headerBuilder_ != null) {
+          headerBuilder_.dispose();
           headerBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tendermint.types.Header header = 1 [(.gogoproto.nullable) = false];</code>
        */
       public tendermint.types.Types.Header.Builder getHeaderBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getHeaderFieldBuilder().getBuilder();
       }
@@ -897,9 +868,9 @@ public final class Staking {
       private java.util.List<cosmos.staking.v1beta1.Staking.Validator> valset_ =
         java.util.Collections.emptyList();
       private void ensureValsetIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           valset_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.Validator>(valset_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -1049,7 +1020,7 @@ public final class Staking {
       public Builder clearValset() {
         if (valsetBuilder_ == null) {
           valset_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           valsetBuilder_.clear();
@@ -1126,7 +1097,7 @@ public final class Staking {
           valsetBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.staking.v1beta1.Staking.Validator, cosmos.staking.v1beta1.Staking.Validator.Builder, cosmos.staking.v1beta1.Staking.ValidatorOrBuilder>(
                   valset_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           valset_ = null;
@@ -1166,7 +1137,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new HistoricalInfo(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1191,11 +1173,19 @@ public final class Staking {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * rate is the commission rate charged to delegators, as a fraction.
+     * </pre>
+     *
      * <code>string rate = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The rate.
      */
     java.lang.String getRate();
     /**
+     * <pre>
+     * rate is the commission rate charged to delegators, as a fraction.
+     * </pre>
+     *
      * <code>string rate = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The bytes for rate.
      */
@@ -1203,11 +1193,19 @@ public final class Staking {
         getRateBytes();
 
     /**
+     * <pre>
+     * max_rate defines the maximum commission rate which validator can ever charge, as a fraction.
+     * </pre>
+     *
      * <code>string max_rate = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_rate&#92;""];</code>
      * @return The maxRate.
      */
     java.lang.String getMaxRate();
     /**
+     * <pre>
+     * max_rate defines the maximum commission rate which validator can ever charge, as a fraction.
+     * </pre>
+     *
      * <code>string max_rate = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_rate&#92;""];</code>
      * @return The bytes for maxRate.
      */
@@ -1215,11 +1213,19 @@ public final class Staking {
         getMaxRateBytes();
 
     /**
+     * <pre>
+     * max_change_rate defines the maximum daily increase of the validator commission, as a fraction.
+     * </pre>
+     *
      * <code>string max_change_rate = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_change_rate&#92;""];</code>
      * @return The maxChangeRate.
      */
     java.lang.String getMaxChangeRate();
     /**
+     * <pre>
+     * max_change_rate defines the maximum daily increase of the validator commission, as a fraction.
+     * </pre>
+     *
      * <code>string max_change_rate = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_change_rate&#92;""];</code>
      * @return The bytes for maxChangeRate.
      */
@@ -1256,66 +1262,6 @@ public final class Staking {
       return new CommissionRates();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private CommissionRates(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              rate_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              maxRate_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              maxChangeRate_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_CommissionRates_descriptor;
@@ -1330,8 +1276,13 @@ public final class Staking {
     }
 
     public static final int RATE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object rate_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object rate_ = "";
     /**
+     * <pre>
+     * rate is the commission rate charged to delegators, as a fraction.
+     * </pre>
+     *
      * <code>string rate = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The rate.
      */
@@ -1349,6 +1300,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * rate is the commission rate charged to delegators, as a fraction.
+     * </pre>
+     *
      * <code>string rate = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The bytes for rate.
      */
@@ -1368,8 +1323,13 @@ public final class Staking {
     }
 
     public static final int MAX_RATE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object maxRate_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object maxRate_ = "";
     /**
+     * <pre>
+     * max_rate defines the maximum commission rate which validator can ever charge, as a fraction.
+     * </pre>
+     *
      * <code>string max_rate = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_rate&#92;""];</code>
      * @return The maxRate.
      */
@@ -1387,6 +1347,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * max_rate defines the maximum commission rate which validator can ever charge, as a fraction.
+     * </pre>
+     *
      * <code>string max_rate = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_rate&#92;""];</code>
      * @return The bytes for maxRate.
      */
@@ -1406,8 +1370,13 @@ public final class Staking {
     }
 
     public static final int MAX_CHANGE_RATE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object maxChangeRate_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object maxChangeRate_ = "";
     /**
+     * <pre>
+     * max_change_rate defines the maximum daily increase of the validator commission, as a fraction.
+     * </pre>
+     *
      * <code>string max_change_rate = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_change_rate&#92;""];</code>
      * @return The maxChangeRate.
      */
@@ -1425,6 +1394,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * max_change_rate defines the maximum daily increase of the validator commission, as a fraction.
+     * </pre>
+     *
      * <code>string max_change_rate = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_change_rate&#92;""];</code>
      * @return The bytes for maxChangeRate.
      */
@@ -1457,16 +1430,16 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rate_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, rate_);
       }
-      if (!getMaxRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(maxRate_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, maxRate_);
       }
-      if (!getMaxChangeRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(maxChangeRate_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, maxChangeRate_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1475,16 +1448,16 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rate_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, rate_);
       }
-      if (!getMaxRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(maxRate_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, maxRate_);
       }
-      if (!getMaxChangeRateBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(maxChangeRate_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, maxChangeRate_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1505,7 +1478,7 @@ public final class Staking {
           .equals(other.getMaxRate())) return false;
       if (!getMaxChangeRate()
           .equals(other.getMaxChangeRate())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1522,7 +1495,7 @@ public final class Staking {
       hash = (53 * hash) + getMaxRate().hashCode();
       hash = (37 * hash) + MAX_CHANGE_RATE_FIELD_NUMBER;
       hash = (53 * hash) + getMaxChangeRate().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1571,11 +1544,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.CommissionRates parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.CommissionRates parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1644,28 +1619,21 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.CommissionRates.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         rate_ = "";
-
         maxRate_ = "";
-
         maxChangeRate_ = "";
-
         return this;
       }
 
@@ -1692,11 +1660,22 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.CommissionRates buildPartial() {
         cosmos.staking.v1beta1.Staking.CommissionRates result = new cosmos.staking.v1beta1.Staking.CommissionRates(this);
-        result.rate_ = rate_;
-        result.maxRate_ = maxRate_;
-        result.maxChangeRate_ = maxChangeRate_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.CommissionRates result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.rate_ = rate_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.maxRate_ = maxRate_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.maxChangeRate_ = maxChangeRate_;
+        }
       }
 
       @java.lang.Override
@@ -1745,17 +1724,20 @@ public final class Staking {
         if (other == cosmos.staking.v1beta1.Staking.CommissionRates.getDefaultInstance()) return this;
         if (!other.getRate().isEmpty()) {
           rate_ = other.rate_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getMaxRate().isEmpty()) {
           maxRate_ = other.maxRate_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getMaxChangeRate().isEmpty()) {
           maxChangeRate_ = other.maxChangeRate_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1770,22 +1752,55 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.CommissionRates parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                rate_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                maxRate_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                maxChangeRate_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.CommissionRates) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object rate_ = "";
       /**
+       * <pre>
+       * rate is the commission rate charged to delegators, as a fraction.
+       * </pre>
+       *
        * <code>string rate = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @return The rate.
        */
@@ -1802,6 +1817,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * rate is the commission rate charged to delegators, as a fraction.
+       * </pre>
+       *
        * <code>string rate = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @return The bytes for rate.
        */
@@ -1819,49 +1838,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * rate is the commission rate charged to delegators, as a fraction.
+       * </pre>
+       *
        * <code>string rate = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @param value The rate to set.
        * @return This builder for chaining.
        */
       public Builder setRate(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         rate_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * rate is the commission rate charged to delegators, as a fraction.
+       * </pre>
+       *
        * <code>string rate = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @return This builder for chaining.
        */
       public Builder clearRate() {
-        
         rate_ = getDefaultInstance().getRate();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * rate is the commission rate charged to delegators, as a fraction.
+       * </pre>
+       *
        * <code>string rate = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @param value The bytes for rate to set.
        * @return This builder for chaining.
        */
       public Builder setRateBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         rate_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
       private java.lang.Object maxRate_ = "";
       /**
+       * <pre>
+       * max_rate defines the maximum commission rate which validator can ever charge, as a fraction.
+       * </pre>
+       *
        * <code>string max_rate = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_rate&#92;""];</code>
        * @return The maxRate.
        */
@@ -1878,6 +1909,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * max_rate defines the maximum commission rate which validator can ever charge, as a fraction.
+       * </pre>
+       *
        * <code>string max_rate = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_rate&#92;""];</code>
        * @return The bytes for maxRate.
        */
@@ -1895,49 +1930,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * max_rate defines the maximum commission rate which validator can ever charge, as a fraction.
+       * </pre>
+       *
        * <code>string max_rate = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_rate&#92;""];</code>
        * @param value The maxRate to set.
        * @return This builder for chaining.
        */
       public Builder setMaxRate(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         maxRate_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * max_rate defines the maximum commission rate which validator can ever charge, as a fraction.
+       * </pre>
+       *
        * <code>string max_rate = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_rate&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearMaxRate() {
-        
         maxRate_ = getDefaultInstance().getMaxRate();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * max_rate defines the maximum commission rate which validator can ever charge, as a fraction.
+       * </pre>
+       *
        * <code>string max_rate = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_rate&#92;""];</code>
        * @param value The bytes for maxRate to set.
        * @return This builder for chaining.
        */
       public Builder setMaxRateBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         maxRate_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
 
       private java.lang.Object maxChangeRate_ = "";
       /**
+       * <pre>
+       * max_change_rate defines the maximum daily increase of the validator commission, as a fraction.
+       * </pre>
+       *
        * <code>string max_change_rate = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_change_rate&#92;""];</code>
        * @return The maxChangeRate.
        */
@@ -1954,6 +2001,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * max_change_rate defines the maximum daily increase of the validator commission, as a fraction.
+       * </pre>
+       *
        * <code>string max_change_rate = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_change_rate&#92;""];</code>
        * @return The bytes for maxChangeRate.
        */
@@ -1971,43 +2022,51 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * max_change_rate defines the maximum daily increase of the validator commission, as a fraction.
+       * </pre>
+       *
        * <code>string max_change_rate = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_change_rate&#92;""];</code>
        * @param value The maxChangeRate to set.
        * @return This builder for chaining.
        */
       public Builder setMaxChangeRate(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         maxChangeRate_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * max_change_rate defines the maximum daily increase of the validator commission, as a fraction.
+       * </pre>
+       *
        * <code>string max_change_rate = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_change_rate&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearMaxChangeRate() {
-        
         maxChangeRate_ = getDefaultInstance().getMaxChangeRate();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * max_change_rate defines the maximum daily increase of the validator commission, as a fraction.
+       * </pre>
+       *
        * <code>string max_change_rate = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"max_change_rate&#92;""];</code>
        * @param value The bytes for maxChangeRate to set.
        * @return This builder for chaining.
        */
       public Builder setMaxChangeRateBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         maxChangeRate_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2044,7 +2103,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CommissionRates(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2069,31 +2139,55 @@ public final class Staking {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * commission_rates defines the initial commission rates to be used for creating a validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
      * @return Whether the commissionRates field is set.
      */
     boolean hasCommissionRates();
     /**
+     * <pre>
+     * commission_rates defines the initial commission rates to be used for creating a validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
      * @return The commissionRates.
      */
     cosmos.staking.v1beta1.Staking.CommissionRates getCommissionRates();
     /**
+     * <pre>
+     * commission_rates defines the initial commission rates to be used for creating a validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
      */
     cosmos.staking.v1beta1.Staking.CommissionRatesOrBuilder getCommissionRatesOrBuilder();
 
     /**
+     * <pre>
+     * update_time is the last time the commission rate was changed.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the updateTime field is set.
      */
     boolean hasUpdateTime();
     /**
+     * <pre>
+     * update_time is the last time the commission rate was changed.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return The updateTime.
      */
     com.google.protobuf.Timestamp getUpdateTime();
     /**
+     * <pre>
+     * update_time is the last time the commission rate was changed.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
     com.google.protobuf.TimestampOrBuilder getUpdateTimeOrBuilder();
@@ -2124,74 +2218,6 @@ public final class Staking {
       return new Commission();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Commission(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.staking.v1beta1.Staking.CommissionRates.Builder subBuilder = null;
-              if (commissionRates_ != null) {
-                subBuilder = commissionRates_.toBuilder();
-              }
-              commissionRates_ = input.readMessage(cosmos.staking.v1beta1.Staking.CommissionRates.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(commissionRates_);
-                commissionRates_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (updateTime_ != null) {
-                subBuilder = updateTime_.toBuilder();
-              }
-              updateTime_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(updateTime_);
-                updateTime_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_Commission_descriptor;
@@ -2208,6 +2234,10 @@ public final class Staking {
     public static final int COMMISSION_RATES_FIELD_NUMBER = 1;
     private cosmos.staking.v1beta1.Staking.CommissionRates commissionRates_;
     /**
+     * <pre>
+     * commission_rates defines the initial commission rates to be used for creating a validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
      * @return Whether the commissionRates field is set.
      */
@@ -2216,6 +2246,10 @@ public final class Staking {
       return commissionRates_ != null;
     }
     /**
+     * <pre>
+     * commission_rates defines the initial commission rates to be used for creating a validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
      * @return The commissionRates.
      */
@@ -2224,16 +2258,24 @@ public final class Staking {
       return commissionRates_ == null ? cosmos.staking.v1beta1.Staking.CommissionRates.getDefaultInstance() : commissionRates_;
     }
     /**
+     * <pre>
+     * commission_rates defines the initial commission rates to be used for creating a validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
      */
     @java.lang.Override
     public cosmos.staking.v1beta1.Staking.CommissionRatesOrBuilder getCommissionRatesOrBuilder() {
-      return getCommissionRates();
+      return commissionRates_ == null ? cosmos.staking.v1beta1.Staking.CommissionRates.getDefaultInstance() : commissionRates_;
     }
 
     public static final int UPDATE_TIME_FIELD_NUMBER = 2;
     private com.google.protobuf.Timestamp updateTime_;
     /**
+     * <pre>
+     * update_time is the last time the commission rate was changed.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the updateTime field is set.
      */
@@ -2242,6 +2284,10 @@ public final class Staking {
       return updateTime_ != null;
     }
     /**
+     * <pre>
+     * update_time is the last time the commission rate was changed.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return The updateTime.
      */
@@ -2250,11 +2296,15 @@ public final class Staking {
       return updateTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : updateTime_;
     }
     /**
+     * <pre>
+     * update_time is the last time the commission rate was changed.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
     @java.lang.Override
     public com.google.protobuf.TimestampOrBuilder getUpdateTimeOrBuilder() {
-      return getUpdateTime();
+      return updateTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : updateTime_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2277,7 +2327,7 @@ public final class Staking {
       if (updateTime_ != null) {
         output.writeMessage(2, getUpdateTime());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2294,7 +2344,7 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getUpdateTime());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2319,7 +2369,7 @@ public final class Staking {
         if (!getUpdateTime()
             .equals(other.getUpdateTime())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2338,7 +2388,7 @@ public final class Staking {
         hash = (37 * hash) + UPDATE_TIME_FIELD_NUMBER;
         hash = (53 * hash) + getUpdateTime().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2387,11 +2437,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.Commission parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.Commission parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2459,32 +2511,26 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.Commission.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (commissionRatesBuilder_ == null) {
-          commissionRates_ = null;
-        } else {
-          commissionRates_ = null;
+        bitField0_ = 0;
+        commissionRates_ = null;
+        if (commissionRatesBuilder_ != null) {
+          commissionRatesBuilder_.dispose();
           commissionRatesBuilder_ = null;
         }
-        if (updateTimeBuilder_ == null) {
-          updateTime_ = null;
-        } else {
-          updateTime_ = null;
+        updateTime_ = null;
+        if (updateTimeBuilder_ != null) {
+          updateTimeBuilder_.dispose();
           updateTimeBuilder_ = null;
         }
         return this;
@@ -2513,18 +2559,23 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.Commission buildPartial() {
         cosmos.staking.v1beta1.Staking.Commission result = new cosmos.staking.v1beta1.Staking.Commission(this);
-        if (commissionRatesBuilder_ == null) {
-          result.commissionRates_ = commissionRates_;
-        } else {
-          result.commissionRates_ = commissionRatesBuilder_.build();
-        }
-        if (updateTimeBuilder_ == null) {
-          result.updateTime_ = updateTime_;
-        } else {
-          result.updateTime_ = updateTimeBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.Commission result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.commissionRates_ = commissionRatesBuilder_ == null
+              ? commissionRates_
+              : commissionRatesBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.updateTime_ = updateTimeBuilder_ == null
+              ? updateTime_
+              : updateTimeBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -2577,7 +2628,7 @@ public final class Staking {
         if (other.hasUpdateTime()) {
           mergeUpdateTime(other.getUpdateTime());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2592,31 +2643,67 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.Commission parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getCommissionRatesFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getUpdateTimeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.Commission) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private cosmos.staking.v1beta1.Staking.CommissionRates commissionRates_;
       private com.google.protobuf.SingleFieldBuilderV3<
           cosmos.staking.v1beta1.Staking.CommissionRates, cosmos.staking.v1beta1.Staking.CommissionRates.Builder, cosmos.staking.v1beta1.Staking.CommissionRatesOrBuilder> commissionRatesBuilder_;
       /**
+       * <pre>
+       * commission_rates defines the initial commission rates to be used for creating a validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
        * @return Whether the commissionRates field is set.
        */
       public boolean hasCommissionRates() {
-        return commissionRatesBuilder_ != null || commissionRates_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
+       * <pre>
+       * commission_rates defines the initial commission rates to be used for creating a validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
        * @return The commissionRates.
        */
@@ -2628,6 +2715,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * commission_rates defines the initial commission rates to be used for creating a validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
        */
       public Builder setCommissionRates(cosmos.staking.v1beta1.Staking.CommissionRates value) {
@@ -2636,68 +2727,88 @@ public final class Staking {
             throw new NullPointerException();
           }
           commissionRates_ = value;
-          onChanged();
         } else {
           commissionRatesBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * commission_rates defines the initial commission rates to be used for creating a validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
        */
       public Builder setCommissionRates(
           cosmos.staking.v1beta1.Staking.CommissionRates.Builder builderForValue) {
         if (commissionRatesBuilder_ == null) {
           commissionRates_ = builderForValue.build();
-          onChanged();
         } else {
           commissionRatesBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * commission_rates defines the initial commission rates to be used for creating a validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
        */
       public Builder mergeCommissionRates(cosmos.staking.v1beta1.Staking.CommissionRates value) {
         if (commissionRatesBuilder_ == null) {
-          if (commissionRates_ != null) {
-            commissionRates_ =
-              cosmos.staking.v1beta1.Staking.CommissionRates.newBuilder(commissionRates_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            commissionRates_ != null &&
+            commissionRates_ != cosmos.staking.v1beta1.Staking.CommissionRates.getDefaultInstance()) {
+            getCommissionRatesBuilder().mergeFrom(value);
           } else {
             commissionRates_ = value;
           }
-          onChanged();
         } else {
           commissionRatesBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * commission_rates defines the initial commission rates to be used for creating a validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
        */
       public Builder clearCommissionRates() {
-        if (commissionRatesBuilder_ == null) {
-          commissionRates_ = null;
-          onChanged();
-        } else {
-          commissionRates_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        commissionRates_ = null;
+        if (commissionRatesBuilder_ != null) {
+          commissionRatesBuilder_.dispose();
           commissionRatesBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * commission_rates defines the initial commission rates to be used for creating a validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
        */
       public cosmos.staking.v1beta1.Staking.CommissionRates.Builder getCommissionRatesBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getCommissionRatesFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * commission_rates defines the initial commission rates to be used for creating a validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
        */
       public cosmos.staking.v1beta1.Staking.CommissionRatesOrBuilder getCommissionRatesOrBuilder() {
@@ -2709,6 +2820,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * commission_rates defines the initial commission rates to be used for creating a validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.CommissionRates commission_rates = 1 [(.gogoproto.nullable) = false, (.gogoproto.embed) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -2729,13 +2844,21 @@ public final class Staking {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> updateTimeBuilder_;
       /**
+       * <pre>
+       * update_time is the last time the commission rate was changed.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
        * @return Whether the updateTime field is set.
        */
       public boolean hasUpdateTime() {
-        return updateTimeBuilder_ != null || updateTime_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
+       * <pre>
+       * update_time is the last time the commission rate was changed.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
        * @return The updateTime.
        */
@@ -2747,6 +2870,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * update_time is the last time the commission rate was changed.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder setUpdateTime(com.google.protobuf.Timestamp value) {
@@ -2755,68 +2882,88 @@ public final class Staking {
             throw new NullPointerException();
           }
           updateTime_ = value;
-          onChanged();
         } else {
           updateTimeBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * update_time is the last time the commission rate was changed.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder setUpdateTime(
           com.google.protobuf.Timestamp.Builder builderForValue) {
         if (updateTimeBuilder_ == null) {
           updateTime_ = builderForValue.build();
-          onChanged();
         } else {
           updateTimeBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * update_time is the last time the commission rate was changed.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder mergeUpdateTime(com.google.protobuf.Timestamp value) {
         if (updateTimeBuilder_ == null) {
-          if (updateTime_ != null) {
-            updateTime_ =
-              com.google.protobuf.Timestamp.newBuilder(updateTime_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            updateTime_ != null &&
+            updateTime_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+            getUpdateTimeBuilder().mergeFrom(value);
           } else {
             updateTime_ = value;
           }
-          onChanged();
         } else {
           updateTimeBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * update_time is the last time the commission rate was changed.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder clearUpdateTime() {
-        if (updateTimeBuilder_ == null) {
-          updateTime_ = null;
-          onChanged();
-        } else {
-          updateTime_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        updateTime_ = null;
+        if (updateTimeBuilder_ != null) {
+          updateTimeBuilder_.dispose();
           updateTimeBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * update_time is the last time the commission rate was changed.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public com.google.protobuf.Timestamp.Builder getUpdateTimeBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getUpdateTimeFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * update_time is the last time the commission rate was changed.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public com.google.protobuf.TimestampOrBuilder getUpdateTimeOrBuilder() {
@@ -2828,6 +2975,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * update_time is the last time the commission rate was changed.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp update_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"update_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -2876,7 +3027,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Commission(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2901,11 +3063,19 @@ public final class Staking {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * moniker defines a human-readable name for the validator.
+     * </pre>
+     *
      * <code>string moniker = 1;</code>
      * @return The moniker.
      */
     java.lang.String getMoniker();
     /**
+     * <pre>
+     * moniker defines a human-readable name for the validator.
+     * </pre>
+     *
      * <code>string moniker = 1;</code>
      * @return The bytes for moniker.
      */
@@ -2913,11 +3083,19 @@ public final class Staking {
         getMonikerBytes();
 
     /**
+     * <pre>
+     * identity defines an optional identity signature (ex. UPort or Keybase).
+     * </pre>
+     *
      * <code>string identity = 2;</code>
      * @return The identity.
      */
     java.lang.String getIdentity();
     /**
+     * <pre>
+     * identity defines an optional identity signature (ex. UPort or Keybase).
+     * </pre>
+     *
      * <code>string identity = 2;</code>
      * @return The bytes for identity.
      */
@@ -2925,11 +3103,19 @@ public final class Staking {
         getIdentityBytes();
 
     /**
+     * <pre>
+     * website defines an optional website link.
+     * </pre>
+     *
      * <code>string website = 3;</code>
      * @return The website.
      */
     java.lang.String getWebsite();
     /**
+     * <pre>
+     * website defines an optional website link.
+     * </pre>
+     *
      * <code>string website = 3;</code>
      * @return The bytes for website.
      */
@@ -2937,11 +3123,19 @@ public final class Staking {
         getWebsiteBytes();
 
     /**
+     * <pre>
+     * security_contact defines an optional email for security contact.
+     * </pre>
+     *
      * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
      * @return The securityContact.
      */
     java.lang.String getSecurityContact();
     /**
+     * <pre>
+     * security_contact defines an optional email for security contact.
+     * </pre>
+     *
      * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
      * @return The bytes for securityContact.
      */
@@ -2949,11 +3143,19 @@ public final class Staking {
         getSecurityContactBytes();
 
     /**
+     * <pre>
+     * details define other optional details.
+     * </pre>
+     *
      * <code>string details = 5;</code>
      * @return The details.
      */
     java.lang.String getDetails();
     /**
+     * <pre>
+     * details define other optional details.
+     * </pre>
+     *
      * <code>string details = 5;</code>
      * @return The bytes for details.
      */
@@ -2991,78 +3193,6 @@ public final class Staking {
       return new Description();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Description(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              moniker_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              identity_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              website_ = s;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              securityContact_ = s;
-              break;
-            }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              details_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_Description_descriptor;
@@ -3077,8 +3207,13 @@ public final class Staking {
     }
 
     public static final int MONIKER_FIELD_NUMBER = 1;
-    private volatile java.lang.Object moniker_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object moniker_ = "";
     /**
+     * <pre>
+     * moniker defines a human-readable name for the validator.
+     * </pre>
+     *
      * <code>string moniker = 1;</code>
      * @return The moniker.
      */
@@ -3096,6 +3231,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * moniker defines a human-readable name for the validator.
+     * </pre>
+     *
      * <code>string moniker = 1;</code>
      * @return The bytes for moniker.
      */
@@ -3115,8 +3254,13 @@ public final class Staking {
     }
 
     public static final int IDENTITY_FIELD_NUMBER = 2;
-    private volatile java.lang.Object identity_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object identity_ = "";
     /**
+     * <pre>
+     * identity defines an optional identity signature (ex. UPort or Keybase).
+     * </pre>
+     *
      * <code>string identity = 2;</code>
      * @return The identity.
      */
@@ -3134,6 +3278,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * identity defines an optional identity signature (ex. UPort or Keybase).
+     * </pre>
+     *
      * <code>string identity = 2;</code>
      * @return The bytes for identity.
      */
@@ -3153,8 +3301,13 @@ public final class Staking {
     }
 
     public static final int WEBSITE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object website_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object website_ = "";
     /**
+     * <pre>
+     * website defines an optional website link.
+     * </pre>
+     *
      * <code>string website = 3;</code>
      * @return The website.
      */
@@ -3172,6 +3325,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * website defines an optional website link.
+     * </pre>
+     *
      * <code>string website = 3;</code>
      * @return The bytes for website.
      */
@@ -3191,8 +3348,13 @@ public final class Staking {
     }
 
     public static final int SECURITY_CONTACT_FIELD_NUMBER = 4;
-    private volatile java.lang.Object securityContact_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object securityContact_ = "";
     /**
+     * <pre>
+     * security_contact defines an optional email for security contact.
+     * </pre>
+     *
      * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
      * @return The securityContact.
      */
@@ -3210,6 +3372,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * security_contact defines an optional email for security contact.
+     * </pre>
+     *
      * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
      * @return The bytes for securityContact.
      */
@@ -3229,8 +3395,13 @@ public final class Staking {
     }
 
     public static final int DETAILS_FIELD_NUMBER = 5;
-    private volatile java.lang.Object details_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object details_ = "";
     /**
+     * <pre>
+     * details define other optional details.
+     * </pre>
+     *
      * <code>string details = 5;</code>
      * @return The details.
      */
@@ -3248,6 +3419,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * details define other optional details.
+     * </pre>
+     *
      * <code>string details = 5;</code>
      * @return The bytes for details.
      */
@@ -3280,22 +3455,22 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMonikerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(moniker_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, moniker_);
       }
-      if (!getIdentityBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(identity_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, identity_);
       }
-      if (!getWebsiteBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(website_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, website_);
       }
-      if (!getSecurityContactBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(securityContact_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, securityContact_);
       }
-      if (!getDetailsBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(details_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, details_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3304,22 +3479,22 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMonikerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(moniker_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, moniker_);
       }
-      if (!getIdentityBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(identity_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, identity_);
       }
-      if (!getWebsiteBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(website_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, website_);
       }
-      if (!getSecurityContactBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(securityContact_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, securityContact_);
       }
-      if (!getDetailsBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(details_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, details_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3344,7 +3519,7 @@ public final class Staking {
           .equals(other.getSecurityContact())) return false;
       if (!getDetails()
           .equals(other.getDetails())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3365,7 +3540,7 @@ public final class Staking {
       hash = (53 * hash) + getSecurityContact().hashCode();
       hash = (37 * hash) + DETAILS_FIELD_NUMBER;
       hash = (53 * hash) + getDetails().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3414,11 +3589,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.Description parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.Description parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3486,32 +3663,23 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.Description.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         moniker_ = "";
-
         identity_ = "";
-
         website_ = "";
-
         securityContact_ = "";
-
         details_ = "";
-
         return this;
       }
 
@@ -3538,13 +3706,28 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.Description buildPartial() {
         cosmos.staking.v1beta1.Staking.Description result = new cosmos.staking.v1beta1.Staking.Description(this);
-        result.moniker_ = moniker_;
-        result.identity_ = identity_;
-        result.website_ = website_;
-        result.securityContact_ = securityContact_;
-        result.details_ = details_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.Description result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.moniker_ = moniker_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.identity_ = identity_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.website_ = website_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.securityContact_ = securityContact_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.details_ = details_;
+        }
       }
 
       @java.lang.Override
@@ -3593,25 +3776,30 @@ public final class Staking {
         if (other == cosmos.staking.v1beta1.Staking.Description.getDefaultInstance()) return this;
         if (!other.getMoniker().isEmpty()) {
           moniker_ = other.moniker_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getIdentity().isEmpty()) {
           identity_ = other.identity_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getWebsite().isEmpty()) {
           website_ = other.website_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (!other.getSecurityContact().isEmpty()) {
           securityContact_ = other.securityContact_;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
         if (!other.getDetails().isEmpty()) {
           details_ = other.details_;
+          bitField0_ |= 0x00000010;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3626,22 +3814,65 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.Description parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                moniker_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                identity_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                website_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                securityContact_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 42: {
+                details_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.Description) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object moniker_ = "";
       /**
+       * <pre>
+       * moniker defines a human-readable name for the validator.
+       * </pre>
+       *
        * <code>string moniker = 1;</code>
        * @return The moniker.
        */
@@ -3658,6 +3889,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * moniker defines a human-readable name for the validator.
+       * </pre>
+       *
        * <code>string moniker = 1;</code>
        * @return The bytes for moniker.
        */
@@ -3675,49 +3910,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * moniker defines a human-readable name for the validator.
+       * </pre>
+       *
        * <code>string moniker = 1;</code>
        * @param value The moniker to set.
        * @return This builder for chaining.
        */
       public Builder setMoniker(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         moniker_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * moniker defines a human-readable name for the validator.
+       * </pre>
+       *
        * <code>string moniker = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearMoniker() {
-        
         moniker_ = getDefaultInstance().getMoniker();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * moniker defines a human-readable name for the validator.
+       * </pre>
+       *
        * <code>string moniker = 1;</code>
        * @param value The bytes for moniker to set.
        * @return This builder for chaining.
        */
       public Builder setMonikerBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         moniker_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
       private java.lang.Object identity_ = "";
       /**
+       * <pre>
+       * identity defines an optional identity signature (ex. UPort or Keybase).
+       * </pre>
+       *
        * <code>string identity = 2;</code>
        * @return The identity.
        */
@@ -3734,6 +3981,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * identity defines an optional identity signature (ex. UPort or Keybase).
+       * </pre>
+       *
        * <code>string identity = 2;</code>
        * @return The bytes for identity.
        */
@@ -3751,49 +4002,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * identity defines an optional identity signature (ex. UPort or Keybase).
+       * </pre>
+       *
        * <code>string identity = 2;</code>
        * @param value The identity to set.
        * @return This builder for chaining.
        */
       public Builder setIdentity(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         identity_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * identity defines an optional identity signature (ex. UPort or Keybase).
+       * </pre>
+       *
        * <code>string identity = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearIdentity() {
-        
         identity_ = getDefaultInstance().getIdentity();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * identity defines an optional identity signature (ex. UPort or Keybase).
+       * </pre>
+       *
        * <code>string identity = 2;</code>
        * @param value The bytes for identity to set.
        * @return This builder for chaining.
        */
       public Builder setIdentityBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         identity_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
 
       private java.lang.Object website_ = "";
       /**
+       * <pre>
+       * website defines an optional website link.
+       * </pre>
+       *
        * <code>string website = 3;</code>
        * @return The website.
        */
@@ -3810,6 +4073,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * website defines an optional website link.
+       * </pre>
+       *
        * <code>string website = 3;</code>
        * @return The bytes for website.
        */
@@ -3827,49 +4094,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * website defines an optional website link.
+       * </pre>
+       *
        * <code>string website = 3;</code>
        * @param value The website to set.
        * @return This builder for chaining.
        */
       public Builder setWebsite(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         website_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * website defines an optional website link.
+       * </pre>
+       *
        * <code>string website = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearWebsite() {
-        
         website_ = getDefaultInstance().getWebsite();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * website defines an optional website link.
+       * </pre>
+       *
        * <code>string website = 3;</code>
        * @param value The bytes for website to set.
        * @return This builder for chaining.
        */
       public Builder setWebsiteBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         website_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
 
       private java.lang.Object securityContact_ = "";
       /**
+       * <pre>
+       * security_contact defines an optional email for security contact.
+       * </pre>
+       *
        * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
        * @return The securityContact.
        */
@@ -3886,6 +4165,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * security_contact defines an optional email for security contact.
+       * </pre>
+       *
        * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
        * @return The bytes for securityContact.
        */
@@ -3903,49 +4186,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * security_contact defines an optional email for security contact.
+       * </pre>
+       *
        * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
        * @param value The securityContact to set.
        * @return This builder for chaining.
        */
       public Builder setSecurityContact(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         securityContact_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * security_contact defines an optional email for security contact.
+       * </pre>
+       *
        * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearSecurityContact() {
-        
         securityContact_ = getDefaultInstance().getSecurityContact();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * security_contact defines an optional email for security contact.
+       * </pre>
+       *
        * <code>string security_contact = 4 [(.gogoproto.moretags) = "yaml:&#92;"security_contact&#92;""];</code>
        * @param value The bytes for securityContact to set.
        * @return This builder for chaining.
        */
       public Builder setSecurityContactBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         securityContact_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
 
       private java.lang.Object details_ = "";
       /**
+       * <pre>
+       * details define other optional details.
+       * </pre>
+       *
        * <code>string details = 5;</code>
        * @return The details.
        */
@@ -3962,6 +4257,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * details define other optional details.
+       * </pre>
+       *
        * <code>string details = 5;</code>
        * @return The bytes for details.
        */
@@ -3979,43 +4278,51 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * details define other optional details.
+       * </pre>
+       *
        * <code>string details = 5;</code>
        * @param value The details to set.
        * @return This builder for chaining.
        */
       public Builder setDetails(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         details_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * details define other optional details.
+       * </pre>
+       *
        * <code>string details = 5;</code>
        * @return This builder for chaining.
        */
       public Builder clearDetails() {
-        
         details_ = getDefaultInstance().getDetails();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * details define other optional details.
+       * </pre>
+       *
        * <code>string details = 5;</code>
        * @param value The bytes for details to set.
        * @return This builder for chaining.
        */
       public Builder setDetailsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         details_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -4052,7 +4359,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Description(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -4077,11 +4395,19 @@ public final class Staking {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * operator_address defines the address of the validator's operator; bech encoded in JSON.
+     * </pre>
+     *
      * <code>string operator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"operator_address&#92;""];</code>
      * @return The operatorAddress.
      */
     java.lang.String getOperatorAddress();
     /**
+     * <pre>
+     * operator_address defines the address of the validator's operator; bech encoded in JSON.
+     * </pre>
+     *
      * <code>string operator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"operator_address&#92;""];</code>
      * @return The bytes for operatorAddress.
      */
@@ -4089,43 +4415,75 @@ public final class Staking {
         getOperatorAddressBytes();
 
     /**
-     * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+     * <pre>
+     * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+     * </pre>
+     *
+     * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
      * @return Whether the consensusPubkey field is set.
      */
     boolean hasConsensusPubkey();
     /**
-     * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+     * <pre>
+     * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+     * </pre>
+     *
+     * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
      * @return The consensusPubkey.
      */
-    com.google.protobuf2.Any getConsensusPubkey();
+    com.google.protobuf.Any getConsensusPubkey();
     /**
-     * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+     * <pre>
+     * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+     * </pre>
+     *
+     * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
      */
-    com.google.protobuf2.AnyOrBuilder getConsensusPubkeyOrBuilder();
+    com.google.protobuf.AnyOrBuilder getConsensusPubkeyOrBuilder();
 
     /**
+     * <pre>
+     * jailed defined whether the validator has been jailed from bonded status or not.
+     * </pre>
+     *
      * <code>bool jailed = 3;</code>
      * @return The jailed.
      */
     boolean getJailed();
 
     /**
+     * <pre>
+     * status is the validator status (bonded/unbonding/unbonded).
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.BondStatus status = 4;</code>
      * @return The enum numeric value on the wire for status.
      */
     int getStatusValue();
     /**
+     * <pre>
+     * status is the validator status (bonded/unbonding/unbonded).
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.BondStatus status = 4;</code>
      * @return The status.
      */
     cosmos.staking.v1beta1.Staking.BondStatus getStatus();
 
     /**
+     * <pre>
+     * tokens define the delegated tokens (incl. self-delegation).
+     * </pre>
+     *
      * <code>string tokens = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      * @return The tokens.
      */
     java.lang.String getTokens();
     /**
+     * <pre>
+     * tokens define the delegated tokens (incl. self-delegation).
+     * </pre>
+     *
      * <code>string tokens = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      * @return The bytes for tokens.
      */
@@ -4133,11 +4491,19 @@ public final class Staking {
         getTokensBytes();
 
     /**
+     * <pre>
+     * delegator_shares defines total shares issued to a validator's delegators.
+     * </pre>
+     *
      * <code>string delegator_shares = 6 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"delegator_shares&#92;""];</code>
      * @return The delegatorShares.
      */
     java.lang.String getDelegatorShares();
     /**
+     * <pre>
+     * delegator_shares defines total shares issued to a validator's delegators.
+     * </pre>
+     *
      * <code>string delegator_shares = 6 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"delegator_shares&#92;""];</code>
      * @return The bytes for delegatorShares.
      */
@@ -4145,62 +4511,110 @@ public final class Staking {
         getDelegatorSharesBytes();
 
     /**
+     * <pre>
+     * description defines the description terms for the validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
      * @return Whether the description field is set.
      */
     boolean hasDescription();
     /**
+     * <pre>
+     * description defines the description terms for the validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
      * @return The description.
      */
     cosmos.staking.v1beta1.Staking.Description getDescription();
     /**
+     * <pre>
+     * description defines the description terms for the validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
      */
     cosmos.staking.v1beta1.Staking.DescriptionOrBuilder getDescriptionOrBuilder();
 
     /**
+     * <pre>
+     * unbonding_height defines, if unbonding, the height at which this validator has begun unbonding.
+     * </pre>
+     *
      * <code>int64 unbonding_height = 8 [(.gogoproto.moretags) = "yaml:&#92;"unbonding_height&#92;""];</code>
      * @return The unbondingHeight.
      */
     long getUnbondingHeight();
 
     /**
+     * <pre>
+     * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the unbondingTime field is set.
      */
     boolean hasUnbondingTime();
     /**
+     * <pre>
+     * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return The unbondingTime.
      */
     com.google.protobuf.Timestamp getUnbondingTime();
     /**
+     * <pre>
+     * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
     com.google.protobuf.TimestampOrBuilder getUnbondingTimeOrBuilder();
 
     /**
+     * <pre>
+     * commission defines the commission parameters.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
      * @return Whether the commission field is set.
      */
     boolean hasCommission();
     /**
+     * <pre>
+     * commission defines the commission parameters.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
      * @return The commission.
      */
     cosmos.staking.v1beta1.Staking.Commission getCommission();
     /**
+     * <pre>
+     * commission defines the commission parameters.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
      */
     cosmos.staking.v1beta1.Staking.CommissionOrBuilder getCommissionOrBuilder();
 
     /**
+     * <pre>
+     * min_self_delegation is the validator's self declared minimum self delegation.
+     * </pre>
+     *
      * <code>string min_self_delegation = 11 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
      * @return The minSelfDelegation.
      */
     java.lang.String getMinSelfDelegation();
     /**
+     * <pre>
+     * min_self_delegation is the validator's self declared minimum self delegation.
+     * </pre>
+     *
      * <code>string min_self_delegation = 11 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
      * @return The bytes for minSelfDelegation.
      */
@@ -4245,140 +4659,6 @@ public final class Staking {
       return new Validator();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Validator(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              operatorAddress_ = s;
-              break;
-            }
-            case 18: {
-              com.google.protobuf2.Any.Builder subBuilder = null;
-              if (consensusPubkey_ != null) {
-                subBuilder = consensusPubkey_.toBuilder();
-              }
-              consensusPubkey_ = input.readMessage(com.google.protobuf2.Any.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(consensusPubkey_);
-                consensusPubkey_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 24: {
-
-              jailed_ = input.readBool();
-              break;
-            }
-            case 32: {
-              int rawValue = input.readEnum();
-
-              status_ = rawValue;
-              break;
-            }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              tokens_ = s;
-              break;
-            }
-            case 50: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              delegatorShares_ = s;
-              break;
-            }
-            case 58: {
-              cosmos.staking.v1beta1.Staking.Description.Builder subBuilder = null;
-              if (description_ != null) {
-                subBuilder = description_.toBuilder();
-              }
-              description_ = input.readMessage(cosmos.staking.v1beta1.Staking.Description.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(description_);
-                description_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 64: {
-
-              unbondingHeight_ = input.readInt64();
-              break;
-            }
-            case 74: {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (unbondingTime_ != null) {
-                subBuilder = unbondingTime_.toBuilder();
-              }
-              unbondingTime_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(unbondingTime_);
-                unbondingTime_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 82: {
-              cosmos.staking.v1beta1.Staking.Commission.Builder subBuilder = null;
-              if (commission_ != null) {
-                subBuilder = commission_.toBuilder();
-              }
-              commission_ = input.readMessage(cosmos.staking.v1beta1.Staking.Commission.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(commission_);
-                commission_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 90: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              minSelfDelegation_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_Validator_descriptor;
@@ -4393,8 +4673,13 @@ public final class Staking {
     }
 
     public static final int OPERATOR_ADDRESS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object operatorAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object operatorAddress_ = "";
     /**
+     * <pre>
+     * operator_address defines the address of the validator's operator; bech encoded in JSON.
+     * </pre>
+     *
      * <code>string operator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"operator_address&#92;""];</code>
      * @return The operatorAddress.
      */
@@ -4412,6 +4697,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * operator_address defines the address of the validator's operator; bech encoded in JSON.
+     * </pre>
+     *
      * <code>string operator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"operator_address&#92;""];</code>
      * @return The bytes for operatorAddress.
      */
@@ -4431,9 +4720,13 @@ public final class Staking {
     }
 
     public static final int CONSENSUS_PUBKEY_FIELD_NUMBER = 2;
-    private com.google.protobuf2.Any consensusPubkey_;
+    private com.google.protobuf.Any consensusPubkey_;
     /**
-     * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+     * <pre>
+     * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+     * </pre>
+     *
+     * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
      * @return Whether the consensusPubkey field is set.
      */
     @java.lang.Override
@@ -4441,24 +4734,36 @@ public final class Staking {
       return consensusPubkey_ != null;
     }
     /**
-     * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+     * <pre>
+     * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+     * </pre>
+     *
+     * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
      * @return The consensusPubkey.
      */
     @java.lang.Override
-    public com.google.protobuf2.Any getConsensusPubkey() {
-      return consensusPubkey_ == null ? com.google.protobuf2.Any.getDefaultInstance() : consensusPubkey_;
+    public com.google.protobuf.Any getConsensusPubkey() {
+      return consensusPubkey_ == null ? com.google.protobuf.Any.getDefaultInstance() : consensusPubkey_;
     }
     /**
-     * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+     * <pre>
+     * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+     * </pre>
+     *
+     * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.AnyOrBuilder getConsensusPubkeyOrBuilder() {
-      return getConsensusPubkey();
+    public com.google.protobuf.AnyOrBuilder getConsensusPubkeyOrBuilder() {
+      return consensusPubkey_ == null ? com.google.protobuf.Any.getDefaultInstance() : consensusPubkey_;
     }
 
     public static final int JAILED_FIELD_NUMBER = 3;
-    private boolean jailed_;
+    private boolean jailed_ = false;
     /**
+     * <pre>
+     * jailed defined whether the validator has been jailed from bonded status or not.
+     * </pre>
+     *
      * <code>bool jailed = 3;</code>
      * @return The jailed.
      */
@@ -4468,8 +4773,12 @@ public final class Staking {
     }
 
     public static final int STATUS_FIELD_NUMBER = 4;
-    private int status_;
+    private int status_ = 0;
     /**
+     * <pre>
+     * status is the validator status (bonded/unbonding/unbonded).
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.BondStatus status = 4;</code>
      * @return The enum numeric value on the wire for status.
      */
@@ -4477,18 +4786,26 @@ public final class Staking {
       return status_;
     }
     /**
+     * <pre>
+     * status is the validator status (bonded/unbonding/unbonded).
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.BondStatus status = 4;</code>
      * @return The status.
      */
     @java.lang.Override public cosmos.staking.v1beta1.Staking.BondStatus getStatus() {
-      @SuppressWarnings("deprecation")
-      cosmos.staking.v1beta1.Staking.BondStatus result = cosmos.staking.v1beta1.Staking.BondStatus.valueOf(status_);
+      cosmos.staking.v1beta1.Staking.BondStatus result = cosmos.staking.v1beta1.Staking.BondStatus.forNumber(status_);
       return result == null ? cosmos.staking.v1beta1.Staking.BondStatus.UNRECOGNIZED : result;
     }
 
     public static final int TOKENS_FIELD_NUMBER = 5;
-    private volatile java.lang.Object tokens_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object tokens_ = "";
     /**
+     * <pre>
+     * tokens define the delegated tokens (incl. self-delegation).
+     * </pre>
+     *
      * <code>string tokens = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      * @return The tokens.
      */
@@ -4506,6 +4823,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * tokens define the delegated tokens (incl. self-delegation).
+     * </pre>
+     *
      * <code>string tokens = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      * @return The bytes for tokens.
      */
@@ -4525,8 +4846,13 @@ public final class Staking {
     }
 
     public static final int DELEGATOR_SHARES_FIELD_NUMBER = 6;
-    private volatile java.lang.Object delegatorShares_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object delegatorShares_ = "";
     /**
+     * <pre>
+     * delegator_shares defines total shares issued to a validator's delegators.
+     * </pre>
+     *
      * <code>string delegator_shares = 6 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"delegator_shares&#92;""];</code>
      * @return The delegatorShares.
      */
@@ -4544,6 +4870,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * delegator_shares defines total shares issued to a validator's delegators.
+     * </pre>
+     *
      * <code>string delegator_shares = 6 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"delegator_shares&#92;""];</code>
      * @return The bytes for delegatorShares.
      */
@@ -4565,6 +4895,10 @@ public final class Staking {
     public static final int DESCRIPTION_FIELD_NUMBER = 7;
     private cosmos.staking.v1beta1.Staking.Description description_;
     /**
+     * <pre>
+     * description defines the description terms for the validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
      * @return Whether the description field is set.
      */
@@ -4573,6 +4907,10 @@ public final class Staking {
       return description_ != null;
     }
     /**
+     * <pre>
+     * description defines the description terms for the validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
      * @return The description.
      */
@@ -4581,16 +4919,24 @@ public final class Staking {
       return description_ == null ? cosmos.staking.v1beta1.Staking.Description.getDefaultInstance() : description_;
     }
     /**
+     * <pre>
+     * description defines the description terms for the validator.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
      */
     @java.lang.Override
     public cosmos.staking.v1beta1.Staking.DescriptionOrBuilder getDescriptionOrBuilder() {
-      return getDescription();
+      return description_ == null ? cosmos.staking.v1beta1.Staking.Description.getDefaultInstance() : description_;
     }
 
     public static final int UNBONDING_HEIGHT_FIELD_NUMBER = 8;
-    private long unbondingHeight_;
+    private long unbondingHeight_ = 0L;
     /**
+     * <pre>
+     * unbonding_height defines, if unbonding, the height at which this validator has begun unbonding.
+     * </pre>
+     *
      * <code>int64 unbonding_height = 8 [(.gogoproto.moretags) = "yaml:&#92;"unbonding_height&#92;""];</code>
      * @return The unbondingHeight.
      */
@@ -4602,6 +4948,10 @@ public final class Staking {
     public static final int UNBONDING_TIME_FIELD_NUMBER = 9;
     private com.google.protobuf.Timestamp unbondingTime_;
     /**
+     * <pre>
+     * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the unbondingTime field is set.
      */
@@ -4610,6 +4960,10 @@ public final class Staking {
       return unbondingTime_ != null;
     }
     /**
+     * <pre>
+     * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return The unbondingTime.
      */
@@ -4618,16 +4972,24 @@ public final class Staking {
       return unbondingTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : unbondingTime_;
     }
     /**
+     * <pre>
+     * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
     @java.lang.Override
     public com.google.protobuf.TimestampOrBuilder getUnbondingTimeOrBuilder() {
-      return getUnbondingTime();
+      return unbondingTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : unbondingTime_;
     }
 
     public static final int COMMISSION_FIELD_NUMBER = 10;
     private cosmos.staking.v1beta1.Staking.Commission commission_;
     /**
+     * <pre>
+     * commission defines the commission parameters.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
      * @return Whether the commission field is set.
      */
@@ -4636,6 +4998,10 @@ public final class Staking {
       return commission_ != null;
     }
     /**
+     * <pre>
+     * commission defines the commission parameters.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
      * @return The commission.
      */
@@ -4644,16 +5010,25 @@ public final class Staking {
       return commission_ == null ? cosmos.staking.v1beta1.Staking.Commission.getDefaultInstance() : commission_;
     }
     /**
+     * <pre>
+     * commission defines the commission parameters.
+     * </pre>
+     *
      * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
      */
     @java.lang.Override
     public cosmos.staking.v1beta1.Staking.CommissionOrBuilder getCommissionOrBuilder() {
-      return getCommission();
+      return commission_ == null ? cosmos.staking.v1beta1.Staking.Commission.getDefaultInstance() : commission_;
     }
 
     public static final int MIN_SELF_DELEGATION_FIELD_NUMBER = 11;
-    private volatile java.lang.Object minSelfDelegation_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object minSelfDelegation_ = "";
     /**
+     * <pre>
+     * min_self_delegation is the validator's self declared minimum self delegation.
+     * </pre>
+     *
      * <code>string min_self_delegation = 11 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
      * @return The minSelfDelegation.
      */
@@ -4671,6 +5046,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * min_self_delegation is the validator's self declared minimum self delegation.
+     * </pre>
+     *
      * <code>string min_self_delegation = 11 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
      * @return The bytes for minSelfDelegation.
      */
@@ -4703,7 +5082,7 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getOperatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(operatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, operatorAddress_);
       }
       if (consensusPubkey_ != null) {
@@ -4715,10 +5094,10 @@ public final class Staking {
       if (status_ != cosmos.staking.v1beta1.Staking.BondStatus.BOND_STATUS_UNSPECIFIED.getNumber()) {
         output.writeEnum(4, status_);
       }
-      if (!getTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tokens_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, tokens_);
       }
-      if (!getDelegatorSharesBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorShares_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, delegatorShares_);
       }
       if (description_ != null) {
@@ -4733,10 +5112,10 @@ public final class Staking {
       if (commission_ != null) {
         output.writeMessage(10, getCommission());
       }
-      if (!getMinSelfDelegationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(minSelfDelegation_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 11, minSelfDelegation_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -4745,7 +5124,7 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getOperatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(operatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, operatorAddress_);
       }
       if (consensusPubkey_ != null) {
@@ -4760,10 +5139,10 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(4, status_);
       }
-      if (!getTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(tokens_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, tokens_);
       }
-      if (!getDelegatorSharesBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorShares_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, delegatorShares_);
       }
       if (description_ != null) {
@@ -4782,10 +5161,10 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(10, getCommission());
       }
-      if (!getMinSelfDelegationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(minSelfDelegation_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, minSelfDelegation_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -4833,7 +5212,7 @@ public final class Staking {
       }
       if (!getMinSelfDelegation()
           .equals(other.getMinSelfDelegation())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -4876,7 +5255,7 @@ public final class Staking {
       }
       hash = (37 * hash) + MIN_SELF_DELEGATION_FIELD_NUMBER;
       hash = (53 * hash) + getMinSelfDelegation().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -4925,11 +5304,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.Validator parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.Validator parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5004,60 +5385,45 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.Validator.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         operatorAddress_ = "";
-
-        if (consensusPubkeyBuilder_ == null) {
-          consensusPubkey_ = null;
-        } else {
-          consensusPubkey_ = null;
+        consensusPubkey_ = null;
+        if (consensusPubkeyBuilder_ != null) {
+          consensusPubkeyBuilder_.dispose();
           consensusPubkeyBuilder_ = null;
         }
         jailed_ = false;
-
         status_ = 0;
-
         tokens_ = "";
-
         delegatorShares_ = "";
-
-        if (descriptionBuilder_ == null) {
-          description_ = null;
-        } else {
-          description_ = null;
+        description_ = null;
+        if (descriptionBuilder_ != null) {
+          descriptionBuilder_.dispose();
           descriptionBuilder_ = null;
         }
         unbondingHeight_ = 0L;
-
-        if (unbondingTimeBuilder_ == null) {
-          unbondingTime_ = null;
-        } else {
-          unbondingTime_ = null;
+        unbondingTime_ = null;
+        if (unbondingTimeBuilder_ != null) {
+          unbondingTimeBuilder_.dispose();
           unbondingTimeBuilder_ = null;
         }
-        if (commissionBuilder_ == null) {
-          commission_ = null;
-        } else {
-          commission_ = null;
+        commission_ = null;
+        if (commissionBuilder_ != null) {
+          commissionBuilder_.dispose();
           commissionBuilder_ = null;
         }
         minSelfDelegation_ = "";
-
         return this;
       }
 
@@ -5084,35 +5450,54 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.Validator buildPartial() {
         cosmos.staking.v1beta1.Staking.Validator result = new cosmos.staking.v1beta1.Staking.Validator(this);
-        result.operatorAddress_ = operatorAddress_;
-        if (consensusPubkeyBuilder_ == null) {
-          result.consensusPubkey_ = consensusPubkey_;
-        } else {
-          result.consensusPubkey_ = consensusPubkeyBuilder_.build();
-        }
-        result.jailed_ = jailed_;
-        result.status_ = status_;
-        result.tokens_ = tokens_;
-        result.delegatorShares_ = delegatorShares_;
-        if (descriptionBuilder_ == null) {
-          result.description_ = description_;
-        } else {
-          result.description_ = descriptionBuilder_.build();
-        }
-        result.unbondingHeight_ = unbondingHeight_;
-        if (unbondingTimeBuilder_ == null) {
-          result.unbondingTime_ = unbondingTime_;
-        } else {
-          result.unbondingTime_ = unbondingTimeBuilder_.build();
-        }
-        if (commissionBuilder_ == null) {
-          result.commission_ = commission_;
-        } else {
-          result.commission_ = commissionBuilder_.build();
-        }
-        result.minSelfDelegation_ = minSelfDelegation_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.Validator result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.operatorAddress_ = operatorAddress_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.consensusPubkey_ = consensusPubkeyBuilder_ == null
+              ? consensusPubkey_
+              : consensusPubkeyBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.jailed_ = jailed_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.status_ = status_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.tokens_ = tokens_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.delegatorShares_ = delegatorShares_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.description_ = descriptionBuilder_ == null
+              ? description_
+              : descriptionBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.unbondingHeight_ = unbondingHeight_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.unbondingTime_ = unbondingTimeBuilder_ == null
+              ? unbondingTime_
+              : unbondingTimeBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000200) != 0)) {
+          result.commission_ = commissionBuilder_ == null
+              ? commission_
+              : commissionBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.minSelfDelegation_ = minSelfDelegation_;
+        }
       }
 
       @java.lang.Override
@@ -5161,6 +5546,7 @@ public final class Staking {
         if (other == cosmos.staking.v1beta1.Staking.Validator.getDefaultInstance()) return this;
         if (!other.getOperatorAddress().isEmpty()) {
           operatorAddress_ = other.operatorAddress_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.hasConsensusPubkey()) {
@@ -5174,10 +5560,12 @@ public final class Staking {
         }
         if (!other.getTokens().isEmpty()) {
           tokens_ = other.tokens_;
+          bitField0_ |= 0x00000010;
           onChanged();
         }
         if (!other.getDelegatorShares().isEmpty()) {
           delegatorShares_ = other.delegatorShares_;
+          bitField0_ |= 0x00000020;
           onChanged();
         }
         if (other.hasDescription()) {
@@ -5194,9 +5582,10 @@ public final class Staking {
         }
         if (!other.getMinSelfDelegation().isEmpty()) {
           minSelfDelegation_ = other.minSelfDelegation_;
+          bitField0_ |= 0x00000400;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -5211,22 +5600,103 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.Validator parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                operatorAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getConsensusPubkeyFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                jailed_ = input.readBool();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                status_ = input.readEnum();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 42: {
+                tokens_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 50: {
+                delegatorShares_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
+              case 58: {
+                input.readMessage(
+                    getDescriptionFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 58
+              case 64: {
+                unbondingHeight_ = input.readInt64();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 64
+              case 74: {
+                input.readMessage(
+                    getUnbondingTimeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 74
+              case 82: {
+                input.readMessage(
+                    getCommissionFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000200;
+                break;
+              } // case 82
+              case 90: {
+                minSelfDelegation_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000400;
+                break;
+              } // case 90
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.Validator) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object operatorAddress_ = "";
       /**
+       * <pre>
+       * operator_address defines the address of the validator's operator; bech encoded in JSON.
+       * </pre>
+       *
        * <code>string operator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"operator_address&#92;""];</code>
        * @return The operatorAddress.
        */
@@ -5243,6 +5713,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * operator_address defines the address of the validator's operator; bech encoded in JSON.
+       * </pre>
+       *
        * <code>string operator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"operator_address&#92;""];</code>
        * @return The bytes for operatorAddress.
        */
@@ -5260,158 +5734,202 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * operator_address defines the address of the validator's operator; bech encoded in JSON.
+       * </pre>
+       *
        * <code>string operator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"operator_address&#92;""];</code>
        * @param value The operatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setOperatorAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         operatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * operator_address defines the address of the validator's operator; bech encoded in JSON.
+       * </pre>
+       *
        * <code>string operator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"operator_address&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearOperatorAddress() {
-        
         operatorAddress_ = getDefaultInstance().getOperatorAddress();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * operator_address defines the address of the validator's operator; bech encoded in JSON.
+       * </pre>
+       *
        * <code>string operator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"operator_address&#92;""];</code>
        * @param value The bytes for operatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setOperatorAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         operatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf2.Any consensusPubkey_;
+      private com.google.protobuf.Any consensusPubkey_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> consensusPubkeyBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> consensusPubkeyBuilder_;
       /**
-       * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+       * <pre>
+       * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+       * </pre>
+       *
+       * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
        * @return Whether the consensusPubkey field is set.
        */
       public boolean hasConsensusPubkey() {
-        return consensusPubkeyBuilder_ != null || consensusPubkey_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+       * <pre>
+       * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+       * </pre>
+       *
+       * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
        * @return The consensusPubkey.
        */
-      public com.google.protobuf2.Any getConsensusPubkey() {
+      public com.google.protobuf.Any getConsensusPubkey() {
         if (consensusPubkeyBuilder_ == null) {
-          return consensusPubkey_ == null ? com.google.protobuf2.Any.getDefaultInstance() : consensusPubkey_;
+          return consensusPubkey_ == null ? com.google.protobuf.Any.getDefaultInstance() : consensusPubkey_;
         } else {
           return consensusPubkeyBuilder_.getMessage();
         }
       }
       /**
-       * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+       * <pre>
+       * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+       * </pre>
+       *
+       * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
        */
-      public Builder setConsensusPubkey(com.google.protobuf2.Any value) {
+      public Builder setConsensusPubkey(com.google.protobuf.Any value) {
         if (consensusPubkeyBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
           consensusPubkey_ = value;
-          onChanged();
         } else {
           consensusPubkeyBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+       * <pre>
+       * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+       * </pre>
+       *
+       * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
        */
       public Builder setConsensusPubkey(
-          com.google.protobuf2.Any.Builder builderForValue) {
+          com.google.protobuf.Any.Builder builderForValue) {
         if (consensusPubkeyBuilder_ == null) {
           consensusPubkey_ = builderForValue.build();
-          onChanged();
         } else {
           consensusPubkeyBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+       * <pre>
+       * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+       * </pre>
+       *
+       * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
        */
-      public Builder mergeConsensusPubkey(com.google.protobuf2.Any value) {
+      public Builder mergeConsensusPubkey(com.google.protobuf.Any value) {
         if (consensusPubkeyBuilder_ == null) {
-          if (consensusPubkey_ != null) {
-            consensusPubkey_ =
-              com.google.protobuf2.Any.newBuilder(consensusPubkey_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            consensusPubkey_ != null &&
+            consensusPubkey_ != com.google.protobuf.Any.getDefaultInstance()) {
+            getConsensusPubkeyBuilder().mergeFrom(value);
           } else {
             consensusPubkey_ = value;
           }
-          onChanged();
         } else {
           consensusPubkeyBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+       * <pre>
+       * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+       * </pre>
+       *
+       * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
        */
       public Builder clearConsensusPubkey() {
-        if (consensusPubkeyBuilder_ == null) {
-          consensusPubkey_ = null;
-          onChanged();
-        } else {
-          consensusPubkey_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        consensusPubkey_ = null;
+        if (consensusPubkeyBuilder_ != null) {
+          consensusPubkeyBuilder_.dispose();
           consensusPubkeyBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+       * <pre>
+       * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+       * </pre>
+       *
+       * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
        */
-      public com.google.protobuf2.Any.Builder getConsensusPubkeyBuilder() {
-        
+      public com.google.protobuf.Any.Builder getConsensusPubkeyBuilder() {
+        bitField0_ |= 0x00000002;
         onChanged();
         return getConsensusPubkeyFieldBuilder().getBuilder();
       }
       /**
-       * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+       * <pre>
+       * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+       * </pre>
+       *
+       * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
        */
-      public com.google.protobuf2.AnyOrBuilder getConsensusPubkeyOrBuilder() {
+      public com.google.protobuf.AnyOrBuilder getConsensusPubkeyOrBuilder() {
         if (consensusPubkeyBuilder_ != null) {
           return consensusPubkeyBuilder_.getMessageOrBuilder();
         } else {
           return consensusPubkey_ == null ?
-              com.google.protobuf2.Any.getDefaultInstance() : consensusPubkey_;
+              com.google.protobuf.Any.getDefaultInstance() : consensusPubkey_;
         }
       }
       /**
-       * <code>.google.protobuf2.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
+       * <pre>
+       * consensus_pubkey is the consensus public key of the validator, as a Protobuf Any.
+       * </pre>
+       *
+       * <code>.google.protobuf.Any consensus_pubkey = 2 [(.gogoproto.moretags) = "yaml:&#92;"consensus_pubkey&#92;"", (.cosmos_proto.accepts_interface) = "cosmos.crypto.PubKey"];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
           getConsensusPubkeyFieldBuilder() {
         if (consensusPubkeyBuilder_ == null) {
           consensusPubkeyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder>(
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   getConsensusPubkey(),
                   getParentForChildren(),
                   isClean());
@@ -5422,6 +5940,10 @@ public final class Staking {
 
       private boolean jailed_ ;
       /**
+       * <pre>
+       * jailed defined whether the validator has been jailed from bonded status or not.
+       * </pre>
+       *
        * <code>bool jailed = 3;</code>
        * @return The jailed.
        */
@@ -5430,22 +5952,31 @@ public final class Staking {
         return jailed_;
       }
       /**
+       * <pre>
+       * jailed defined whether the validator has been jailed from bonded status or not.
+       * </pre>
+       *
        * <code>bool jailed = 3;</code>
        * @param value The jailed to set.
        * @return This builder for chaining.
        */
       public Builder setJailed(boolean value) {
-        
+
         jailed_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * jailed defined whether the validator has been jailed from bonded status or not.
+       * </pre>
+       *
        * <code>bool jailed = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearJailed() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         jailed_ = false;
         onChanged();
         return this;
@@ -5453,6 +5984,10 @@ public final class Staking {
 
       private int status_ = 0;
       /**
+       * <pre>
+       * status is the validator status (bonded/unbonding/unbonded).
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.BondStatus status = 4;</code>
        * @return The enum numeric value on the wire for status.
        */
@@ -5460,27 +5995,38 @@ public final class Staking {
         return status_;
       }
       /**
+       * <pre>
+       * status is the validator status (bonded/unbonding/unbonded).
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.BondStatus status = 4;</code>
        * @param value The enum numeric value on the wire for status to set.
        * @return This builder for chaining.
        */
       public Builder setStatusValue(int value) {
-        
         status_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * status is the validator status (bonded/unbonding/unbonded).
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.BondStatus status = 4;</code>
        * @return The status.
        */
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.BondStatus getStatus() {
-        @SuppressWarnings("deprecation")
-        cosmos.staking.v1beta1.Staking.BondStatus result = cosmos.staking.v1beta1.Staking.BondStatus.valueOf(status_);
+        cosmos.staking.v1beta1.Staking.BondStatus result = cosmos.staking.v1beta1.Staking.BondStatus.forNumber(status_);
         return result == null ? cosmos.staking.v1beta1.Staking.BondStatus.UNRECOGNIZED : result;
       }
       /**
+       * <pre>
+       * status is the validator status (bonded/unbonding/unbonded).
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.BondStatus status = 4;</code>
        * @param value The status to set.
        * @return This builder for chaining.
@@ -5489,17 +6035,21 @@ public final class Staking {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000008;
         status_ = value.getNumber();
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * status is the validator status (bonded/unbonding/unbonded).
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.BondStatus status = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearStatus() {
-        
+        bitField0_ = (bitField0_ & ~0x00000008);
         status_ = 0;
         onChanged();
         return this;
@@ -5507,6 +6057,10 @@ public final class Staking {
 
       private java.lang.Object tokens_ = "";
       /**
+       * <pre>
+       * tokens define the delegated tokens (incl. self-delegation).
+       * </pre>
+       *
        * <code>string tokens = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
        * @return The tokens.
        */
@@ -5523,6 +6077,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * tokens define the delegated tokens (incl. self-delegation).
+       * </pre>
+       *
        * <code>string tokens = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
        * @return The bytes for tokens.
        */
@@ -5540,49 +6098,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * tokens define the delegated tokens (incl. self-delegation).
+       * </pre>
+       *
        * <code>string tokens = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
        * @param value The tokens to set.
        * @return This builder for chaining.
        */
       public Builder setTokens(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         tokens_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * tokens define the delegated tokens (incl. self-delegation).
+       * </pre>
+       *
        * <code>string tokens = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
        * @return This builder for chaining.
        */
       public Builder clearTokens() {
-        
         tokens_ = getDefaultInstance().getTokens();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * tokens define the delegated tokens (incl. self-delegation).
+       * </pre>
+       *
        * <code>string tokens = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
        * @param value The bytes for tokens to set.
        * @return This builder for chaining.
        */
       public Builder setTokensBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         tokens_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
 
       private java.lang.Object delegatorShares_ = "";
       /**
+       * <pre>
+       * delegator_shares defines total shares issued to a validator's delegators.
+       * </pre>
+       *
        * <code>string delegator_shares = 6 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"delegator_shares&#92;""];</code>
        * @return The delegatorShares.
        */
@@ -5599,6 +6169,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * delegator_shares defines total shares issued to a validator's delegators.
+       * </pre>
+       *
        * <code>string delegator_shares = 6 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"delegator_shares&#92;""];</code>
        * @return The bytes for delegatorShares.
        */
@@ -5616,43 +6190,51 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * delegator_shares defines total shares issued to a validator's delegators.
+       * </pre>
+       *
        * <code>string delegator_shares = 6 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"delegator_shares&#92;""];</code>
        * @param value The delegatorShares to set.
        * @return This builder for chaining.
        */
       public Builder setDelegatorShares(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         delegatorShares_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * delegator_shares defines total shares issued to a validator's delegators.
+       * </pre>
+       *
        * <code>string delegator_shares = 6 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"delegator_shares&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearDelegatorShares() {
-        
         delegatorShares_ = getDefaultInstance().getDelegatorShares();
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * delegator_shares defines total shares issued to a validator's delegators.
+       * </pre>
+       *
        * <code>string delegator_shares = 6 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec", (.gogoproto.moretags) = "yaml:&#92;"delegator_shares&#92;""];</code>
        * @param value The bytes for delegatorShares to set.
        * @return This builder for chaining.
        */
       public Builder setDelegatorSharesBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         delegatorShares_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -5661,13 +6243,21 @@ public final class Staking {
       private com.google.protobuf.SingleFieldBuilderV3<
           cosmos.staking.v1beta1.Staking.Description, cosmos.staking.v1beta1.Staking.Description.Builder, cosmos.staking.v1beta1.Staking.DescriptionOrBuilder> descriptionBuilder_;
       /**
+       * <pre>
+       * description defines the description terms for the validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
        * @return Whether the description field is set.
        */
       public boolean hasDescription() {
-        return descriptionBuilder_ != null || description_ != null;
+        return ((bitField0_ & 0x00000040) != 0);
       }
       /**
+       * <pre>
+       * description defines the description terms for the validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
        * @return The description.
        */
@@ -5679,6 +6269,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * description defines the description terms for the validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
        */
       public Builder setDescription(cosmos.staking.v1beta1.Staking.Description value) {
@@ -5687,68 +6281,88 @@ public final class Staking {
             throw new NullPointerException();
           }
           description_ = value;
-          onChanged();
         } else {
           descriptionBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * description defines the description terms for the validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
        */
       public Builder setDescription(
           cosmos.staking.v1beta1.Staking.Description.Builder builderForValue) {
         if (descriptionBuilder_ == null) {
           description_ = builderForValue.build();
-          onChanged();
         } else {
           descriptionBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * description defines the description terms for the validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
        */
       public Builder mergeDescription(cosmos.staking.v1beta1.Staking.Description value) {
         if (descriptionBuilder_ == null) {
-          if (description_ != null) {
-            description_ =
-              cosmos.staking.v1beta1.Staking.Description.newBuilder(description_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000040) != 0) &&
+            description_ != null &&
+            description_ != cosmos.staking.v1beta1.Staking.Description.getDefaultInstance()) {
+            getDescriptionBuilder().mergeFrom(value);
           } else {
             description_ = value;
           }
-          onChanged();
         } else {
           descriptionBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * description defines the description terms for the validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearDescription() {
-        if (descriptionBuilder_ == null) {
-          description_ = null;
-          onChanged();
-        } else {
-          description_ = null;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        description_ = null;
+        if (descriptionBuilder_ != null) {
+          descriptionBuilder_.dispose();
           descriptionBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * description defines the description terms for the validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.staking.v1beta1.Staking.Description.Builder getDescriptionBuilder() {
-        
+        bitField0_ |= 0x00000040;
         onChanged();
         return getDescriptionFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * description defines the description terms for the validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.staking.v1beta1.Staking.DescriptionOrBuilder getDescriptionOrBuilder() {
@@ -5760,6 +6374,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * description defines the description terms for the validator.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Description description = 7 [(.gogoproto.nullable) = false];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -5778,6 +6396,10 @@ public final class Staking {
 
       private long unbondingHeight_ ;
       /**
+       * <pre>
+       * unbonding_height defines, if unbonding, the height at which this validator has begun unbonding.
+       * </pre>
+       *
        * <code>int64 unbonding_height = 8 [(.gogoproto.moretags) = "yaml:&#92;"unbonding_height&#92;""];</code>
        * @return The unbondingHeight.
        */
@@ -5786,22 +6408,31 @@ public final class Staking {
         return unbondingHeight_;
       }
       /**
+       * <pre>
+       * unbonding_height defines, if unbonding, the height at which this validator has begun unbonding.
+       * </pre>
+       *
        * <code>int64 unbonding_height = 8 [(.gogoproto.moretags) = "yaml:&#92;"unbonding_height&#92;""];</code>
        * @param value The unbondingHeight to set.
        * @return This builder for chaining.
        */
       public Builder setUnbondingHeight(long value) {
-        
+
         unbondingHeight_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * unbonding_height defines, if unbonding, the height at which this validator has begun unbonding.
+       * </pre>
+       *
        * <code>int64 unbonding_height = 8 [(.gogoproto.moretags) = "yaml:&#92;"unbonding_height&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearUnbondingHeight() {
-        
+        bitField0_ = (bitField0_ & ~0x00000080);
         unbondingHeight_ = 0L;
         onChanged();
         return this;
@@ -5811,13 +6442,21 @@ public final class Staking {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> unbondingTimeBuilder_;
       /**
+       * <pre>
+       * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
        * @return Whether the unbondingTime field is set.
        */
       public boolean hasUnbondingTime() {
-        return unbondingTimeBuilder_ != null || unbondingTime_ != null;
+        return ((bitField0_ & 0x00000100) != 0);
       }
       /**
+       * <pre>
+       * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
        * @return The unbondingTime.
        */
@@ -5829,6 +6468,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder setUnbondingTime(com.google.protobuf.Timestamp value) {
@@ -5837,68 +6480,88 @@ public final class Staking {
             throw new NullPointerException();
           }
           unbondingTime_ = value;
-          onChanged();
         } else {
           unbondingTimeBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder setUnbondingTime(
           com.google.protobuf.Timestamp.Builder builderForValue) {
         if (unbondingTimeBuilder_ == null) {
           unbondingTime_ = builderForValue.build();
-          onChanged();
         } else {
           unbondingTimeBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder mergeUnbondingTime(com.google.protobuf.Timestamp value) {
         if (unbondingTimeBuilder_ == null) {
-          if (unbondingTime_ != null) {
-            unbondingTime_ =
-              com.google.protobuf.Timestamp.newBuilder(unbondingTime_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000100) != 0) &&
+            unbondingTime_ != null &&
+            unbondingTime_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+            getUnbondingTimeBuilder().mergeFrom(value);
           } else {
             unbondingTime_ = value;
           }
-          onChanged();
         } else {
           unbondingTimeBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000100;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder clearUnbondingTime() {
-        if (unbondingTimeBuilder_ == null) {
-          unbondingTime_ = null;
-          onChanged();
-        } else {
-          unbondingTime_ = null;
+        bitField0_ = (bitField0_ & ~0x00000100);
+        unbondingTime_ = null;
+        if (unbondingTimeBuilder_ != null) {
+          unbondingTimeBuilder_.dispose();
           unbondingTimeBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public com.google.protobuf.Timestamp.Builder getUnbondingTimeBuilder() {
-        
+        bitField0_ |= 0x00000100;
         onChanged();
         return getUnbondingTimeFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public com.google.protobuf.TimestampOrBuilder getUnbondingTimeOrBuilder() {
@@ -5910,6 +6573,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * unbonding_time defines, if unbonding, the min time for the validator to complete unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp unbonding_time = 9 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -5930,13 +6597,21 @@ public final class Staking {
       private com.google.protobuf.SingleFieldBuilderV3<
           cosmos.staking.v1beta1.Staking.Commission, cosmos.staking.v1beta1.Staking.Commission.Builder, cosmos.staking.v1beta1.Staking.CommissionOrBuilder> commissionBuilder_;
       /**
+       * <pre>
+       * commission defines the commission parameters.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
        * @return Whether the commission field is set.
        */
       public boolean hasCommission() {
-        return commissionBuilder_ != null || commission_ != null;
+        return ((bitField0_ & 0x00000200) != 0);
       }
       /**
+       * <pre>
+       * commission defines the commission parameters.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
        * @return The commission.
        */
@@ -5948,6 +6623,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * commission defines the commission parameters.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
        */
       public Builder setCommission(cosmos.staking.v1beta1.Staking.Commission value) {
@@ -5956,68 +6635,88 @@ public final class Staking {
             throw new NullPointerException();
           }
           commission_ = value;
-          onChanged();
         } else {
           commissionBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000200;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * commission defines the commission parameters.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
        */
       public Builder setCommission(
           cosmos.staking.v1beta1.Staking.Commission.Builder builderForValue) {
         if (commissionBuilder_ == null) {
           commission_ = builderForValue.build();
-          onChanged();
         } else {
           commissionBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000200;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * commission defines the commission parameters.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
        */
       public Builder mergeCommission(cosmos.staking.v1beta1.Staking.Commission value) {
         if (commissionBuilder_ == null) {
-          if (commission_ != null) {
-            commission_ =
-              cosmos.staking.v1beta1.Staking.Commission.newBuilder(commission_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000200) != 0) &&
+            commission_ != null &&
+            commission_ != cosmos.staking.v1beta1.Staking.Commission.getDefaultInstance()) {
+            getCommissionBuilder().mergeFrom(value);
           } else {
             commission_ = value;
           }
-          onChanged();
         } else {
           commissionBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000200;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * commission defines the commission parameters.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearCommission() {
-        if (commissionBuilder_ == null) {
-          commission_ = null;
-          onChanged();
-        } else {
-          commission_ = null;
+        bitField0_ = (bitField0_ & ~0x00000200);
+        commission_ = null;
+        if (commissionBuilder_ != null) {
+          commissionBuilder_.dispose();
           commissionBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * commission defines the commission parameters.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.staking.v1beta1.Staking.Commission.Builder getCommissionBuilder() {
-        
+        bitField0_ |= 0x00000200;
         onChanged();
         return getCommissionFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * commission defines the commission parameters.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.staking.v1beta1.Staking.CommissionOrBuilder getCommissionOrBuilder() {
@@ -6029,6 +6728,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * commission defines the commission parameters.
+       * </pre>
+       *
        * <code>.cosmos.staking.v1beta1.Commission commission = 10 [(.gogoproto.nullable) = false];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -6047,6 +6750,10 @@ public final class Staking {
 
       private java.lang.Object minSelfDelegation_ = "";
       /**
+       * <pre>
+       * min_self_delegation is the validator's self declared minimum self delegation.
+       * </pre>
+       *
        * <code>string min_self_delegation = 11 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
        * @return The minSelfDelegation.
        */
@@ -6063,6 +6770,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * min_self_delegation is the validator's self declared minimum self delegation.
+       * </pre>
+       *
        * <code>string min_self_delegation = 11 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
        * @return The bytes for minSelfDelegation.
        */
@@ -6080,43 +6791,51 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * min_self_delegation is the validator's self declared minimum self delegation.
+       * </pre>
+       *
        * <code>string min_self_delegation = 11 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
        * @param value The minSelfDelegation to set.
        * @return This builder for chaining.
        */
       public Builder setMinSelfDelegation(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         minSelfDelegation_ = value;
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * min_self_delegation is the validator's self declared minimum self delegation.
+       * </pre>
+       *
        * <code>string min_self_delegation = 11 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearMinSelfDelegation() {
-        
         minSelfDelegation_ = getDefaultInstance().getMinSelfDelegation();
+        bitField0_ = (bitField0_ & ~0x00000400);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * min_self_delegation is the validator's self declared minimum self delegation.
+       * </pre>
+       *
        * <code>string min_self_delegation = 11 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"min_self_delegation&#92;""];</code>
        * @param value The bytes for minSelfDelegation to set.
        * @return This builder for chaining.
        */
       public Builder setMinSelfDelegationBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         minSelfDelegation_ = value;
+        bitField0_ |= 0x00000400;
         onChanged();
         return this;
       }
@@ -6153,7 +6872,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Validator(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -6219,7 +6949,8 @@ public final class Staking {
       super(builder);
     }
     private ValAddresses() {
-      addresses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      addresses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
     }
 
     @java.lang.Override
@@ -6229,61 +6960,6 @@ public final class Staking {
       return new ValAddresses();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ValAddresses(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                addresses_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              addresses_.add(s);
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          addresses_ = addresses_.getUnmodifiableView();
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_ValAddresses_descriptor;
@@ -6298,7 +6974,9 @@ public final class Staking {
     }
 
     public static final int ADDRESSES_FIELD_NUMBER = 1;
-    private com.google.protobuf.LazyStringList addresses_;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringArrayList addresses_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     /**
      * <code>repeated string addresses = 1;</code>
      * @return A list containing the addresses.
@@ -6349,7 +7027,7 @@ public final class Staking {
       for (int i = 0; i < addresses_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, addresses_.getRaw(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -6366,7 +7044,7 @@ public final class Staking {
         size += dataSize;
         size += 1 * getAddressesList().size();
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -6383,7 +7061,7 @@ public final class Staking {
 
       if (!getAddressesList()
           .equals(other.getAddressesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -6398,7 +7076,7 @@ public final class Staking {
         hash = (37 * hash) + ADDRESSES_FIELD_NUMBER;
         hash = (53 * hash) + getAddressesList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -6447,11 +7125,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.ValAddresses parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.ValAddresses parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6519,24 +7199,20 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.ValAddresses.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        addresses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = 0;
+        addresses_ =
+            com.google.protobuf.LazyStringArrayList.emptyList();
         return this;
       }
 
@@ -6563,14 +7239,17 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.ValAddresses buildPartial() {
         cosmos.staking.v1beta1.Staking.ValAddresses result = new cosmos.staking.v1beta1.Staking.ValAddresses(this);
-        int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          addresses_ = addresses_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.addresses_ = addresses_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.ValAddresses result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          addresses_.makeImmutable();
+          result.addresses_ = addresses_;
+        }
       }
 
       @java.lang.Override
@@ -6620,14 +7299,14 @@ public final class Staking {
         if (!other.addresses_.isEmpty()) {
           if (addresses_.isEmpty()) {
             addresses_ = other.addresses_;
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ |= 0x00000001;
           } else {
             ensureAddressesIsMutable();
             addresses_.addAll(other.addresses_);
           }
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -6642,27 +7321,47 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.ValAddresses parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureAddressesIsMutable();
+                addresses_.add(s);
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.ValAddresses) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
 
-      private com.google.protobuf.LazyStringList addresses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private com.google.protobuf.LazyStringArrayList addresses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       private void ensureAddressesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!addresses_.isModifiable()) {
           addresses_ = new com.google.protobuf.LazyStringArrayList(addresses_);
-          bitField0_ |= 0x00000001;
-         }
+        }
+        bitField0_ |= 0x00000001;
       }
       /**
        * <code>repeated string addresses = 1;</code>
@@ -6670,7 +7369,8 @@ public final class Staking {
        */
       public com.google.protobuf.ProtocolStringList
           getAddressesList() {
-        return addresses_.getUnmodifiableView();
+        addresses_.makeImmutable();
+        return addresses_;
       }
       /**
        * <code>repeated string addresses = 1;</code>
@@ -6704,11 +7404,10 @@ public final class Staking {
        */
       public Builder setAddresses(
           int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureAddressesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureAddressesIsMutable();
         addresses_.set(index, value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6719,11 +7418,10 @@ public final class Staking {
        */
       public Builder addAddresses(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureAddressesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureAddressesIsMutable();
         addresses_.add(value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6737,6 +7435,7 @@ public final class Staking {
         ensureAddressesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, addresses_);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6745,8 +7444,9 @@ public final class Staking {
        * @return This builder for chaining.
        */
       public Builder clearAddresses() {
-        addresses_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000001);
+        addresses_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);;
         onChanged();
         return this;
       }
@@ -6757,12 +7457,11 @@ public final class Staking {
        */
       public Builder addAddressesBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         ensureAddressesIsMutable();
         addresses_.add(value);
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -6799,7 +7498,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ValAddresses(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -6877,60 +7587,6 @@ public final class Staking {
       return new DVPair();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private DVPair(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              delegatorAddress_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              validatorAddress_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_DVPair_descriptor;
@@ -6945,7 +7601,8 @@ public final class Staking {
     }
 
     public static final int DELEGATOR_ADDRESS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object delegatorAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object delegatorAddress_ = "";
     /**
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The delegatorAddress.
@@ -6983,7 +7640,8 @@ public final class Staking {
     }
 
     public static final int VALIDATOR_ADDRESS_FIELD_NUMBER = 2;
-    private volatile java.lang.Object validatorAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object validatorAddress_ = "";
     /**
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      * @return The validatorAddress.
@@ -7034,13 +7692,13 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorAddress_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -7049,13 +7707,13 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorAddress_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -7074,7 +7732,7 @@ public final class Staking {
           .equals(other.getDelegatorAddress())) return false;
       if (!getValidatorAddress()
           .equals(other.getValidatorAddress())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -7089,7 +7747,7 @@ public final class Staking {
       hash = (53 * hash) + getDelegatorAddress().hashCode();
       hash = (37 * hash) + VALIDATOR_ADDRESS_FIELD_NUMBER;
       hash = (53 * hash) + getValidatorAddress().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -7138,11 +7796,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.DVPair parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.DVPair parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7212,26 +7872,20 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.DVPair.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         delegatorAddress_ = "";
-
         validatorAddress_ = "";
-
         return this;
       }
 
@@ -7258,10 +7912,19 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.DVPair buildPartial() {
         cosmos.staking.v1beta1.Staking.DVPair result = new cosmos.staking.v1beta1.Staking.DVPair(this);
-        result.delegatorAddress_ = delegatorAddress_;
-        result.validatorAddress_ = validatorAddress_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.DVPair result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.delegatorAddress_ = delegatorAddress_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.validatorAddress_ = validatorAddress_;
+        }
       }
 
       @java.lang.Override
@@ -7310,13 +7973,15 @@ public final class Staking {
         if (other == cosmos.staking.v1beta1.Staking.DVPair.getDefaultInstance()) return this;
         if (!other.getDelegatorAddress().isEmpty()) {
           delegatorAddress_ = other.delegatorAddress_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getValidatorAddress().isEmpty()) {
           validatorAddress_ = other.validatorAddress_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -7331,19 +7996,43 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.DVPair parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                delegatorAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                validatorAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.DVPair) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object delegatorAddress_ = "";
       /**
@@ -7386,11 +8075,9 @@ public final class Staking {
        */
       public Builder setDelegatorAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         delegatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -7399,8 +8086,8 @@ public final class Staking {
        * @return This builder for chaining.
        */
       public Builder clearDelegatorAddress() {
-        
         delegatorAddress_ = getDefaultInstance().getDelegatorAddress();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -7411,12 +8098,10 @@ public final class Staking {
        */
       public Builder setDelegatorAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         delegatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -7462,11 +8147,9 @@ public final class Staking {
        */
       public Builder setValidatorAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         validatorAddress_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -7475,8 +8158,8 @@ public final class Staking {
        * @return This builder for chaining.
        */
       public Builder clearValidatorAddress() {
-        
         validatorAddress_ = getDefaultInstance().getValidatorAddress();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -7487,12 +8170,10 @@ public final class Staking {
        */
       public Builder setValidatorAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         validatorAddress_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -7529,7 +8210,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DVPair(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -7604,61 +8296,6 @@ public final class Staking {
       return new DVPairs();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private DVPairs(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                pairs_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.DVPair>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              pairs_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Staking.DVPair.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          pairs_ = java.util.Collections.unmodifiableList(pairs_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_DVPairs_descriptor;
@@ -7673,6 +8310,7 @@ public final class Staking {
     }
 
     public static final int PAIRS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Staking.DVPair> pairs_;
     /**
      * <code>repeated .cosmos.staking.v1beta1.DVPair pairs = 1 [(.gogoproto.nullable) = false];</code>
@@ -7729,7 +8367,7 @@ public final class Staking {
       for (int i = 0; i < pairs_.size(); i++) {
         output.writeMessage(1, pairs_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -7742,7 +8380,7 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, pairs_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -7759,7 +8397,7 @@ public final class Staking {
 
       if (!getPairsList()
           .equals(other.getPairsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -7774,7 +8412,7 @@ public final class Staking {
         hash = (37 * hash) + PAIRS_FIELD_NUMBER;
         hash = (53 * hash) + getPairsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -7823,11 +8461,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.DVPairs parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.DVPairs parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7895,29 +8535,25 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.DVPairs.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getPairsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (pairsBuilder_ == null) {
           pairs_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          pairs_ = null;
           pairsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -7944,7 +8580,13 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.DVPairs buildPartial() {
         cosmos.staking.v1beta1.Staking.DVPairs result = new cosmos.staking.v1beta1.Staking.DVPairs(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.staking.v1beta1.Staking.DVPairs result) {
         if (pairsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             pairs_ = java.util.Collections.unmodifiableList(pairs_);
@@ -7954,8 +8596,10 @@ public final class Staking {
         } else {
           result.pairs_ = pairsBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.DVPairs result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -8028,7 +8672,7 @@ public final class Staking {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -8043,17 +8687,43 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.DVPairs parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                cosmos.staking.v1beta1.Staking.DVPair m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Staking.DVPair.parser(),
+                        extensionRegistry);
+                if (pairsBuilder_ == null) {
+                  ensurePairsIsMutable();
+                  pairs_.add(m);
+                } else {
+                  pairsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.DVPairs) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -8330,7 +9000,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DVPairs(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -8422,66 +9103,6 @@ public final class Staking {
       return new DVVTriplet();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private DVVTriplet(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              delegatorAddress_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              validatorSrcAddress_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              validatorDstAddress_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_DVVTriplet_descriptor;
@@ -8496,7 +9117,8 @@ public final class Staking {
     }
 
     public static final int DELEGATOR_ADDRESS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object delegatorAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object delegatorAddress_ = "";
     /**
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The delegatorAddress.
@@ -8534,7 +9156,8 @@ public final class Staking {
     }
 
     public static final int VALIDATOR_SRC_ADDRESS_FIELD_NUMBER = 2;
-    private volatile java.lang.Object validatorSrcAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object validatorSrcAddress_ = "";
     /**
      * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
      * @return The validatorSrcAddress.
@@ -8572,7 +9195,8 @@ public final class Staking {
     }
 
     public static final int VALIDATOR_DST_ADDRESS_FIELD_NUMBER = 3;
-    private volatile java.lang.Object validatorDstAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object validatorDstAddress_ = "";
     /**
      * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
      * @return The validatorDstAddress.
@@ -8623,16 +9247,16 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorSrcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorSrcAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorSrcAddress_);
       }
-      if (!getValidatorDstAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorDstAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, validatorDstAddress_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -8641,16 +9265,16 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorSrcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorSrcAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorSrcAddress_);
       }
-      if (!getValidatorDstAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorDstAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, validatorDstAddress_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -8671,7 +9295,7 @@ public final class Staking {
           .equals(other.getValidatorSrcAddress())) return false;
       if (!getValidatorDstAddress()
           .equals(other.getValidatorDstAddress())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -8688,7 +9312,7 @@ public final class Staking {
       hash = (53 * hash) + getValidatorSrcAddress().hashCode();
       hash = (37 * hash) + VALIDATOR_DST_ADDRESS_FIELD_NUMBER;
       hash = (53 * hash) + getValidatorDstAddress().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -8737,11 +9361,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.DVVTriplet parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.DVVTriplet parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8812,28 +9438,21 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.DVVTriplet.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         delegatorAddress_ = "";
-
         validatorSrcAddress_ = "";
-
         validatorDstAddress_ = "";
-
         return this;
       }
 
@@ -8860,11 +9479,22 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.DVVTriplet buildPartial() {
         cosmos.staking.v1beta1.Staking.DVVTriplet result = new cosmos.staking.v1beta1.Staking.DVVTriplet(this);
-        result.delegatorAddress_ = delegatorAddress_;
-        result.validatorSrcAddress_ = validatorSrcAddress_;
-        result.validatorDstAddress_ = validatorDstAddress_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.DVVTriplet result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.delegatorAddress_ = delegatorAddress_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.validatorSrcAddress_ = validatorSrcAddress_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.validatorDstAddress_ = validatorDstAddress_;
+        }
       }
 
       @java.lang.Override
@@ -8913,17 +9543,20 @@ public final class Staking {
         if (other == cosmos.staking.v1beta1.Staking.DVVTriplet.getDefaultInstance()) return this;
         if (!other.getDelegatorAddress().isEmpty()) {
           delegatorAddress_ = other.delegatorAddress_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getValidatorSrcAddress().isEmpty()) {
           validatorSrcAddress_ = other.validatorSrcAddress_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getValidatorDstAddress().isEmpty()) {
           validatorDstAddress_ = other.validatorDstAddress_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -8938,19 +9571,48 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.DVVTriplet parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                delegatorAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                validatorSrcAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                validatorDstAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.DVVTriplet) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object delegatorAddress_ = "";
       /**
@@ -8993,11 +9655,9 @@ public final class Staking {
        */
       public Builder setDelegatorAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         delegatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -9006,8 +9666,8 @@ public final class Staking {
        * @return This builder for chaining.
        */
       public Builder clearDelegatorAddress() {
-        
         delegatorAddress_ = getDefaultInstance().getDelegatorAddress();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -9018,12 +9678,10 @@ public final class Staking {
        */
       public Builder setDelegatorAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         delegatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -9069,11 +9727,9 @@ public final class Staking {
        */
       public Builder setValidatorSrcAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         validatorSrcAddress_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -9082,8 +9738,8 @@ public final class Staking {
        * @return This builder for chaining.
        */
       public Builder clearValidatorSrcAddress() {
-        
         validatorSrcAddress_ = getDefaultInstance().getValidatorSrcAddress();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -9094,12 +9750,10 @@ public final class Staking {
        */
       public Builder setValidatorSrcAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         validatorSrcAddress_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -9145,11 +9799,9 @@ public final class Staking {
        */
       public Builder setValidatorDstAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         validatorDstAddress_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -9158,8 +9810,8 @@ public final class Staking {
        * @return This builder for chaining.
        */
       public Builder clearValidatorDstAddress() {
-        
         validatorDstAddress_ = getDefaultInstance().getValidatorDstAddress();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -9170,12 +9822,10 @@ public final class Staking {
        */
       public Builder setValidatorDstAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         validatorDstAddress_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -9212,7 +9862,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DVVTriplet(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -9287,61 +9948,6 @@ public final class Staking {
       return new DVVTriplets();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private DVVTriplets(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                triplets_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.DVVTriplet>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              triplets_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Staking.DVVTriplet.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          triplets_ = java.util.Collections.unmodifiableList(triplets_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_DVVTriplets_descriptor;
@@ -9356,6 +9962,7 @@ public final class Staking {
     }
 
     public static final int TRIPLETS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Staking.DVVTriplet> triplets_;
     /**
      * <code>repeated .cosmos.staking.v1beta1.DVVTriplet triplets = 1 [(.gogoproto.nullable) = false];</code>
@@ -9412,7 +10019,7 @@ public final class Staking {
       for (int i = 0; i < triplets_.size(); i++) {
         output.writeMessage(1, triplets_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -9425,7 +10032,7 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, triplets_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -9442,7 +10049,7 @@ public final class Staking {
 
       if (!getTripletsList()
           .equals(other.getTripletsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -9457,7 +10064,7 @@ public final class Staking {
         hash = (37 * hash) + TRIPLETS_FIELD_NUMBER;
         hash = (53 * hash) + getTripletsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -9506,11 +10113,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.DVVTriplets parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.DVVTriplets parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9578,29 +10187,25 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.DVVTriplets.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getTripletsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (tripletsBuilder_ == null) {
           triplets_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          triplets_ = null;
           tripletsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -9627,7 +10232,13 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.DVVTriplets buildPartial() {
         cosmos.staking.v1beta1.Staking.DVVTriplets result = new cosmos.staking.v1beta1.Staking.DVVTriplets(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.staking.v1beta1.Staking.DVVTriplets result) {
         if (tripletsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             triplets_ = java.util.Collections.unmodifiableList(triplets_);
@@ -9637,8 +10248,10 @@ public final class Staking {
         } else {
           result.triplets_ = tripletsBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.DVVTriplets result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -9711,7 +10324,7 @@ public final class Staking {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -9726,17 +10339,43 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.DVVTriplets parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                cosmos.staking.v1beta1.Staking.DVVTriplet m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Staking.DVVTriplet.parser(),
+                        extensionRegistry);
+                if (tripletsBuilder_ == null) {
+                  ensureTripletsIsMutable();
+                  triplets_.add(m);
+                } else {
+                  tripletsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.DVVTriplets) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -10013,7 +10652,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DVVTriplets(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -10038,11 +10688,19 @@ public final class Staking {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The delegatorAddress.
      */
     java.lang.String getDelegatorAddress();
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The bytes for delegatorAddress.
      */
@@ -10050,11 +10708,19 @@ public final class Staking {
         getDelegatorAddressBytes();
 
     /**
+     * <pre>
+     * validator_address is the bech32-encoded address of the validator.
+     * </pre>
+     *
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      * @return The validatorAddress.
      */
     java.lang.String getValidatorAddress();
     /**
+     * <pre>
+     * validator_address is the bech32-encoded address of the validator.
+     * </pre>
+     *
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      * @return The bytes for validatorAddress.
      */
@@ -10062,11 +10728,19 @@ public final class Staking {
         getValidatorAddressBytes();
 
     /**
+     * <pre>
+     * shares define the delegation shares received.
+     * </pre>
+     *
      * <code>string shares = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The shares.
      */
     java.lang.String getShares();
     /**
+     * <pre>
+     * shares define the delegation shares received.
+     * </pre>
+     *
      * <code>string shares = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The bytes for shares.
      */
@@ -10104,66 +10778,6 @@ public final class Staking {
       return new Delegation();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Delegation(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              delegatorAddress_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              validatorAddress_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              shares_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_Delegation_descriptor;
@@ -10178,8 +10792,13 @@ public final class Staking {
     }
 
     public static final int DELEGATOR_ADDRESS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object delegatorAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object delegatorAddress_ = "";
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The delegatorAddress.
      */
@@ -10197,6 +10816,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The bytes for delegatorAddress.
      */
@@ -10216,8 +10839,13 @@ public final class Staking {
     }
 
     public static final int VALIDATOR_ADDRESS_FIELD_NUMBER = 2;
-    private volatile java.lang.Object validatorAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object validatorAddress_ = "";
     /**
+     * <pre>
+     * validator_address is the bech32-encoded address of the validator.
+     * </pre>
+     *
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      * @return The validatorAddress.
      */
@@ -10235,6 +10863,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * validator_address is the bech32-encoded address of the validator.
+     * </pre>
+     *
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      * @return The bytes for validatorAddress.
      */
@@ -10254,8 +10886,13 @@ public final class Staking {
     }
 
     public static final int SHARES_FIELD_NUMBER = 3;
-    private volatile java.lang.Object shares_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object shares_ = "";
     /**
+     * <pre>
+     * shares define the delegation shares received.
+     * </pre>
+     *
      * <code>string shares = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The shares.
      */
@@ -10273,6 +10910,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * shares define the delegation shares received.
+     * </pre>
+     *
      * <code>string shares = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The bytes for shares.
      */
@@ -10305,16 +10946,16 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorAddress_);
       }
-      if (!getSharesBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(shares_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, shares_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -10323,16 +10964,16 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorAddress_);
       }
-      if (!getSharesBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(shares_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, shares_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -10353,7 +10994,7 @@ public final class Staking {
           .equals(other.getValidatorAddress())) return false;
       if (!getShares()
           .equals(other.getShares())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -10370,7 +11011,7 @@ public final class Staking {
       hash = (53 * hash) + getValidatorAddress().hashCode();
       hash = (37 * hash) + SHARES_FIELD_NUMBER;
       hash = (53 * hash) + getShares().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -10419,11 +11060,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.Delegation parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.Delegation parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10493,28 +11136,21 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.Delegation.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         delegatorAddress_ = "";
-
         validatorAddress_ = "";
-
         shares_ = "";
-
         return this;
       }
 
@@ -10541,11 +11177,22 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.Delegation buildPartial() {
         cosmos.staking.v1beta1.Staking.Delegation result = new cosmos.staking.v1beta1.Staking.Delegation(this);
-        result.delegatorAddress_ = delegatorAddress_;
-        result.validatorAddress_ = validatorAddress_;
-        result.shares_ = shares_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.Delegation result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.delegatorAddress_ = delegatorAddress_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.validatorAddress_ = validatorAddress_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.shares_ = shares_;
+        }
       }
 
       @java.lang.Override
@@ -10594,17 +11241,20 @@ public final class Staking {
         if (other == cosmos.staking.v1beta1.Staking.Delegation.getDefaultInstance()) return this;
         if (!other.getDelegatorAddress().isEmpty()) {
           delegatorAddress_ = other.delegatorAddress_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getValidatorAddress().isEmpty()) {
           validatorAddress_ = other.validatorAddress_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getShares().isEmpty()) {
           shares_ = other.shares_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -10619,22 +11269,55 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.Delegation parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                delegatorAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                validatorAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                shares_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.Delegation) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object delegatorAddress_ = "";
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @return The delegatorAddress.
        */
@@ -10651,6 +11334,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @return The bytes for delegatorAddress.
        */
@@ -10668,49 +11355,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @param value The delegatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setDelegatorAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         delegatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearDelegatorAddress() {
-        
         delegatorAddress_ = getDefaultInstance().getDelegatorAddress();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @param value The bytes for delegatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setDelegatorAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         delegatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
       private java.lang.Object validatorAddress_ = "";
       /**
+       * <pre>
+       * validator_address is the bech32-encoded address of the validator.
+       * </pre>
+       *
        * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
        * @return The validatorAddress.
        */
@@ -10727,6 +11426,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * validator_address is the bech32-encoded address of the validator.
+       * </pre>
+       *
        * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
        * @return The bytes for validatorAddress.
        */
@@ -10744,49 +11447,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * validator_address is the bech32-encoded address of the validator.
+       * </pre>
+       *
        * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
        * @param value The validatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setValidatorAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         validatorAddress_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * validator_address is the bech32-encoded address of the validator.
+       * </pre>
+       *
        * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearValidatorAddress() {
-        
         validatorAddress_ = getDefaultInstance().getValidatorAddress();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * validator_address is the bech32-encoded address of the validator.
+       * </pre>
+       *
        * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
        * @param value The bytes for validatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setValidatorAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         validatorAddress_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
 
       private java.lang.Object shares_ = "";
       /**
+       * <pre>
+       * shares define the delegation shares received.
+       * </pre>
+       *
        * <code>string shares = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @return The shares.
        */
@@ -10803,6 +11518,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * shares define the delegation shares received.
+       * </pre>
+       *
        * <code>string shares = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @return The bytes for shares.
        */
@@ -10820,43 +11539,51 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * shares define the delegation shares received.
+       * </pre>
+       *
        * <code>string shares = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @param value The shares to set.
        * @return This builder for chaining.
        */
       public Builder setShares(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         shares_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * shares define the delegation shares received.
+       * </pre>
+       *
        * <code>string shares = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @return This builder for chaining.
        */
       public Builder clearShares() {
-        
         shares_ = getDefaultInstance().getShares();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * shares define the delegation shares received.
+       * </pre>
+       *
        * <code>string shares = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @param value The bytes for shares to set.
        * @return This builder for chaining.
        */
       public Builder setSharesBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         shares_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -10893,7 +11620,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Delegation(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -10918,11 +11656,19 @@ public final class Staking {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The delegatorAddress.
      */
     java.lang.String getDelegatorAddress();
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The bytes for delegatorAddress.
      */
@@ -10930,11 +11676,19 @@ public final class Staking {
         getDelegatorAddressBytes();
 
     /**
+     * <pre>
+     * validator_address is the bech32-encoded address of the validator.
+     * </pre>
+     *
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      * @return The validatorAddress.
      */
     java.lang.String getValidatorAddress();
     /**
+     * <pre>
+     * validator_address is the bech32-encoded address of the validator.
+     * </pre>
+     *
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      * @return The bytes for validatorAddress.
      */
@@ -10943,7 +11697,7 @@ public final class Staking {
 
     /**
      * <pre>
-     * unbonding delegation entries
+     * entries are the unbonding delegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -10952,7 +11706,7 @@ public final class Staking {
         getEntriesList();
     /**
      * <pre>
-     * unbonding delegation entries
+     * entries are the unbonding delegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -10960,7 +11714,7 @@ public final class Staking {
     cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry getEntries(int index);
     /**
      * <pre>
-     * unbonding delegation entries
+     * entries are the unbonding delegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -10968,7 +11722,7 @@ public final class Staking {
     int getEntriesCount();
     /**
      * <pre>
-     * unbonding delegation entries
+     * entries are the unbonding delegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -10977,7 +11731,7 @@ public final class Staking {
         getEntriesOrBuilderList();
     /**
      * <pre>
-     * unbonding delegation entries
+     * entries are the unbonding delegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11015,73 +11769,6 @@ public final class Staking {
       return new UnbondingDelegation();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private UnbondingDelegation(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              delegatorAddress_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              validatorAddress_ = s;
-              break;
-            }
-            case 26: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                entries_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              entries_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          entries_ = java.util.Collections.unmodifiableList(entries_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_UnbondingDelegation_descriptor;
@@ -11096,8 +11783,13 @@ public final class Staking {
     }
 
     public static final int DELEGATOR_ADDRESS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object delegatorAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object delegatorAddress_ = "";
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The delegatorAddress.
      */
@@ -11115,6 +11807,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The bytes for delegatorAddress.
      */
@@ -11134,8 +11830,13 @@ public final class Staking {
     }
 
     public static final int VALIDATOR_ADDRESS_FIELD_NUMBER = 2;
-    private volatile java.lang.Object validatorAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object validatorAddress_ = "";
     /**
+     * <pre>
+     * validator_address is the bech32-encoded address of the validator.
+     * </pre>
+     *
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      * @return The validatorAddress.
      */
@@ -11153,6 +11854,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * validator_address is the bech32-encoded address of the validator.
+     * </pre>
+     *
      * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
      * @return The bytes for validatorAddress.
      */
@@ -11172,10 +11877,11 @@ public final class Staking {
     }
 
     public static final int ENTRIES_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry> entries_;
     /**
      * <pre>
-     * unbonding delegation entries
+     * entries are the unbonding delegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11186,7 +11892,7 @@ public final class Staking {
     }
     /**
      * <pre>
-     * unbonding delegation entries
+     * entries are the unbonding delegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11198,7 +11904,7 @@ public final class Staking {
     }
     /**
      * <pre>
-     * unbonding delegation entries
+     * entries are the unbonding delegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11209,7 +11915,7 @@ public final class Staking {
     }
     /**
      * <pre>
-     * unbonding delegation entries
+     * entries are the unbonding delegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11220,7 +11926,7 @@ public final class Staking {
     }
     /**
      * <pre>
-     * unbonding delegation entries
+     * entries are the unbonding delegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11245,16 +11951,16 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorAddress_);
       }
       for (int i = 0; i < entries_.size(); i++) {
         output.writeMessage(3, entries_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -11263,17 +11969,17 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorAddress_);
       }
       for (int i = 0; i < entries_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, entries_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -11294,7 +12000,7 @@ public final class Staking {
           .equals(other.getValidatorAddress())) return false;
       if (!getEntriesList()
           .equals(other.getEntriesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -11313,7 +12019,7 @@ public final class Staking {
         hash = (37 * hash) + ENTRIES_FIELD_NUMBER;
         hash = (53 * hash) + getEntriesList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -11362,11 +12068,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.UnbondingDelegation parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.UnbondingDelegation parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11435,33 +12143,27 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.UnbondingDelegation.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getEntriesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         delegatorAddress_ = "";
-
         validatorAddress_ = "";
-
         if (entriesBuilder_ == null) {
           entries_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          entries_ = null;
           entriesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -11488,20 +12190,32 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.UnbondingDelegation buildPartial() {
         cosmos.staking.v1beta1.Staking.UnbondingDelegation result = new cosmos.staking.v1beta1.Staking.UnbondingDelegation(this);
-        int from_bitField0_ = bitField0_;
-        result.delegatorAddress_ = delegatorAddress_;
-        result.validatorAddress_ = validatorAddress_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.staking.v1beta1.Staking.UnbondingDelegation result) {
         if (entriesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000004) != 0)) {
             entries_ = java.util.Collections.unmodifiableList(entries_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000004);
           }
           result.entries_ = entries_;
         } else {
           result.entries_ = entriesBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.UnbondingDelegation result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.delegatorAddress_ = delegatorAddress_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.validatorAddress_ = validatorAddress_;
+        }
       }
 
       @java.lang.Override
@@ -11550,17 +12264,19 @@ public final class Staking {
         if (other == cosmos.staking.v1beta1.Staking.UnbondingDelegation.getDefaultInstance()) return this;
         if (!other.getDelegatorAddress().isEmpty()) {
           delegatorAddress_ = other.delegatorAddress_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getValidatorAddress().isEmpty()) {
           validatorAddress_ = other.validatorAddress_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (entriesBuilder_ == null) {
           if (!other.entries_.isEmpty()) {
             if (entries_.isEmpty()) {
               entries_ = other.entries_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000004);
             } else {
               ensureEntriesIsMutable();
               entries_.addAll(other.entries_);
@@ -11573,7 +12289,7 @@ public final class Staking {
               entriesBuilder_.dispose();
               entriesBuilder_ = null;
               entries_ = other.entries_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000004);
               entriesBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getEntriesFieldBuilder() : null;
@@ -11582,7 +12298,7 @@ public final class Staking {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -11597,23 +12313,63 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.UnbondingDelegation parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                delegatorAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                validatorAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry.parser(),
+                        extensionRegistry);
+                if (entriesBuilder_ == null) {
+                  ensureEntriesIsMutable();
+                  entries_.add(m);
+                } else {
+                  entriesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.UnbondingDelegation) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
 
       private java.lang.Object delegatorAddress_ = "";
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @return The delegatorAddress.
        */
@@ -11630,6 +12386,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @return The bytes for delegatorAddress.
        */
@@ -11647,49 +12407,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @param value The delegatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setDelegatorAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         delegatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearDelegatorAddress() {
-        
         delegatorAddress_ = getDefaultInstance().getDelegatorAddress();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @param value The bytes for delegatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setDelegatorAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         delegatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
       private java.lang.Object validatorAddress_ = "";
       /**
+       * <pre>
+       * validator_address is the bech32-encoded address of the validator.
+       * </pre>
+       *
        * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
        * @return The validatorAddress.
        */
@@ -11706,6 +12478,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * validator_address is the bech32-encoded address of the validator.
+       * </pre>
+       *
        * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
        * @return The bytes for validatorAddress.
        */
@@ -11723,43 +12499,51 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * validator_address is the bech32-encoded address of the validator.
+       * </pre>
+       *
        * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
        * @param value The validatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setValidatorAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         validatorAddress_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * validator_address is the bech32-encoded address of the validator.
+       * </pre>
+       *
        * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearValidatorAddress() {
-        
         validatorAddress_ = getDefaultInstance().getValidatorAddress();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * validator_address is the bech32-encoded address of the validator.
+       * </pre>
+       *
        * <code>string validator_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_address&#92;""];</code>
        * @param value The bytes for validatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setValidatorAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         validatorAddress_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -11767,9 +12551,9 @@ public final class Staking {
       private java.util.List<cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry> entries_ =
         java.util.Collections.emptyList();
       private void ensureEntriesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000004) != 0)) {
           entries_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry>(entries_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000004;
          }
       }
 
@@ -11778,7 +12562,7 @@ public final class Staking {
 
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11792,7 +12576,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11806,7 +12590,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11820,7 +12604,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11841,7 +12625,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11859,7 +12643,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11879,7 +12663,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11900,7 +12684,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11918,7 +12702,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11936,7 +12720,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11955,7 +12739,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11963,7 +12747,7 @@ public final class Staking {
       public Builder clearEntries() {
         if (entriesBuilder_ == null) {
           entries_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
         } else {
           entriesBuilder_.clear();
@@ -11972,7 +12756,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -11989,7 +12773,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -12000,7 +12784,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -12014,7 +12798,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -12029,7 +12813,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -12040,7 +12824,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -12052,7 +12836,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * unbonding delegation entries
+       * entries are the unbonding delegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.UnbondingDelegationEntry entries = 3 [(.gogoproto.nullable) = false];</code>
@@ -12068,7 +12852,7 @@ public final class Staking {
           entriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry, cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry.Builder, cosmos.staking.v1beta1.Staking.UnbondingDelegationEntryOrBuilder>(
                   entries_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
                   isClean());
           entries_ = null;
@@ -12108,7 +12892,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UnbondingDelegation(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -12133,32 +12928,56 @@ public final class Staking {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * creation_height is the height which the unbonding took place.
+     * </pre>
+     *
      * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
      * @return The creationHeight.
      */
     long getCreationHeight();
 
     /**
+     * <pre>
+     * completion_time is the unix time for unbonding completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the completionTime field is set.
      */
     boolean hasCompletionTime();
     /**
+     * <pre>
+     * completion_time is the unix time for unbonding completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return The completionTime.
      */
     com.google.protobuf.Timestamp getCompletionTime();
     /**
+     * <pre>
+     * completion_time is the unix time for unbonding completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
     com.google.protobuf.TimestampOrBuilder getCompletionTimeOrBuilder();
 
     /**
+     * <pre>
+     * initial_balance defines the tokens initially scheduled to receive at completion.
+     * </pre>
+     *
      * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
      * @return The initialBalance.
      */
     java.lang.String getInitialBalance();
     /**
+     * <pre>
+     * initial_balance defines the tokens initially scheduled to receive at completion.
+     * </pre>
+     *
      * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
      * @return The bytes for initialBalance.
      */
@@ -12166,11 +12985,19 @@ public final class Staking {
         getInitialBalanceBytes();
 
     /**
+     * <pre>
+     * balance defines the tokens to receive at completion.
+     * </pre>
+     *
      * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      * @return The balance.
      */
     java.lang.String getBalance();
     /**
+     * <pre>
+     * balance defines the tokens to receive at completion.
+     * </pre>
+     *
      * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      * @return The bytes for balance.
      */
@@ -12205,78 +13032,6 @@ public final class Staking {
       return new UnbondingDelegationEntry();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private UnbondingDelegationEntry(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              creationHeight_ = input.readInt64();
-              break;
-            }
-            case 18: {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (completionTime_ != null) {
-                subBuilder = completionTime_.toBuilder();
-              }
-              completionTime_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(completionTime_);
-                completionTime_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              initialBalance_ = s;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              balance_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_UnbondingDelegationEntry_descriptor;
@@ -12291,8 +13046,12 @@ public final class Staking {
     }
 
     public static final int CREATION_HEIGHT_FIELD_NUMBER = 1;
-    private long creationHeight_;
+    private long creationHeight_ = 0L;
     /**
+     * <pre>
+     * creation_height is the height which the unbonding took place.
+     * </pre>
+     *
      * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
      * @return The creationHeight.
      */
@@ -12304,6 +13063,10 @@ public final class Staking {
     public static final int COMPLETION_TIME_FIELD_NUMBER = 2;
     private com.google.protobuf.Timestamp completionTime_;
     /**
+     * <pre>
+     * completion_time is the unix time for unbonding completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the completionTime field is set.
      */
@@ -12312,6 +13075,10 @@ public final class Staking {
       return completionTime_ != null;
     }
     /**
+     * <pre>
+     * completion_time is the unix time for unbonding completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return The completionTime.
      */
@@ -12320,16 +13087,25 @@ public final class Staking {
       return completionTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : completionTime_;
     }
     /**
+     * <pre>
+     * completion_time is the unix time for unbonding completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
     @java.lang.Override
     public com.google.protobuf.TimestampOrBuilder getCompletionTimeOrBuilder() {
-      return getCompletionTime();
+      return completionTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : completionTime_;
     }
 
     public static final int INITIAL_BALANCE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object initialBalance_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object initialBalance_ = "";
     /**
+     * <pre>
+     * initial_balance defines the tokens initially scheduled to receive at completion.
+     * </pre>
+     *
      * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
      * @return The initialBalance.
      */
@@ -12347,6 +13123,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * initial_balance defines the tokens initially scheduled to receive at completion.
+     * </pre>
+     *
      * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
      * @return The bytes for initialBalance.
      */
@@ -12366,8 +13146,13 @@ public final class Staking {
     }
 
     public static final int BALANCE_FIELD_NUMBER = 4;
-    private volatile java.lang.Object balance_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object balance_ = "";
     /**
+     * <pre>
+     * balance defines the tokens to receive at completion.
+     * </pre>
+     *
      * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      * @return The balance.
      */
@@ -12385,6 +13170,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * balance defines the tokens to receive at completion.
+     * </pre>
+     *
      * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      * @return The bytes for balance.
      */
@@ -12423,13 +13212,13 @@ public final class Staking {
       if (completionTime_ != null) {
         output.writeMessage(2, getCompletionTime());
       }
-      if (!getInitialBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initialBalance_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, initialBalance_);
       }
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, balance_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -12446,13 +13235,13 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getCompletionTime());
       }
-      if (!getInitialBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initialBalance_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, initialBalance_);
       }
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, balance_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -12478,7 +13267,7 @@ public final class Staking {
           .equals(other.getInitialBalance())) return false;
       if (!getBalance()
           .equals(other.getBalance())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -12500,7 +13289,7 @@ public final class Staking {
       hash = (53 * hash) + getInitialBalance().hashCode();
       hash = (37 * hash) + BALANCE_FIELD_NUMBER;
       hash = (53 * hash) + getBalance().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -12549,11 +13338,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12621,34 +13412,26 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         creationHeight_ = 0L;
-
-        if (completionTimeBuilder_ == null) {
-          completionTime_ = null;
-        } else {
-          completionTime_ = null;
+        completionTime_ = null;
+        if (completionTimeBuilder_ != null) {
+          completionTimeBuilder_.dispose();
           completionTimeBuilder_ = null;
         }
         initialBalance_ = "";
-
         balance_ = "";
-
         return this;
       }
 
@@ -12675,16 +13458,27 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry buildPartial() {
         cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry result = new cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry(this);
-        result.creationHeight_ = creationHeight_;
-        if (completionTimeBuilder_ == null) {
-          result.completionTime_ = completionTime_;
-        } else {
-          result.completionTime_ = completionTimeBuilder_.build();
-        }
-        result.initialBalance_ = initialBalance_;
-        result.balance_ = balance_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.creationHeight_ = creationHeight_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.completionTime_ = completionTimeBuilder_ == null
+              ? completionTime_
+              : completionTimeBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.initialBalance_ = initialBalance_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.balance_ = balance_;
+        }
       }
 
       @java.lang.Override
@@ -12739,13 +13533,15 @@ public final class Staking {
         }
         if (!other.getInitialBalance().isEmpty()) {
           initialBalance_ = other.initialBalance_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (!other.getBalance().isEmpty()) {
           balance_ = other.balance_;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -12760,22 +13556,62 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                creationHeight_ = input.readInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                input.readMessage(
+                    getCompletionTimeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                initialBalance_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                balance_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.UnbondingDelegationEntry) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long creationHeight_ ;
       /**
+       * <pre>
+       * creation_height is the height which the unbonding took place.
+       * </pre>
+       *
        * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
        * @return The creationHeight.
        */
@@ -12784,22 +13620,31 @@ public final class Staking {
         return creationHeight_;
       }
       /**
+       * <pre>
+       * creation_height is the height which the unbonding took place.
+       * </pre>
+       *
        * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
        * @param value The creationHeight to set.
        * @return This builder for chaining.
        */
       public Builder setCreationHeight(long value) {
-        
+
         creationHeight_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * creation_height is the height which the unbonding took place.
+       * </pre>
+       *
        * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearCreationHeight() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         creationHeight_ = 0L;
         onChanged();
         return this;
@@ -12809,13 +13654,21 @@ public final class Staking {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> completionTimeBuilder_;
       /**
+       * <pre>
+       * completion_time is the unix time for unbonding completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        * @return Whether the completionTime field is set.
        */
       public boolean hasCompletionTime() {
-        return completionTimeBuilder_ != null || completionTime_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
+       * <pre>
+       * completion_time is the unix time for unbonding completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        * @return The completionTime.
        */
@@ -12827,6 +13680,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * completion_time is the unix time for unbonding completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder setCompletionTime(com.google.protobuf.Timestamp value) {
@@ -12835,68 +13692,88 @@ public final class Staking {
             throw new NullPointerException();
           }
           completionTime_ = value;
-          onChanged();
         } else {
           completionTimeBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * completion_time is the unix time for unbonding completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder setCompletionTime(
           com.google.protobuf.Timestamp.Builder builderForValue) {
         if (completionTimeBuilder_ == null) {
           completionTime_ = builderForValue.build();
-          onChanged();
         } else {
           completionTimeBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * completion_time is the unix time for unbonding completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder mergeCompletionTime(com.google.protobuf.Timestamp value) {
         if (completionTimeBuilder_ == null) {
-          if (completionTime_ != null) {
-            completionTime_ =
-              com.google.protobuf.Timestamp.newBuilder(completionTime_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            completionTime_ != null &&
+            completionTime_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+            getCompletionTimeBuilder().mergeFrom(value);
           } else {
             completionTime_ = value;
           }
-          onChanged();
         } else {
           completionTimeBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * completion_time is the unix time for unbonding completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder clearCompletionTime() {
-        if (completionTimeBuilder_ == null) {
-          completionTime_ = null;
-          onChanged();
-        } else {
-          completionTime_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        completionTime_ = null;
+        if (completionTimeBuilder_ != null) {
+          completionTimeBuilder_.dispose();
           completionTimeBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * completion_time is the unix time for unbonding completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public com.google.protobuf.Timestamp.Builder getCompletionTimeBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getCompletionTimeFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * completion_time is the unix time for unbonding completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public com.google.protobuf.TimestampOrBuilder getCompletionTimeOrBuilder() {
@@ -12908,6 +13785,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * completion_time is the unix time for unbonding completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -12926,6 +13807,10 @@ public final class Staking {
 
       private java.lang.Object initialBalance_ = "";
       /**
+       * <pre>
+       * initial_balance defines the tokens initially scheduled to receive at completion.
+       * </pre>
+       *
        * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
        * @return The initialBalance.
        */
@@ -12942,6 +13827,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * initial_balance defines the tokens initially scheduled to receive at completion.
+       * </pre>
+       *
        * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
        * @return The bytes for initialBalance.
        */
@@ -12959,49 +13848,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * initial_balance defines the tokens initially scheduled to receive at completion.
+       * </pre>
+       *
        * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
        * @param value The initialBalance to set.
        * @return This builder for chaining.
        */
       public Builder setInitialBalance(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         initialBalance_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * initial_balance defines the tokens initially scheduled to receive at completion.
+       * </pre>
+       *
        * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearInitialBalance() {
-        
         initialBalance_ = getDefaultInstance().getInitialBalance();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * initial_balance defines the tokens initially scheduled to receive at completion.
+       * </pre>
+       *
        * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
        * @param value The bytes for initialBalance to set.
        * @return This builder for chaining.
        */
       public Builder setInitialBalanceBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         initialBalance_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
 
       private java.lang.Object balance_ = "";
       /**
+       * <pre>
+       * balance defines the tokens to receive at completion.
+       * </pre>
+       *
        * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
        * @return The balance.
        */
@@ -13018,6 +13919,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * balance defines the tokens to receive at completion.
+       * </pre>
+       *
        * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
        * @return The bytes for balance.
        */
@@ -13035,43 +13940,51 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * balance defines the tokens to receive at completion.
+       * </pre>
+       *
        * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
        * @param value The balance to set.
        * @return This builder for chaining.
        */
       public Builder setBalance(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         balance_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * balance defines the tokens to receive at completion.
+       * </pre>
+       *
        * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
        * @return This builder for chaining.
        */
       public Builder clearBalance() {
-        
         balance_ = getDefaultInstance().getBalance();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * balance defines the tokens to receive at completion.
+       * </pre>
+       *
        * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
        * @param value The bytes for balance to set.
        * @return This builder for chaining.
        */
       public Builder setBalanceBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         balance_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -13108,7 +14021,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UnbondingDelegationEntry(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -13133,32 +14057,56 @@ public final class Staking {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * creation_height  defines the height which the redelegation took place.
+     * </pre>
+     *
      * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
      * @return The creationHeight.
      */
     long getCreationHeight();
 
     /**
+     * <pre>
+     * completion_time defines the unix time for redelegation completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the completionTime field is set.
      */
     boolean hasCompletionTime();
     /**
+     * <pre>
+     * completion_time defines the unix time for redelegation completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return The completionTime.
      */
     com.google.protobuf.Timestamp getCompletionTime();
     /**
+     * <pre>
+     * completion_time defines the unix time for redelegation completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
     com.google.protobuf.TimestampOrBuilder getCompletionTimeOrBuilder();
 
     /**
+     * <pre>
+     * initial_balance defines the initial balance when redelegation started.
+     * </pre>
+     *
      * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
      * @return The initialBalance.
      */
     java.lang.String getInitialBalance();
     /**
+     * <pre>
+     * initial_balance defines the initial balance when redelegation started.
+     * </pre>
+     *
      * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
      * @return The bytes for initialBalance.
      */
@@ -13166,11 +14114,19 @@ public final class Staking {
         getInitialBalanceBytes();
 
     /**
+     * <pre>
+     * shares_dst is the amount of destination-validator shares created by redelegation.
+     * </pre>
+     *
      * <code>string shares_dst = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The sharesDst.
      */
     java.lang.String getSharesDst();
     /**
+     * <pre>
+     * shares_dst is the amount of destination-validator shares created by redelegation.
+     * </pre>
+     *
      * <code>string shares_dst = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The bytes for sharesDst.
      */
@@ -13205,78 +14161,6 @@ public final class Staking {
       return new RedelegationEntry();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RedelegationEntry(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              creationHeight_ = input.readInt64();
-              break;
-            }
-            case 18: {
-              com.google.protobuf.Timestamp.Builder subBuilder = null;
-              if (completionTime_ != null) {
-                subBuilder = completionTime_.toBuilder();
-              }
-              completionTime_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(completionTime_);
-                completionTime_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              initialBalance_ = s;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              sharesDst_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_RedelegationEntry_descriptor;
@@ -13291,8 +14175,12 @@ public final class Staking {
     }
 
     public static final int CREATION_HEIGHT_FIELD_NUMBER = 1;
-    private long creationHeight_;
+    private long creationHeight_ = 0L;
     /**
+     * <pre>
+     * creation_height  defines the height which the redelegation took place.
+     * </pre>
+     *
      * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
      * @return The creationHeight.
      */
@@ -13304,6 +14192,10 @@ public final class Staking {
     public static final int COMPLETION_TIME_FIELD_NUMBER = 2;
     private com.google.protobuf.Timestamp completionTime_;
     /**
+     * <pre>
+     * completion_time defines the unix time for redelegation completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return Whether the completionTime field is set.
      */
@@ -13312,6 +14204,10 @@ public final class Staking {
       return completionTime_ != null;
     }
     /**
+     * <pre>
+     * completion_time defines the unix time for redelegation completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      * @return The completionTime.
      */
@@ -13320,16 +14216,25 @@ public final class Staking {
       return completionTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : completionTime_;
     }
     /**
+     * <pre>
+     * completion_time defines the unix time for redelegation completion.
+     * </pre>
+     *
      * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
      */
     @java.lang.Override
     public com.google.protobuf.TimestampOrBuilder getCompletionTimeOrBuilder() {
-      return getCompletionTime();
+      return completionTime_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : completionTime_;
     }
 
     public static final int INITIAL_BALANCE_FIELD_NUMBER = 3;
-    private volatile java.lang.Object initialBalance_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object initialBalance_ = "";
     /**
+     * <pre>
+     * initial_balance defines the initial balance when redelegation started.
+     * </pre>
+     *
      * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
      * @return The initialBalance.
      */
@@ -13347,6 +14252,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * initial_balance defines the initial balance when redelegation started.
+     * </pre>
+     *
      * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
      * @return The bytes for initialBalance.
      */
@@ -13366,8 +14275,13 @@ public final class Staking {
     }
 
     public static final int SHARES_DST_FIELD_NUMBER = 4;
-    private volatile java.lang.Object sharesDst_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object sharesDst_ = "";
     /**
+     * <pre>
+     * shares_dst is the amount of destination-validator shares created by redelegation.
+     * </pre>
+     *
      * <code>string shares_dst = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The sharesDst.
      */
@@ -13385,6 +14299,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * shares_dst is the amount of destination-validator shares created by redelegation.
+     * </pre>
+     *
      * <code>string shares_dst = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
      * @return The bytes for sharesDst.
      */
@@ -13423,13 +14341,13 @@ public final class Staking {
       if (completionTime_ != null) {
         output.writeMessage(2, getCompletionTime());
       }
-      if (!getInitialBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initialBalance_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, initialBalance_);
       }
-      if (!getSharesDstBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sharesDst_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, sharesDst_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -13446,13 +14364,13 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getCompletionTime());
       }
-      if (!getInitialBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(initialBalance_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, initialBalance_);
       }
-      if (!getSharesDstBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sharesDst_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, sharesDst_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -13478,7 +14396,7 @@ public final class Staking {
           .equals(other.getInitialBalance())) return false;
       if (!getSharesDst()
           .equals(other.getSharesDst())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -13500,7 +14418,7 @@ public final class Staking {
       hash = (53 * hash) + getInitialBalance().hashCode();
       hash = (37 * hash) + SHARES_DST_FIELD_NUMBER;
       hash = (53 * hash) + getSharesDst().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -13549,11 +14467,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.RedelegationEntry parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.RedelegationEntry parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -13621,34 +14541,26 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.RedelegationEntry.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         creationHeight_ = 0L;
-
-        if (completionTimeBuilder_ == null) {
-          completionTime_ = null;
-        } else {
-          completionTime_ = null;
+        completionTime_ = null;
+        if (completionTimeBuilder_ != null) {
+          completionTimeBuilder_.dispose();
           completionTimeBuilder_ = null;
         }
         initialBalance_ = "";
-
         sharesDst_ = "";
-
         return this;
       }
 
@@ -13675,16 +14587,27 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.RedelegationEntry buildPartial() {
         cosmos.staking.v1beta1.Staking.RedelegationEntry result = new cosmos.staking.v1beta1.Staking.RedelegationEntry(this);
-        result.creationHeight_ = creationHeight_;
-        if (completionTimeBuilder_ == null) {
-          result.completionTime_ = completionTime_;
-        } else {
-          result.completionTime_ = completionTimeBuilder_.build();
-        }
-        result.initialBalance_ = initialBalance_;
-        result.sharesDst_ = sharesDst_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.RedelegationEntry result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.creationHeight_ = creationHeight_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.completionTime_ = completionTimeBuilder_ == null
+              ? completionTime_
+              : completionTimeBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.initialBalance_ = initialBalance_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.sharesDst_ = sharesDst_;
+        }
       }
 
       @java.lang.Override
@@ -13739,13 +14662,15 @@ public final class Staking {
         }
         if (!other.getInitialBalance().isEmpty()) {
           initialBalance_ = other.initialBalance_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (!other.getSharesDst().isEmpty()) {
           sharesDst_ = other.sharesDst_;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -13760,22 +14685,62 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.RedelegationEntry parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                creationHeight_ = input.readInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                input.readMessage(
+                    getCompletionTimeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                initialBalance_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                sharesDst_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.RedelegationEntry) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long creationHeight_ ;
       /**
+       * <pre>
+       * creation_height  defines the height which the redelegation took place.
+       * </pre>
+       *
        * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
        * @return The creationHeight.
        */
@@ -13784,22 +14749,31 @@ public final class Staking {
         return creationHeight_;
       }
       /**
+       * <pre>
+       * creation_height  defines the height which the redelegation took place.
+       * </pre>
+       *
        * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
        * @param value The creationHeight to set.
        * @return This builder for chaining.
        */
       public Builder setCreationHeight(long value) {
-        
+
         creationHeight_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * creation_height  defines the height which the redelegation took place.
+       * </pre>
+       *
        * <code>int64 creation_height = 1 [(.gogoproto.moretags) = "yaml:&#92;"creation_height&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearCreationHeight() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         creationHeight_ = 0L;
         onChanged();
         return this;
@@ -13809,13 +14783,21 @@ public final class Staking {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> completionTimeBuilder_;
       /**
+       * <pre>
+       * completion_time defines the unix time for redelegation completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        * @return Whether the completionTime field is set.
        */
       public boolean hasCompletionTime() {
-        return completionTimeBuilder_ != null || completionTime_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
+       * <pre>
+       * completion_time defines the unix time for redelegation completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        * @return The completionTime.
        */
@@ -13827,6 +14809,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * completion_time defines the unix time for redelegation completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder setCompletionTime(com.google.protobuf.Timestamp value) {
@@ -13835,68 +14821,88 @@ public final class Staking {
             throw new NullPointerException();
           }
           completionTime_ = value;
-          onChanged();
         } else {
           completionTimeBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * completion_time defines the unix time for redelegation completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder setCompletionTime(
           com.google.protobuf.Timestamp.Builder builderForValue) {
         if (completionTimeBuilder_ == null) {
           completionTime_ = builderForValue.build();
-          onChanged();
         } else {
           completionTimeBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * completion_time defines the unix time for redelegation completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder mergeCompletionTime(com.google.protobuf.Timestamp value) {
         if (completionTimeBuilder_ == null) {
-          if (completionTime_ != null) {
-            completionTime_ =
-              com.google.protobuf.Timestamp.newBuilder(completionTime_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            completionTime_ != null &&
+            completionTime_ != com.google.protobuf.Timestamp.getDefaultInstance()) {
+            getCompletionTimeBuilder().mergeFrom(value);
           } else {
             completionTime_ = value;
           }
-          onChanged();
         } else {
           completionTimeBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * completion_time defines the unix time for redelegation completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public Builder clearCompletionTime() {
-        if (completionTimeBuilder_ == null) {
-          completionTime_ = null;
-          onChanged();
-        } else {
-          completionTime_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        completionTime_ = null;
+        if (completionTimeBuilder_ != null) {
+          completionTimeBuilder_.dispose();
           completionTimeBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * completion_time defines the unix time for redelegation completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public com.google.protobuf.Timestamp.Builder getCompletionTimeBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getCompletionTimeFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * completion_time defines the unix time for redelegation completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       public com.google.protobuf.TimestampOrBuilder getCompletionTimeOrBuilder() {
@@ -13908,6 +14914,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * completion_time defines the unix time for redelegation completion.
+       * </pre>
+       *
        * <code>.google.protobuf.Timestamp completion_time = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"completion_time&#92;"", (.gogoproto.stdtime) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -13926,6 +14936,10 @@ public final class Staking {
 
       private java.lang.Object initialBalance_ = "";
       /**
+       * <pre>
+       * initial_balance defines the initial balance when redelegation started.
+       * </pre>
+       *
        * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
        * @return The initialBalance.
        */
@@ -13942,6 +14956,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * initial_balance defines the initial balance when redelegation started.
+       * </pre>
+       *
        * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
        * @return The bytes for initialBalance.
        */
@@ -13959,49 +14977,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * initial_balance defines the initial balance when redelegation started.
+       * </pre>
+       *
        * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
        * @param value The initialBalance to set.
        * @return This builder for chaining.
        */
       public Builder setInitialBalance(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         initialBalance_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * initial_balance defines the initial balance when redelegation started.
+       * </pre>
+       *
        * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearInitialBalance() {
-        
         initialBalance_ = getDefaultInstance().getInitialBalance();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * initial_balance defines the initial balance when redelegation started.
+       * </pre>
+       *
        * <code>string initial_balance = 3 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.moretags) = "yaml:&#92;"initial_balance&#92;""];</code>
        * @param value The bytes for initialBalance to set.
        * @return This builder for chaining.
        */
       public Builder setInitialBalanceBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         initialBalance_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
 
       private java.lang.Object sharesDst_ = "";
       /**
+       * <pre>
+       * shares_dst is the amount of destination-validator shares created by redelegation.
+       * </pre>
+       *
        * <code>string shares_dst = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @return The sharesDst.
        */
@@ -14018,6 +15048,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * shares_dst is the amount of destination-validator shares created by redelegation.
+       * </pre>
+       *
        * <code>string shares_dst = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @return The bytes for sharesDst.
        */
@@ -14035,43 +15069,51 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * shares_dst is the amount of destination-validator shares created by redelegation.
+       * </pre>
+       *
        * <code>string shares_dst = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @param value The sharesDst to set.
        * @return This builder for chaining.
        */
       public Builder setSharesDst(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         sharesDst_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * shares_dst is the amount of destination-validator shares created by redelegation.
+       * </pre>
+       *
        * <code>string shares_dst = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @return This builder for chaining.
        */
       public Builder clearSharesDst() {
-        
         sharesDst_ = getDefaultInstance().getSharesDst();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * shares_dst is the amount of destination-validator shares created by redelegation.
+       * </pre>
+       *
        * <code>string shares_dst = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec"];</code>
        * @param value The bytes for sharesDst to set.
        * @return This builder for chaining.
        */
       public Builder setSharesDstBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         sharesDst_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -14108,7 +15150,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RedelegationEntry(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -14133,11 +15186,19 @@ public final class Staking {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The delegatorAddress.
      */
     java.lang.String getDelegatorAddress();
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The bytes for delegatorAddress.
      */
@@ -14145,11 +15206,19 @@ public final class Staking {
         getDelegatorAddressBytes();
 
     /**
+     * <pre>
+     * validator_src_address is the validator redelegation source operator address.
+     * </pre>
+     *
      * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
      * @return The validatorSrcAddress.
      */
     java.lang.String getValidatorSrcAddress();
     /**
+     * <pre>
+     * validator_src_address is the validator redelegation source operator address.
+     * </pre>
+     *
      * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
      * @return The bytes for validatorSrcAddress.
      */
@@ -14157,11 +15226,19 @@ public final class Staking {
         getValidatorSrcAddressBytes();
 
     /**
+     * <pre>
+     * validator_dst_address is the validator redelegation destination operator address.
+     * </pre>
+     *
      * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
      * @return The validatorDstAddress.
      */
     java.lang.String getValidatorDstAddress();
     /**
+     * <pre>
+     * validator_dst_address is the validator redelegation destination operator address.
+     * </pre>
+     *
      * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
      * @return The bytes for validatorDstAddress.
      */
@@ -14170,7 +15247,7 @@ public final class Staking {
 
     /**
      * <pre>
-     * redelegation entries
+     * entries are the redelegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -14179,7 +15256,7 @@ public final class Staking {
         getEntriesList();
     /**
      * <pre>
-     * redelegation entries
+     * entries are the redelegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -14187,7 +15264,7 @@ public final class Staking {
     cosmos.staking.v1beta1.Staking.RedelegationEntry getEntries(int index);
     /**
      * <pre>
-     * redelegation entries
+     * entries are the redelegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -14195,7 +15272,7 @@ public final class Staking {
     int getEntriesCount();
     /**
      * <pre>
-     * redelegation entries
+     * entries are the redelegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -14204,7 +15281,7 @@ public final class Staking {
         getEntriesOrBuilderList();
     /**
      * <pre>
-     * redelegation entries
+     * entries are the redelegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -14243,79 +15320,6 @@ public final class Staking {
       return new Redelegation();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Redelegation(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              delegatorAddress_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              validatorSrcAddress_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              validatorDstAddress_ = s;
-              break;
-            }
-            case 34: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                entries_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.RedelegationEntry>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              entries_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Staking.RedelegationEntry.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          entries_ = java.util.Collections.unmodifiableList(entries_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_Redelegation_descriptor;
@@ -14330,8 +15334,13 @@ public final class Staking {
     }
 
     public static final int DELEGATOR_ADDRESS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object delegatorAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object delegatorAddress_ = "";
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The delegatorAddress.
      */
@@ -14349,6 +15358,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * delegator_address is the bech32-encoded address of the delegator.
+     * </pre>
+     *
      * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
      * @return The bytes for delegatorAddress.
      */
@@ -14368,8 +15381,13 @@ public final class Staking {
     }
 
     public static final int VALIDATOR_SRC_ADDRESS_FIELD_NUMBER = 2;
-    private volatile java.lang.Object validatorSrcAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object validatorSrcAddress_ = "";
     /**
+     * <pre>
+     * validator_src_address is the validator redelegation source operator address.
+     * </pre>
+     *
      * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
      * @return The validatorSrcAddress.
      */
@@ -14387,6 +15405,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * validator_src_address is the validator redelegation source operator address.
+     * </pre>
+     *
      * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
      * @return The bytes for validatorSrcAddress.
      */
@@ -14406,8 +15428,13 @@ public final class Staking {
     }
 
     public static final int VALIDATOR_DST_ADDRESS_FIELD_NUMBER = 3;
-    private volatile java.lang.Object validatorDstAddress_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object validatorDstAddress_ = "";
     /**
+     * <pre>
+     * validator_dst_address is the validator redelegation destination operator address.
+     * </pre>
+     *
      * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
      * @return The validatorDstAddress.
      */
@@ -14425,6 +15452,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * validator_dst_address is the validator redelegation destination operator address.
+     * </pre>
+     *
      * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
      * @return The bytes for validatorDstAddress.
      */
@@ -14444,10 +15475,11 @@ public final class Staking {
     }
 
     public static final int ENTRIES_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Staking.RedelegationEntry> entries_;
     /**
      * <pre>
-     * redelegation entries
+     * entries are the redelegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -14458,7 +15490,7 @@ public final class Staking {
     }
     /**
      * <pre>
-     * redelegation entries
+     * entries are the redelegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -14470,7 +15502,7 @@ public final class Staking {
     }
     /**
      * <pre>
-     * redelegation entries
+     * entries are the redelegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -14481,7 +15513,7 @@ public final class Staking {
     }
     /**
      * <pre>
-     * redelegation entries
+     * entries are the redelegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -14492,7 +15524,7 @@ public final class Staking {
     }
     /**
      * <pre>
-     * redelegation entries
+     * entries are the redelegation entries.
      * </pre>
      *
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -14517,19 +15549,19 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, delegatorAddress_);
       }
-      if (!getValidatorSrcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorSrcAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, validatorSrcAddress_);
       }
-      if (!getValidatorDstAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorDstAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, validatorDstAddress_);
       }
       for (int i = 0; i < entries_.size(); i++) {
         output.writeMessage(4, entries_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -14538,20 +15570,20 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getDelegatorAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(delegatorAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, delegatorAddress_);
       }
-      if (!getValidatorSrcAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorSrcAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, validatorSrcAddress_);
       }
-      if (!getValidatorDstAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(validatorDstAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, validatorDstAddress_);
       }
       for (int i = 0; i < entries_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, entries_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -14574,7 +15606,7 @@ public final class Staking {
           .equals(other.getValidatorDstAddress())) return false;
       if (!getEntriesList()
           .equals(other.getEntriesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -14595,7 +15627,7 @@ public final class Staking {
         hash = (37 * hash) + ENTRIES_FIELD_NUMBER;
         hash = (53 * hash) + getEntriesList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -14644,11 +15676,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.Redelegation parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.Redelegation parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -14717,35 +15751,28 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.Redelegation.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getEntriesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         delegatorAddress_ = "";
-
         validatorSrcAddress_ = "";
-
         validatorDstAddress_ = "";
-
         if (entriesBuilder_ == null) {
           entries_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          entries_ = null;
           entriesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -14772,21 +15799,35 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.Redelegation buildPartial() {
         cosmos.staking.v1beta1.Staking.Redelegation result = new cosmos.staking.v1beta1.Staking.Redelegation(this);
-        int from_bitField0_ = bitField0_;
-        result.delegatorAddress_ = delegatorAddress_;
-        result.validatorSrcAddress_ = validatorSrcAddress_;
-        result.validatorDstAddress_ = validatorDstAddress_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.staking.v1beta1.Staking.Redelegation result) {
         if (entriesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000008) != 0)) {
             entries_ = java.util.Collections.unmodifiableList(entries_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000008);
           }
           result.entries_ = entries_;
         } else {
           result.entries_ = entriesBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.Redelegation result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.delegatorAddress_ = delegatorAddress_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.validatorSrcAddress_ = validatorSrcAddress_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.validatorDstAddress_ = validatorDstAddress_;
+        }
       }
 
       @java.lang.Override
@@ -14835,21 +15876,24 @@ public final class Staking {
         if (other == cosmos.staking.v1beta1.Staking.Redelegation.getDefaultInstance()) return this;
         if (!other.getDelegatorAddress().isEmpty()) {
           delegatorAddress_ = other.delegatorAddress_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getValidatorSrcAddress().isEmpty()) {
           validatorSrcAddress_ = other.validatorSrcAddress_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getValidatorDstAddress().isEmpty()) {
           validatorDstAddress_ = other.validatorDstAddress_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (entriesBuilder_ == null) {
           if (!other.entries_.isEmpty()) {
             if (entries_.isEmpty()) {
               entries_ = other.entries_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000008);
             } else {
               ensureEntriesIsMutable();
               entries_.addAll(other.entries_);
@@ -14862,7 +15906,7 @@ public final class Staking {
               entriesBuilder_.dispose();
               entriesBuilder_ = null;
               entries_ = other.entries_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000008);
               entriesBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getEntriesFieldBuilder() : null;
@@ -14871,7 +15915,7 @@ public final class Staking {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -14886,23 +15930,68 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.Redelegation parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                delegatorAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                validatorSrcAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                validatorDstAddress_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                cosmos.staking.v1beta1.Staking.RedelegationEntry m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Staking.RedelegationEntry.parser(),
+                        extensionRegistry);
+                if (entriesBuilder_ == null) {
+                  ensureEntriesIsMutable();
+                  entries_.add(m);
+                } else {
+                  entriesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.Redelegation) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
 
       private java.lang.Object delegatorAddress_ = "";
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @return The delegatorAddress.
        */
@@ -14919,6 +16008,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @return The bytes for delegatorAddress.
        */
@@ -14936,49 +16029,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @param value The delegatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setDelegatorAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         delegatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearDelegatorAddress() {
-        
         delegatorAddress_ = getDefaultInstance().getDelegatorAddress();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * delegator_address is the bech32-encoded address of the delegator.
+       * </pre>
+       *
        * <code>string delegator_address = 1 [(.gogoproto.moretags) = "yaml:&#92;"delegator_address&#92;""];</code>
        * @param value The bytes for delegatorAddress to set.
        * @return This builder for chaining.
        */
       public Builder setDelegatorAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         delegatorAddress_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
       private java.lang.Object validatorSrcAddress_ = "";
       /**
+       * <pre>
+       * validator_src_address is the validator redelegation source operator address.
+       * </pre>
+       *
        * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
        * @return The validatorSrcAddress.
        */
@@ -14995,6 +16100,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * validator_src_address is the validator redelegation source operator address.
+       * </pre>
+       *
        * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
        * @return The bytes for validatorSrcAddress.
        */
@@ -15012,49 +16121,61 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * validator_src_address is the validator redelegation source operator address.
+       * </pre>
+       *
        * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
        * @param value The validatorSrcAddress to set.
        * @return This builder for chaining.
        */
       public Builder setValidatorSrcAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         validatorSrcAddress_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * validator_src_address is the validator redelegation source operator address.
+       * </pre>
+       *
        * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearValidatorSrcAddress() {
-        
         validatorSrcAddress_ = getDefaultInstance().getValidatorSrcAddress();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * validator_src_address is the validator redelegation source operator address.
+       * </pre>
+       *
        * <code>string validator_src_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"validator_src_address&#92;""];</code>
        * @param value The bytes for validatorSrcAddress to set.
        * @return This builder for chaining.
        */
       public Builder setValidatorSrcAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         validatorSrcAddress_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
 
       private java.lang.Object validatorDstAddress_ = "";
       /**
+       * <pre>
+       * validator_dst_address is the validator redelegation destination operator address.
+       * </pre>
+       *
        * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
        * @return The validatorDstAddress.
        */
@@ -15071,6 +16192,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * validator_dst_address is the validator redelegation destination operator address.
+       * </pre>
+       *
        * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
        * @return The bytes for validatorDstAddress.
        */
@@ -15088,43 +16213,51 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * validator_dst_address is the validator redelegation destination operator address.
+       * </pre>
+       *
        * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
        * @param value The validatorDstAddress to set.
        * @return This builder for chaining.
        */
       public Builder setValidatorDstAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         validatorDstAddress_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * validator_dst_address is the validator redelegation destination operator address.
+       * </pre>
+       *
        * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearValidatorDstAddress() {
-        
         validatorDstAddress_ = getDefaultInstance().getValidatorDstAddress();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * validator_dst_address is the validator redelegation destination operator address.
+       * </pre>
+       *
        * <code>string validator_dst_address = 3 [(.gogoproto.moretags) = "yaml:&#92;"validator_dst_address&#92;""];</code>
        * @param value The bytes for validatorDstAddress to set.
        * @return This builder for chaining.
        */
       public Builder setValidatorDstAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         validatorDstAddress_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -15132,9 +16265,9 @@ public final class Staking {
       private java.util.List<cosmos.staking.v1beta1.Staking.RedelegationEntry> entries_ =
         java.util.Collections.emptyList();
       private void ensureEntriesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000008) != 0)) {
           entries_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.RedelegationEntry>(entries_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000008;
          }
       }
 
@@ -15143,7 +16276,7 @@ public final class Staking {
 
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15157,7 +16290,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15171,7 +16304,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15185,7 +16318,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15206,7 +16339,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15224,7 +16357,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15244,7 +16377,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15265,7 +16398,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15283,7 +16416,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15301,7 +16434,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15320,7 +16453,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15328,7 +16461,7 @@ public final class Staking {
       public Builder clearEntries() {
         if (entriesBuilder_ == null) {
           entries_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
           entriesBuilder_.clear();
@@ -15337,7 +16470,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15354,7 +16487,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15365,7 +16498,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15379,7 +16512,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15394,7 +16527,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15405,7 +16538,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15417,7 +16550,7 @@ public final class Staking {
       }
       /**
        * <pre>
-       * redelegation entries
+       * entries are the redelegation entries.
        * </pre>
        *
        * <code>repeated .cosmos.staking.v1beta1.RedelegationEntry entries = 4 [(.gogoproto.nullable) = false];</code>
@@ -15433,7 +16566,7 @@ public final class Staking {
           entriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.staking.v1beta1.Staking.RedelegationEntry, cosmos.staking.v1beta1.Staking.RedelegationEntry.Builder, cosmos.staking.v1beta1.Staking.RedelegationEntryOrBuilder>(
                   entries_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
                   isClean());
           entries_ = null;
@@ -15473,7 +16606,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Redelegation(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -15498,44 +16642,76 @@ public final class Staking {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * unbonding_time is the time duration of unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
      * @return Whether the unbondingTime field is set.
      */
     boolean hasUnbondingTime();
     /**
+     * <pre>
+     * unbonding_time is the time duration of unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
      * @return The unbondingTime.
      */
     com.google.protobuf.Duration getUnbondingTime();
     /**
+     * <pre>
+     * unbonding_time is the time duration of unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
      */
     com.google.protobuf.DurationOrBuilder getUnbondingTimeOrBuilder();
 
     /**
+     * <pre>
+     * max_validators is the maximum number of validators.
+     * </pre>
+     *
      * <code>uint32 max_validators = 2 [(.gogoproto.moretags) = "yaml:&#92;"max_validators&#92;""];</code>
      * @return The maxValidators.
      */
     int getMaxValidators();
 
     /**
+     * <pre>
+     * max_entries is the max entries for either unbonding delegation or redelegation (per pair/trio).
+     * </pre>
+     *
      * <code>uint32 max_entries = 3 [(.gogoproto.moretags) = "yaml:&#92;"max_entries&#92;""];</code>
      * @return The maxEntries.
      */
     int getMaxEntries();
 
     /**
+     * <pre>
+     * historical_entries is the number of historical entries to persist.
+     * </pre>
+     *
      * <code>uint32 historical_entries = 4 [(.gogoproto.moretags) = "yaml:&#92;"historical_entries&#92;""];</code>
      * @return The historicalEntries.
      */
     int getHistoricalEntries();
 
     /**
+     * <pre>
+     * bond_denom defines the bondable coin denomination.
+     * </pre>
+     *
      * <code>string bond_denom = 5 [(.gogoproto.moretags) = "yaml:&#92;"bond_denom&#92;""];</code>
      * @return The bondDenom.
      */
     java.lang.String getBondDenom();
     /**
+     * <pre>
+     * bond_denom defines the bondable coin denomination.
+     * </pre>
+     *
      * <code>string bond_denom = 5 [(.gogoproto.moretags) = "yaml:&#92;"bond_denom&#92;""];</code>
      * @return The bytes for bondDenom.
      */
@@ -15569,82 +16745,6 @@ public final class Staking {
       return new Params();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Params(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf.Duration.Builder subBuilder = null;
-              if (unbondingTime_ != null) {
-                subBuilder = unbondingTime_.toBuilder();
-              }
-              unbondingTime_ = input.readMessage(com.google.protobuf.Duration.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(unbondingTime_);
-                unbondingTime_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 16: {
-
-              maxValidators_ = input.readUInt32();
-              break;
-            }
-            case 24: {
-
-              maxEntries_ = input.readUInt32();
-              break;
-            }
-            case 32: {
-
-              historicalEntries_ = input.readUInt32();
-              break;
-            }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              bondDenom_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_Params_descriptor;
@@ -15661,6 +16761,10 @@ public final class Staking {
     public static final int UNBONDING_TIME_FIELD_NUMBER = 1;
     private com.google.protobuf.Duration unbondingTime_;
     /**
+     * <pre>
+     * unbonding_time is the time duration of unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
      * @return Whether the unbondingTime field is set.
      */
@@ -15669,6 +16773,10 @@ public final class Staking {
       return unbondingTime_ != null;
     }
     /**
+     * <pre>
+     * unbonding_time is the time duration of unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
      * @return The unbondingTime.
      */
@@ -15677,16 +16785,24 @@ public final class Staking {
       return unbondingTime_ == null ? com.google.protobuf.Duration.getDefaultInstance() : unbondingTime_;
     }
     /**
+     * <pre>
+     * unbonding_time is the time duration of unbonding.
+     * </pre>
+     *
      * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
      */
     @java.lang.Override
     public com.google.protobuf.DurationOrBuilder getUnbondingTimeOrBuilder() {
-      return getUnbondingTime();
+      return unbondingTime_ == null ? com.google.protobuf.Duration.getDefaultInstance() : unbondingTime_;
     }
 
     public static final int MAX_VALIDATORS_FIELD_NUMBER = 2;
-    private int maxValidators_;
+    private int maxValidators_ = 0;
     /**
+     * <pre>
+     * max_validators is the maximum number of validators.
+     * </pre>
+     *
      * <code>uint32 max_validators = 2 [(.gogoproto.moretags) = "yaml:&#92;"max_validators&#92;""];</code>
      * @return The maxValidators.
      */
@@ -15696,8 +16812,12 @@ public final class Staking {
     }
 
     public static final int MAX_ENTRIES_FIELD_NUMBER = 3;
-    private int maxEntries_;
+    private int maxEntries_ = 0;
     /**
+     * <pre>
+     * max_entries is the max entries for either unbonding delegation or redelegation (per pair/trio).
+     * </pre>
+     *
      * <code>uint32 max_entries = 3 [(.gogoproto.moretags) = "yaml:&#92;"max_entries&#92;""];</code>
      * @return The maxEntries.
      */
@@ -15707,8 +16827,12 @@ public final class Staking {
     }
 
     public static final int HISTORICAL_ENTRIES_FIELD_NUMBER = 4;
-    private int historicalEntries_;
+    private int historicalEntries_ = 0;
     /**
+     * <pre>
+     * historical_entries is the number of historical entries to persist.
+     * </pre>
+     *
      * <code>uint32 historical_entries = 4 [(.gogoproto.moretags) = "yaml:&#92;"historical_entries&#92;""];</code>
      * @return The historicalEntries.
      */
@@ -15718,8 +16842,13 @@ public final class Staking {
     }
 
     public static final int BOND_DENOM_FIELD_NUMBER = 5;
-    private volatile java.lang.Object bondDenom_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object bondDenom_ = "";
     /**
+     * <pre>
+     * bond_denom defines the bondable coin denomination.
+     * </pre>
+     *
      * <code>string bond_denom = 5 [(.gogoproto.moretags) = "yaml:&#92;"bond_denom&#92;""];</code>
      * @return The bondDenom.
      */
@@ -15737,6 +16866,10 @@ public final class Staking {
       }
     }
     /**
+     * <pre>
+     * bond_denom defines the bondable coin denomination.
+     * </pre>
+     *
      * <code>string bond_denom = 5 [(.gogoproto.moretags) = "yaml:&#92;"bond_denom&#92;""];</code>
      * @return The bytes for bondDenom.
      */
@@ -15781,10 +16914,10 @@ public final class Staking {
       if (historicalEntries_ != 0) {
         output.writeUInt32(4, historicalEntries_);
       }
-      if (!getBondDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bondDenom_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, bondDenom_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -15809,10 +16942,10 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(4, historicalEntries_);
       }
-      if (!getBondDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bondDenom_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, bondDenom_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -15840,7 +16973,7 @@ public final class Staking {
           != other.getHistoricalEntries()) return false;
       if (!getBondDenom()
           .equals(other.getBondDenom())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -15863,7 +16996,7 @@ public final class Staking {
       hash = (53 * hash) + getHistoricalEntries();
       hash = (37 * hash) + BOND_DENOM_FIELD_NUMBER;
       hash = (53 * hash) + getBondDenom().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -15912,11 +17045,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.Params parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.Params parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -15984,36 +17119,27 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.Params.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (unbondingTimeBuilder_ == null) {
-          unbondingTime_ = null;
-        } else {
-          unbondingTime_ = null;
+        bitField0_ = 0;
+        unbondingTime_ = null;
+        if (unbondingTimeBuilder_ != null) {
+          unbondingTimeBuilder_.dispose();
           unbondingTimeBuilder_ = null;
         }
         maxValidators_ = 0;
-
         maxEntries_ = 0;
-
         historicalEntries_ = 0;
-
         bondDenom_ = "";
-
         return this;
       }
 
@@ -16040,17 +17166,30 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.Params buildPartial() {
         cosmos.staking.v1beta1.Staking.Params result = new cosmos.staking.v1beta1.Staking.Params(this);
-        if (unbondingTimeBuilder_ == null) {
-          result.unbondingTime_ = unbondingTime_;
-        } else {
-          result.unbondingTime_ = unbondingTimeBuilder_.build();
-        }
-        result.maxValidators_ = maxValidators_;
-        result.maxEntries_ = maxEntries_;
-        result.historicalEntries_ = historicalEntries_;
-        result.bondDenom_ = bondDenom_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.Params result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.unbondingTime_ = unbondingTimeBuilder_ == null
+              ? unbondingTime_
+              : unbondingTimeBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.maxValidators_ = maxValidators_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.maxEntries_ = maxEntries_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.historicalEntries_ = historicalEntries_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.bondDenom_ = bondDenom_;
+        }
       }
 
       @java.lang.Override
@@ -16111,9 +17250,10 @@ public final class Staking {
         }
         if (!other.getBondDenom().isEmpty()) {
           bondDenom_ = other.bondDenom_;
+          bitField0_ |= 0x00000010;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -16128,31 +17268,80 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.Params parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getUnbondingTimeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                maxValidators_ = input.readUInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                maxEntries_ = input.readUInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                historicalEntries_ = input.readUInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 42: {
+                bondDenom_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.Params) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.google.protobuf.Duration unbondingTime_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> unbondingTimeBuilder_;
       /**
+       * <pre>
+       * unbonding_time is the time duration of unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
        * @return Whether the unbondingTime field is set.
        */
       public boolean hasUnbondingTime() {
-        return unbondingTimeBuilder_ != null || unbondingTime_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
+       * <pre>
+       * unbonding_time is the time duration of unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
        * @return The unbondingTime.
        */
@@ -16164,6 +17353,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * unbonding_time is the time duration of unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
        */
       public Builder setUnbondingTime(com.google.protobuf.Duration value) {
@@ -16172,68 +17365,88 @@ public final class Staking {
             throw new NullPointerException();
           }
           unbondingTime_ = value;
-          onChanged();
         } else {
           unbondingTimeBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * unbonding_time is the time duration of unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
        */
       public Builder setUnbondingTime(
           com.google.protobuf.Duration.Builder builderForValue) {
         if (unbondingTimeBuilder_ == null) {
           unbondingTime_ = builderForValue.build();
-          onChanged();
         } else {
           unbondingTimeBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * unbonding_time is the time duration of unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
        */
       public Builder mergeUnbondingTime(com.google.protobuf.Duration value) {
         if (unbondingTimeBuilder_ == null) {
-          if (unbondingTime_ != null) {
-            unbondingTime_ =
-              com.google.protobuf.Duration.newBuilder(unbondingTime_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            unbondingTime_ != null &&
+            unbondingTime_ != com.google.protobuf.Duration.getDefaultInstance()) {
+            getUnbondingTimeBuilder().mergeFrom(value);
           } else {
             unbondingTime_ = value;
           }
-          onChanged();
         } else {
           unbondingTimeBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * unbonding_time is the time duration of unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
        */
       public Builder clearUnbondingTime() {
-        if (unbondingTimeBuilder_ == null) {
-          unbondingTime_ = null;
-          onChanged();
-        } else {
-          unbondingTime_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        unbondingTime_ = null;
+        if (unbondingTimeBuilder_ != null) {
+          unbondingTimeBuilder_.dispose();
           unbondingTimeBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
+       * <pre>
+       * unbonding_time is the time duration of unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
        */
       public com.google.protobuf.Duration.Builder getUnbondingTimeBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getUnbondingTimeFieldBuilder().getBuilder();
       }
       /**
+       * <pre>
+       * unbonding_time is the time duration of unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
        */
       public com.google.protobuf.DurationOrBuilder getUnbondingTimeOrBuilder() {
@@ -16245,6 +17458,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * unbonding_time is the time duration of unbonding.
+       * </pre>
+       *
        * <code>.google.protobuf.Duration unbonding_time = 1 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"unbonding_time&#92;"", (.gogoproto.stdduration) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -16263,6 +17480,10 @@ public final class Staking {
 
       private int maxValidators_ ;
       /**
+       * <pre>
+       * max_validators is the maximum number of validators.
+       * </pre>
+       *
        * <code>uint32 max_validators = 2 [(.gogoproto.moretags) = "yaml:&#92;"max_validators&#92;""];</code>
        * @return The maxValidators.
        */
@@ -16271,22 +17492,31 @@ public final class Staking {
         return maxValidators_;
       }
       /**
+       * <pre>
+       * max_validators is the maximum number of validators.
+       * </pre>
+       *
        * <code>uint32 max_validators = 2 [(.gogoproto.moretags) = "yaml:&#92;"max_validators&#92;""];</code>
        * @param value The maxValidators to set.
        * @return This builder for chaining.
        */
       public Builder setMaxValidators(int value) {
-        
+
         maxValidators_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * max_validators is the maximum number of validators.
+       * </pre>
+       *
        * <code>uint32 max_validators = 2 [(.gogoproto.moretags) = "yaml:&#92;"max_validators&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearMaxValidators() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         maxValidators_ = 0;
         onChanged();
         return this;
@@ -16294,6 +17524,10 @@ public final class Staking {
 
       private int maxEntries_ ;
       /**
+       * <pre>
+       * max_entries is the max entries for either unbonding delegation or redelegation (per pair/trio).
+       * </pre>
+       *
        * <code>uint32 max_entries = 3 [(.gogoproto.moretags) = "yaml:&#92;"max_entries&#92;""];</code>
        * @return The maxEntries.
        */
@@ -16302,22 +17536,31 @@ public final class Staking {
         return maxEntries_;
       }
       /**
+       * <pre>
+       * max_entries is the max entries for either unbonding delegation or redelegation (per pair/trio).
+       * </pre>
+       *
        * <code>uint32 max_entries = 3 [(.gogoproto.moretags) = "yaml:&#92;"max_entries&#92;""];</code>
        * @param value The maxEntries to set.
        * @return This builder for chaining.
        */
       public Builder setMaxEntries(int value) {
-        
+
         maxEntries_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * max_entries is the max entries for either unbonding delegation or redelegation (per pair/trio).
+       * </pre>
+       *
        * <code>uint32 max_entries = 3 [(.gogoproto.moretags) = "yaml:&#92;"max_entries&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearMaxEntries() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         maxEntries_ = 0;
         onChanged();
         return this;
@@ -16325,6 +17568,10 @@ public final class Staking {
 
       private int historicalEntries_ ;
       /**
+       * <pre>
+       * historical_entries is the number of historical entries to persist.
+       * </pre>
+       *
        * <code>uint32 historical_entries = 4 [(.gogoproto.moretags) = "yaml:&#92;"historical_entries&#92;""];</code>
        * @return The historicalEntries.
        */
@@ -16333,22 +17580,31 @@ public final class Staking {
         return historicalEntries_;
       }
       /**
+       * <pre>
+       * historical_entries is the number of historical entries to persist.
+       * </pre>
+       *
        * <code>uint32 historical_entries = 4 [(.gogoproto.moretags) = "yaml:&#92;"historical_entries&#92;""];</code>
        * @param value The historicalEntries to set.
        * @return This builder for chaining.
        */
       public Builder setHistoricalEntries(int value) {
-        
+
         historicalEntries_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * historical_entries is the number of historical entries to persist.
+       * </pre>
+       *
        * <code>uint32 historical_entries = 4 [(.gogoproto.moretags) = "yaml:&#92;"historical_entries&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearHistoricalEntries() {
-        
+        bitField0_ = (bitField0_ & ~0x00000008);
         historicalEntries_ = 0;
         onChanged();
         return this;
@@ -16356,6 +17612,10 @@ public final class Staking {
 
       private java.lang.Object bondDenom_ = "";
       /**
+       * <pre>
+       * bond_denom defines the bondable coin denomination.
+       * </pre>
+       *
        * <code>string bond_denom = 5 [(.gogoproto.moretags) = "yaml:&#92;"bond_denom&#92;""];</code>
        * @return The bondDenom.
        */
@@ -16372,6 +17632,10 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * bond_denom defines the bondable coin denomination.
+       * </pre>
+       *
        * <code>string bond_denom = 5 [(.gogoproto.moretags) = "yaml:&#92;"bond_denom&#92;""];</code>
        * @return The bytes for bondDenom.
        */
@@ -16389,43 +17653,51 @@ public final class Staking {
         }
       }
       /**
+       * <pre>
+       * bond_denom defines the bondable coin denomination.
+       * </pre>
+       *
        * <code>string bond_denom = 5 [(.gogoproto.moretags) = "yaml:&#92;"bond_denom&#92;""];</code>
        * @param value The bondDenom to set.
        * @return This builder for chaining.
        */
       public Builder setBondDenom(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         bondDenom_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * bond_denom defines the bondable coin denomination.
+       * </pre>
+       *
        * <code>string bond_denom = 5 [(.gogoproto.moretags) = "yaml:&#92;"bond_denom&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearBondDenom() {
-        
         bondDenom_ = getDefaultInstance().getBondDenom();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
       /**
+       * <pre>
+       * bond_denom defines the bondable coin denomination.
+       * </pre>
+       *
        * <code>string bond_denom = 5 [(.gogoproto.moretags) = "yaml:&#92;"bond_denom&#92;""];</code>
        * @param value The bytes for bondDenom to set.
        * @return This builder for chaining.
        */
       public Builder setBondDenomBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         bondDenom_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -16462,7 +17734,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Params(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -16543,74 +17826,6 @@ public final class Staking {
       return new DelegationResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private DelegationResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.staking.v1beta1.Staking.Delegation.Builder subBuilder = null;
-              if (delegation_ != null) {
-                subBuilder = delegation_.toBuilder();
-              }
-              delegation_ = input.readMessage(cosmos.staking.v1beta1.Staking.Delegation.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(delegation_);
-                delegation_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              cosmos.base.v1beta1.CoinOuterClass.Coin.Builder subBuilder = null;
-              if (balance_ != null) {
-                subBuilder = balance_.toBuilder();
-              }
-              balance_ = input.readMessage(cosmos.base.v1beta1.CoinOuterClass.Coin.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(balance_);
-                balance_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_DelegationResponse_descriptor;
@@ -16647,7 +17862,7 @@ public final class Staking {
      */
     @java.lang.Override
     public cosmos.staking.v1beta1.Staking.DelegationOrBuilder getDelegationOrBuilder() {
-      return getDelegation();
+      return delegation_ == null ? cosmos.staking.v1beta1.Staking.Delegation.getDefaultInstance() : delegation_;
     }
 
     public static final int BALANCE_FIELD_NUMBER = 2;
@@ -16673,7 +17888,7 @@ public final class Staking {
      */
     @java.lang.Override
     public cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder getBalanceOrBuilder() {
-      return getBalance();
+      return balance_ == null ? cosmos.base.v1beta1.CoinOuterClass.Coin.getDefaultInstance() : balance_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -16696,7 +17911,7 @@ public final class Staking {
       if (balance_ != null) {
         output.writeMessage(2, getBalance());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -16713,7 +17928,7 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getBalance());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -16738,7 +17953,7 @@ public final class Staking {
         if (!getBalance()
             .equals(other.getBalance())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -16757,7 +17972,7 @@ public final class Staking {
         hash = (37 * hash) + BALANCE_FIELD_NUMBER;
         hash = (53 * hash) + getBalance().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -16806,11 +18021,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.DelegationResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.DelegationResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -16879,32 +18096,26 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.DelegationResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (delegationBuilder_ == null) {
-          delegation_ = null;
-        } else {
-          delegation_ = null;
+        bitField0_ = 0;
+        delegation_ = null;
+        if (delegationBuilder_ != null) {
+          delegationBuilder_.dispose();
           delegationBuilder_ = null;
         }
-        if (balanceBuilder_ == null) {
-          balance_ = null;
-        } else {
-          balance_ = null;
+        balance_ = null;
+        if (balanceBuilder_ != null) {
+          balanceBuilder_.dispose();
           balanceBuilder_ = null;
         }
         return this;
@@ -16933,18 +18144,23 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.DelegationResponse buildPartial() {
         cosmos.staking.v1beta1.Staking.DelegationResponse result = new cosmos.staking.v1beta1.Staking.DelegationResponse(this);
-        if (delegationBuilder_ == null) {
-          result.delegation_ = delegation_;
-        } else {
-          result.delegation_ = delegationBuilder_.build();
-        }
-        if (balanceBuilder_ == null) {
-          result.balance_ = balance_;
-        } else {
-          result.balance_ = balanceBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.DelegationResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.delegation_ = delegationBuilder_ == null
+              ? delegation_
+              : delegationBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.balance_ = balanceBuilder_ == null
+              ? balance_
+              : balanceBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -16997,7 +18213,7 @@ public final class Staking {
         if (other.hasBalance()) {
           mergeBalance(other.getBalance());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -17012,19 +18228,47 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.DelegationResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getDelegationFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getBalanceFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.DelegationResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private cosmos.staking.v1beta1.Staking.Delegation delegation_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -17034,7 +18278,7 @@ public final class Staking {
        * @return Whether the delegation field is set.
        */
       public boolean hasDelegation() {
-        return delegationBuilder_ != null || delegation_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.cosmos.staking.v1beta1.Delegation delegation = 1 [(.gogoproto.nullable) = false];</code>
@@ -17056,11 +18300,11 @@ public final class Staking {
             throw new NullPointerException();
           }
           delegation_ = value;
-          onChanged();
         } else {
           delegationBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -17070,11 +18314,11 @@ public final class Staking {
           cosmos.staking.v1beta1.Staking.Delegation.Builder builderForValue) {
         if (delegationBuilder_ == null) {
           delegation_ = builderForValue.build();
-          onChanged();
         } else {
           delegationBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -17082,38 +18326,38 @@ public final class Staking {
        */
       public Builder mergeDelegation(cosmos.staking.v1beta1.Staking.Delegation value) {
         if (delegationBuilder_ == null) {
-          if (delegation_ != null) {
-            delegation_ =
-              cosmos.staking.v1beta1.Staking.Delegation.newBuilder(delegation_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            delegation_ != null &&
+            delegation_ != cosmos.staking.v1beta1.Staking.Delegation.getDefaultInstance()) {
+            getDelegationBuilder().mergeFrom(value);
           } else {
             delegation_ = value;
           }
-          onChanged();
         } else {
           delegationBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.cosmos.staking.v1beta1.Delegation delegation = 1 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearDelegation() {
-        if (delegationBuilder_ == null) {
-          delegation_ = null;
-          onChanged();
-        } else {
-          delegation_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        delegation_ = null;
+        if (delegationBuilder_ != null) {
+          delegationBuilder_.dispose();
           delegationBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.cosmos.staking.v1beta1.Delegation delegation = 1 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.staking.v1beta1.Staking.Delegation.Builder getDelegationBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getDelegationFieldBuilder().getBuilder();
       }
@@ -17153,7 +18397,7 @@ public final class Staking {
        * @return Whether the balance field is set.
        */
       public boolean hasBalance() {
-        return balanceBuilder_ != null || balance_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.cosmos.base.v1beta1.Coin balance = 2 [(.gogoproto.nullable) = false];</code>
@@ -17175,11 +18419,11 @@ public final class Staking {
             throw new NullPointerException();
           }
           balance_ = value;
-          onChanged();
         } else {
           balanceBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -17189,11 +18433,11 @@ public final class Staking {
           cosmos.base.v1beta1.CoinOuterClass.Coin.Builder builderForValue) {
         if (balanceBuilder_ == null) {
           balance_ = builderForValue.build();
-          onChanged();
         } else {
           balanceBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -17201,38 +18445,38 @@ public final class Staking {
        */
       public Builder mergeBalance(cosmos.base.v1beta1.CoinOuterClass.Coin value) {
         if (balanceBuilder_ == null) {
-          if (balance_ != null) {
-            balance_ =
-              cosmos.base.v1beta1.CoinOuterClass.Coin.newBuilder(balance_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            balance_ != null &&
+            balance_ != cosmos.base.v1beta1.CoinOuterClass.Coin.getDefaultInstance()) {
+            getBalanceBuilder().mergeFrom(value);
           } else {
             balance_ = value;
           }
-          onChanged();
         } else {
           balanceBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.cosmos.base.v1beta1.Coin balance = 2 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearBalance() {
-        if (balanceBuilder_ == null) {
-          balance_ = null;
-          onChanged();
-        } else {
-          balance_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        balance_ = null;
+        if (balanceBuilder_ != null) {
+          balanceBuilder_.dispose();
           balanceBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.cosmos.base.v1beta1.Coin balance = 2 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.base.v1beta1.CoinOuterClass.Coin.Builder getBalanceBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getBalanceFieldBuilder().getBuilder();
       }
@@ -17296,7 +18540,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DelegationResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -17376,67 +18631,6 @@ public final class Staking {
       return new RedelegationEntryResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RedelegationEntryResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.staking.v1beta1.Staking.RedelegationEntry.Builder subBuilder = null;
-              if (redelegationEntry_ != null) {
-                subBuilder = redelegationEntry_.toBuilder();
-              }
-              redelegationEntry_ = input.readMessage(cosmos.staking.v1beta1.Staking.RedelegationEntry.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(redelegationEntry_);
-                redelegationEntry_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              balance_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_RedelegationEntryResponse_descriptor;
@@ -17473,11 +18667,12 @@ public final class Staking {
      */
     @java.lang.Override
     public cosmos.staking.v1beta1.Staking.RedelegationEntryOrBuilder getRedelegationEntryOrBuilder() {
-      return getRedelegationEntry();
+      return redelegationEntry_ == null ? cosmos.staking.v1beta1.Staking.RedelegationEntry.getDefaultInstance() : redelegationEntry_;
     }
 
     public static final int BALANCE_FIELD_NUMBER = 4;
-    private volatile java.lang.Object balance_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object balance_ = "";
     /**
      * <code>string balance = 4 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int"];</code>
      * @return The balance.
@@ -17531,10 +18726,10 @@ public final class Staking {
       if (redelegationEntry_ != null) {
         output.writeMessage(1, getRedelegationEntry());
       }
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, balance_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -17547,10 +18742,10 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getRedelegationEntry());
       }
-      if (!getBalanceBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(balance_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, balance_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -17572,7 +18767,7 @@ public final class Staking {
       }
       if (!getBalance()
           .equals(other.getBalance())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -17589,7 +18784,7 @@ public final class Staking {
       }
       hash = (37 * hash) + BALANCE_FIELD_NUMBER;
       hash = (53 * hash) + getBalance().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -17638,11 +18833,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.RedelegationEntryResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.RedelegationEntryResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -17712,30 +18909,24 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.RedelegationEntryResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (redelegationEntryBuilder_ == null) {
-          redelegationEntry_ = null;
-        } else {
-          redelegationEntry_ = null;
+        bitField0_ = 0;
+        redelegationEntry_ = null;
+        if (redelegationEntryBuilder_ != null) {
+          redelegationEntryBuilder_.dispose();
           redelegationEntryBuilder_ = null;
         }
         balance_ = "";
-
         return this;
       }
 
@@ -17762,14 +18953,21 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.RedelegationEntryResponse buildPartial() {
         cosmos.staking.v1beta1.Staking.RedelegationEntryResponse result = new cosmos.staking.v1beta1.Staking.RedelegationEntryResponse(this);
-        if (redelegationEntryBuilder_ == null) {
-          result.redelegationEntry_ = redelegationEntry_;
-        } else {
-          result.redelegationEntry_ = redelegationEntryBuilder_.build();
-        }
-        result.balance_ = balance_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.RedelegationEntryResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.redelegationEntry_ = redelegationEntryBuilder_ == null
+              ? redelegationEntry_
+              : redelegationEntryBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.balance_ = balance_;
+        }
       }
 
       @java.lang.Override
@@ -17821,9 +19019,10 @@ public final class Staking {
         }
         if (!other.getBalance().isEmpty()) {
           balance_ = other.balance_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -17838,19 +19037,45 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.RedelegationEntryResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getRedelegationEntryFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 34: {
+                balance_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.RedelegationEntryResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private cosmos.staking.v1beta1.Staking.RedelegationEntry redelegationEntry_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -17860,7 +19085,7 @@ public final class Staking {
        * @return Whether the redelegationEntry field is set.
        */
       public boolean hasRedelegationEntry() {
-        return redelegationEntryBuilder_ != null || redelegationEntry_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.cosmos.staking.v1beta1.RedelegationEntry redelegation_entry = 1 [(.gogoproto.nullable) = false];</code>
@@ -17882,11 +19107,11 @@ public final class Staking {
             throw new NullPointerException();
           }
           redelegationEntry_ = value;
-          onChanged();
         } else {
           redelegationEntryBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -17896,11 +19121,11 @@ public final class Staking {
           cosmos.staking.v1beta1.Staking.RedelegationEntry.Builder builderForValue) {
         if (redelegationEntryBuilder_ == null) {
           redelegationEntry_ = builderForValue.build();
-          onChanged();
         } else {
           redelegationEntryBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -17908,38 +19133,38 @@ public final class Staking {
        */
       public Builder mergeRedelegationEntry(cosmos.staking.v1beta1.Staking.RedelegationEntry value) {
         if (redelegationEntryBuilder_ == null) {
-          if (redelegationEntry_ != null) {
-            redelegationEntry_ =
-              cosmos.staking.v1beta1.Staking.RedelegationEntry.newBuilder(redelegationEntry_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            redelegationEntry_ != null &&
+            redelegationEntry_ != cosmos.staking.v1beta1.Staking.RedelegationEntry.getDefaultInstance()) {
+            getRedelegationEntryBuilder().mergeFrom(value);
           } else {
             redelegationEntry_ = value;
           }
-          onChanged();
         } else {
           redelegationEntryBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.cosmos.staking.v1beta1.RedelegationEntry redelegation_entry = 1 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearRedelegationEntry() {
-        if (redelegationEntryBuilder_ == null) {
-          redelegationEntry_ = null;
-          onChanged();
-        } else {
-          redelegationEntry_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        redelegationEntry_ = null;
+        if (redelegationEntryBuilder_ != null) {
+          redelegationEntryBuilder_.dispose();
           redelegationEntryBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.cosmos.staking.v1beta1.RedelegationEntry redelegation_entry = 1 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.staking.v1beta1.Staking.RedelegationEntry.Builder getRedelegationEntryBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getRedelegationEntryFieldBuilder().getBuilder();
       }
@@ -18012,11 +19237,9 @@ public final class Staking {
        */
       public Builder setBalance(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         balance_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -18025,8 +19248,8 @@ public final class Staking {
        * @return This builder for chaining.
        */
       public Builder clearBalance() {
-        
         balance_ = getDefaultInstance().getBalance();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -18037,12 +19260,10 @@ public final class Staking {
        */
       public Builder setBalanceBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         balance_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -18079,7 +19300,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RedelegationEntryResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -18171,74 +19403,6 @@ public final class Staking {
       return new RedelegationResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RedelegationResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.staking.v1beta1.Staking.Redelegation.Builder subBuilder = null;
-              if (redelegation_ != null) {
-                subBuilder = redelegation_.toBuilder();
-              }
-              redelegation_ = input.readMessage(cosmos.staking.v1beta1.Staking.Redelegation.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(redelegation_);
-                redelegation_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                entries_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.RedelegationEntryResponse>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              entries_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Staking.RedelegationEntryResponse.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          entries_ = java.util.Collections.unmodifiableList(entries_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_RedelegationResponse_descriptor;
@@ -18275,10 +19439,11 @@ public final class Staking {
      */
     @java.lang.Override
     public cosmos.staking.v1beta1.Staking.RedelegationOrBuilder getRedelegationOrBuilder() {
-      return getRedelegation();
+      return redelegation_ == null ? cosmos.staking.v1beta1.Staking.Redelegation.getDefaultInstance() : redelegation_;
     }
 
     public static final int ENTRIES_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Staking.RedelegationEntryResponse> entries_;
     /**
      * <code>repeated .cosmos.staking.v1beta1.RedelegationEntryResponse entries = 2 [(.gogoproto.nullable) = false];</code>
@@ -18338,7 +19503,7 @@ public final class Staking {
       for (int i = 0; i < entries_.size(); i++) {
         output.writeMessage(2, entries_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -18355,7 +19520,7 @@ public final class Staking {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, entries_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -18377,7 +19542,7 @@ public final class Staking {
       }
       if (!getEntriesList()
           .equals(other.getEntriesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -18396,7 +19561,7 @@ public final class Staking {
         hash = (37 * hash) + ENTRIES_FIELD_NUMBER;
         hash = (53 * hash) + getEntriesList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -18445,11 +19610,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.RedelegationResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.RedelegationResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -18519,35 +19686,30 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.RedelegationResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getEntriesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (redelegationBuilder_ == null) {
-          redelegation_ = null;
-        } else {
-          redelegation_ = null;
+        bitField0_ = 0;
+        redelegation_ = null;
+        if (redelegationBuilder_ != null) {
+          redelegationBuilder_.dispose();
           redelegationBuilder_ = null;
         }
         if (entriesBuilder_ == null) {
           entries_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          entries_ = null;
           entriesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -18574,23 +19736,31 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.RedelegationResponse buildPartial() {
         cosmos.staking.v1beta1.Staking.RedelegationResponse result = new cosmos.staking.v1beta1.Staking.RedelegationResponse(this);
-        int from_bitField0_ = bitField0_;
-        if (redelegationBuilder_ == null) {
-          result.redelegation_ = redelegation_;
-        } else {
-          result.redelegation_ = redelegationBuilder_.build();
-        }
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.staking.v1beta1.Staking.RedelegationResponse result) {
         if (entriesBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             entries_ = java.util.Collections.unmodifiableList(entries_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.entries_ = entries_;
         } else {
           result.entries_ = entriesBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.RedelegationResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.redelegation_ = redelegationBuilder_ == null
+              ? redelegation_
+              : redelegationBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -18644,7 +19814,7 @@ public final class Staking {
           if (!other.entries_.isEmpty()) {
             if (entries_.isEmpty()) {
               entries_ = other.entries_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
             } else {
               ensureEntriesIsMutable();
               entries_.addAll(other.entries_);
@@ -18657,7 +19827,7 @@ public final class Staking {
               entriesBuilder_.dispose();
               entriesBuilder_ = null;
               entries_ = other.entries_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
               entriesBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getEntriesFieldBuilder() : null;
@@ -18666,7 +19836,7 @@ public final class Staking {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -18681,17 +19851,50 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.RedelegationResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getRedelegationFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                cosmos.staking.v1beta1.Staking.RedelegationEntryResponse m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Staking.RedelegationEntryResponse.parser(),
+                        extensionRegistry);
+                if (entriesBuilder_ == null) {
+                  ensureEntriesIsMutable();
+                  entries_.add(m);
+                } else {
+                  entriesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.RedelegationResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -18704,7 +19907,7 @@ public final class Staking {
        * @return Whether the redelegation field is set.
        */
       public boolean hasRedelegation() {
-        return redelegationBuilder_ != null || redelegation_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.cosmos.staking.v1beta1.Redelegation redelegation = 1 [(.gogoproto.nullable) = false];</code>
@@ -18726,11 +19929,11 @@ public final class Staking {
             throw new NullPointerException();
           }
           redelegation_ = value;
-          onChanged();
         } else {
           redelegationBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -18740,11 +19943,11 @@ public final class Staking {
           cosmos.staking.v1beta1.Staking.Redelegation.Builder builderForValue) {
         if (redelegationBuilder_ == null) {
           redelegation_ = builderForValue.build();
-          onChanged();
         } else {
           redelegationBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -18752,38 +19955,38 @@ public final class Staking {
        */
       public Builder mergeRedelegation(cosmos.staking.v1beta1.Staking.Redelegation value) {
         if (redelegationBuilder_ == null) {
-          if (redelegation_ != null) {
-            redelegation_ =
-              cosmos.staking.v1beta1.Staking.Redelegation.newBuilder(redelegation_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            redelegation_ != null &&
+            redelegation_ != cosmos.staking.v1beta1.Staking.Redelegation.getDefaultInstance()) {
+            getRedelegationBuilder().mergeFrom(value);
           } else {
             redelegation_ = value;
           }
-          onChanged();
         } else {
           redelegationBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.cosmos.staking.v1beta1.Redelegation redelegation = 1 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearRedelegation() {
-        if (redelegationBuilder_ == null) {
-          redelegation_ = null;
-          onChanged();
-        } else {
-          redelegation_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        redelegation_ = null;
+        if (redelegationBuilder_ != null) {
+          redelegationBuilder_.dispose();
           redelegationBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.cosmos.staking.v1beta1.Redelegation redelegation = 1 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.staking.v1beta1.Staking.Redelegation.Builder getRedelegationBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getRedelegationFieldBuilder().getBuilder();
       }
@@ -18818,9 +20021,9 @@ public final class Staking {
       private java.util.List<cosmos.staking.v1beta1.Staking.RedelegationEntryResponse> entries_ =
         java.util.Collections.emptyList();
       private void ensureEntriesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           entries_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.RedelegationEntryResponse>(entries_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -18970,7 +20173,7 @@ public final class Staking {
       public Builder clearEntries() {
         if (entriesBuilder_ == null) {
           entries_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           entriesBuilder_.clear();
@@ -19047,7 +20250,7 @@ public final class Staking {
           entriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.staking.v1beta1.Staking.RedelegationEntryResponse, cosmos.staking.v1beta1.Staking.RedelegationEntryResponse.Builder, cosmos.staking.v1beta1.Staking.RedelegationEntryResponseOrBuilder>(
                   entries_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           entries_ = null;
@@ -19087,7 +20290,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RedelegationResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -19164,60 +20378,6 @@ public final class Staking {
       return new Pool();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Pool(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              notBondedTokens_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              bondedTokens_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Staking.internal_static_cosmos_staking_v1beta1_Pool_descriptor;
@@ -19232,7 +20392,8 @@ public final class Staking {
     }
 
     public static final int NOT_BONDED_TOKENS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object notBondedTokens_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object notBondedTokens_ = "";
     /**
      * <code>string not_bonded_tokens = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.jsontag) = "not_bonded_tokens"];</code>
      * @return The notBondedTokens.
@@ -19270,7 +20431,8 @@ public final class Staking {
     }
 
     public static final int BONDED_TOKENS_FIELD_NUMBER = 2;
-    private volatile java.lang.Object bondedTokens_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object bondedTokens_ = "";
     /**
      * <code>string bonded_tokens = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int", (.gogoproto.jsontag) = "bonded_tokens", (.gogoproto.moretags) = "yaml:&#92;"bonded_tokens&#92;""];</code>
      * @return The bondedTokens.
@@ -19321,13 +20483,13 @@ public final class Staking {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getNotBondedTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(notBondedTokens_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, notBondedTokens_);
       }
-      if (!getBondedTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bondedTokens_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, bondedTokens_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -19336,13 +20498,13 @@ public final class Staking {
       if (size != -1) return size;
 
       size = 0;
-      if (!getNotBondedTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(notBondedTokens_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, notBondedTokens_);
       }
-      if (!getBondedTokensBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bondedTokens_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, bondedTokens_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -19361,7 +20523,7 @@ public final class Staking {
           .equals(other.getNotBondedTokens())) return false;
       if (!getBondedTokens()
           .equals(other.getBondedTokens())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -19376,7 +20538,7 @@ public final class Staking {
       hash = (53 * hash) + getNotBondedTokens().hashCode();
       hash = (37 * hash) + BONDED_TOKENS_FIELD_NUMBER;
       hash = (53 * hash) + getBondedTokens().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -19425,11 +20587,13 @@ public final class Staking {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Staking.Pool parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Staking.Pool parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -19498,26 +20662,20 @@ public final class Staking {
 
       // Construct using cosmos.staking.v1beta1.Staking.Pool.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         notBondedTokens_ = "";
-
         bondedTokens_ = "";
-
         return this;
       }
 
@@ -19544,10 +20702,19 @@ public final class Staking {
       @java.lang.Override
       public cosmos.staking.v1beta1.Staking.Pool buildPartial() {
         cosmos.staking.v1beta1.Staking.Pool result = new cosmos.staking.v1beta1.Staking.Pool(this);
-        result.notBondedTokens_ = notBondedTokens_;
-        result.bondedTokens_ = bondedTokens_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Staking.Pool result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.notBondedTokens_ = notBondedTokens_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.bondedTokens_ = bondedTokens_;
+        }
       }
 
       @java.lang.Override
@@ -19596,13 +20763,15 @@ public final class Staking {
         if (other == cosmos.staking.v1beta1.Staking.Pool.getDefaultInstance()) return this;
         if (!other.getNotBondedTokens().isEmpty()) {
           notBondedTokens_ = other.notBondedTokens_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getBondedTokens().isEmpty()) {
           bondedTokens_ = other.bondedTokens_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -19617,19 +20786,43 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Staking.Pool parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                notBondedTokens_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                bondedTokens_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Staking.Pool) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object notBondedTokens_ = "";
       /**
@@ -19672,11 +20865,9 @@ public final class Staking {
        */
       public Builder setNotBondedTokens(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         notBondedTokens_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -19685,8 +20876,8 @@ public final class Staking {
        * @return This builder for chaining.
        */
       public Builder clearNotBondedTokens() {
-        
         notBondedTokens_ = getDefaultInstance().getNotBondedTokens();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -19697,12 +20888,10 @@ public final class Staking {
        */
       public Builder setNotBondedTokensBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         notBondedTokens_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -19748,11 +20937,9 @@ public final class Staking {
        */
       public Builder setBondedTokens(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         bondedTokens_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -19761,8 +20948,8 @@ public final class Staking {
        * @return This builder for chaining.
        */
       public Builder clearBondedTokens() {
-        
         bondedTokens_ = getDefaultInstance().getBondedTokens();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -19773,12 +20960,10 @@ public final class Staking {
        */
       public Builder setBondedTokensBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         bondedTokens_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -19815,7 +21000,18 @@ public final class Staking {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Pool(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -19946,135 +21142,135 @@ public final class Staking {
     java.lang.String[] descriptorData = {
       "\n$cosmos/staking/v1beta1/staking.proto\022\026" +
       "cosmos.staking.v1beta1\032\024gogoproto/gogo.p" +
-      "roto\032\032google/protobuf2/any.proto\032\036google" +
-      "/protobuf/duration.proto\032\037google/protobu" +
-      "f/timestamp.proto\032\031cosmos_proto/cosmos.p" +
-      "roto\032\036cosmos/base/v1beta1/coin.proto\032\034te" +
-      "ndermint/types/types.proto\"y\n\016Historical" +
-      "Info\022.\n\006header\030\001 \001(\0132\030.tendermint.types." +
-      "HeaderB\004\310\336\037\000\0227\n\006valset\030\002 \003(\0132!.cosmos.st" +
-      "aking.v1beta1.ValidatorB\004\310\336\037\000\"\221\002\n\017Commis" +
-      "sionRates\022<\n\004rate\030\001 \001(\tB.\332\336\037&github.com/" +
-      "cosmos/cosmos-sdk/types.Dec\310\336\037\000\022S\n\010max_r" +
-      "ate\030\002 \001(\tBA\362\336\037\017yaml:\"max_rate\"\332\336\037&github" +
-      ".com/cosmos/cosmos-sdk/types.Dec\310\336\037\000\022a\n\017" +
-      "max_change_rate\030\003 \001(\tBH\362\336\037\026yaml:\"max_cha" +
-      "nge_rate\"\332\336\037&github.com/cosmos/cosmos-sd" +
-      "k/types.Dec\310\336\037\000:\010\350\240\037\001\230\240\037\000\"\264\001\n\nCommission" +
-      "\022K\n\020commission_rates\030\001 \001(\0132\'.cosmos.stak" +
-      "ing.v1beta1.CommissionRatesB\010\320\336\037\001\310\336\037\000\022O\n" +
-      "\013update_time\030\002 \001(\0132\032.google.protobuf.Tim" +
-      "estampB\036\310\336\037\000\220\337\037\001\362\336\037\022yaml:\"update_time\":\010" +
-      "\350\240\037\001\230\240\037\000\"\223\001\n\013Description\022\017\n\007moniker\030\001 \001(" +
-      "\t\022\020\n\010identity\030\002 \001(\t\022\017\n\007website\030\003 \001(\t\0225\n\020" +
-      "security_contact\030\004 \001(\tB\033\362\336\037\027yaml:\"securi" +
-      "ty_contact\"\022\017\n\007details\030\005 \001(\t:\010\350\240\037\001\230\240\037\000\"\226" +
-      "\006\n\tValidator\0225\n\020operator_address\030\001 \001(\tB\033" +
-      "\362\336\037\027yaml:\"operator_address\"\022d\n\020consensus" +
-      "_pubkey\030\002 \001(\0132\025.google.protobuf2.AnyB3\312\264" +
-      "-\024cosmos.crypto.PubKey\362\336\037\027yaml:\"consensu" +
-      "s_pubkey\"\022\016\n\006jailed\030\003 \001(\010\0222\n\006status\030\004 \001(" +
-      "\0162\".cosmos.staking.v1beta1.BondStatus\022>\n" +
-      "\006tokens\030\005 \001(\tB.\332\336\037&github.com/cosmos/cos" +
-      "mos-sdk/types.Int\310\336\037\000\022c\n\020delegator_share" +
-      "s\030\006 \001(\tBI\362\336\037\027yaml:\"delegator_shares\"\332\336\037&" +
-      "github.com/cosmos/cosmos-sdk/types.Dec\310\336" +
-      "\037\000\022>\n\013description\030\007 \001(\0132#.cosmos.staking" +
-      ".v1beta1.DescriptionB\004\310\336\037\000\0225\n\020unbonding_" +
-      "height\030\010 \001(\003B\033\362\336\037\027yaml:\"unbonding_height" +
-      "\"\022U\n\016unbonding_time\030\t \001(\0132\032.google.proto" +
-      "buf.TimestampB!\310\336\037\000\220\337\037\001\362\336\037\025yaml:\"unbondi" +
-      "ng_time\"\022<\n\ncommission\030\n \001(\0132\".cosmos.st" +
-      "aking.v1beta1.CommissionB\004\310\336\037\000\022i\n\023min_se" +
-      "lf_delegation\030\013 \001(\tBL\362\336\037\032yaml:\"min_self_" +
-      "delegation\"\332\336\037&github.com/cosmos/cosmos-" +
-      "sdk/types.Int\310\336\037\000:\014\350\240\037\000\230\240\037\000\210\240\037\000\"+\n\014ValAd" +
-      "dresses\022\021\n\taddresses\030\001 \003(\t:\010\230\240\037\000\200\334 \001\"\210\001\n" +
-      "\006DVPair\0227\n\021delegator_address\030\001 \001(\tB\034\362\336\037\030" +
-      "yaml:\"delegator_address\"\0227\n\021validator_ad" +
-      "dress\030\002 \001(\tB\034\362\336\037\030yaml:\"validator_address" +
-      "\":\014\350\240\037\000\210\240\037\000\230\240\037\000\">\n\007DVPairs\0223\n\005pairs\030\001 \003(" +
-      "\0132\036.cosmos.staking.v1beta1.DVPairB\004\310\336\037\000\"" +
-      "\325\001\n\nDVVTriplet\0227\n\021delegator_address\030\001 \001(" +
-      "\tB\034\362\336\037\030yaml:\"delegator_address\"\022?\n\025valid" +
-      "ator_src_address\030\002 \001(\tB \362\336\037\034yaml:\"valida" +
-      "tor_src_address\"\022?\n\025validator_dst_addres" +
-      "s\030\003 \001(\tB \362\336\037\034yaml:\"validator_dst_address" +
-      "\":\014\350\240\037\000\210\240\037\000\230\240\037\000\"I\n\013DVVTriplets\022:\n\010triple" +
-      "ts\030\001 \003(\0132\".cosmos.staking.v1beta1.DVVTri" +
-      "pletB\004\310\336\037\000\"\314\001\n\nDelegation\0227\n\021delegator_a" +
-      "ddress\030\001 \001(\tB\034\362\336\037\030yaml:\"delegator_addres" +
-      "s\"\0227\n\021validator_address\030\002 \001(\tB\034\362\336\037\030yaml:" +
-      "\"validator_address\"\022>\n\006shares\030\003 \001(\tB.\332\336\037" +
-      "&github.com/cosmos/cosmos-sdk/types.Dec\310" +
-      "\336\037\000:\014\350\240\037\000\210\240\037\000\230\240\037\000\"\336\001\n\023UnbondingDelegatio" +
-      "n\0227\n\021delegator_address\030\001 \001(\tB\034\362\336\037\030yaml:\"" +
-      "delegator_address\"\0227\n\021validator_address\030" +
-      "\002 \001(\tB\034\362\336\037\030yaml:\"validator_address\"\022G\n\007e" +
-      "ntries\030\003 \003(\01320.cosmos.staking.v1beta1.Un" +
-      "bondingDelegationEntryB\004\310\336\037\000:\014\350\240\037\000\210\240\037\000\230\240" +
-      "\037\000\"\326\002\n\030UnbondingDelegationEntry\0223\n\017creat" +
-      "ion_height\030\001 \001(\003B\032\362\336\037\026yaml:\"creation_hei" +
-      "ght\"\022W\n\017completion_time\030\002 \001(\0132\032.google.p" +
-      "rotobuf.TimestampB\"\310\336\037\000\220\337\037\001\362\336\037\026yaml:\"com" +
-      "pletion_time\"\022a\n\017initial_balance\030\003 \001(\tBH" +
-      "\332\336\037&github.com/cosmos/cosmos-sdk/types.I" +
-      "nt\310\336\037\000\362\336\037\026yaml:\"initial_balance\"\022?\n\007bala" +
-      "nce\030\004 \001(\tB.\332\336\037&github.com/cosmos/cosmos-" +
-      "sdk/types.Int\310\336\037\000:\010\350\240\037\001\230\240\037\000\"\322\002\n\021Redelega" +
-      "tionEntry\0223\n\017creation_height\030\001 \001(\003B\032\362\336\037\026" +
-      "yaml:\"creation_height\"\022W\n\017completion_tim" +
-      "e\030\002 \001(\0132\032.google.protobuf.TimestampB\"\310\336\037" +
-      "\000\220\337\037\001\362\336\037\026yaml:\"completion_time\"\022a\n\017initi" +
-      "al_balance\030\003 \001(\tBH\332\336\037&github.com/cosmos/" +
-      "cosmos-sdk/types.Int\310\336\037\000\362\336\037\026yaml:\"initia" +
-      "l_balance\"\022B\n\nshares_dst\030\004 \001(\tB.\332\336\037&gith" +
-      "ub.com/cosmos/cosmos-sdk/types.Dec\310\336\037\000:\010" +
-      "\350\240\037\001\230\240\037\000\"\231\002\n\014Redelegation\0227\n\021delegator_a" +
-      "ddress\030\001 \001(\tB\034\362\336\037\030yaml:\"delegator_addres" +
-      "s\"\022?\n\025validator_src_address\030\002 \001(\tB \362\336\037\034y" +
-      "aml:\"validator_src_address\"\022?\n\025validator" +
-      "_dst_address\030\003 \001(\tB \362\336\037\034yaml:\"validator_" +
-      "dst_address\"\022@\n\007entries\030\004 \003(\0132).cosmos.s" +
-      "taking.v1beta1.RedelegationEntryB\004\310\336\037\000:\014" +
-      "\350\240\037\000\210\240\037\000\230\240\037\000\"\256\002\n\006Params\022T\n\016unbonding_tim" +
-      "e\030\001 \001(\0132\031.google.protobuf.DurationB!\310\336\037\000" +
-      "\230\337\037\001\362\336\037\025yaml:\"unbonding_time\"\0221\n\016max_val" +
-      "idators\030\002 \001(\rB\031\362\336\037\025yaml:\"max_validators\"" +
-      "\022+\n\013max_entries\030\003 \001(\rB\026\362\336\037\022yaml:\"max_ent" +
-      "ries\"\0229\n\022historical_entries\030\004 \001(\rB\035\362\336\037\031y" +
-      "aml:\"historical_entries\"\022)\n\nbond_denom\030\005" +
-      " \001(\tB\025\362\336\037\021yaml:\"bond_denom\":\010\350\240\037\001\230\240\037\000\"\216\001" +
-      "\n\022DelegationResponse\022<\n\ndelegation\030\001 \001(\013" +
-      "2\".cosmos.staking.v1beta1.DelegationB\004\310\336" +
-      "\037\000\0220\n\007balance\030\002 \001(\0132\031.cosmos.base.v1beta" +
-      "1.CoinB\004\310\336\037\000:\010\350\240\037\000\230\240\037\000\"\257\001\n\031RedelegationE" +
-      "ntryResponse\022K\n\022redelegation_entry\030\001 \001(\013" +
-      "2).cosmos.staking.v1beta1.RedelegationEn" +
-      "tryB\004\310\336\037\000\022?\n\007balance\030\004 \001(\tB.\332\336\037&github.c" +
-      "om/cosmos/cosmos-sdk/types.Int\310\336\037\000:\004\350\240\037\001" +
-      "\"\250\001\n\024RedelegationResponse\022@\n\014redelegatio" +
-      "n\030\001 \001(\0132$.cosmos.staking.v1beta1.Redeleg" +
-      "ationB\004\310\336\037\000\022H\n\007entries\030\002 \003(\01321.cosmos.st" +
-      "aking.v1beta1.RedelegationEntryResponseB" +
-      "\004\310\336\037\000:\004\350\240\037\000\"\340\001\n\004Pool\022^\n\021not_bonded_token" +
-      "s\030\001 \001(\tBC\332\336\037&github.com/cosmos/cosmos-sd" +
-      "k/types.Int\352\336\037\021not_bonded_tokens\310\336\037\000\022n\n\r" +
-      "bonded_tokens\030\002 \001(\tBW\352\336\037\rbonded_tokens\332\336" +
-      "\037&github.com/cosmos/cosmos-sdk/types.Int" +
-      "\310\336\037\000\362\336\037\024yaml:\"bonded_tokens\":\010\360\240\037\001\350\240\037\001*\266" +
-      "\001\n\nBondStatus\022,\n\027BOND_STATUS_UNSPECIFIED" +
-      "\020\000\032\017\212\235 \013Unspecified\022&\n\024BOND_STATUS_UNBON" +
-      "DED\020\001\032\014\212\235 \010Unbonded\022(\n\025BOND_STATUS_UNBON" +
-      "DING\020\002\032\r\212\235 \tUnbonding\022\"\n\022BOND_STATUS_BON" +
-      "DED\020\003\032\n\212\235 \006Bonded\032\004\210\243\036\000B.Z,github.com/co" +
-      "smos/cosmos-sdk/x/staking/typesb\006proto3"
+      "roto\032\031google/protobuf/any.proto\032\036google/" +
+      "protobuf/duration.proto\032\037google/protobuf" +
+      "/timestamp.proto\032\031cosmos_proto/cosmos.pr" +
+      "oto\032\036cosmos/base/v1beta1/coin.proto\032\034ten" +
+      "dermint/types/types.proto\"y\n\016HistoricalI" +
+      "nfo\022.\n\006header\030\001 \001(\0132\030.tendermint.types.H" +
+      "eaderB\004\310\336\037\000\0227\n\006valset\030\002 \003(\0132!.cosmos.sta" +
+      "king.v1beta1.ValidatorB\004\310\336\037\000\"\221\002\n\017Commiss" +
+      "ionRates\022<\n\004rate\030\001 \001(\tB.\310\336\037\000\332\336\037&github.c" +
+      "om/cosmos/cosmos-sdk/types.Dec\022S\n\010max_ra" +
+      "te\030\002 \001(\tBA\310\336\037\000\332\336\037&github.com/cosmos/cosm" +
+      "os-sdk/types.Dec\362\336\037\017yaml:\"max_rate\"\022a\n\017m" +
+      "ax_change_rate\030\003 \001(\tBH\310\336\037\000\332\336\037&github.com" +
+      "/cosmos/cosmos-sdk/types.Dec\362\336\037\026yaml:\"ma" +
+      "x_change_rate\":\010\230\240\037\000\350\240\037\001\"\264\001\n\nCommission\022" +
+      "K\n\020commission_rates\030\001 \001(\0132\'.cosmos.staki" +
+      "ng.v1beta1.CommissionRatesB\010\310\336\037\000\320\336\037\001\022O\n\013" +
+      "update_time\030\002 \001(\0132\032.google.protobuf.Time" +
+      "stampB\036\310\336\037\000\362\336\037\022yaml:\"update_time\"\220\337\037\001:\010\230" +
+      "\240\037\000\350\240\037\001\"\223\001\n\013Description\022\017\n\007moniker\030\001 \001(\t" +
+      "\022\020\n\010identity\030\002 \001(\t\022\017\n\007website\030\003 \001(\t\0225\n\020s" +
+      "ecurity_contact\030\004 \001(\tB\033\362\336\037\027yaml:\"securit" +
+      "y_contact\"\022\017\n\007details\030\005 \001(\t:\010\230\240\037\000\350\240\037\001\"\225\006" +
+      "\n\tValidator\0225\n\020operator_address\030\001 \001(\tB\033\362" +
+      "\336\037\027yaml:\"operator_address\"\022c\n\020consensus_" +
+      "pubkey\030\002 \001(\0132\024.google.protobuf.AnyB3\362\336\037\027" +
+      "yaml:\"consensus_pubkey\"\312\264-\024cosmos.crypto" +
+      ".PubKey\022\016\n\006jailed\030\003 \001(\010\0222\n\006status\030\004 \001(\0162" +
+      "\".cosmos.staking.v1beta1.BondStatus\022>\n\006t" +
+      "okens\030\005 \001(\tB.\310\336\037\000\332\336\037&github.com/cosmos/c" +
+      "osmos-sdk/types.Int\022c\n\020delegator_shares\030" +
+      "\006 \001(\tBI\310\336\037\000\332\336\037&github.com/cosmos/cosmos-" +
+      "sdk/types.Dec\362\336\037\027yaml:\"delegator_shares\"" +
+      "\022>\n\013description\030\007 \001(\0132#.cosmos.staking.v" +
+      "1beta1.DescriptionB\004\310\336\037\000\0225\n\020unbonding_he" +
+      "ight\030\010 \001(\003B\033\362\336\037\027yaml:\"unbonding_height\"\022" +
+      "U\n\016unbonding_time\030\t \001(\0132\032.google.protobu" +
+      "f.TimestampB!\310\336\037\000\362\336\037\025yaml:\"unbonding_tim" +
+      "e\"\220\337\037\001\022<\n\ncommission\030\n \001(\0132\".cosmos.stak" +
+      "ing.v1beta1.CommissionB\004\310\336\037\000\022i\n\023min_self" +
+      "_delegation\030\013 \001(\tBL\310\336\037\000\332\336\037&github.com/co" +
+      "smos/cosmos-sdk/types.Int\362\336\037\032yaml:\"min_s" +
+      "elf_delegation\":\014\210\240\037\000\230\240\037\000\350\240\037\000\"+\n\014ValAddr" +
+      "esses\022\021\n\taddresses\030\001 \003(\t:\010\230\240\037\000\200\334 \001\"\210\001\n\006D" +
+      "VPair\0227\n\021delegator_address\030\001 \001(\tB\034\362\336\037\030ya" +
+      "ml:\"delegator_address\"\0227\n\021validator_addr" +
+      "ess\030\002 \001(\tB\034\362\336\037\030yaml:\"validator_address\":" +
+      "\014\210\240\037\000\230\240\037\000\350\240\037\000\">\n\007DVPairs\0223\n\005pairs\030\001 \003(\0132" +
+      "\036.cosmos.staking.v1beta1.DVPairB\004\310\336\037\000\"\325\001" +
+      "\n\nDVVTriplet\0227\n\021delegator_address\030\001 \001(\tB" +
+      "\034\362\336\037\030yaml:\"delegator_address\"\022?\n\025validat" +
+      "or_src_address\030\002 \001(\tB \362\336\037\034yaml:\"validato" +
+      "r_src_address\"\022?\n\025validator_dst_address\030" +
+      "\003 \001(\tB \362\336\037\034yaml:\"validator_dst_address\":" +
+      "\014\210\240\037\000\230\240\037\000\350\240\037\000\"I\n\013DVVTriplets\022:\n\010triplets" +
+      "\030\001 \003(\0132\".cosmos.staking.v1beta1.DVVTripl" +
+      "etB\004\310\336\037\000\"\314\001\n\nDelegation\0227\n\021delegator_add" +
+      "ress\030\001 \001(\tB\034\362\336\037\030yaml:\"delegator_address\"" +
+      "\0227\n\021validator_address\030\002 \001(\tB\034\362\336\037\030yaml:\"v" +
+      "alidator_address\"\022>\n\006shares\030\003 \001(\tB.\310\336\037\000\332" +
+      "\336\037&github.com/cosmos/cosmos-sdk/types.De" +
+      "c:\014\210\240\037\000\230\240\037\000\350\240\037\000\"\336\001\n\023UnbondingDelegation\022" +
+      "7\n\021delegator_address\030\001 \001(\tB\034\362\336\037\030yaml:\"de" +
+      "legator_address\"\0227\n\021validator_address\030\002 " +
+      "\001(\tB\034\362\336\037\030yaml:\"validator_address\"\022G\n\007ent" +
+      "ries\030\003 \003(\01320.cosmos.staking.v1beta1.Unbo" +
+      "ndingDelegationEntryB\004\310\336\037\000:\014\210\240\037\000\230\240\037\000\350\240\037\000" +
+      "\"\326\002\n\030UnbondingDelegationEntry\0223\n\017creatio" +
+      "n_height\030\001 \001(\003B\032\362\336\037\026yaml:\"creation_heigh" +
+      "t\"\022W\n\017completion_time\030\002 \001(\0132\032.google.pro" +
+      "tobuf.TimestampB\"\310\336\037\000\362\336\037\026yaml:\"completio" +
+      "n_time\"\220\337\037\001\022a\n\017initial_balance\030\003 \001(\tBH\310\336" +
+      "\037\000\332\336\037&github.com/cosmos/cosmos-sdk/types" +
+      ".Int\362\336\037\026yaml:\"initial_balance\"\022?\n\007balanc" +
+      "e\030\004 \001(\tB.\310\336\037\000\332\336\037&github.com/cosmos/cosmo" +
+      "s-sdk/types.Int:\010\230\240\037\000\350\240\037\001\"\322\002\n\021Redelegati" +
+      "onEntry\0223\n\017creation_height\030\001 \001(\003B\032\362\336\037\026ya" +
+      "ml:\"creation_height\"\022W\n\017completion_time\030" +
+      "\002 \001(\0132\032.google.protobuf.TimestampB\"\310\336\037\000\362" +
+      "\336\037\026yaml:\"completion_time\"\220\337\037\001\022a\n\017initial" +
+      "_balance\030\003 \001(\tBH\310\336\037\000\332\336\037&github.com/cosmo" +
+      "s/cosmos-sdk/types.Int\362\336\037\026yaml:\"initial_" +
+      "balance\"\022B\n\nshares_dst\030\004 \001(\tB.\310\336\037\000\332\336\037&gi" +
+      "thub.com/cosmos/cosmos-sdk/types.Dec:\010\230\240" +
+      "\037\000\350\240\037\001\"\231\002\n\014Redelegation\0227\n\021delegator_add" +
+      "ress\030\001 \001(\tB\034\362\336\037\030yaml:\"delegator_address\"" +
+      "\022?\n\025validator_src_address\030\002 \001(\tB \362\336\037\034yam" +
+      "l:\"validator_src_address\"\022?\n\025validator_d" +
+      "st_address\030\003 \001(\tB \362\336\037\034yaml:\"validator_ds" +
+      "t_address\"\022@\n\007entries\030\004 \003(\0132).cosmos.sta" +
+      "king.v1beta1.RedelegationEntryB\004\310\336\037\000:\014\210\240" +
+      "\037\000\230\240\037\000\350\240\037\000\"\256\002\n\006Params\022T\n\016unbonding_time\030" +
+      "\001 \001(\0132\031.google.protobuf.DurationB!\310\336\037\000\362\336" +
+      "\037\025yaml:\"unbonding_time\"\230\337\037\001\0221\n\016max_valid" +
+      "ators\030\002 \001(\rB\031\362\336\037\025yaml:\"max_validators\"\022+" +
+      "\n\013max_entries\030\003 \001(\rB\026\362\336\037\022yaml:\"max_entri" +
+      "es\"\0229\n\022historical_entries\030\004 \001(\rB\035\362\336\037\031yam" +
+      "l:\"historical_entries\"\022)\n\nbond_denom\030\005 \001" +
+      "(\tB\025\362\336\037\021yaml:\"bond_denom\":\010\230\240\037\000\350\240\037\001\"\216\001\n\022" +
+      "DelegationResponse\022<\n\ndelegation\030\001 \001(\0132\"" +
+      ".cosmos.staking.v1beta1.DelegationB\004\310\336\037\000" +
+      "\0220\n\007balance\030\002 \001(\0132\031.cosmos.base.v1beta1." +
+      "CoinB\004\310\336\037\000:\010\230\240\037\000\350\240\037\000\"\257\001\n\031RedelegationEnt" +
+      "ryResponse\022K\n\022redelegation_entry\030\001 \001(\0132)" +
+      ".cosmos.staking.v1beta1.RedelegationEntr" +
+      "yB\004\310\336\037\000\022?\n\007balance\030\004 \001(\tB.\310\336\037\000\332\336\037&github" +
+      ".com/cosmos/cosmos-sdk/types.Int:\004\350\240\037\001\"\250" +
+      "\001\n\024RedelegationResponse\022@\n\014redelegation\030" +
+      "\001 \001(\0132$.cosmos.staking.v1beta1.Redelegat" +
+      "ionB\004\310\336\037\000\022H\n\007entries\030\002 \003(\01321.cosmos.stak" +
+      "ing.v1beta1.RedelegationEntryResponseB\004\310" +
+      "\336\037\000:\004\350\240\037\000\"\340\001\n\004Pool\022^\n\021not_bonded_tokens\030" +
+      "\001 \001(\tBC\310\336\037\000\332\336\037&github.com/cosmos/cosmos-" +
+      "sdk/types.Int\352\336\037\021not_bonded_tokens\022n\n\rbo" +
+      "nded_tokens\030\002 \001(\tBW\310\336\037\000\332\336\037&github.com/co" +
+      "smos/cosmos-sdk/types.Int\352\336\037\rbonded_toke" +
+      "ns\362\336\037\024yaml:\"bonded_tokens\":\010\350\240\037\001\360\240\037\001*\266\001\n" +
+      "\nBondStatus\022,\n\027BOND_STATUS_UNSPECIFIED\020\000" +
+      "\032\017\212\235 \013Unspecified\022&\n\024BOND_STATUS_UNBONDE" +
+      "D\020\001\032\014\212\235 \010Unbonded\022(\n\025BOND_STATUS_UNBONDI" +
+      "NG\020\002\032\r\212\235 \tUnbonding\022\"\n\022BOND_STATUS_BONDE" +
+      "D\020\003\032\n\212\235 \006Bonded\032\004\210\243\036\000B.Z,github.com/cosm" +
+      "os/cosmos-sdk/x/staking/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
-          com.google.protobuf2.AnyProto.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
+          com.google.protobuf.AnyProto.getDescriptor(),
           com.google.protobuf.DurationProto.getDescriptor(),
           com.google.protobuf.TimestampProto.getDescriptor(),
           cosmos_proto.Cosmos.getDescriptor(),
@@ -20204,24 +21400,24 @@ public final class Staking {
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(cosmos_proto.Cosmos.acceptsInterface);
-    registry.add(com.google.protobuf2.GoGoProtos.customtype);
-    registry.add(com.google.protobuf2.GoGoProtos.description);
-    registry.add(com.google.protobuf2.GoGoProtos.embed);
-    registry.add(com.google.protobuf2.GoGoProtos.enumvalueCustomname);
-    registry.add(com.google.protobuf2.GoGoProtos.equal);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoEnumPrefix);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGetters);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoStringer);
-    registry.add(com.google.protobuf2.GoGoProtos.jsontag);
-    registry.add(com.google.protobuf2.GoGoProtos.moretags);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
-    registry.add(com.google.protobuf2.GoGoProtos.stdduration);
-    registry.add(com.google.protobuf2.GoGoProtos.stdtime);
-    registry.add(com.google.protobuf2.GoGoProtos.stringer);
+    registry.add(com.google.protobuf.GoGoProtos.customtype);
+    registry.add(com.google.protobuf.GoGoProtos.description);
+    registry.add(com.google.protobuf.GoGoProtos.embed);
+    registry.add(com.google.protobuf.GoGoProtos.enumvalueCustomname);
+    registry.add(com.google.protobuf.GoGoProtos.equal);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoEnumPrefix);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGetters);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoStringer);
+    registry.add(com.google.protobuf.GoGoProtos.jsontag);
+    registry.add(com.google.protobuf.GoGoProtos.moretags);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.stdduration);
+    registry.add(com.google.protobuf.GoGoProtos.stdtime);
+    registry.add(com.google.protobuf.GoGoProtos.stringer);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
-    com.google.protobuf2.AnyProto.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
+    com.google.protobuf.AnyProto.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
     cosmos_proto.Cosmos.getDescriptor();

@@ -95,7 +95,6 @@ public final class Genesis {
               sentinel.plan.v2.Genesis.GenesisPlan.class, sentinel.plan.v2.Genesis.GenesisPlan.Builder.class);
     }
 
-    private int bitField0_;
     public static final int PLAN_FIELD_NUMBER = 1;
     private sentinel.plan.v2.PlanOuterClass.Plan plan_;
     /**
@@ -104,7 +103,7 @@ public final class Genesis {
      */
     @java.lang.Override
     public boolean hasPlan() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return plan_ != null;
     }
     /**
      * <code>.sentinel.plan.v2.Plan plan = 1 [(.gogoproto.nullable) = false];</code>
@@ -173,7 +172,7 @@ public final class Genesis {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (plan_ != null) {
         output.writeMessage(1, getPlan());
       }
       for (int i = 0; i < nodes_.size(); i++) {
@@ -188,7 +187,7 @@ public final class Genesis {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (plan_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getPlan());
       }
@@ -360,19 +359,13 @@ public final class Genesis {
 
       // Construct using sentinel.plan.v2.Genesis.GenesisPlan.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getPlanFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -418,18 +411,15 @@ public final class Genesis {
 
       private void buildPartial0(sentinel.plan.v2.Genesis.GenesisPlan result) {
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.plan_ = planBuilder_ == null
               ? plan_
               : planBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
           nodes_.makeImmutable();
           result.nodes_ = nodes_;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -611,10 +601,8 @@ public final class Genesis {
         } else {
           planBuilder_.mergeFrom(value);
         }
-        if (plan_ != null) {
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -864,7 +852,7 @@ public final class Genesis {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           sentinel.plan.v2.PlanOuterClass.getDescriptor(),
         });
     internal_static_sentinel_plan_v2_GenesisPlan_descriptor =
@@ -875,12 +863,12 @@ public final class Genesis {
         new java.lang.String[] { "Plan", "Nodes", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     sentinel.plan.v2.PlanOuterClass.getDescriptor();
   }
 

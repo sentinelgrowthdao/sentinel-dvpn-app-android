@@ -21,12 +21,12 @@ public final class ValidatorOuterClass {
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
-    java.util.List<Validator>
+    java.util.List<tendermint.types.ValidatorOuterClass.Validator> 
         getValidatorsList();
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
-    Validator getValidators(int index);
+    tendermint.types.ValidatorOuterClass.Validator getValidators(int index);
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
@@ -34,12 +34,12 @@ public final class ValidatorOuterClass {
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
-    java.util.List<? extends ValidatorOrBuilder>
+    java.util.List<? extends tendermint.types.ValidatorOuterClass.ValidatorOrBuilder> 
         getValidatorsOrBuilderList();
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
-    ValidatorOrBuilder getValidatorsOrBuilder(
+    tendermint.types.ValidatorOuterClass.ValidatorOrBuilder getValidatorsOrBuilder(
         int index);
 
     /**
@@ -51,11 +51,11 @@ public final class ValidatorOuterClass {
      * <code>.tendermint.types.Validator proposer = 2;</code>
      * @return The proposer.
      */
-    Validator getProposer();
+    tendermint.types.ValidatorOuterClass.Validator getProposer();
     /**
      * <code>.tendermint.types.Validator proposer = 2;</code>
      */
-    ValidatorOrBuilder getProposerOrBuilder();
+    tendermint.types.ValidatorOuterClass.ValidatorOrBuilder getProposerOrBuilder();
 
     /**
      * <code>int64 total_voting_power = 3;</code>
@@ -79,146 +79,74 @@ public final class ValidatorOuterClass {
       validators_ = java.util.Collections.emptyList();
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new ValidatorSet();
     }
 
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ValidatorSet(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                validators_ = new java.util.ArrayList<Validator>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              validators_.add(
-                  input.readMessage(Validator.parser(), extensionRegistry));
-              break;
-            }
-            case 18: {
-              Validator.Builder subBuilder = null;
-              if (proposer_ != null) {
-                subBuilder = proposer_.toBuilder();
-              }
-              proposer_ = input.readMessage(Validator.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(proposer_);
-                proposer_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 24: {
-
-              totalVotingPower_ = input.readInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          validators_ = java.util.Collections.unmodifiableList(validators_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ValidatorOuterClass.internal_static_tendermint_types_ValidatorSet_descriptor;
+      return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_ValidatorSet_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ValidatorOuterClass.internal_static_tendermint_types_ValidatorSet_fieldAccessorTable
+      return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_ValidatorSet_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ValidatorSet.class, Builder.class);
+              tendermint.types.ValidatorOuterClass.ValidatorSet.class, tendermint.types.ValidatorOuterClass.ValidatorSet.Builder.class);
     }
 
     public static final int VALIDATORS_FIELD_NUMBER = 1;
-    private java.util.List<Validator> validators_;
+    @SuppressWarnings("serial")
+    private java.util.List<tendermint.types.ValidatorOuterClass.Validator> validators_;
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
-    @Override
-    public java.util.List<Validator> getValidatorsList() {
+    @java.lang.Override
+    public java.util.List<tendermint.types.ValidatorOuterClass.Validator> getValidatorsList() {
       return validators_;
     }
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
-    @Override
-    public java.util.List<? extends ValidatorOrBuilder>
+    @java.lang.Override
+    public java.util.List<? extends tendermint.types.ValidatorOuterClass.ValidatorOrBuilder> 
         getValidatorsOrBuilderList() {
       return validators_;
     }
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
-    @Override
+    @java.lang.Override
     public int getValidatorsCount() {
       return validators_.size();
     }
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
-    @Override
-    public Validator getValidators(int index) {
+    @java.lang.Override
+    public tendermint.types.ValidatorOuterClass.Validator getValidators(int index) {
       return validators_.get(index);
     }
     /**
      * <code>repeated .tendermint.types.Validator validators = 1;</code>
      */
-    @Override
-    public ValidatorOrBuilder getValidatorsOrBuilder(
+    @java.lang.Override
+    public tendermint.types.ValidatorOuterClass.ValidatorOrBuilder getValidatorsOrBuilder(
         int index) {
       return validators_.get(index);
     }
 
     public static final int PROPOSER_FIELD_NUMBER = 2;
-    private Validator proposer_;
+    private tendermint.types.ValidatorOuterClass.Validator proposer_;
     /**
      * <code>.tendermint.types.Validator proposer = 2;</code>
      * @return Whether the proposer field is set.
      */
-    @Override
+    @java.lang.Override
     public boolean hasProposer() {
       return proposer_ != null;
     }
@@ -226,31 +154,31 @@ public final class ValidatorOuterClass {
      * <code>.tendermint.types.Validator proposer = 2;</code>
      * @return The proposer.
      */
-    @Override
-    public Validator getProposer() {
-      return proposer_ == null ? Validator.getDefaultInstance() : proposer_;
+    @java.lang.Override
+    public tendermint.types.ValidatorOuterClass.Validator getProposer() {
+      return proposer_ == null ? tendermint.types.ValidatorOuterClass.Validator.getDefaultInstance() : proposer_;
     }
     /**
      * <code>.tendermint.types.Validator proposer = 2;</code>
      */
-    @Override
-    public ValidatorOrBuilder getProposerOrBuilder() {
-      return getProposer();
+    @java.lang.Override
+    public tendermint.types.ValidatorOuterClass.ValidatorOrBuilder getProposerOrBuilder() {
+      return proposer_ == null ? tendermint.types.ValidatorOuterClass.Validator.getDefaultInstance() : proposer_;
     }
 
     public static final int TOTAL_VOTING_POWER_FIELD_NUMBER = 3;
-    private long totalVotingPower_;
+    private long totalVotingPower_ = 0L;
     /**
      * <code>int64 total_voting_power = 3;</code>
      * @return The totalVotingPower.
      */
-    @Override
+    @java.lang.Override
     public long getTotalVotingPower() {
       return totalVotingPower_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -260,7 +188,7 @@ public final class ValidatorOuterClass {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < validators_.size(); i++) {
@@ -272,10 +200,10 @@ public final class ValidatorOuterClass {
       if (totalVotingPower_ != 0L) {
         output.writeInt64(3, totalVotingPower_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -293,20 +221,20 @@ public final class ValidatorOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(3, totalVotingPower_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ValidatorSet)) {
+      if (!(obj instanceof tendermint.types.ValidatorOuterClass.ValidatorSet)) {
         return super.equals(obj);
       }
-      ValidatorSet other = (ValidatorSet) obj;
+      tendermint.types.ValidatorOuterClass.ValidatorSet other = (tendermint.types.ValidatorOuterClass.ValidatorSet) obj;
 
       if (!getValidatorsList()
           .equals(other.getValidatorsList())) return false;
@@ -317,11 +245,11 @@ public final class ValidatorOuterClass {
       }
       if (getTotalVotingPower()
           != other.getTotalVotingPower()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -339,74 +267,76 @@ public final class ValidatorOuterClass {
       hash = (37 * hash) + TOTAL_VOTING_POWER_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getTotalVotingPower());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static ValidatorSet parseFrom(
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ValidatorSet parseFrom(
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ValidatorSet parseFrom(
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ValidatorSet parseFrom(
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ValidatorSet parseFrom(byte[] data)
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ValidatorSet parseFrom(
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ValidatorSet parseFrom(java.io.InputStream input)
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ValidatorSet parseFrom(
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ValidatorSet parseDelimitedFrom(java.io.InputStream input)
+
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static ValidatorSet parseDelimitedFrom(
+
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ValidatorSet parseFrom(
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static ValidatorSet parseFrom(
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -414,23 +344,23 @@ public final class ValidatorOuterClass {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ValidatorSet prototype) {
+    public static Builder newBuilder(tendermint.types.ValidatorOuterClass.ValidatorSet prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -440,80 +370,80 @@ public final class ValidatorOuterClass {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:tendermint.types.ValidatorSet)
-        ValidatorSetOrBuilder {
+        tendermint.types.ValidatorOuterClass.ValidatorSetOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ValidatorOuterClass.internal_static_tendermint_types_ValidatorSet_descriptor;
+        return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_ValidatorSet_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ValidatorOuterClass.internal_static_tendermint_types_ValidatorSet_fieldAccessorTable
+        return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_ValidatorSet_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ValidatorSet.class, Builder.class);
+                tendermint.types.ValidatorOuterClass.ValidatorSet.class, tendermint.types.ValidatorOuterClass.ValidatorSet.Builder.class);
       }
 
       // Construct using tendermint.types.ValidatorOuterClass.ValidatorSet.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
+
       }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getValidatorsFieldBuilder();
-        }
-      }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (validatorsBuilder_ == null) {
           validators_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          validators_ = null;
           validatorsBuilder_.clear();
         }
-        if (proposerBuilder_ == null) {
-          proposer_ = null;
-        } else {
-          proposer_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        proposer_ = null;
+        if (proposerBuilder_ != null) {
+          proposerBuilder_.dispose();
           proposerBuilder_ = null;
         }
         totalVotingPower_ = 0L;
-
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ValidatorOuterClass.internal_static_tendermint_types_ValidatorSet_descriptor;
+        return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_ValidatorSet_descriptor;
       }
 
-      @Override
-      public ValidatorSet getDefaultInstanceForType() {
-        return ValidatorSet.getDefaultInstance();
+      @java.lang.Override
+      public tendermint.types.ValidatorOuterClass.ValidatorSet getDefaultInstanceForType() {
+        return tendermint.types.ValidatorOuterClass.ValidatorSet.getDefaultInstance();
       }
 
-      @Override
-      public ValidatorSet build() {
-        ValidatorSet result = buildPartial();
+      @java.lang.Override
+      public tendermint.types.ValidatorOuterClass.ValidatorSet build() {
+        tendermint.types.ValidatorOuterClass.ValidatorSet result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public ValidatorSet buildPartial() {
-        ValidatorSet result = new ValidatorSet(this);
-        int from_bitField0_ = bitField0_;
+      @java.lang.Override
+      public tendermint.types.ValidatorOuterClass.ValidatorSet buildPartial() {
+        tendermint.types.ValidatorOuterClass.ValidatorSet result = new tendermint.types.ValidatorOuterClass.ValidatorSet(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tendermint.types.ValidatorOuterClass.ValidatorSet result) {
         if (validatorsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             validators_ = java.util.Collections.unmodifiableList(validators_);
@@ -523,60 +453,64 @@ public final class ValidatorOuterClass {
         } else {
           result.validators_ = validatorsBuilder_.build();
         }
-        if (proposerBuilder_ == null) {
-          result.proposer_ = proposer_;
-        } else {
-          result.proposer_ = proposerBuilder_.build();
-        }
-        result.totalVotingPower_ = totalVotingPower_;
-        onBuilt();
-        return result;
       }
 
-      @Override
+      private void buildPartial0(tendermint.types.ValidatorOuterClass.ValidatorSet result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.proposer_ = proposerBuilder_ == null
+              ? proposer_
+              : proposerBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.totalVotingPower_ = totalVotingPower_;
+        }
+      }
+
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ValidatorSet) {
-          return mergeFrom((ValidatorSet)other);
+        if (other instanceof tendermint.types.ValidatorOuterClass.ValidatorSet) {
+          return mergeFrom((tendermint.types.ValidatorOuterClass.ValidatorSet)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ValidatorSet other) {
-        if (other == ValidatorSet.getDefaultInstance()) return this;
+      public Builder mergeFrom(tendermint.types.ValidatorOuterClass.ValidatorSet other) {
+        if (other == tendermint.types.ValidatorOuterClass.ValidatorSet.getDefaultInstance()) return this;
         if (validatorsBuilder_ == null) {
           if (!other.validators_.isEmpty()) {
             if (validators_.isEmpty()) {
@@ -609,52 +543,90 @@ public final class ValidatorOuterClass {
         if (other.getTotalVotingPower() != 0L) {
           setTotalVotingPower(other.getTotalVotingPower());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ValidatorSet parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                tendermint.types.ValidatorOuterClass.Validator m =
+                    input.readMessage(
+                        tendermint.types.ValidatorOuterClass.Validator.parser(),
+                        extensionRegistry);
+                if (validatorsBuilder_ == null) {
+                  ensureValidatorsIsMutable();
+                  validators_.add(m);
+                } else {
+                  validatorsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getProposerFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                totalVotingPower_ = input.readInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ValidatorSet) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
 
-      private java.util.List<Validator> validators_ =
+      private java.util.List<tendermint.types.ValidatorOuterClass.Validator> validators_ =
         java.util.Collections.emptyList();
       private void ensureValidatorsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          validators_ = new java.util.ArrayList<Validator>(validators_);
+          validators_ = new java.util.ArrayList<tendermint.types.ValidatorOuterClass.Validator>(validators_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          Validator, Validator.Builder, ValidatorOrBuilder> validatorsBuilder_;
+          tendermint.types.ValidatorOuterClass.Validator, tendermint.types.ValidatorOuterClass.Validator.Builder, tendermint.types.ValidatorOuterClass.ValidatorOrBuilder> validatorsBuilder_;
 
       /**
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
-      public java.util.List<Validator> getValidatorsList() {
+      public java.util.List<tendermint.types.ValidatorOuterClass.Validator> getValidatorsList() {
         if (validatorsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(validators_);
         } else {
@@ -674,7 +646,7 @@ public final class ValidatorOuterClass {
       /**
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
-      public Validator getValidators(int index) {
+      public tendermint.types.ValidatorOuterClass.Validator getValidators(int index) {
         if (validatorsBuilder_ == null) {
           return validators_.get(index);
         } else {
@@ -685,7 +657,7 @@ public final class ValidatorOuterClass {
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
       public Builder setValidators(
-          int index, Validator value) {
+          int index, tendermint.types.ValidatorOuterClass.Validator value) {
         if (validatorsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -702,7 +674,7 @@ public final class ValidatorOuterClass {
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
       public Builder setValidators(
-          int index, Validator.Builder builderForValue) {
+          int index, tendermint.types.ValidatorOuterClass.Validator.Builder builderForValue) {
         if (validatorsBuilder_ == null) {
           ensureValidatorsIsMutable();
           validators_.set(index, builderForValue.build());
@@ -715,7 +687,7 @@ public final class ValidatorOuterClass {
       /**
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
-      public Builder addValidators(Validator value) {
+      public Builder addValidators(tendermint.types.ValidatorOuterClass.Validator value) {
         if (validatorsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -732,7 +704,7 @@ public final class ValidatorOuterClass {
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
       public Builder addValidators(
-          int index, Validator value) {
+          int index, tendermint.types.ValidatorOuterClass.Validator value) {
         if (validatorsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -749,7 +721,7 @@ public final class ValidatorOuterClass {
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
       public Builder addValidators(
-          Validator.Builder builderForValue) {
+          tendermint.types.ValidatorOuterClass.Validator.Builder builderForValue) {
         if (validatorsBuilder_ == null) {
           ensureValidatorsIsMutable();
           validators_.add(builderForValue.build());
@@ -763,7 +735,7 @@ public final class ValidatorOuterClass {
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
       public Builder addValidators(
-          int index, Validator.Builder builderForValue) {
+          int index, tendermint.types.ValidatorOuterClass.Validator.Builder builderForValue) {
         if (validatorsBuilder_ == null) {
           ensureValidatorsIsMutable();
           validators_.add(index, builderForValue.build());
@@ -777,7 +749,7 @@ public final class ValidatorOuterClass {
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
       public Builder addAllValidators(
-          Iterable<? extends Validator> values) {
+          java.lang.Iterable<? extends tendermint.types.ValidatorOuterClass.Validator> values) {
         if (validatorsBuilder_ == null) {
           ensureValidatorsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -817,14 +789,14 @@ public final class ValidatorOuterClass {
       /**
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
-      public Validator.Builder getValidatorsBuilder(
+      public tendermint.types.ValidatorOuterClass.Validator.Builder getValidatorsBuilder(
           int index) {
         return getValidatorsFieldBuilder().getBuilder(index);
       }
       /**
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
-      public ValidatorOrBuilder getValidatorsOrBuilder(
+      public tendermint.types.ValidatorOuterClass.ValidatorOrBuilder getValidatorsOrBuilder(
           int index) {
         if (validatorsBuilder_ == null) {
           return validators_.get(index);  } else {
@@ -834,7 +806,7 @@ public final class ValidatorOuterClass {
       /**
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
-      public java.util.List<? extends ValidatorOrBuilder>
+      public java.util.List<? extends tendermint.types.ValidatorOuterClass.ValidatorOrBuilder> 
            getValidatorsOrBuilderList() {
         if (validatorsBuilder_ != null) {
           return validatorsBuilder_.getMessageOrBuilderList();
@@ -845,31 +817,31 @@ public final class ValidatorOuterClass {
       /**
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
-      public Validator.Builder addValidatorsBuilder() {
+      public tendermint.types.ValidatorOuterClass.Validator.Builder addValidatorsBuilder() {
         return getValidatorsFieldBuilder().addBuilder(
-            Validator.getDefaultInstance());
+            tendermint.types.ValidatorOuterClass.Validator.getDefaultInstance());
       }
       /**
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
-      public Validator.Builder addValidatorsBuilder(
+      public tendermint.types.ValidatorOuterClass.Validator.Builder addValidatorsBuilder(
           int index) {
         return getValidatorsFieldBuilder().addBuilder(
-            index, Validator.getDefaultInstance());
+            index, tendermint.types.ValidatorOuterClass.Validator.getDefaultInstance());
       }
       /**
        * <code>repeated .tendermint.types.Validator validators = 1;</code>
        */
-      public java.util.List<Validator.Builder>
+      public java.util.List<tendermint.types.ValidatorOuterClass.Validator.Builder> 
            getValidatorsBuilderList() {
         return getValidatorsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          Validator, Validator.Builder, ValidatorOrBuilder>
+          tendermint.types.ValidatorOuterClass.Validator, tendermint.types.ValidatorOuterClass.Validator.Builder, tendermint.types.ValidatorOuterClass.ValidatorOrBuilder> 
           getValidatorsFieldBuilder() {
         if (validatorsBuilder_ == null) {
           validatorsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              Validator, Validator.Builder, ValidatorOrBuilder>(
+              tendermint.types.ValidatorOuterClass.Validator, tendermint.types.ValidatorOuterClass.Validator.Builder, tendermint.types.ValidatorOuterClass.ValidatorOrBuilder>(
                   validators_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -879,23 +851,23 @@ public final class ValidatorOuterClass {
         return validatorsBuilder_;
       }
 
-      private Validator proposer_;
+      private tendermint.types.ValidatorOuterClass.Validator proposer_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          Validator, Validator.Builder, ValidatorOrBuilder> proposerBuilder_;
+          tendermint.types.ValidatorOuterClass.Validator, tendermint.types.ValidatorOuterClass.Validator.Builder, tendermint.types.ValidatorOuterClass.ValidatorOrBuilder> proposerBuilder_;
       /**
        * <code>.tendermint.types.Validator proposer = 2;</code>
        * @return Whether the proposer field is set.
        */
       public boolean hasProposer() {
-        return proposerBuilder_ != null || proposer_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.tendermint.types.Validator proposer = 2;</code>
        * @return The proposer.
        */
-      public Validator getProposer() {
+      public tendermint.types.ValidatorOuterClass.Validator getProposer() {
         if (proposerBuilder_ == null) {
-          return proposer_ == null ? Validator.getDefaultInstance() : proposer_;
+          return proposer_ == null ? tendermint.types.ValidatorOuterClass.Validator.getDefaultInstance() : proposer_;
         } else {
           return proposerBuilder_.getMessage();
         }
@@ -903,93 +875,93 @@ public final class ValidatorOuterClass {
       /**
        * <code>.tendermint.types.Validator proposer = 2;</code>
        */
-      public Builder setProposer(Validator value) {
+      public Builder setProposer(tendermint.types.ValidatorOuterClass.Validator value) {
         if (proposerBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
           proposer_ = value;
-          onChanged();
         } else {
           proposerBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tendermint.types.Validator proposer = 2;</code>
        */
       public Builder setProposer(
-          Validator.Builder builderForValue) {
+          tendermint.types.ValidatorOuterClass.Validator.Builder builderForValue) {
         if (proposerBuilder_ == null) {
           proposer_ = builderForValue.build();
-          onChanged();
         } else {
           proposerBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tendermint.types.Validator proposer = 2;</code>
        */
-      public Builder mergeProposer(Validator value) {
+      public Builder mergeProposer(tendermint.types.ValidatorOuterClass.Validator value) {
         if (proposerBuilder_ == null) {
-          if (proposer_ != null) {
-            proposer_ =
-              Validator.newBuilder(proposer_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            proposer_ != null &&
+            proposer_ != tendermint.types.ValidatorOuterClass.Validator.getDefaultInstance()) {
+            getProposerBuilder().mergeFrom(value);
           } else {
             proposer_ = value;
           }
-          onChanged();
         } else {
           proposerBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tendermint.types.Validator proposer = 2;</code>
        */
       public Builder clearProposer() {
-        if (proposerBuilder_ == null) {
-          proposer_ = null;
-          onChanged();
-        } else {
-          proposer_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        proposer_ = null;
+        if (proposerBuilder_ != null) {
+          proposerBuilder_.dispose();
           proposerBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tendermint.types.Validator proposer = 2;</code>
        */
-      public Validator.Builder getProposerBuilder() {
-        
+      public tendermint.types.ValidatorOuterClass.Validator.Builder getProposerBuilder() {
+        bitField0_ |= 0x00000002;
         onChanged();
         return getProposerFieldBuilder().getBuilder();
       }
       /**
        * <code>.tendermint.types.Validator proposer = 2;</code>
        */
-      public ValidatorOrBuilder getProposerOrBuilder() {
+      public tendermint.types.ValidatorOuterClass.ValidatorOrBuilder getProposerOrBuilder() {
         if (proposerBuilder_ != null) {
           return proposerBuilder_.getMessageOrBuilder();
         } else {
           return proposer_ == null ?
-              Validator.getDefaultInstance() : proposer_;
+              tendermint.types.ValidatorOuterClass.Validator.getDefaultInstance() : proposer_;
         }
       }
       /**
        * <code>.tendermint.types.Validator proposer = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          Validator, Validator.Builder, ValidatorOrBuilder>
+          tendermint.types.ValidatorOuterClass.Validator, tendermint.types.ValidatorOuterClass.Validator.Builder, tendermint.types.ValidatorOuterClass.ValidatorOrBuilder> 
           getProposerFieldBuilder() {
         if (proposerBuilder_ == null) {
           proposerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              Validator, Validator.Builder, ValidatorOrBuilder>(
+              tendermint.types.ValidatorOuterClass.Validator, tendermint.types.ValidatorOuterClass.Validator.Builder, tendermint.types.ValidatorOuterClass.ValidatorOrBuilder>(
                   getProposer(),
                   getParentForChildren(),
                   isClean());
@@ -1003,7 +975,7 @@ public final class ValidatorOuterClass {
        * <code>int64 total_voting_power = 3;</code>
        * @return The totalVotingPower.
        */
-      @Override
+      @java.lang.Override
       public long getTotalVotingPower() {
         return totalVotingPower_;
       }
@@ -1013,8 +985,9 @@ public final class ValidatorOuterClass {
        * @return This builder for chaining.
        */
       public Builder setTotalVotingPower(long value) {
-        
+
         totalVotingPower_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1023,18 +996,18 @@ public final class ValidatorOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearTotalVotingPower() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         totalVotingPower_ = 0L;
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1045,23 +1018,34 @@ public final class ValidatorOuterClass {
     }
 
     // @@protoc_insertion_point(class_scope:tendermint.types.ValidatorSet)
-    private static final ValidatorSet DEFAULT_INSTANCE;
+    private static final tendermint.types.ValidatorOuterClass.ValidatorSet DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ValidatorSet();
+      DEFAULT_INSTANCE = new tendermint.types.ValidatorOuterClass.ValidatorSet();
     }
 
-    public static ValidatorSet getDefaultInstance() {
+    public static tendermint.types.ValidatorOuterClass.ValidatorSet getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<ValidatorSet>
         PARSER = new com.google.protobuf.AbstractParser<ValidatorSet>() {
-      @Override
+      @java.lang.Override
       public ValidatorSet parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ValidatorSet(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1069,13 +1053,13 @@ public final class ValidatorOuterClass {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ValidatorSet> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public ValidatorSet getDefaultInstanceForType() {
+    @java.lang.Override
+    public tendermint.types.ValidatorOuterClass.ValidatorSet getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1134,103 +1118,33 @@ public final class ValidatorOuterClass {
       address_ = com.google.protobuf.ByteString.EMPTY;
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new Validator();
     }
 
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Validator(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-              address_ = input.readBytes();
-              break;
-            }
-            case 18: {
-              tendermint.crypto.Keys.PublicKey.Builder subBuilder = null;
-              if (pubKey_ != null) {
-                subBuilder = pubKey_.toBuilder();
-              }
-              pubKey_ = input.readMessage(tendermint.crypto.Keys.PublicKey.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pubKey_);
-                pubKey_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 24: {
-
-              votingPower_ = input.readInt64();
-              break;
-            }
-            case 32: {
-
-              proposerPriority_ = input.readInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ValidatorOuterClass.internal_static_tendermint_types_Validator_descriptor;
+      return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_Validator_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ValidatorOuterClass.internal_static_tendermint_types_Validator_fieldAccessorTable
+      return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_Validator_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              Validator.class, Builder.class);
+              tendermint.types.ValidatorOuterClass.Validator.class, tendermint.types.ValidatorOuterClass.Validator.Builder.class);
     }
 
     public static final int ADDRESS_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString address_;
+    private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes address = 1;</code>
      * @return The address.
      */
-    @Override
+    @java.lang.Override
     public com.google.protobuf.ByteString getAddress() {
       return address_;
     }
@@ -1241,7 +1155,7 @@ public final class ValidatorOuterClass {
      * <code>.tendermint.crypto.PublicKey pub_key = 2 [(.gogoproto.nullable) = false];</code>
      * @return Whether the pubKey field is set.
      */
-    @Override
+    @java.lang.Override
     public boolean hasPubKey() {
       return pubKey_ != null;
     }
@@ -1249,42 +1163,42 @@ public final class ValidatorOuterClass {
      * <code>.tendermint.crypto.PublicKey pub_key = 2 [(.gogoproto.nullable) = false];</code>
      * @return The pubKey.
      */
-    @Override
+    @java.lang.Override
     public tendermint.crypto.Keys.PublicKey getPubKey() {
       return pubKey_ == null ? tendermint.crypto.Keys.PublicKey.getDefaultInstance() : pubKey_;
     }
     /**
      * <code>.tendermint.crypto.PublicKey pub_key = 2 [(.gogoproto.nullable) = false];</code>
      */
-    @Override
+    @java.lang.Override
     public tendermint.crypto.Keys.PublicKeyOrBuilder getPubKeyOrBuilder() {
-      return getPubKey();
+      return pubKey_ == null ? tendermint.crypto.Keys.PublicKey.getDefaultInstance() : pubKey_;
     }
 
     public static final int VOTING_POWER_FIELD_NUMBER = 3;
-    private long votingPower_;
+    private long votingPower_ = 0L;
     /**
      * <code>int64 voting_power = 3;</code>
      * @return The votingPower.
      */
-    @Override
+    @java.lang.Override
     public long getVotingPower() {
       return votingPower_;
     }
 
     public static final int PROPOSER_PRIORITY_FIELD_NUMBER = 4;
-    private long proposerPriority_;
+    private long proposerPriority_ = 0L;
     /**
      * <code>int64 proposer_priority = 4;</code>
      * @return The proposerPriority.
      */
-    @Override
+    @java.lang.Override
     public long getProposerPriority() {
       return proposerPriority_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1294,7 +1208,7 @@ public final class ValidatorOuterClass {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!address_.isEmpty()) {
@@ -1309,10 +1223,10 @@ public final class ValidatorOuterClass {
       if (proposerPriority_ != 0L) {
         output.writeInt64(4, proposerPriority_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1334,20 +1248,20 @@ public final class ValidatorOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(4, proposerPriority_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof Validator)) {
+      if (!(obj instanceof tendermint.types.ValidatorOuterClass.Validator)) {
         return super.equals(obj);
       }
-      Validator other = (Validator) obj;
+      tendermint.types.ValidatorOuterClass.Validator other = (tendermint.types.ValidatorOuterClass.Validator) obj;
 
       if (!getAddress()
           .equals(other.getAddress())) return false;
@@ -1360,11 +1274,11 @@ public final class ValidatorOuterClass {
           != other.getVotingPower()) return false;
       if (getProposerPriority()
           != other.getProposerPriority()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1383,74 +1297,76 @@ public final class ValidatorOuterClass {
       hash = (37 * hash) + PROPOSER_PRIORITY_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getProposerPriority());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static Validator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.Validator parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Validator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.Validator parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Validator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.Validator parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Validator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.Validator parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Validator parseFrom(byte[] data)
+    public static tendermint.types.ValidatorOuterClass.Validator parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Validator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.Validator parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Validator parseFrom(java.io.InputStream input)
+    public static tendermint.types.ValidatorOuterClass.Validator parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Validator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.Validator parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Validator parseDelimitedFrom(java.io.InputStream input)
+
+    public static tendermint.types.ValidatorOuterClass.Validator parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static Validator parseDelimitedFrom(
+
+    public static tendermint.types.ValidatorOuterClass.Validator parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Validator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.Validator parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Validator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.Validator parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1458,23 +1374,23 @@ public final class ValidatorOuterClass {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Validator prototype) {
+    public static Builder newBuilder(tendermint.types.ValidatorOuterClass.Validator prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1484,132 +1400,135 @@ public final class ValidatorOuterClass {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:tendermint.types.Validator)
-        ValidatorOrBuilder {
+        tendermint.types.ValidatorOuterClass.ValidatorOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ValidatorOuterClass.internal_static_tendermint_types_Validator_descriptor;
+        return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_Validator_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ValidatorOuterClass.internal_static_tendermint_types_Validator_fieldAccessorTable
+        return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_Validator_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                Validator.class, Builder.class);
+                tendermint.types.ValidatorOuterClass.Validator.class, tendermint.types.ValidatorOuterClass.Validator.Builder.class);
       }
 
       // Construct using tendermint.types.ValidatorOuterClass.Validator.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
+
       }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         address_ = com.google.protobuf.ByteString.EMPTY;
-
-        if (pubKeyBuilder_ == null) {
-          pubKey_ = null;
-        } else {
-          pubKey_ = null;
+        pubKey_ = null;
+        if (pubKeyBuilder_ != null) {
+          pubKeyBuilder_.dispose();
           pubKeyBuilder_ = null;
         }
         votingPower_ = 0L;
-
         proposerPriority_ = 0L;
-
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ValidatorOuterClass.internal_static_tendermint_types_Validator_descriptor;
+        return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_Validator_descriptor;
       }
 
-      @Override
-      public Validator getDefaultInstanceForType() {
-        return Validator.getDefaultInstance();
+      @java.lang.Override
+      public tendermint.types.ValidatorOuterClass.Validator getDefaultInstanceForType() {
+        return tendermint.types.ValidatorOuterClass.Validator.getDefaultInstance();
       }
 
-      @Override
-      public Validator build() {
-        Validator result = buildPartial();
+      @java.lang.Override
+      public tendermint.types.ValidatorOuterClass.Validator build() {
+        tendermint.types.ValidatorOuterClass.Validator result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public Validator buildPartial() {
-        Validator result = new Validator(this);
-        result.address_ = address_;
-        if (pubKeyBuilder_ == null) {
-          result.pubKey_ = pubKey_;
-        } else {
-          result.pubKey_ = pubKeyBuilder_.build();
-        }
-        result.votingPower_ = votingPower_;
-        result.proposerPriority_ = proposerPriority_;
+      @java.lang.Override
+      public tendermint.types.ValidatorOuterClass.Validator buildPartial() {
+        tendermint.types.ValidatorOuterClass.Validator result = new tendermint.types.ValidatorOuterClass.Validator(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @Override
+      private void buildPartial0(tendermint.types.ValidatorOuterClass.Validator result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.address_ = address_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.pubKey_ = pubKeyBuilder_ == null
+              ? pubKey_
+              : pubKeyBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.votingPower_ = votingPower_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.proposerPriority_ = proposerPriority_;
+        }
+      }
+
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Validator) {
-          return mergeFrom((Validator)other);
+        if (other instanceof tendermint.types.ValidatorOuterClass.Validator) {
+          return mergeFrom((tendermint.types.ValidatorOuterClass.Validator)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(Validator other) {
-        if (other == Validator.getDefaultInstance()) return this;
+      public Builder mergeFrom(tendermint.types.ValidatorOuterClass.Validator other) {
+        if (other == tendermint.types.ValidatorOuterClass.Validator.getDefaultInstance()) return this;
         if (other.getAddress() != com.google.protobuf.ByteString.EMPTY) {
           setAddress(other.getAddress());
         }
@@ -1622,41 +1541,77 @@ public final class ValidatorOuterClass {
         if (other.getProposerPriority() != 0L) {
           setProposerPriority(other.getProposerPriority());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        Validator parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                address_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getPubKeyFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                votingPower_ = input.readInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                proposerPriority_ = input.readInt64();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Validator) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>bytes address = 1;</code>
        * @return The address.
        */
-      @Override
+      @java.lang.Override
       public com.google.protobuf.ByteString getAddress() {
         return address_;
       }
@@ -1666,11 +1621,9 @@ public final class ValidatorOuterClass {
        * @return This builder for chaining.
        */
       public Builder setAddress(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         address_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1679,7 +1632,7 @@ public final class ValidatorOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearAddress() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         address_ = getDefaultInstance().getAddress();
         onChanged();
         return this;
@@ -1693,7 +1646,7 @@ public final class ValidatorOuterClass {
        * @return Whether the pubKey field is set.
        */
       public boolean hasPubKey() {
-        return pubKeyBuilder_ != null || pubKey_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <code>.tendermint.crypto.PublicKey pub_key = 2 [(.gogoproto.nullable) = false];</code>
@@ -1715,11 +1668,11 @@ public final class ValidatorOuterClass {
             throw new NullPointerException();
           }
           pubKey_ = value;
-          onChanged();
         } else {
           pubKeyBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1729,11 +1682,11 @@ public final class ValidatorOuterClass {
           tendermint.crypto.Keys.PublicKey.Builder builderForValue) {
         if (pubKeyBuilder_ == null) {
           pubKey_ = builderForValue.build();
-          onChanged();
         } else {
           pubKeyBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1741,38 +1694,38 @@ public final class ValidatorOuterClass {
        */
       public Builder mergePubKey(tendermint.crypto.Keys.PublicKey value) {
         if (pubKeyBuilder_ == null) {
-          if (pubKey_ != null) {
-            pubKey_ =
-              tendermint.crypto.Keys.PublicKey.newBuilder(pubKey_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            pubKey_ != null &&
+            pubKey_ != tendermint.crypto.Keys.PublicKey.getDefaultInstance()) {
+            getPubKeyBuilder().mergeFrom(value);
           } else {
             pubKey_ = value;
           }
-          onChanged();
         } else {
           pubKeyBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
        * <code>.tendermint.crypto.PublicKey pub_key = 2 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearPubKey() {
-        if (pubKeyBuilder_ == null) {
-          pubKey_ = null;
-          onChanged();
-        } else {
-          pubKey_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        pubKey_ = null;
+        if (pubKeyBuilder_ != null) {
+          pubKeyBuilder_.dispose();
           pubKeyBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tendermint.crypto.PublicKey pub_key = 2 [(.gogoproto.nullable) = false];</code>
        */
       public tendermint.crypto.Keys.PublicKey.Builder getPubKeyBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getPubKeyFieldBuilder().getBuilder();
       }
@@ -1809,7 +1762,7 @@ public final class ValidatorOuterClass {
        * <code>int64 voting_power = 3;</code>
        * @return The votingPower.
        */
-      @Override
+      @java.lang.Override
       public long getVotingPower() {
         return votingPower_;
       }
@@ -1819,8 +1772,9 @@ public final class ValidatorOuterClass {
        * @return This builder for chaining.
        */
       public Builder setVotingPower(long value) {
-        
+
         votingPower_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1829,7 +1783,7 @@ public final class ValidatorOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearVotingPower() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         votingPower_ = 0L;
         onChanged();
         return this;
@@ -1840,7 +1794,7 @@ public final class ValidatorOuterClass {
        * <code>int64 proposer_priority = 4;</code>
        * @return The proposerPriority.
        */
-      @Override
+      @java.lang.Override
       public long getProposerPriority() {
         return proposerPriority_;
       }
@@ -1850,8 +1804,9 @@ public final class ValidatorOuterClass {
        * @return This builder for chaining.
        */
       public Builder setProposerPriority(long value) {
-        
+
         proposerPriority_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -1860,18 +1815,18 @@ public final class ValidatorOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearProposerPriority() {
-        
+        bitField0_ = (bitField0_ & ~0x00000008);
         proposerPriority_ = 0L;
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1882,23 +1837,34 @@ public final class ValidatorOuterClass {
     }
 
     // @@protoc_insertion_point(class_scope:tendermint.types.Validator)
-    private static final Validator DEFAULT_INSTANCE;
+    private static final tendermint.types.ValidatorOuterClass.Validator DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new Validator();
+      DEFAULT_INSTANCE = new tendermint.types.ValidatorOuterClass.Validator();
     }
 
-    public static Validator getDefaultInstance() {
+    public static tendermint.types.ValidatorOuterClass.Validator getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<Validator>
         PARSER = new com.google.protobuf.AbstractParser<Validator>() {
-      @Override
+      @java.lang.Override
       public Validator parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Validator(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1906,13 +1872,13 @@ public final class ValidatorOuterClass {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Validator> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public Validator getDefaultInstanceForType() {
+    @java.lang.Override
+    public tendermint.types.ValidatorOuterClass.Validator getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1958,84 +1924,24 @@ public final class ValidatorOuterClass {
     private SimpleValidator() {
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new SimpleValidator();
     }
 
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SimpleValidator(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              tendermint.crypto.Keys.PublicKey.Builder subBuilder = null;
-              if (pubKey_ != null) {
-                subBuilder = pubKey_.toBuilder();
-              }
-              pubKey_ = input.readMessage(tendermint.crypto.Keys.PublicKey.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pubKey_);
-                pubKey_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 16: {
-
-              votingPower_ = input.readInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ValidatorOuterClass.internal_static_tendermint_types_SimpleValidator_descriptor;
+      return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_SimpleValidator_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ValidatorOuterClass.internal_static_tendermint_types_SimpleValidator_fieldAccessorTable
+      return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_SimpleValidator_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              SimpleValidator.class, Builder.class);
+              tendermint.types.ValidatorOuterClass.SimpleValidator.class, tendermint.types.ValidatorOuterClass.SimpleValidator.Builder.class);
     }
 
     public static final int PUB_KEY_FIELD_NUMBER = 1;
@@ -2044,7 +1950,7 @@ public final class ValidatorOuterClass {
      * <code>.tendermint.crypto.PublicKey pub_key = 1;</code>
      * @return Whether the pubKey field is set.
      */
-    @Override
+    @java.lang.Override
     public boolean hasPubKey() {
       return pubKey_ != null;
     }
@@ -2052,31 +1958,31 @@ public final class ValidatorOuterClass {
      * <code>.tendermint.crypto.PublicKey pub_key = 1;</code>
      * @return The pubKey.
      */
-    @Override
+    @java.lang.Override
     public tendermint.crypto.Keys.PublicKey getPubKey() {
       return pubKey_ == null ? tendermint.crypto.Keys.PublicKey.getDefaultInstance() : pubKey_;
     }
     /**
      * <code>.tendermint.crypto.PublicKey pub_key = 1;</code>
      */
-    @Override
+    @java.lang.Override
     public tendermint.crypto.Keys.PublicKeyOrBuilder getPubKeyOrBuilder() {
-      return getPubKey();
+      return pubKey_ == null ? tendermint.crypto.Keys.PublicKey.getDefaultInstance() : pubKey_;
     }
 
     public static final int VOTING_POWER_FIELD_NUMBER = 2;
-    private long votingPower_;
+    private long votingPower_ = 0L;
     /**
      * <code>int64 voting_power = 2;</code>
      * @return The votingPower.
      */
-    @Override
+    @java.lang.Override
     public long getVotingPower() {
       return votingPower_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -2086,7 +1992,7 @@ public final class ValidatorOuterClass {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (pubKey_ != null) {
@@ -2095,10 +2001,10 @@ public final class ValidatorOuterClass {
       if (votingPower_ != 0L) {
         output.writeInt64(2, votingPower_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -2112,20 +2018,20 @@ public final class ValidatorOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(2, votingPower_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof SimpleValidator)) {
+      if (!(obj instanceof tendermint.types.ValidatorOuterClass.SimpleValidator)) {
         return super.equals(obj);
       }
-      SimpleValidator other = (SimpleValidator) obj;
+      tendermint.types.ValidatorOuterClass.SimpleValidator other = (tendermint.types.ValidatorOuterClass.SimpleValidator) obj;
 
       if (hasPubKey() != other.hasPubKey()) return false;
       if (hasPubKey()) {
@@ -2134,11 +2040,11 @@ public final class ValidatorOuterClass {
       }
       if (getVotingPower()
           != other.getVotingPower()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -2152,74 +2058,76 @@ public final class ValidatorOuterClass {
       hash = (37 * hash) + VOTING_POWER_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getVotingPower());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static SimpleValidator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static SimpleValidator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static SimpleValidator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static SimpleValidator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static SimpleValidator parseFrom(byte[] data)
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static SimpleValidator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static SimpleValidator parseFrom(java.io.InputStream input)
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static SimpleValidator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static SimpleValidator parseDelimitedFrom(java.io.InputStream input)
+
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static SimpleValidator parseDelimitedFrom(
+
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static SimpleValidator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static SimpleValidator parseFrom(
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2227,23 +2135,23 @@ public final class ValidatorOuterClass {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(SimpleValidator prototype) {
+    public static Builder newBuilder(tendermint.types.ValidatorOuterClass.SimpleValidator prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2253,160 +2161,187 @@ public final class ValidatorOuterClass {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:tendermint.types.SimpleValidator)
-        SimpleValidatorOrBuilder {
+        tendermint.types.ValidatorOuterClass.SimpleValidatorOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ValidatorOuterClass.internal_static_tendermint_types_SimpleValidator_descriptor;
+        return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_SimpleValidator_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ValidatorOuterClass.internal_static_tendermint_types_SimpleValidator_fieldAccessorTable
+        return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_SimpleValidator_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                SimpleValidator.class, Builder.class);
+                tendermint.types.ValidatorOuterClass.SimpleValidator.class, tendermint.types.ValidatorOuterClass.SimpleValidator.Builder.class);
       }
 
       // Construct using tendermint.types.ValidatorOuterClass.SimpleValidator.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
+
       }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (pubKeyBuilder_ == null) {
-          pubKey_ = null;
-        } else {
-          pubKey_ = null;
+        bitField0_ = 0;
+        pubKey_ = null;
+        if (pubKeyBuilder_ != null) {
+          pubKeyBuilder_.dispose();
           pubKeyBuilder_ = null;
         }
         votingPower_ = 0L;
-
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ValidatorOuterClass.internal_static_tendermint_types_SimpleValidator_descriptor;
+        return tendermint.types.ValidatorOuterClass.internal_static_tendermint_types_SimpleValidator_descriptor;
       }
 
-      @Override
-      public SimpleValidator getDefaultInstanceForType() {
-        return SimpleValidator.getDefaultInstance();
+      @java.lang.Override
+      public tendermint.types.ValidatorOuterClass.SimpleValidator getDefaultInstanceForType() {
+        return tendermint.types.ValidatorOuterClass.SimpleValidator.getDefaultInstance();
       }
 
-      @Override
-      public SimpleValidator build() {
-        SimpleValidator result = buildPartial();
+      @java.lang.Override
+      public tendermint.types.ValidatorOuterClass.SimpleValidator build() {
+        tendermint.types.ValidatorOuterClass.SimpleValidator result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public SimpleValidator buildPartial() {
-        SimpleValidator result = new SimpleValidator(this);
-        if (pubKeyBuilder_ == null) {
-          result.pubKey_ = pubKey_;
-        } else {
-          result.pubKey_ = pubKeyBuilder_.build();
-        }
-        result.votingPower_ = votingPower_;
+      @java.lang.Override
+      public tendermint.types.ValidatorOuterClass.SimpleValidator buildPartial() {
+        tendermint.types.ValidatorOuterClass.SimpleValidator result = new tendermint.types.ValidatorOuterClass.SimpleValidator(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @Override
+      private void buildPartial0(tendermint.types.ValidatorOuterClass.SimpleValidator result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.pubKey_ = pubKeyBuilder_ == null
+              ? pubKey_
+              : pubKeyBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.votingPower_ = votingPower_;
+        }
+      }
+
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof SimpleValidator) {
-          return mergeFrom((SimpleValidator)other);
+        if (other instanceof tendermint.types.ValidatorOuterClass.SimpleValidator) {
+          return mergeFrom((tendermint.types.ValidatorOuterClass.SimpleValidator)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(SimpleValidator other) {
-        if (other == SimpleValidator.getDefaultInstance()) return this;
+      public Builder mergeFrom(tendermint.types.ValidatorOuterClass.SimpleValidator other) {
+        if (other == tendermint.types.ValidatorOuterClass.SimpleValidator.getDefaultInstance()) return this;
         if (other.hasPubKey()) {
           mergePubKey(other.getPubKey());
         }
         if (other.getVotingPower() != 0L) {
           setVotingPower(other.getVotingPower());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        SimpleValidator parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getPubKeyFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                votingPower_ = input.readInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (SimpleValidator) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private tendermint.crypto.Keys.PublicKey pubKey_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -2416,7 +2351,7 @@ public final class ValidatorOuterClass {
        * @return Whether the pubKey field is set.
        */
       public boolean hasPubKey() {
-        return pubKeyBuilder_ != null || pubKey_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.tendermint.crypto.PublicKey pub_key = 1;</code>
@@ -2438,11 +2373,11 @@ public final class ValidatorOuterClass {
             throw new NullPointerException();
           }
           pubKey_ = value;
-          onChanged();
         } else {
           pubKeyBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2452,11 +2387,11 @@ public final class ValidatorOuterClass {
           tendermint.crypto.Keys.PublicKey.Builder builderForValue) {
         if (pubKeyBuilder_ == null) {
           pubKey_ = builderForValue.build();
-          onChanged();
         } else {
           pubKeyBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -2464,38 +2399,38 @@ public final class ValidatorOuterClass {
        */
       public Builder mergePubKey(tendermint.crypto.Keys.PublicKey value) {
         if (pubKeyBuilder_ == null) {
-          if (pubKey_ != null) {
-            pubKey_ =
-              tendermint.crypto.Keys.PublicKey.newBuilder(pubKey_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            pubKey_ != null &&
+            pubKey_ != tendermint.crypto.Keys.PublicKey.getDefaultInstance()) {
+            getPubKeyBuilder().mergeFrom(value);
           } else {
             pubKey_ = value;
           }
-          onChanged();
         } else {
           pubKeyBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.tendermint.crypto.PublicKey pub_key = 1;</code>
        */
       public Builder clearPubKey() {
-        if (pubKeyBuilder_ == null) {
-          pubKey_ = null;
-          onChanged();
-        } else {
-          pubKey_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        pubKey_ = null;
+        if (pubKeyBuilder_ != null) {
+          pubKeyBuilder_.dispose();
           pubKeyBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.tendermint.crypto.PublicKey pub_key = 1;</code>
        */
       public tendermint.crypto.Keys.PublicKey.Builder getPubKeyBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getPubKeyFieldBuilder().getBuilder();
       }
@@ -2532,7 +2467,7 @@ public final class ValidatorOuterClass {
        * <code>int64 voting_power = 2;</code>
        * @return The votingPower.
        */
-      @Override
+      @java.lang.Override
       public long getVotingPower() {
         return votingPower_;
       }
@@ -2542,8 +2477,9 @@ public final class ValidatorOuterClass {
        * @return This builder for chaining.
        */
       public Builder setVotingPower(long value) {
-        
+
         votingPower_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2552,18 +2488,18 @@ public final class ValidatorOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearVotingPower() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         votingPower_ = 0L;
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2574,23 +2510,34 @@ public final class ValidatorOuterClass {
     }
 
     // @@protoc_insertion_point(class_scope:tendermint.types.SimpleValidator)
-    private static final SimpleValidator DEFAULT_INSTANCE;
+    private static final tendermint.types.ValidatorOuterClass.SimpleValidator DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new SimpleValidator();
+      DEFAULT_INSTANCE = new tendermint.types.ValidatorOuterClass.SimpleValidator();
     }
 
-    public static SimpleValidator getDefaultInstance() {
+    public static tendermint.types.ValidatorOuterClass.SimpleValidator getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<SimpleValidator>
         PARSER = new com.google.protobuf.AbstractParser<SimpleValidator>() {
-      @Override
+      @java.lang.Override
       public SimpleValidator parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SimpleValidator(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2598,13 +2545,13 @@ public final class ValidatorOuterClass {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<SimpleValidator> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public SimpleValidator getDefaultInstanceForType() {
+    @java.lang.Override
+    public tendermint.types.ValidatorOuterClass.SimpleValidator getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -2633,7 +2580,7 @@ public final class ValidatorOuterClass {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n tendermint/types/validator.proto\022\020tend" +
       "ermint.types\032\024gogoproto/gogo.proto\032\034tend" +
       "ermint/crypto/keys.proto\"\212\001\n\014ValidatorSe" +
@@ -2652,7 +2599,7 @@ public final class ValidatorOuterClass {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           tendermint.crypto.Keys.getDescriptor(),
         });
     internal_static_tendermint_types_ValidatorSet_descriptor =
@@ -2660,25 +2607,25 @@ public final class ValidatorOuterClass {
     internal_static_tendermint_types_ValidatorSet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tendermint_types_ValidatorSet_descriptor,
-        new String[] { "Validators", "Proposer", "TotalVotingPower", });
+        new java.lang.String[] { "Validators", "Proposer", "TotalVotingPower", });
     internal_static_tendermint_types_Validator_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_tendermint_types_Validator_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tendermint_types_Validator_descriptor,
-        new String[] { "Address", "PubKey", "VotingPower", "ProposerPriority", });
+        new java.lang.String[] { "Address", "PubKey", "VotingPower", "ProposerPriority", });
     internal_static_tendermint_types_SimpleValidator_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_tendermint_types_SimpleValidator_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tendermint_types_SimpleValidator_descriptor,
-        new String[] { "PubKey", "VotingPower", });
+        new java.lang.String[] { "PubKey", "VotingPower", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     tendermint.crypto.Keys.getDescriptor();
   }
 

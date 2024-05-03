@@ -1,7 +1,7 @@
 package co.sentinel.dvpn.hub.tasks
 
 import co.sentinel.cosmos.dao.Account
-import com.google.protobuf2.Any
+import com.google.protobuf.Any
 import sentinel.session.v2.Msg
 
 object GenerateStartActiveSessionMessage {

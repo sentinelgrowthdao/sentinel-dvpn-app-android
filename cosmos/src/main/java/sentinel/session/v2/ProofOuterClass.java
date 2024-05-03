@@ -89,7 +89,6 @@ public final class ProofOuterClass {
               sentinel.session.v2.ProofOuterClass.Proof.class, sentinel.session.v2.ProofOuterClass.Proof.Builder.class);
     }
 
-    private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
     private long id_ = 0L;
     /**
@@ -109,7 +108,7 @@ public final class ProofOuterClass {
      */
     @java.lang.Override
     public boolean hasBandwidth() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return bandwidth_ != null;
     }
     /**
      * <code>.sentinel.types.v1.Bandwidth bandwidth = 2 [(.gogoproto.nullable) = false];</code>
@@ -135,7 +134,7 @@ public final class ProofOuterClass {
      */
     @java.lang.Override
     public boolean hasDuration() {
-      return ((bitField0_ & 0x00000002) != 0);
+      return duration_ != null;
     }
     /**
      * <code>.google.protobuf.Duration duration = 3 [(.gogoproto.nullable) = false, (.gogoproto.stdduration) = true];</code>
@@ -170,10 +169,10 @@ public final class ProofOuterClass {
       if (id_ != 0L) {
         output.writeUInt64(1, id_);
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (bandwidth_ != null) {
         output.writeMessage(2, getBandwidth());
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (duration_ != null) {
         output.writeMessage(3, getDuration());
       }
       getUnknownFields().writeTo(output);
@@ -189,11 +188,11 @@ public final class ProofOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, id_);
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (bandwidth_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getBandwidth());
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (duration_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getDuration());
       }
@@ -365,20 +364,13 @@ public final class ProofOuterClass {
 
       // Construct using sentinel.session.v2.ProofOuterClass.Proof.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getBandwidthFieldBuilder();
-          getDurationFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -431,20 +423,16 @@ public final class ProofOuterClass {
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.id_ = id_;
         }
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.bandwidth_ = bandwidthBuilder_ == null
               ? bandwidth_
               : bandwidthBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.duration_ = durationBuilder_ == null
               ? duration_
               : durationBuilder_.build();
-          to_bitField0_ |= 0x00000002;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -660,10 +648,8 @@ public final class ProofOuterClass {
         } else {
           bandwidthBuilder_.mergeFrom(value);
         }
-        if (bandwidth_ != null) {
-          bitField0_ |= 0x00000002;
-          onChanged();
-        }
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -781,10 +767,8 @@ public final class ProofOuterClass {
         } else {
           durationBuilder_.mergeFrom(value);
         }
-        if (duration_ != null) {
-          bitField0_ |= 0x00000004;
-          onChanged();
-        }
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -926,7 +910,7 @@ public final class ProofOuterClass {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           com.google.protobuf.DurationProto.getDescriptor(),
           sentinel.types.v1.BandwidthOuterClass.getDescriptor(),
         });
@@ -938,14 +922,14 @@ public final class ProofOuterClass {
         new java.lang.String[] { "Id", "Bandwidth", "Duration", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.customname);
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
-    registry.add(com.google.protobuf2.GoGoProtos.stdduration);
+    registry.add(com.google.protobuf.GoGoProtos.customname);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.stdduration);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();
     sentinel.types.v1.BandwidthOuterClass.getDescriptor();
   }

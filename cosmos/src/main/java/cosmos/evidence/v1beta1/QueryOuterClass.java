@@ -55,53 +55,6 @@ public final class QueryOuterClass {
       return new QueryEvidenceRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryEvidenceRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-              evidenceHash_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.evidence.v1beta1.QueryOuterClass.internal_static_cosmos_evidence_v1beta1_QueryEvidenceRequest_descriptor;
@@ -116,7 +69,7 @@ public final class QueryOuterClass {
     }
 
     public static final int EVIDENCE_HASH_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString evidenceHash_;
+    private com.google.protobuf.ByteString evidenceHash_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * evidence_hash defines the hash of the requested evidence.
@@ -147,7 +100,7 @@ public final class QueryOuterClass {
       if (!evidenceHash_.isEmpty()) {
         output.writeBytes(1, evidenceHash_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -160,7 +113,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, evidenceHash_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -177,7 +130,7 @@ public final class QueryOuterClass {
 
       if (!getEvidenceHash()
           .equals(other.getEvidenceHash())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -190,7 +143,7 @@ public final class QueryOuterClass {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + EVIDENCE_HASH_FIELD_NUMBER;
       hash = (53 * hash) + getEvidenceHash().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -239,11 +192,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -311,24 +266,19 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         evidenceHash_ = com.google.protobuf.ByteString.EMPTY;
-
         return this;
       }
 
@@ -355,9 +305,16 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest buildPartial() {
         cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest result = new cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest(this);
-        result.evidenceHash_ = evidenceHash_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.evidenceHash_ = evidenceHash_;
+        }
       }
 
       @java.lang.Override
@@ -407,7 +364,7 @@ public final class QueryOuterClass {
         if (other.getEvidenceHash() != com.google.protobuf.ByteString.EMPTY) {
           setEvidenceHash(other.getEvidenceHash());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -422,19 +379,38 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                evidenceHash_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.google.protobuf.ByteString evidenceHash_ = com.google.protobuf.ByteString.EMPTY;
       /**
@@ -459,11 +435,9 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder setEvidenceHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         evidenceHash_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -476,7 +450,7 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearEvidenceHash() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         evidenceHash_ = getDefaultInstance().getEvidenceHash();
         onChanged();
         return this;
@@ -514,7 +488,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryEvidenceRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -543,7 +528,7 @@ public final class QueryOuterClass {
      * evidence returns the requested evidence.
      * </pre>
      *
-     * <code>.google.protobuf2.Any evidence = 1;</code>
+     * <code>.google.protobuf.Any evidence = 1;</code>
      * @return Whether the evidence field is set.
      */
     boolean hasEvidence();
@@ -552,18 +537,18 @@ public final class QueryOuterClass {
      * evidence returns the requested evidence.
      * </pre>
      *
-     * <code>.google.protobuf2.Any evidence = 1;</code>
+     * <code>.google.protobuf.Any evidence = 1;</code>
      * @return The evidence.
      */
-    com.google.protobuf2.Any getEvidence();
+    com.google.protobuf.Any getEvidence();
     /**
      * <pre>
      * evidence returns the requested evidence.
      * </pre>
      *
-     * <code>.google.protobuf2.Any evidence = 1;</code>
+     * <code>.google.protobuf.Any evidence = 1;</code>
      */
-    com.google.protobuf2.AnyOrBuilder getEvidenceOrBuilder();
+    com.google.protobuf.AnyOrBuilder getEvidenceOrBuilder();
   }
   /**
    * <pre>
@@ -591,61 +576,6 @@ public final class QueryOuterClass {
       return new QueryEvidenceResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryEvidenceResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf2.Any.Builder subBuilder = null;
-              if (evidence_ != null) {
-                subBuilder = evidence_.toBuilder();
-              }
-              evidence_ = input.readMessage(com.google.protobuf2.Any.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(evidence_);
-                evidence_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.evidence.v1beta1.QueryOuterClass.internal_static_cosmos_evidence_v1beta1_QueryEvidenceResponse_descriptor;
@@ -660,13 +590,13 @@ public final class QueryOuterClass {
     }
 
     public static final int EVIDENCE_FIELD_NUMBER = 1;
-    private com.google.protobuf2.Any evidence_;
+    private com.google.protobuf.Any evidence_;
     /**
      * <pre>
      * evidence returns the requested evidence.
      * </pre>
      *
-     * <code>.google.protobuf2.Any evidence = 1;</code>
+     * <code>.google.protobuf.Any evidence = 1;</code>
      * @return Whether the evidence field is set.
      */
     @java.lang.Override
@@ -678,23 +608,23 @@ public final class QueryOuterClass {
      * evidence returns the requested evidence.
      * </pre>
      *
-     * <code>.google.protobuf2.Any evidence = 1;</code>
+     * <code>.google.protobuf.Any evidence = 1;</code>
      * @return The evidence.
      */
     @java.lang.Override
-    public com.google.protobuf2.Any getEvidence() {
-      return evidence_ == null ? com.google.protobuf2.Any.getDefaultInstance() : evidence_;
+    public com.google.protobuf.Any getEvidence() {
+      return evidence_ == null ? com.google.protobuf.Any.getDefaultInstance() : evidence_;
     }
     /**
      * <pre>
      * evidence returns the requested evidence.
      * </pre>
      *
-     * <code>.google.protobuf2.Any evidence = 1;</code>
+     * <code>.google.protobuf.Any evidence = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.AnyOrBuilder getEvidenceOrBuilder() {
-      return getEvidence();
+    public com.google.protobuf.AnyOrBuilder getEvidenceOrBuilder() {
+      return evidence_ == null ? com.google.protobuf.Any.getDefaultInstance() : evidence_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -714,7 +644,7 @@ public final class QueryOuterClass {
       if (evidence_ != null) {
         output.writeMessage(1, getEvidence());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -727,7 +657,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getEvidence());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -747,7 +677,7 @@ public final class QueryOuterClass {
         if (!getEvidence()
             .equals(other.getEvidence())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -762,7 +692,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + EVIDENCE_FIELD_NUMBER;
         hash = (53 * hash) + getEvidence().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -811,11 +741,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -883,26 +815,21 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (evidenceBuilder_ == null) {
-          evidence_ = null;
-        } else {
-          evidence_ = null;
+        bitField0_ = 0;
+        evidence_ = null;
+        if (evidenceBuilder_ != null) {
+          evidenceBuilder_.dispose();
           evidenceBuilder_ = null;
         }
         return this;
@@ -931,13 +858,18 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse buildPartial() {
         cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse result = new cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse(this);
-        if (evidenceBuilder_ == null) {
-          result.evidence_ = evidence_;
-        } else {
-          result.evidence_ = evidenceBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.evidence_ = evidenceBuilder_ == null
+              ? evidence_
+              : evidenceBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -987,7 +919,7 @@ public final class QueryOuterClass {
         if (other.hasEvidence()) {
           mergeEvidence(other.getEvidence());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1002,45 +934,66 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getEvidenceFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
-      private com.google.protobuf2.Any evidence_;
+      private com.google.protobuf.Any evidence_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> evidenceBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> evidenceBuilder_;
       /**
        * <pre>
        * evidence returns the requested evidence.
        * </pre>
        *
-       * <code>.google.protobuf2.Any evidence = 1;</code>
+       * <code>.google.protobuf.Any evidence = 1;</code>
        * @return Whether the evidence field is set.
        */
       public boolean hasEvidence() {
-        return evidenceBuilder_ != null || evidence_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
        * evidence returns the requested evidence.
        * </pre>
        *
-       * <code>.google.protobuf2.Any evidence = 1;</code>
+       * <code>.google.protobuf.Any evidence = 1;</code>
        * @return The evidence.
        */
-      public com.google.protobuf2.Any getEvidence() {
+      public com.google.protobuf.Any getEvidence() {
         if (evidenceBuilder_ == null) {
-          return evidence_ == null ? com.google.protobuf2.Any.getDefaultInstance() : evidence_;
+          return evidence_ == null ? com.google.protobuf.Any.getDefaultInstance() : evidence_;
         } else {
           return evidenceBuilder_.getMessage();
         }
@@ -1050,19 +1003,19 @@ public final class QueryOuterClass {
        * evidence returns the requested evidence.
        * </pre>
        *
-       * <code>.google.protobuf2.Any evidence = 1;</code>
+       * <code>.google.protobuf.Any evidence = 1;</code>
        */
-      public Builder setEvidence(com.google.protobuf2.Any value) {
+      public Builder setEvidence(com.google.protobuf.Any value) {
         if (evidenceBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
           evidence_ = value;
-          onChanged();
         } else {
           evidenceBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1070,17 +1023,17 @@ public final class QueryOuterClass {
        * evidence returns the requested evidence.
        * </pre>
        *
-       * <code>.google.protobuf2.Any evidence = 1;</code>
+       * <code>.google.protobuf.Any evidence = 1;</code>
        */
       public Builder setEvidence(
-          com.google.protobuf2.Any.Builder builderForValue) {
+          com.google.protobuf.Any.Builder builderForValue) {
         if (evidenceBuilder_ == null) {
           evidence_ = builderForValue.build();
-          onChanged();
         } else {
           evidenceBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1088,21 +1041,22 @@ public final class QueryOuterClass {
        * evidence returns the requested evidence.
        * </pre>
        *
-       * <code>.google.protobuf2.Any evidence = 1;</code>
+       * <code>.google.protobuf.Any evidence = 1;</code>
        */
-      public Builder mergeEvidence(com.google.protobuf2.Any value) {
+      public Builder mergeEvidence(com.google.protobuf.Any value) {
         if (evidenceBuilder_ == null) {
-          if (evidence_ != null) {
-            evidence_ =
-              com.google.protobuf2.Any.newBuilder(evidence_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            evidence_ != null &&
+            evidence_ != com.google.protobuf.Any.getDefaultInstance()) {
+            getEvidenceBuilder().mergeFrom(value);
           } else {
             evidence_ = value;
           }
-          onChanged();
         } else {
           evidenceBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1110,17 +1064,16 @@ public final class QueryOuterClass {
        * evidence returns the requested evidence.
        * </pre>
        *
-       * <code>.google.protobuf2.Any evidence = 1;</code>
+       * <code>.google.protobuf.Any evidence = 1;</code>
        */
       public Builder clearEvidence() {
-        if (evidenceBuilder_ == null) {
-          evidence_ = null;
-          onChanged();
-        } else {
-          evidence_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        evidence_ = null;
+        if (evidenceBuilder_ != null) {
+          evidenceBuilder_.dispose();
           evidenceBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1128,10 +1081,10 @@ public final class QueryOuterClass {
        * evidence returns the requested evidence.
        * </pre>
        *
-       * <code>.google.protobuf2.Any evidence = 1;</code>
+       * <code>.google.protobuf.Any evidence = 1;</code>
        */
-      public com.google.protobuf2.Any.Builder getEvidenceBuilder() {
-        
+      public com.google.protobuf.Any.Builder getEvidenceBuilder() {
+        bitField0_ |= 0x00000001;
         onChanged();
         return getEvidenceFieldBuilder().getBuilder();
       }
@@ -1140,14 +1093,14 @@ public final class QueryOuterClass {
        * evidence returns the requested evidence.
        * </pre>
        *
-       * <code>.google.protobuf2.Any evidence = 1;</code>
+       * <code>.google.protobuf.Any evidence = 1;</code>
        */
-      public com.google.protobuf2.AnyOrBuilder getEvidenceOrBuilder() {
+      public com.google.protobuf.AnyOrBuilder getEvidenceOrBuilder() {
         if (evidenceBuilder_ != null) {
           return evidenceBuilder_.getMessageOrBuilder();
         } else {
           return evidence_ == null ?
-              com.google.protobuf2.Any.getDefaultInstance() : evidence_;
+              com.google.protobuf.Any.getDefaultInstance() : evidence_;
         }
       }
       /**
@@ -1155,14 +1108,14 @@ public final class QueryOuterClass {
        * evidence returns the requested evidence.
        * </pre>
        *
-       * <code>.google.protobuf2.Any evidence = 1;</code>
+       * <code>.google.protobuf.Any evidence = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
           getEvidenceFieldBuilder() {
         if (evidenceBuilder_ == null) {
           evidenceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder>(
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   getEvidence(),
                   getParentForChildren(),
                   isClean());
@@ -1203,7 +1156,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryEvidenceResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1281,61 +1245,6 @@ public final class QueryOuterClass {
       return new QueryAllEvidenceRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryAllEvidenceRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.base.query.v1beta1.Pagination.PageRequest.Builder subBuilder = null;
-              if (pagination_ != null) {
-                subBuilder = pagination_.toBuilder();
-              }
-              pagination_ = input.readMessage(cosmos.base.query.v1beta1.Pagination.PageRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pagination_);
-                pagination_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.evidence.v1beta1.QueryOuterClass.internal_static_cosmos_evidence_v1beta1_QueryAllEvidenceRequest_descriptor;
@@ -1384,7 +1293,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.base.query.v1beta1.Pagination.PageRequestOrBuilder getPaginationOrBuilder() {
-      return getPagination();
+      return pagination_ == null ? cosmos.base.query.v1beta1.Pagination.PageRequest.getDefaultInstance() : pagination_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1404,7 +1313,7 @@ public final class QueryOuterClass {
       if (pagination_ != null) {
         output.writeMessage(1, getPagination());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1417,7 +1326,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getPagination());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1437,7 +1346,7 @@ public final class QueryOuterClass {
         if (!getPagination()
             .equals(other.getPagination())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1452,7 +1361,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + PAGINATION_FIELD_NUMBER;
         hash = (53 * hash) + getPagination().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1501,11 +1410,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1574,26 +1485,21 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-        } else {
-          pagination_ = null;
+        bitField0_ = 0;
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
         return this;
@@ -1622,13 +1528,18 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest buildPartial() {
         cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest result = new cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest(this);
-        if (paginationBuilder_ == null) {
-          result.pagination_ = pagination_;
-        } else {
-          result.pagination_ = paginationBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.pagination_ = paginationBuilder_ == null
+              ? pagination_
+              : paginationBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1678,7 +1589,7 @@ public final class QueryOuterClass {
         if (other.hasPagination()) {
           mergePagination(other.getPagination());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1693,19 +1604,40 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getPaginationFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private cosmos.base.query.v1beta1.Pagination.PageRequest pagination_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -1719,7 +1651,7 @@ public final class QueryOuterClass {
        * @return Whether the pagination field is set.
        */
       public boolean hasPagination() {
-        return paginationBuilder_ != null || pagination_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -1749,11 +1681,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           pagination_ = value;
-          onChanged();
         } else {
           paginationBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1767,11 +1699,11 @@ public final class QueryOuterClass {
           cosmos.base.query.v1beta1.Pagination.PageRequest.Builder builderForValue) {
         if (paginationBuilder_ == null) {
           pagination_ = builderForValue.build();
-          onChanged();
         } else {
           paginationBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1783,17 +1715,18 @@ public final class QueryOuterClass {
        */
       public Builder mergePagination(cosmos.base.query.v1beta1.Pagination.PageRequest value) {
         if (paginationBuilder_ == null) {
-          if (pagination_ != null) {
-            pagination_ =
-              cosmos.base.query.v1beta1.Pagination.PageRequest.newBuilder(pagination_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            pagination_ != null &&
+            pagination_ != cosmos.base.query.v1beta1.Pagination.PageRequest.getDefaultInstance()) {
+            getPaginationBuilder().mergeFrom(value);
           } else {
             pagination_ = value;
           }
-          onChanged();
         } else {
           paginationBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1804,14 +1737,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
        */
       public Builder clearPagination() {
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-          onChanged();
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1822,7 +1754,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
        */
       public cosmos.base.query.v1beta1.Pagination.PageRequest.Builder getPaginationBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getPaginationFieldBuilder().getBuilder();
       }
@@ -1894,7 +1826,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryAllEvidenceRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1923,24 +1866,24 @@ public final class QueryOuterClass {
      * evidence returns all evidences.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+     * <code>repeated .google.protobuf.Any evidence = 1;</code>
      */
-    java.util.List<com.google.protobuf2.Any> 
+    java.util.List<com.google.protobuf.Any> 
         getEvidenceList();
     /**
      * <pre>
      * evidence returns all evidences.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+     * <code>repeated .google.protobuf.Any evidence = 1;</code>
      */
-    com.google.protobuf2.Any getEvidence(int index);
+    com.google.protobuf.Any getEvidence(int index);
     /**
      * <pre>
      * evidence returns all evidences.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+     * <code>repeated .google.protobuf.Any evidence = 1;</code>
      */
     int getEvidenceCount();
     /**
@@ -1948,18 +1891,18 @@ public final class QueryOuterClass {
      * evidence returns all evidences.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+     * <code>repeated .google.protobuf.Any evidence = 1;</code>
      */
-    java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+    java.util.List<? extends com.google.protobuf.AnyOrBuilder> 
         getEvidenceOrBuilderList();
     /**
      * <pre>
      * evidence returns all evidences.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+     * <code>repeated .google.protobuf.Any evidence = 1;</code>
      */
-    com.google.protobuf2.AnyOrBuilder getEvidenceOrBuilder(
+    com.google.protobuf.AnyOrBuilder getEvidenceOrBuilder(
         int index);
 
     /**
@@ -2017,74 +1960,6 @@ public final class QueryOuterClass {
       return new QueryAllEvidenceResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryAllEvidenceResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                evidence_ = new java.util.ArrayList<com.google.protobuf2.Any>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              evidence_.add(
-                  input.readMessage(com.google.protobuf2.Any.parser(), extensionRegistry));
-              break;
-            }
-            case 18: {
-              cosmos.base.query.v1beta1.Pagination.PageResponse.Builder subBuilder = null;
-              if (pagination_ != null) {
-                subBuilder = pagination_.toBuilder();
-              }
-              pagination_ = input.readMessage(cosmos.base.query.v1beta1.Pagination.PageResponse.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pagination_);
-                pagination_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          evidence_ = java.util.Collections.unmodifiableList(evidence_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.evidence.v1beta1.QueryOuterClass.internal_static_cosmos_evidence_v1beta1_QueryAllEvidenceResponse_descriptor;
@@ -2099,16 +1974,17 @@ public final class QueryOuterClass {
     }
 
     public static final int EVIDENCE_FIELD_NUMBER = 1;
-    private java.util.List<com.google.protobuf2.Any> evidence_;
+    @SuppressWarnings("serial")
+    private java.util.List<com.google.protobuf.Any> evidence_;
     /**
      * <pre>
      * evidence returns all evidences.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+     * <code>repeated .google.protobuf.Any evidence = 1;</code>
      */
     @java.lang.Override
-    public java.util.List<com.google.protobuf2.Any> getEvidenceList() {
+    public java.util.List<com.google.protobuf.Any> getEvidenceList() {
       return evidence_;
     }
     /**
@@ -2116,10 +1992,10 @@ public final class QueryOuterClass {
      * evidence returns all evidences.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+     * <code>repeated .google.protobuf.Any evidence = 1;</code>
      */
     @java.lang.Override
-    public java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+    public java.util.List<? extends com.google.protobuf.AnyOrBuilder> 
         getEvidenceOrBuilderList() {
       return evidence_;
     }
@@ -2128,7 +2004,7 @@ public final class QueryOuterClass {
      * evidence returns all evidences.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+     * <code>repeated .google.protobuf.Any evidence = 1;</code>
      */
     @java.lang.Override
     public int getEvidenceCount() {
@@ -2139,10 +2015,10 @@ public final class QueryOuterClass {
      * evidence returns all evidences.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+     * <code>repeated .google.protobuf.Any evidence = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.Any getEvidence(int index) {
+    public com.google.protobuf.Any getEvidence(int index) {
       return evidence_.get(index);
     }
     /**
@@ -2150,10 +2026,10 @@ public final class QueryOuterClass {
      * evidence returns all evidences.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+     * <code>repeated .google.protobuf.Any evidence = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.AnyOrBuilder getEvidenceOrBuilder(
+    public com.google.protobuf.AnyOrBuilder getEvidenceOrBuilder(
         int index) {
       return evidence_.get(index);
     }
@@ -2193,7 +2069,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.base.query.v1beta1.Pagination.PageResponseOrBuilder getPaginationOrBuilder() {
-      return getPagination();
+      return pagination_ == null ? cosmos.base.query.v1beta1.Pagination.PageResponse.getDefaultInstance() : pagination_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2216,7 +2092,7 @@ public final class QueryOuterClass {
       if (pagination_ != null) {
         output.writeMessage(2, getPagination());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2233,7 +2109,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getPagination());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2255,7 +2131,7 @@ public final class QueryOuterClass {
         if (!getPagination()
             .equals(other.getPagination())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2274,7 +2150,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + PAGINATION_FIELD_NUMBER;
         hash = (53 * hash) + getPagination().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2323,11 +2199,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2396,33 +2274,28 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getEvidenceFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (evidenceBuilder_ == null) {
           evidence_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          evidence_ = null;
           evidenceBuilder_.clear();
         }
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
         return this;
@@ -2451,7 +2324,13 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse buildPartial() {
         cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse result = new cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse result) {
         if (evidenceBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             evidence_ = java.util.Collections.unmodifiableList(evidence_);
@@ -2461,13 +2340,15 @@ public final class QueryOuterClass {
         } else {
           result.evidence_ = evidenceBuilder_.build();
         }
-        if (paginationBuilder_ == null) {
-          result.pagination_ = pagination_;
-        } else {
-          result.pagination_ = paginationBuilder_.build();
+      }
+
+      private void buildPartial0(cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.pagination_ = paginationBuilder_ == null
+              ? pagination_
+              : paginationBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
       @java.lang.Override
@@ -2543,7 +2424,7 @@ public final class QueryOuterClass {
         if (other.hasPagination()) {
           mergePagination(other.getPagination());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2558,41 +2439,74 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.google.protobuf.Any m =
+                    input.readMessage(
+                        com.google.protobuf.Any.parser(),
+                        extensionRegistry);
+                if (evidenceBuilder_ == null) {
+                  ensureEvidenceIsMutable();
+                  evidence_.add(m);
+                } else {
+                  evidenceBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getPaginationFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
 
-      private java.util.List<com.google.protobuf2.Any> evidence_ =
+      private java.util.List<com.google.protobuf.Any> evidence_ =
         java.util.Collections.emptyList();
       private void ensureEvidenceIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          evidence_ = new java.util.ArrayList<com.google.protobuf2.Any>(evidence_);
+          evidence_ = new java.util.ArrayList<com.google.protobuf.Any>(evidence_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> evidenceBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> evidenceBuilder_;
 
       /**
        * <pre>
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
-      public java.util.List<com.google.protobuf2.Any> getEvidenceList() {
+      public java.util.List<com.google.protobuf.Any> getEvidenceList() {
         if (evidenceBuilder_ == null) {
           return java.util.Collections.unmodifiableList(evidence_);
         } else {
@@ -2604,7 +2518,7 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
       public int getEvidenceCount() {
         if (evidenceBuilder_ == null) {
@@ -2618,9 +2532,9 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
-      public com.google.protobuf2.Any getEvidence(int index) {
+      public com.google.protobuf.Any getEvidence(int index) {
         if (evidenceBuilder_ == null) {
           return evidence_.get(index);
         } else {
@@ -2632,10 +2546,10 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
       public Builder setEvidence(
-          int index, com.google.protobuf2.Any value) {
+          int index, com.google.protobuf.Any value) {
         if (evidenceBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2653,10 +2567,10 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
       public Builder setEvidence(
-          int index, com.google.protobuf2.Any.Builder builderForValue) {
+          int index, com.google.protobuf.Any.Builder builderForValue) {
         if (evidenceBuilder_ == null) {
           ensureEvidenceIsMutable();
           evidence_.set(index, builderForValue.build());
@@ -2671,9 +2585,9 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
-      public Builder addEvidence(com.google.protobuf2.Any value) {
+      public Builder addEvidence(com.google.protobuf.Any value) {
         if (evidenceBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2691,10 +2605,10 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
       public Builder addEvidence(
-          int index, com.google.protobuf2.Any value) {
+          int index, com.google.protobuf.Any value) {
         if (evidenceBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2712,10 +2626,10 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
       public Builder addEvidence(
-          com.google.protobuf2.Any.Builder builderForValue) {
+          com.google.protobuf.Any.Builder builderForValue) {
         if (evidenceBuilder_ == null) {
           ensureEvidenceIsMutable();
           evidence_.add(builderForValue.build());
@@ -2730,10 +2644,10 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
       public Builder addEvidence(
-          int index, com.google.protobuf2.Any.Builder builderForValue) {
+          int index, com.google.protobuf.Any.Builder builderForValue) {
         if (evidenceBuilder_ == null) {
           ensureEvidenceIsMutable();
           evidence_.add(index, builderForValue.build());
@@ -2748,10 +2662,10 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
       public Builder addAllEvidence(
-          java.lang.Iterable<? extends com.google.protobuf2.Any> values) {
+          java.lang.Iterable<? extends com.google.protobuf.Any> values) {
         if (evidenceBuilder_ == null) {
           ensureEvidenceIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2767,7 +2681,7 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
       public Builder clearEvidence() {
         if (evidenceBuilder_ == null) {
@@ -2784,7 +2698,7 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
       public Builder removeEvidence(int index) {
         if (evidenceBuilder_ == null) {
@@ -2801,9 +2715,9 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
-      public com.google.protobuf2.Any.Builder getEvidenceBuilder(
+      public com.google.protobuf.Any.Builder getEvidenceBuilder(
           int index) {
         return getEvidenceFieldBuilder().getBuilder(index);
       }
@@ -2812,9 +2726,9 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
-      public com.google.protobuf2.AnyOrBuilder getEvidenceOrBuilder(
+      public com.google.protobuf.AnyOrBuilder getEvidenceOrBuilder(
           int index) {
         if (evidenceBuilder_ == null) {
           return evidence_.get(index);  } else {
@@ -2826,9 +2740,9 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
-      public java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+      public java.util.List<? extends com.google.protobuf.AnyOrBuilder> 
            getEvidenceOrBuilderList() {
         if (evidenceBuilder_ != null) {
           return evidenceBuilder_.getMessageOrBuilderList();
@@ -2841,41 +2755,41 @@ public final class QueryOuterClass {
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
-      public com.google.protobuf2.Any.Builder addEvidenceBuilder() {
+      public com.google.protobuf.Any.Builder addEvidenceBuilder() {
         return getEvidenceFieldBuilder().addBuilder(
-            com.google.protobuf2.Any.getDefaultInstance());
+            com.google.protobuf.Any.getDefaultInstance());
       }
       /**
        * <pre>
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
-      public com.google.protobuf2.Any.Builder addEvidenceBuilder(
+      public com.google.protobuf.Any.Builder addEvidenceBuilder(
           int index) {
         return getEvidenceFieldBuilder().addBuilder(
-            index, com.google.protobuf2.Any.getDefaultInstance());
+            index, com.google.protobuf.Any.getDefaultInstance());
       }
       /**
        * <pre>
        * evidence returns all evidences.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any evidence = 1;</code>
+       * <code>repeated .google.protobuf.Any evidence = 1;</code>
        */
-      public java.util.List<com.google.protobuf2.Any.Builder> 
+      public java.util.List<com.google.protobuf.Any.Builder> 
            getEvidenceBuilderList() {
         return getEvidenceFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
           getEvidenceFieldBuilder() {
         if (evidenceBuilder_ == null) {
           evidenceBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder>(
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   evidence_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -2897,7 +2811,7 @@ public final class QueryOuterClass {
        * @return Whether the pagination field is set.
        */
       public boolean hasPagination() {
-        return paginationBuilder_ != null || pagination_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -2927,11 +2841,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           pagination_ = value;
-          onChanged();
         } else {
           paginationBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2945,11 +2859,11 @@ public final class QueryOuterClass {
           cosmos.base.query.v1beta1.Pagination.PageResponse.Builder builderForValue) {
         if (paginationBuilder_ == null) {
           pagination_ = builderForValue.build();
-          onChanged();
         } else {
           paginationBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2961,17 +2875,18 @@ public final class QueryOuterClass {
        */
       public Builder mergePagination(cosmos.base.query.v1beta1.Pagination.PageResponse value) {
         if (paginationBuilder_ == null) {
-          if (pagination_ != null) {
-            pagination_ =
-              cosmos.base.query.v1beta1.Pagination.PageResponse.newBuilder(pagination_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            pagination_ != null &&
+            pagination_ != cosmos.base.query.v1beta1.Pagination.PageResponse.getDefaultInstance()) {
+            getPaginationBuilder().mergeFrom(value);
           } else {
             pagination_ = value;
           }
-          onChanged();
         } else {
           paginationBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2982,14 +2897,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
        */
       public Builder clearPagination() {
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-          onChanged();
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -3000,7 +2914,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
        */
       public cosmos.base.query.v1beta1.Pagination.PageResponse.Builder getPaginationBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getPaginationFieldBuilder().getBuilder();
       }
@@ -3072,7 +2986,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryAllEvidenceResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3124,35 +3049,35 @@ public final class QueryOuterClass {
       "\n#cosmos/evidence/v1beta1/query.proto\022\027c" +
       "osmos.evidence.v1beta1\032*cosmos/base/quer" +
       "y/v1beta1/pagination.proto\032\024gogoproto/go" +
-      "go.proto\032\032google/protobuf2/any.proto\032\034go" +
-      "ogle/api/annotations.proto\"g\n\024QueryEvide" +
-      "nceRequest\022O\n\revidence_hash\030\001 \001(\014B8\372\336\0374g" +
-      "ithub.com/tendermint/tendermint/libs/byt" +
-      "es.HexBytes\"@\n\025QueryEvidenceResponse\022\'\n\010" +
-      "evidence\030\001 \001(\0132\025.google.protobuf2.Any\"U\n" +
-      "\027QueryAllEvidenceRequest\022:\n\npagination\030\001" +
-      " \001(\0132&.cosmos.base.query.v1beta1.PageReq" +
-      "uest\"\200\001\n\030QueryAllEvidenceResponse\022\'\n\010evi" +
-      "dence\030\001 \003(\0132\025.google.protobuf2.Any\022;\n\npa" +
-      "gination\030\002 \001(\0132\'.cosmos.base.query.v1bet" +
-      "a1.PageResponse2\316\002\n\005Query\022\244\001\n\010Evidence\022-" +
-      ".cosmos.evidence.v1beta1.QueryEvidenceRe" +
-      "quest\032..cosmos.evidence.v1beta1.QueryEvi" +
-      "denceResponse\"9\202\323\344\223\0023\0221/cosmos/evidence/" +
-      "v1beta1/evidence/{evidence_hash}\022\235\001\n\013All" +
-      "Evidence\0220.cosmos.evidence.v1beta1.Query" +
-      "AllEvidenceRequest\0321.cosmos.evidence.v1b" +
-      "eta1.QueryAllEvidenceResponse\")\202\323\344\223\002#\022!/" +
-      "cosmos/evidence/v1beta1/evidenceB/Z-gith" +
-      "ub.com/cosmos/cosmos-sdk/x/evidence/type" +
-      "sb\006proto3"
+      "go.proto\032\031google/protobuf/any.proto\032\034goo" +
+      "gle/api/annotations.proto\"g\n\024QueryEviden" +
+      "ceRequest\022O\n\revidence_hash\030\001 \001(\014B8\372\336\0374gi" +
+      "thub.com/tendermint/tendermint/libs/byte" +
+      "s.HexBytes\"?\n\025QueryEvidenceResponse\022&\n\010e" +
+      "vidence\030\001 \001(\0132\024.google.protobuf.Any\"U\n\027Q" +
+      "ueryAllEvidenceRequest\022:\n\npagination\030\001 \001" +
+      "(\0132&.cosmos.base.query.v1beta1.PageReque" +
+      "st\"\177\n\030QueryAllEvidenceResponse\022&\n\010eviden" +
+      "ce\030\001 \003(\0132\024.google.protobuf.Any\022;\n\npagina" +
+      "tion\030\002 \001(\0132\'.cosmos.base.query.v1beta1.P" +
+      "ageResponse2\316\002\n\005Query\022\244\001\n\010Evidence\022-.cos" +
+      "mos.evidence.v1beta1.QueryEvidenceReques" +
+      "t\032..cosmos.evidence.v1beta1.QueryEvidenc" +
+      "eResponse\"9\202\323\344\223\0023\0221/cosmos/evidence/v1be" +
+      "ta1/evidence/{evidence_hash}\022\235\001\n\013AllEvid" +
+      "ence\0220.cosmos.evidence.v1beta1.QueryAllE" +
+      "videnceRequest\0321.cosmos.evidence.v1beta1" +
+      ".QueryAllEvidenceResponse\")\202\323\344\223\002#\022!/cosm" +
+      "os/evidence/v1beta1/evidenceB/Z-github.c" +
+      "om/cosmos/cosmos-sdk/x/evidence/typesb\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           cosmos.base.query.v1beta1.Pagination.getDescriptor(),
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
-          com.google.protobuf2.AnyProto.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
+          com.google.protobuf.AnyProto.getDescriptor(),
           com.google.api.AnnotationsProto.getDescriptor(),
         });
     internal_static_cosmos_evidence_v1beta1_QueryEvidenceRequest_descriptor =
@@ -3181,13 +3106,13 @@ public final class QueryOuterClass {
         new java.lang.String[] { "Evidence", "Pagination", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.casttype);
+    registry.add(com.google.protobuf.GoGoProtos.casttype);
     registry.add(com.google.api.AnnotationsProto.http);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
     cosmos.base.query.v1beta1.Pagination.getDescriptor();
-    com.google.protobuf2.GoGoProtos.getDescriptor();
-    com.google.protobuf2.AnyProto.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
+    com.google.protobuf.AnyProto.getDescriptor();
     com.google.api.AnnotationsProto.getDescriptor();
   }
 

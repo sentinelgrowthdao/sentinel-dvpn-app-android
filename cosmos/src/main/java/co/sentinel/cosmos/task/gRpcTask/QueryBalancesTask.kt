@@ -31,6 +31,7 @@ class QueryBalancesTask(
       mResult.isSuccess = true
       mResult.resultData = response
     } catch (e: Exception) {
+      e.stackTrace
       Timber.e("BalanceGrpcTask " + e.message)
       mResult.exception = e
     }

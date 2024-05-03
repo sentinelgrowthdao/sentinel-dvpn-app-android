@@ -1,11 +1,6 @@
 package cosmos.params.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/params/v1beta1/query.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class QueryGrpc {
 
   private QueryGrpc() {}
@@ -102,7 +98,7 @@ public final class QueryGrpc {
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static abstract class QueryImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -110,30 +106,34 @@ public final class QueryGrpc {
      * key.
      * </pre>
      */
-    public void params(cosmos.params.v1beta1.QueryOuterClass.QueryParamsRequest request,
+    default void params(cosmos.params.v1beta1.QueryOuterClass.QueryParamsRequest request,
         io.grpc.stub.StreamObserver<cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getParamsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.params.v1beta1.QueryOuterClass.QueryParamsRequest,
-                cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse>(
-                  this, METHODID_PARAMS)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryStub extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
+  public static abstract class QueryImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return QueryGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Query.
+   * <pre>
+   * Query defines the gRPC querier service.
+   * </pre>
+   */
+  public static final class QueryStub
+      extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
     private QueryStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -153,17 +153,19 @@ public final class QueryGrpc {
      */
     public void params(cosmos.params.v1beta1.QueryOuterClass.QueryParamsRequest request,
         io.grpc.stub.StreamObserver<cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryBlockingStub extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
+  public static final class QueryBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
     private QueryBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -182,17 +184,19 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse params(cosmos.params.v1beta1.QueryOuterClass.QueryParamsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getParamsMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryFutureStub extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
+  public static final class QueryFutureStub
+      extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
     private QueryFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -212,7 +216,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse> params(
         cosmos.params.v1beta1.QueryOuterClass.QueryParamsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request);
     }
   }
@@ -224,10 +228,10 @@ public final class QueryGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final QueryImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(QueryImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -254,6 +258,18 @@ public final class QueryGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getParamsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.params.v1beta1.QueryOuterClass.QueryParamsRequest,
+              cosmos.params.v1beta1.QueryOuterClass.QueryParamsResponse>(
+                service, METHODID_PARAMS)))
+        .build();
   }
 
   private static abstract class QueryBaseDescriptorSupplier

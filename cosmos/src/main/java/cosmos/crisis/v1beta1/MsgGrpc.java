@@ -1,11 +1,6 @@
 package cosmos.crisis.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/crisis/v1beta1/tx.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class MsgGrpc {
 
   private MsgGrpc() {}
@@ -102,37 +98,41 @@ public final class MsgGrpc {
    * Msg defines the bank Msg service.
    * </pre>
    */
-  public static abstract class MsgImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * VerifyInvariant defines a method to verify a particular invariance.
      * </pre>
      */
-    public void verifyInvariant(cosmos.crisis.v1beta1.Tx.MsgVerifyInvariant request,
+    default void verifyInvariant(cosmos.crisis.v1beta1.Tx.MsgVerifyInvariant request,
         io.grpc.stub.StreamObserver<cosmos.crisis.v1beta1.Tx.MsgVerifyInvariantResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getVerifyInvariantMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getVerifyInvariantMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.crisis.v1beta1.Tx.MsgVerifyInvariant,
-                cosmos.crisis.v1beta1.Tx.MsgVerifyInvariantResponse>(
-                  this, METHODID_VERIFY_INVARIANT)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getVerifyInvariantMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Msg.
    * <pre>
    * Msg defines the bank Msg service.
    * </pre>
    */
-  public static final class MsgStub extends io.grpc.stub.AbstractAsyncStub<MsgStub> {
+  public static abstract class MsgImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return MsgGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Msg.
+   * <pre>
+   * Msg defines the bank Msg service.
+   * </pre>
+   */
+  public static final class MsgStub
+      extends io.grpc.stub.AbstractAsyncStub<MsgStub> {
     private MsgStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -151,17 +151,19 @@ public final class MsgGrpc {
      */
     public void verifyInvariant(cosmos.crisis.v1beta1.Tx.MsgVerifyInvariant request,
         io.grpc.stub.StreamObserver<cosmos.crisis.v1beta1.Tx.MsgVerifyInvariantResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getVerifyInvariantMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Msg.
    * <pre>
    * Msg defines the bank Msg service.
    * </pre>
    */
-  public static final class MsgBlockingStub extends io.grpc.stub.AbstractBlockingStub<MsgBlockingStub> {
+  public static final class MsgBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<MsgBlockingStub> {
     private MsgBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -179,17 +181,19 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.crisis.v1beta1.Tx.MsgVerifyInvariantResponse verifyInvariant(cosmos.crisis.v1beta1.Tx.MsgVerifyInvariant request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getVerifyInvariantMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Msg.
    * <pre>
    * Msg defines the bank Msg service.
    * </pre>
    */
-  public static final class MsgFutureStub extends io.grpc.stub.AbstractFutureStub<MsgFutureStub> {
+  public static final class MsgFutureStub
+      extends io.grpc.stub.AbstractFutureStub<MsgFutureStub> {
     private MsgFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -208,7 +212,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.crisis.v1beta1.Tx.MsgVerifyInvariantResponse> verifyInvariant(
         cosmos.crisis.v1beta1.Tx.MsgVerifyInvariant request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getVerifyInvariantMethod(), getCallOptions()), request);
     }
   }
@@ -220,10 +224,10 @@ public final class MsgGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final MsgImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(MsgImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -250,6 +254,18 @@ public final class MsgGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getVerifyInvariantMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.crisis.v1beta1.Tx.MsgVerifyInvariant,
+              cosmos.crisis.v1beta1.Tx.MsgVerifyInvariantResponse>(
+                service, METHODID_VERIFY_INVARIANT)))
+        .build();
   }
 
   private static abstract class MsgBaseDescriptorSupplier

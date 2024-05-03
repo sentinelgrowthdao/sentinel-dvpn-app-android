@@ -319,132 +319,6 @@ public final class Genesis {
       return new GenesisState();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GenesisState(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.staking.v1beta1.Staking.Params.Builder subBuilder = null;
-              if (params_ != null) {
-                subBuilder = params_.toBuilder();
-              }
-              params_ = input.readMessage(cosmos.staking.v1beta1.Staking.Params.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(params_);
-                params_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-
-              lastTotalPower_ = input.readBytes();
-              break;
-            }
-            case 26: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                lastValidatorPowers_ = new java.util.ArrayList<cosmos.staking.v1beta1.Genesis.LastValidatorPower>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              lastValidatorPowers_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Genesis.LastValidatorPower.parser(), extensionRegistry));
-              break;
-            }
-            case 34: {
-              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                validators_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.Validator>();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              validators_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Staking.Validator.parser(), extensionRegistry));
-              break;
-            }
-            case 42: {
-              if (!((mutable_bitField0_ & 0x00000004) != 0)) {
-                delegations_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.Delegation>();
-                mutable_bitField0_ |= 0x00000004;
-              }
-              delegations_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Staking.Delegation.parser(), extensionRegistry));
-              break;
-            }
-            case 50: {
-              if (!((mutable_bitField0_ & 0x00000008) != 0)) {
-                unbondingDelegations_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.UnbondingDelegation>();
-                mutable_bitField0_ |= 0x00000008;
-              }
-              unbondingDelegations_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Staking.UnbondingDelegation.parser(), extensionRegistry));
-              break;
-            }
-            case 58: {
-              if (!((mutable_bitField0_ & 0x00000010) != 0)) {
-                redelegations_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.Redelegation>();
-                mutable_bitField0_ |= 0x00000010;
-              }
-              redelegations_.add(
-                  input.readMessage(cosmos.staking.v1beta1.Staking.Redelegation.parser(), extensionRegistry));
-              break;
-            }
-            case 64: {
-
-              exported_ = input.readBool();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          lastValidatorPowers_ = java.util.Collections.unmodifiableList(lastValidatorPowers_);
-        }
-        if (((mutable_bitField0_ & 0x00000002) != 0)) {
-          validators_ = java.util.Collections.unmodifiableList(validators_);
-        }
-        if (((mutable_bitField0_ & 0x00000004) != 0)) {
-          delegations_ = java.util.Collections.unmodifiableList(delegations_);
-        }
-        if (((mutable_bitField0_ & 0x00000008) != 0)) {
-          unbondingDelegations_ = java.util.Collections.unmodifiableList(unbondingDelegations_);
-        }
-        if (((mutable_bitField0_ & 0x00000010) != 0)) {
-          redelegations_ = java.util.Collections.unmodifiableList(redelegations_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Genesis.internal_static_cosmos_staking_v1beta1_GenesisState_descriptor;
@@ -493,11 +367,11 @@ public final class Genesis {
      */
     @java.lang.Override
     public cosmos.staking.v1beta1.Staking.ParamsOrBuilder getParamsOrBuilder() {
-      return getParams();
+      return params_ == null ? cosmos.staking.v1beta1.Staking.Params.getDefaultInstance() : params_;
     }
 
     public static final int LAST_TOTAL_POWER_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString lastTotalPower_;
+    private com.google.protobuf.ByteString lastTotalPower_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * last_total_power tracks the total amounts of bonded tokens recorded during
@@ -513,6 +387,7 @@ public final class Genesis {
     }
 
     public static final int LAST_VALIDATOR_POWERS_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Genesis.LastValidatorPower> lastValidatorPowers_;
     /**
      * <pre>
@@ -578,6 +453,7 @@ public final class Genesis {
     }
 
     public static final int VALIDATORS_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Staking.Validator> validators_;
     /**
      * <pre>
@@ -638,6 +514,7 @@ public final class Genesis {
     }
 
     public static final int DELEGATIONS_FIELD_NUMBER = 5;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Staking.Delegation> delegations_;
     /**
      * <pre>
@@ -698,6 +575,7 @@ public final class Genesis {
     }
 
     public static final int UNBONDING_DELEGATIONS_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Staking.UnbondingDelegation> unbondingDelegations_;
     /**
      * <pre>
@@ -758,6 +636,7 @@ public final class Genesis {
     }
 
     public static final int REDELEGATIONS_FIELD_NUMBER = 7;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.staking.v1beta1.Staking.Redelegation> redelegations_;
     /**
      * <pre>
@@ -818,7 +697,7 @@ public final class Genesis {
     }
 
     public static final int EXPORTED_FIELD_NUMBER = 8;
-    private boolean exported_;
+    private boolean exported_ = false;
     /**
      * <code>bool exported = 8;</code>
      * @return The exported.
@@ -866,7 +745,7 @@ public final class Genesis {
       if (exported_ != false) {
         output.writeBool(8, exported_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -907,7 +786,7 @@ public final class Genesis {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(8, exported_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -941,7 +820,7 @@ public final class Genesis {
           .equals(other.getRedelegationsList())) return false;
       if (getExported()
           != other.getExported()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -981,7 +860,7 @@ public final class Genesis {
       hash = (37 * hash) + EXPORTED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getExported());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1030,11 +909,13 @@ public final class Genesis {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Genesis.GenesisState parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Genesis.GenesisState parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1102,67 +983,60 @@ public final class Genesis {
 
       // Construct using cosmos.staking.v1beta1.Genesis.GenesisState.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getLastValidatorPowersFieldBuilder();
-          getValidatorsFieldBuilder();
-          getDelegationsFieldBuilder();
-          getUnbondingDelegationsFieldBuilder();
-          getRedelegationsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (paramsBuilder_ == null) {
-          params_ = null;
-        } else {
-          params_ = null;
+        bitField0_ = 0;
+        params_ = null;
+        if (paramsBuilder_ != null) {
+          paramsBuilder_.dispose();
           paramsBuilder_ = null;
         }
         lastTotalPower_ = com.google.protobuf.ByteString.EMPTY;
-
         if (lastValidatorPowersBuilder_ == null) {
           lastValidatorPowers_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          lastValidatorPowers_ = null;
           lastValidatorPowersBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000004);
         if (validatorsBuilder_ == null) {
           validators_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          validators_ = null;
           validatorsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         if (delegationsBuilder_ == null) {
           delegations_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
+          delegations_ = null;
           delegationsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000010);
         if (unbondingDelegationsBuilder_ == null) {
           unbondingDelegations_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
         } else {
+          unbondingDelegations_ = null;
           unbondingDelegationsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000020);
         if (redelegationsBuilder_ == null) {
           redelegations_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
         } else {
+          redelegations_ = null;
           redelegationsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000040);
         exported_ = false;
-
         return this;
       }
 
@@ -1189,61 +1063,73 @@ public final class Genesis {
       @java.lang.Override
       public cosmos.staking.v1beta1.Genesis.GenesisState buildPartial() {
         cosmos.staking.v1beta1.Genesis.GenesisState result = new cosmos.staking.v1beta1.Genesis.GenesisState(this);
-        int from_bitField0_ = bitField0_;
-        if (paramsBuilder_ == null) {
-          result.params_ = params_;
-        } else {
-          result.params_ = paramsBuilder_.build();
-        }
-        result.lastTotalPower_ = lastTotalPower_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.staking.v1beta1.Genesis.GenesisState result) {
         if (lastValidatorPowersBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000004) != 0)) {
             lastValidatorPowers_ = java.util.Collections.unmodifiableList(lastValidatorPowers_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000004);
           }
           result.lastValidatorPowers_ = lastValidatorPowers_;
         } else {
           result.lastValidatorPowers_ = lastValidatorPowersBuilder_.build();
         }
         if (validatorsBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0)) {
+          if (((bitField0_ & 0x00000008) != 0)) {
             validators_ = java.util.Collections.unmodifiableList(validators_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000008);
           }
           result.validators_ = validators_;
         } else {
           result.validators_ = validatorsBuilder_.build();
         }
         if (delegationsBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) != 0)) {
+          if (((bitField0_ & 0x00000010) != 0)) {
             delegations_ = java.util.Collections.unmodifiableList(delegations_);
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000010);
           }
           result.delegations_ = delegations_;
         } else {
           result.delegations_ = delegationsBuilder_.build();
         }
         if (unbondingDelegationsBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) != 0)) {
+          if (((bitField0_ & 0x00000020) != 0)) {
             unbondingDelegations_ = java.util.Collections.unmodifiableList(unbondingDelegations_);
-            bitField0_ = (bitField0_ & ~0x00000008);
+            bitField0_ = (bitField0_ & ~0x00000020);
           }
           result.unbondingDelegations_ = unbondingDelegations_;
         } else {
           result.unbondingDelegations_ = unbondingDelegationsBuilder_.build();
         }
         if (redelegationsBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) != 0)) {
+          if (((bitField0_ & 0x00000040) != 0)) {
             redelegations_ = java.util.Collections.unmodifiableList(redelegations_);
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x00000040);
           }
           result.redelegations_ = redelegations_;
         } else {
           result.redelegations_ = redelegationsBuilder_.build();
         }
-        result.exported_ = exported_;
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Genesis.GenesisState result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.params_ = paramsBuilder_ == null
+              ? params_
+              : paramsBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.lastTotalPower_ = lastTotalPower_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.exported_ = exported_;
+        }
       }
 
       @java.lang.Override
@@ -1300,7 +1186,7 @@ public final class Genesis {
           if (!other.lastValidatorPowers_.isEmpty()) {
             if (lastValidatorPowers_.isEmpty()) {
               lastValidatorPowers_ = other.lastValidatorPowers_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000004);
             } else {
               ensureLastValidatorPowersIsMutable();
               lastValidatorPowers_.addAll(other.lastValidatorPowers_);
@@ -1313,7 +1199,7 @@ public final class Genesis {
               lastValidatorPowersBuilder_.dispose();
               lastValidatorPowersBuilder_ = null;
               lastValidatorPowers_ = other.lastValidatorPowers_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000004);
               lastValidatorPowersBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getLastValidatorPowersFieldBuilder() : null;
@@ -1326,7 +1212,7 @@ public final class Genesis {
           if (!other.validators_.isEmpty()) {
             if (validators_.isEmpty()) {
               validators_ = other.validators_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000008);
             } else {
               ensureValidatorsIsMutable();
               validators_.addAll(other.validators_);
@@ -1339,7 +1225,7 @@ public final class Genesis {
               validatorsBuilder_.dispose();
               validatorsBuilder_ = null;
               validators_ = other.validators_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000008);
               validatorsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getValidatorsFieldBuilder() : null;
@@ -1352,7 +1238,7 @@ public final class Genesis {
           if (!other.delegations_.isEmpty()) {
             if (delegations_.isEmpty()) {
               delegations_ = other.delegations_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000010);
             } else {
               ensureDelegationsIsMutable();
               delegations_.addAll(other.delegations_);
@@ -1365,7 +1251,7 @@ public final class Genesis {
               delegationsBuilder_.dispose();
               delegationsBuilder_ = null;
               delegations_ = other.delegations_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000010);
               delegationsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getDelegationsFieldBuilder() : null;
@@ -1378,7 +1264,7 @@ public final class Genesis {
           if (!other.unbondingDelegations_.isEmpty()) {
             if (unbondingDelegations_.isEmpty()) {
               unbondingDelegations_ = other.unbondingDelegations_;
-              bitField0_ = (bitField0_ & ~0x00000008);
+              bitField0_ = (bitField0_ & ~0x00000020);
             } else {
               ensureUnbondingDelegationsIsMutable();
               unbondingDelegations_.addAll(other.unbondingDelegations_);
@@ -1391,7 +1277,7 @@ public final class Genesis {
               unbondingDelegationsBuilder_.dispose();
               unbondingDelegationsBuilder_ = null;
               unbondingDelegations_ = other.unbondingDelegations_;
-              bitField0_ = (bitField0_ & ~0x00000008);
+              bitField0_ = (bitField0_ & ~0x00000020);
               unbondingDelegationsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getUnbondingDelegationsFieldBuilder() : null;
@@ -1404,7 +1290,7 @@ public final class Genesis {
           if (!other.redelegations_.isEmpty()) {
             if (redelegations_.isEmpty()) {
               redelegations_ = other.redelegations_;
-              bitField0_ = (bitField0_ & ~0x00000010);
+              bitField0_ = (bitField0_ & ~0x00000040);
             } else {
               ensureRedelegationsIsMutable();
               redelegations_.addAll(other.redelegations_);
@@ -1417,7 +1303,7 @@ public final class Genesis {
               redelegationsBuilder_.dispose();
               redelegationsBuilder_ = null;
               redelegations_ = other.redelegations_;
-              bitField0_ = (bitField0_ & ~0x00000010);
+              bitField0_ = (bitField0_ & ~0x00000040);
               redelegationsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getRedelegationsFieldBuilder() : null;
@@ -1429,7 +1315,7 @@ public final class Genesis {
         if (other.getExported() != false) {
           setExported(other.getExported());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1444,17 +1330,112 @@ public final class Genesis {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Genesis.GenesisState parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getParamsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                lastTotalPower_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                cosmos.staking.v1beta1.Genesis.LastValidatorPower m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Genesis.LastValidatorPower.parser(),
+                        extensionRegistry);
+                if (lastValidatorPowersBuilder_ == null) {
+                  ensureLastValidatorPowersIsMutable();
+                  lastValidatorPowers_.add(m);
+                } else {
+                  lastValidatorPowersBuilder_.addMessage(m);
+                }
+                break;
+              } // case 26
+              case 34: {
+                cosmos.staking.v1beta1.Staking.Validator m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Staking.Validator.parser(),
+                        extensionRegistry);
+                if (validatorsBuilder_ == null) {
+                  ensureValidatorsIsMutable();
+                  validators_.add(m);
+                } else {
+                  validatorsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 34
+              case 42: {
+                cosmos.staking.v1beta1.Staking.Delegation m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Staking.Delegation.parser(),
+                        extensionRegistry);
+                if (delegationsBuilder_ == null) {
+                  ensureDelegationsIsMutable();
+                  delegations_.add(m);
+                } else {
+                  delegationsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 42
+              case 50: {
+                cosmos.staking.v1beta1.Staking.UnbondingDelegation m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Staking.UnbondingDelegation.parser(),
+                        extensionRegistry);
+                if (unbondingDelegationsBuilder_ == null) {
+                  ensureUnbondingDelegationsIsMutable();
+                  unbondingDelegations_.add(m);
+                } else {
+                  unbondingDelegationsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 50
+              case 58: {
+                cosmos.staking.v1beta1.Staking.Redelegation m =
+                    input.readMessage(
+                        cosmos.staking.v1beta1.Staking.Redelegation.parser(),
+                        extensionRegistry);
+                if (redelegationsBuilder_ == null) {
+                  ensureRedelegationsIsMutable();
+                  redelegations_.add(m);
+                } else {
+                  redelegationsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 58
+              case 64: {
+                exported_ = input.readBool();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 64
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Genesis.GenesisState) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1471,7 +1452,7 @@ public final class Genesis {
        * @return Whether the params field is set.
        */
       public boolean hasParams() {
-        return paramsBuilder_ != null || params_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -1501,11 +1482,11 @@ public final class Genesis {
             throw new NullPointerException();
           }
           params_ = value;
-          onChanged();
         } else {
           paramsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1519,11 +1500,11 @@ public final class Genesis {
           cosmos.staking.v1beta1.Staking.Params.Builder builderForValue) {
         if (paramsBuilder_ == null) {
           params_ = builderForValue.build();
-          onChanged();
         } else {
           paramsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1535,17 +1516,18 @@ public final class Genesis {
        */
       public Builder mergeParams(cosmos.staking.v1beta1.Staking.Params value) {
         if (paramsBuilder_ == null) {
-          if (params_ != null) {
-            params_ =
-              cosmos.staking.v1beta1.Staking.Params.newBuilder(params_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            params_ != null &&
+            params_ != cosmos.staking.v1beta1.Staking.Params.getDefaultInstance()) {
+            getParamsBuilder().mergeFrom(value);
           } else {
             params_ = value;
           }
-          onChanged();
         } else {
           paramsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1556,14 +1538,13 @@ public final class Genesis {
        * <code>.cosmos.staking.v1beta1.Params params = 1 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearParams() {
-        if (paramsBuilder_ == null) {
-          params_ = null;
-          onChanged();
-        } else {
-          params_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        params_ = null;
+        if (paramsBuilder_ != null) {
+          paramsBuilder_.dispose();
           paramsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1574,7 +1555,7 @@ public final class Genesis {
        * <code>.cosmos.staking.v1beta1.Params params = 1 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.staking.v1beta1.Staking.Params.Builder getParamsBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getParamsFieldBuilder().getBuilder();
       }
@@ -1639,11 +1620,9 @@ public final class Genesis {
        * @return This builder for chaining.
        */
       public Builder setLastTotalPower(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         lastTotalPower_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1657,7 +1636,7 @@ public final class Genesis {
        * @return This builder for chaining.
        */
       public Builder clearLastTotalPower() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         lastTotalPower_ = getDefaultInstance().getLastTotalPower();
         onChanged();
         return this;
@@ -1666,9 +1645,9 @@ public final class Genesis {
       private java.util.List<cosmos.staking.v1beta1.Genesis.LastValidatorPower> lastValidatorPowers_ =
         java.util.Collections.emptyList();
       private void ensureLastValidatorPowersIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000004) != 0)) {
           lastValidatorPowers_ = new java.util.ArrayList<cosmos.staking.v1beta1.Genesis.LastValidatorPower>(lastValidatorPowers_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000004;
          }
       }
 
@@ -1873,7 +1852,7 @@ public final class Genesis {
       public Builder clearLastValidatorPowers() {
         if (lastValidatorPowersBuilder_ == null) {
           lastValidatorPowers_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
         } else {
           lastValidatorPowersBuilder_.clear();
@@ -1985,7 +1964,7 @@ public final class Genesis {
           lastValidatorPowersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.staking.v1beta1.Genesis.LastValidatorPower, cosmos.staking.v1beta1.Genesis.LastValidatorPower.Builder, cosmos.staking.v1beta1.Genesis.LastValidatorPowerOrBuilder>(
                   lastValidatorPowers_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
                   isClean());
           lastValidatorPowers_ = null;
@@ -1996,9 +1975,9 @@ public final class Genesis {
       private java.util.List<cosmos.staking.v1beta1.Staking.Validator> validators_ =
         java.util.Collections.emptyList();
       private void ensureValidatorsIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
+        if (!((bitField0_ & 0x00000008) != 0)) {
           validators_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.Validator>(validators_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000008;
          }
       }
 
@@ -2192,7 +2171,7 @@ public final class Genesis {
       public Builder clearValidators() {
         if (validatorsBuilder_ == null) {
           validators_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
           validatorsBuilder_.clear();
@@ -2297,7 +2276,7 @@ public final class Genesis {
           validatorsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.staking.v1beta1.Staking.Validator, cosmos.staking.v1beta1.Staking.Validator.Builder, cosmos.staking.v1beta1.Staking.ValidatorOrBuilder>(
                   validators_,
-                  ((bitField0_ & 0x00000002) != 0),
+                  ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
                   isClean());
           validators_ = null;
@@ -2308,9 +2287,9 @@ public final class Genesis {
       private java.util.List<cosmos.staking.v1beta1.Staking.Delegation> delegations_ =
         java.util.Collections.emptyList();
       private void ensureDelegationsIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
+        if (!((bitField0_ & 0x00000010) != 0)) {
           delegations_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.Delegation>(delegations_);
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000010;
          }
       }
 
@@ -2504,7 +2483,7 @@ public final class Genesis {
       public Builder clearDelegations() {
         if (delegationsBuilder_ == null) {
           delegations_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000010);
           onChanged();
         } else {
           delegationsBuilder_.clear();
@@ -2609,7 +2588,7 @@ public final class Genesis {
           delegationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.staking.v1beta1.Staking.Delegation, cosmos.staking.v1beta1.Staking.Delegation.Builder, cosmos.staking.v1beta1.Staking.DelegationOrBuilder>(
                   delegations_,
-                  ((bitField0_ & 0x00000004) != 0),
+                  ((bitField0_ & 0x00000010) != 0),
                   getParentForChildren(),
                   isClean());
           delegations_ = null;
@@ -2620,9 +2599,9 @@ public final class Genesis {
       private java.util.List<cosmos.staking.v1beta1.Staking.UnbondingDelegation> unbondingDelegations_ =
         java.util.Collections.emptyList();
       private void ensureUnbondingDelegationsIsMutable() {
-        if (!((bitField0_ & 0x00000008) != 0)) {
+        if (!((bitField0_ & 0x00000020) != 0)) {
           unbondingDelegations_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.UnbondingDelegation>(unbondingDelegations_);
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000020;
          }
       }
 
@@ -2816,7 +2795,7 @@ public final class Genesis {
       public Builder clearUnbondingDelegations() {
         if (unbondingDelegationsBuilder_ == null) {
           unbondingDelegations_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000020);
           onChanged();
         } else {
           unbondingDelegationsBuilder_.clear();
@@ -2921,7 +2900,7 @@ public final class Genesis {
           unbondingDelegationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.staking.v1beta1.Staking.UnbondingDelegation, cosmos.staking.v1beta1.Staking.UnbondingDelegation.Builder, cosmos.staking.v1beta1.Staking.UnbondingDelegationOrBuilder>(
                   unbondingDelegations_,
-                  ((bitField0_ & 0x00000008) != 0),
+                  ((bitField0_ & 0x00000020) != 0),
                   getParentForChildren(),
                   isClean());
           unbondingDelegations_ = null;
@@ -2932,9 +2911,9 @@ public final class Genesis {
       private java.util.List<cosmos.staking.v1beta1.Staking.Redelegation> redelegations_ =
         java.util.Collections.emptyList();
       private void ensureRedelegationsIsMutable() {
-        if (!((bitField0_ & 0x00000010) != 0)) {
+        if (!((bitField0_ & 0x00000040) != 0)) {
           redelegations_ = new java.util.ArrayList<cosmos.staking.v1beta1.Staking.Redelegation>(redelegations_);
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000040;
          }
       }
 
@@ -3128,7 +3107,7 @@ public final class Genesis {
       public Builder clearRedelegations() {
         if (redelegationsBuilder_ == null) {
           redelegations_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000040);
           onChanged();
         } else {
           redelegationsBuilder_.clear();
@@ -3233,7 +3212,7 @@ public final class Genesis {
           redelegationsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.staking.v1beta1.Staking.Redelegation, cosmos.staking.v1beta1.Staking.Redelegation.Builder, cosmos.staking.v1beta1.Staking.RedelegationOrBuilder>(
                   redelegations_,
-                  ((bitField0_ & 0x00000010) != 0),
+                  ((bitField0_ & 0x00000040) != 0),
                   getParentForChildren(),
                   isClean());
           redelegations_ = null;
@@ -3256,8 +3235,9 @@ public final class Genesis {
        * @return This builder for chaining.
        */
       public Builder setExported(boolean value) {
-        
+
         exported_ = value;
+        bitField0_ |= 0x00000080;
         onChanged();
         return this;
       }
@@ -3266,7 +3246,7 @@ public final class Genesis {
        * @return This builder for chaining.
        */
       public Builder clearExported() {
-        
+        bitField0_ = (bitField0_ & ~0x00000080);
         exported_ = false;
         onChanged();
         return this;
@@ -3304,7 +3284,18 @@ public final class Genesis {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GenesisState(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3385,59 +3376,6 @@ public final class Genesis {
       return new LastValidatorPower();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private LastValidatorPower(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              address_ = s;
-              break;
-            }
-            case 16: {
-
-              power_ = input.readInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.staking.v1beta1.Genesis.internal_static_cosmos_staking_v1beta1_LastValidatorPower_descriptor;
@@ -3452,7 +3390,8 @@ public final class Genesis {
     }
 
     public static final int ADDRESS_FIELD_NUMBER = 1;
-    private volatile java.lang.Object address_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object address_ = "";
     /**
      * <pre>
      * address is the address of the validator.
@@ -3498,7 +3437,7 @@ public final class Genesis {
     }
 
     public static final int POWER_FIELD_NUMBER = 2;
-    private long power_;
+    private long power_ = 0L;
     /**
      * <pre>
      * power defines the power of the validator.
@@ -3526,13 +3465,13 @@ public final class Genesis {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       if (power_ != 0L) {
         output.writeInt64(2, power_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3541,14 +3480,14 @@ public final class Genesis {
       if (size != -1) return size;
 
       size = 0;
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       if (power_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(2, power_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3567,7 +3506,7 @@ public final class Genesis {
           .equals(other.getAddress())) return false;
       if (getPower()
           != other.getPower()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3583,7 +3522,7 @@ public final class Genesis {
       hash = (37 * hash) + POWER_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getPower());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3632,11 +3571,13 @@ public final class Genesis {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.staking.v1beta1.Genesis.LastValidatorPower parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.staking.v1beta1.Genesis.LastValidatorPower parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3704,26 +3645,20 @@ public final class Genesis {
 
       // Construct using cosmos.staking.v1beta1.Genesis.LastValidatorPower.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         address_ = "";
-
         power_ = 0L;
-
         return this;
       }
 
@@ -3750,10 +3685,19 @@ public final class Genesis {
       @java.lang.Override
       public cosmos.staking.v1beta1.Genesis.LastValidatorPower buildPartial() {
         cosmos.staking.v1beta1.Genesis.LastValidatorPower result = new cosmos.staking.v1beta1.Genesis.LastValidatorPower(this);
-        result.address_ = address_;
-        result.power_ = power_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.staking.v1beta1.Genesis.LastValidatorPower result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.address_ = address_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.power_ = power_;
+        }
       }
 
       @java.lang.Override
@@ -3802,12 +3746,13 @@ public final class Genesis {
         if (other == cosmos.staking.v1beta1.Genesis.LastValidatorPower.getDefaultInstance()) return this;
         if (!other.getAddress().isEmpty()) {
           address_ = other.address_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.getPower() != 0L) {
           setPower(other.getPower());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3822,19 +3767,43 @@ public final class Genesis {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.staking.v1beta1.Genesis.LastValidatorPower parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                address_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                power_ = input.readInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.staking.v1beta1.Genesis.LastValidatorPower) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object address_ = "";
       /**
@@ -3889,11 +3858,9 @@ public final class Genesis {
        */
       public Builder setAddress(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         address_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3906,8 +3873,8 @@ public final class Genesis {
        * @return This builder for chaining.
        */
       public Builder clearAddress() {
-        
         address_ = getDefaultInstance().getAddress();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -3922,12 +3889,10 @@ public final class Genesis {
        */
       public Builder setAddressBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         address_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3955,8 +3920,9 @@ public final class Genesis {
        * @return This builder for chaining.
        */
       public Builder setPower(long value) {
-        
+
         power_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -3969,7 +3935,7 @@ public final class Genesis {
        * @return This builder for chaining.
        */
       public Builder clearPower() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         power_ = 0L;
         onChanged();
         return this;
@@ -4007,7 +3973,18 @@ public final class Genesis {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new LastValidatorPower(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -4051,28 +4028,28 @@ public final class Genesis {
       "roto\032$cosmos/staking/v1beta1/staking.pro" +
       "to\"\335\004\n\014GenesisState\0224\n\006params\030\001 \001(\0132\036.co" +
       "smos.staking.v1beta1.ParamsB\004\310\336\037\000\022c\n\020las" +
-      "t_total_power\030\002 \001(\014BI\332\336\037&github.com/cosm" +
-      "os/cosmos-sdk/types.Int\362\336\037\027yaml:\"last_to" +
-      "tal_power\"\310\336\037\000\022o\n\025last_validator_powers\030" +
+      "t_total_power\030\002 \001(\014BI\310\336\037\000\332\336\037&github.com/" +
+      "cosmos/cosmos-sdk/types.Int\362\336\037\027yaml:\"las" +
+      "t_total_power\"\022o\n\025last_validator_powers\030" +
       "\003 \003(\0132*.cosmos.staking.v1beta1.LastValid" +
-      "atorPowerB$\362\336\037\034yaml:\"last_validator_powe" +
-      "rs\"\310\336\037\000\022;\n\nvalidators\030\004 \003(\0132!.cosmos.sta" +
+      "atorPowerB$\310\336\037\000\362\336\037\034yaml:\"last_validator_" +
+      "powers\"\022;\n\nvalidators\030\004 \003(\0132!.cosmos.sta" +
       "king.v1beta1.ValidatorB\004\310\336\037\000\022=\n\013delegati" +
       "ons\030\005 \003(\0132\".cosmos.staking.v1beta1.Deleg" +
       "ationB\004\310\336\037\000\022p\n\025unbonding_delegations\030\006 \003" +
       "(\0132+.cosmos.staking.v1beta1.UnbondingDel" +
-      "egationB$\362\336\037\034yaml:\"unbonding_delegations" +
-      "\"\310\336\037\000\022A\n\rredelegations\030\007 \003(\0132$.cosmos.st" +
+      "egationB$\310\336\037\000\362\336\037\034yaml:\"unbonding_delegat" +
+      "ions\"\022A\n\rredelegations\030\007 \003(\0132$.cosmos.st" +
       "aking.v1beta1.RedelegationB\004\310\336\037\000\022\020\n\010expo" +
       "rted\030\010 \001(\010\">\n\022LastValidatorPower\022\017\n\007addr" +
-      "ess\030\001 \001(\t\022\r\n\005power\030\002 \001(\003:\010\350\240\037\000\210\240\037\000B.Z,gi" +
+      "ess\030\001 \001(\t\022\r\n\005power\030\002 \001(\003:\010\210\240\037\000\350\240\037\000B.Z,gi" +
       "thub.com/cosmos/cosmos-sdk/x/staking/typ" +
       "esb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           cosmos.staking.v1beta1.Staking.getDescriptor(),
         });
     internal_static_cosmos_staking_v1beta1_GenesisState_descriptor =
@@ -4089,14 +4066,14 @@ public final class Genesis {
         new java.lang.String[] { "Address", "Power", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.customtype);
-    registry.add(com.google.protobuf2.GoGoProtos.equal);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGetters);
-    registry.add(com.google.protobuf2.GoGoProtos.moretags);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.customtype);
+    registry.add(com.google.protobuf.GoGoProtos.equal);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGetters);
+    registry.add(com.google.protobuf.GoGoProtos.moretags);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     cosmos.staking.v1beta1.Staking.getDescriptor();
   }
 

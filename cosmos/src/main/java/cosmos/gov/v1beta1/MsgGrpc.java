@@ -1,11 +1,6 @@
 package cosmos.gov.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/gov/v1beta1/tx.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class MsgGrpc {
 
   private MsgGrpc() {}
@@ -82,6 +78,37 @@ public final class MsgGrpc {
       }
     }
     return getVoteMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<cosmos.gov.v1beta1.Tx.MsgVoteWeighted,
+      cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse> getVoteWeightedMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "VoteWeighted",
+      requestType = cosmos.gov.v1beta1.Tx.MsgVoteWeighted.class,
+      responseType = cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<cosmos.gov.v1beta1.Tx.MsgVoteWeighted,
+      cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse> getVoteWeightedMethod() {
+    io.grpc.MethodDescriptor<cosmos.gov.v1beta1.Tx.MsgVoteWeighted, cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse> getVoteWeightedMethod;
+    if ((getVoteWeightedMethod = MsgGrpc.getVoteWeightedMethod) == null) {
+      synchronized (MsgGrpc.class) {
+        if ((getVoteWeightedMethod = MsgGrpc.getVoteWeightedMethod) == null) {
+          MsgGrpc.getVoteWeightedMethod = getVoteWeightedMethod =
+              io.grpc.MethodDescriptor.<cosmos.gov.v1beta1.Tx.MsgVoteWeighted, cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "VoteWeighted"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.gov.v1beta1.Tx.MsgVoteWeighted.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new MsgMethodDescriptorSupplier("VoteWeighted"))
+              .build();
+        }
+      }
+    }
+    return getVoteWeightedMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<cosmos.gov.v1beta1.Tx.MsgDeposit,
@@ -164,16 +191,16 @@ public final class MsgGrpc {
    * Msg defines the bank Msg service.
    * </pre>
    */
-  public static abstract class MsgImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * SubmitProposal defines a method to create new proposal given a content.
      * </pre>
      */
-    public void submitProposal(cosmos.gov.v1beta1.Tx.MsgSubmitProposal request,
+    default void submitProposal(cosmos.gov.v1beta1.Tx.MsgSubmitProposal request,
         io.grpc.stub.StreamObserver<cosmos.gov.v1beta1.Tx.MsgSubmitProposalResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getSubmitProposalMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSubmitProposalMethod(), responseObserver);
     }
 
     /**
@@ -181,9 +208,20 @@ public final class MsgGrpc {
      * Vote defines a method to add a vote on a specific proposal.
      * </pre>
      */
-    public void vote(cosmos.gov.v1beta1.Tx.MsgVote request,
+    default void vote(cosmos.gov.v1beta1.Tx.MsgVote request,
         io.grpc.stub.StreamObserver<cosmos.gov.v1beta1.Tx.MsgVoteResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getVoteMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getVoteMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * VoteWeighted defines a method to add a weighted vote on a specific proposal.
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     */
+    default void voteWeighted(cosmos.gov.v1beta1.Tx.MsgVoteWeighted request,
+        io.grpc.stub.StreamObserver<cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getVoteWeightedMethod(), responseObserver);
     }
 
     /**
@@ -191,44 +229,34 @@ public final class MsgGrpc {
      * Deposit defines a method to add deposit on a specific proposal.
      * </pre>
      */
-    public void deposit(cosmos.gov.v1beta1.Tx.MsgDeposit request,
+    default void deposit(cosmos.gov.v1beta1.Tx.MsgDeposit request,
         io.grpc.stub.StreamObserver<cosmos.gov.v1beta1.Tx.MsgDepositResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getDepositMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getSubmitProposalMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.gov.v1beta1.Tx.MsgSubmitProposal,
-                cosmos.gov.v1beta1.Tx.MsgSubmitProposalResponse>(
-                  this, METHODID_SUBMIT_PROPOSAL)))
-          .addMethod(
-            getVoteMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.gov.v1beta1.Tx.MsgVote,
-                cosmos.gov.v1beta1.Tx.MsgVoteResponse>(
-                  this, METHODID_VOTE)))
-          .addMethod(
-            getDepositMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.gov.v1beta1.Tx.MsgDeposit,
-                cosmos.gov.v1beta1.Tx.MsgDepositResponse>(
-                  this, METHODID_DEPOSIT)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDepositMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Msg.
    * <pre>
    * Msg defines the bank Msg service.
    * </pre>
    */
-  public static final class MsgStub extends io.grpc.stub.AbstractAsyncStub<MsgStub> {
+  public static abstract class MsgImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return MsgGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Msg.
+   * <pre>
+   * Msg defines the bank Msg service.
+   * </pre>
+   */
+  public static final class MsgStub
+      extends io.grpc.stub.AbstractAsyncStub<MsgStub> {
     private MsgStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -247,7 +275,7 @@ public final class MsgGrpc {
      */
     public void submitProposal(cosmos.gov.v1beta1.Tx.MsgSubmitProposal request,
         io.grpc.stub.StreamObserver<cosmos.gov.v1beta1.Tx.MsgSubmitProposalResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSubmitProposalMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -258,8 +286,20 @@ public final class MsgGrpc {
      */
     public void vote(cosmos.gov.v1beta1.Tx.MsgVote request,
         io.grpc.stub.StreamObserver<cosmos.gov.v1beta1.Tx.MsgVoteResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getVoteMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * VoteWeighted defines a method to add a weighted vote on a specific proposal.
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     */
+    public void voteWeighted(cosmos.gov.v1beta1.Tx.MsgVoteWeighted request,
+        io.grpc.stub.StreamObserver<cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getVoteWeightedMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -269,17 +309,19 @@ public final class MsgGrpc {
      */
     public void deposit(cosmos.gov.v1beta1.Tx.MsgDeposit request,
         io.grpc.stub.StreamObserver<cosmos.gov.v1beta1.Tx.MsgDepositResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDepositMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Msg.
    * <pre>
    * Msg defines the bank Msg service.
    * </pre>
    */
-  public static final class MsgBlockingStub extends io.grpc.stub.AbstractBlockingStub<MsgBlockingStub> {
+  public static final class MsgBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<MsgBlockingStub> {
     private MsgBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -297,7 +339,7 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.gov.v1beta1.Tx.MsgSubmitProposalResponse submitProposal(cosmos.gov.v1beta1.Tx.MsgSubmitProposal request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSubmitProposalMethod(), getCallOptions(), request);
     }
 
@@ -307,8 +349,19 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.gov.v1beta1.Tx.MsgVoteResponse vote(cosmos.gov.v1beta1.Tx.MsgVote request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getVoteMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * VoteWeighted defines a method to add a weighted vote on a specific proposal.
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     */
+    public cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse voteWeighted(cosmos.gov.v1beta1.Tx.MsgVoteWeighted request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getVoteWeightedMethod(), getCallOptions(), request);
     }
 
     /**
@@ -317,17 +370,19 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.gov.v1beta1.Tx.MsgDepositResponse deposit(cosmos.gov.v1beta1.Tx.MsgDeposit request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDepositMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Msg.
    * <pre>
    * Msg defines the bank Msg service.
    * </pre>
    */
-  public static final class MsgFutureStub extends io.grpc.stub.AbstractFutureStub<MsgFutureStub> {
+  public static final class MsgFutureStub
+      extends io.grpc.stub.AbstractFutureStub<MsgFutureStub> {
     private MsgFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -346,7 +401,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.gov.v1beta1.Tx.MsgSubmitProposalResponse> submitProposal(
         cosmos.gov.v1beta1.Tx.MsgSubmitProposal request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSubmitProposalMethod(), getCallOptions()), request);
     }
 
@@ -357,8 +412,20 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.gov.v1beta1.Tx.MsgVoteResponse> vote(
         cosmos.gov.v1beta1.Tx.MsgVote request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getVoteMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * VoteWeighted defines a method to add a weighted vote on a specific proposal.
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse> voteWeighted(
+        cosmos.gov.v1beta1.Tx.MsgVoteWeighted request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getVoteWeightedMethod(), getCallOptions()), request);
     }
 
     /**
@@ -368,24 +435,25 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.gov.v1beta1.Tx.MsgDepositResponse> deposit(
         cosmos.gov.v1beta1.Tx.MsgDeposit request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDepositMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_SUBMIT_PROPOSAL = 0;
   private static final int METHODID_VOTE = 1;
-  private static final int METHODID_DEPOSIT = 2;
+  private static final int METHODID_VOTE_WEIGHTED = 2;
+  private static final int METHODID_DEPOSIT = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final MsgImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(MsgImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -401,6 +469,10 @@ public final class MsgGrpc {
         case METHODID_VOTE:
           serviceImpl.vote((cosmos.gov.v1beta1.Tx.MsgVote) request,
               (io.grpc.stub.StreamObserver<cosmos.gov.v1beta1.Tx.MsgVoteResponse>) responseObserver);
+          break;
+        case METHODID_VOTE_WEIGHTED:
+          serviceImpl.voteWeighted((cosmos.gov.v1beta1.Tx.MsgVoteWeighted) request,
+              (io.grpc.stub.StreamObserver<cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse>) responseObserver);
           break;
         case METHODID_DEPOSIT:
           serviceImpl.deposit((cosmos.gov.v1beta1.Tx.MsgDeposit) request,
@@ -420,6 +492,39 @@ public final class MsgGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getSubmitProposalMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.gov.v1beta1.Tx.MsgSubmitProposal,
+              cosmos.gov.v1beta1.Tx.MsgSubmitProposalResponse>(
+                service, METHODID_SUBMIT_PROPOSAL)))
+        .addMethod(
+          getVoteMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.gov.v1beta1.Tx.MsgVote,
+              cosmos.gov.v1beta1.Tx.MsgVoteResponse>(
+                service, METHODID_VOTE)))
+        .addMethod(
+          getVoteWeightedMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.gov.v1beta1.Tx.MsgVoteWeighted,
+              cosmos.gov.v1beta1.Tx.MsgVoteWeightedResponse>(
+                service, METHODID_VOTE_WEIGHTED)))
+        .addMethod(
+          getDepositMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.gov.v1beta1.Tx.MsgDeposit,
+              cosmos.gov.v1beta1.Tx.MsgDepositResponse>(
+                service, METHODID_DEPOSIT)))
+        .build();
   }
 
   private static abstract class MsgBaseDescriptorSupplier
@@ -469,6 +574,7 @@ public final class MsgGrpc {
               .setSchemaDescriptor(new MsgFileDescriptorSupplier())
               .addMethod(getSubmitProposalMethod())
               .addMethod(getVoteMethod())
+              .addMethod(getVoteWeightedMethod())
               .addMethod(getDepositMethod())
               .build();
         }

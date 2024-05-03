@@ -145,7 +145,6 @@ public final class PlanOuterClass {
               sentinel.plan.v2.PlanOuterClass.Plan.class, sentinel.plan.v2.PlanOuterClass.Plan.Builder.class);
     }
 
-    private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
     private long id_ = 0L;
     /**
@@ -204,7 +203,7 @@ public final class PlanOuterClass {
      */
     @java.lang.Override
     public boolean hasDuration() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return duration_ != null;
     }
     /**
      * <code>.google.protobuf.Duration duration = 3 [(.gogoproto.nullable) = false, (.gogoproto.stdduration) = true];</code>
@@ -300,7 +299,7 @@ public final class PlanOuterClass {
      */
     @java.lang.Override
     public boolean hasStatusAt() {
-      return ((bitField0_ & 0x00000002) != 0);
+      return statusAt_ != null;
     }
     /**
      * <code>.google.protobuf.Timestamp status_at = 7 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
@@ -338,7 +337,7 @@ public final class PlanOuterClass {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(providerAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, providerAddress_);
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (duration_ != null) {
         output.writeMessage(3, getDuration());
       }
       if (gigabytes_ != 0L) {
@@ -350,7 +349,7 @@ public final class PlanOuterClass {
       if (status_ != sentinel.types.v1.StatusOuterClass.Status.STATUS_UNSPECIFIED.getNumber()) {
         output.writeEnum(6, status_);
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (statusAt_ != null) {
         output.writeMessage(7, getStatusAt());
       }
       getUnknownFields().writeTo(output);
@@ -369,7 +368,7 @@ public final class PlanOuterClass {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(providerAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, providerAddress_);
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (duration_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getDuration());
       }
@@ -385,7 +384,7 @@ public final class PlanOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, status_);
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (statusAt_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, getStatusAt());
       }
@@ -575,21 +574,13 @@ public final class PlanOuterClass {
 
       // Construct using sentinel.plan.v2.PlanOuterClass.Plan.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getDurationFieldBuilder();
-          getPricesFieldBuilder();
-          getStatusAtFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -668,12 +659,10 @@ public final class PlanOuterClass {
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.providerAddress_ = providerAddress_;
         }
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.duration_ = durationBuilder_ == null
               ? duration_
               : durationBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.gigabytes_ = gigabytes_;
@@ -685,9 +674,7 @@ public final class PlanOuterClass {
           result.statusAt_ = statusAtBuilder_ == null
               ? statusAt_
               : statusAtBuilder_.build();
-          to_bitField0_ |= 0x00000002;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -1040,10 +1027,8 @@ public final class PlanOuterClass {
         } else {
           durationBuilder_.mergeFrom(value);
         }
-        if (duration_ != null) {
-          bitField0_ |= 0x00000004;
-          onChanged();
-        }
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -1486,10 +1471,8 @@ public final class PlanOuterClass {
         } else {
           statusAtBuilder_.mergeFrom(value);
         }
-        if (statusAt_ != null) {
-          bitField0_ |= 0x00000040;
-          onChanged();
-        }
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -1638,7 +1621,7 @@ public final class PlanOuterClass {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           cosmos.base.v1beta1.CoinOuterClass.getDescriptor(),
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           com.google.protobuf.DurationProto.getDescriptor(),
           com.google.protobuf.TimestampProto.getDescriptor(),
           sentinel.types.v1.StatusOuterClass.getDescriptor(),
@@ -1651,17 +1634,17 @@ public final class PlanOuterClass {
         new java.lang.String[] { "Id", "ProviderAddress", "Duration", "Gigabytes", "Prices", "Status", "StatusAt", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.castrepeated);
-    registry.add(com.google.protobuf2.GoGoProtos.customname);
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
-    registry.add(com.google.protobuf2.GoGoProtos.stdduration);
-    registry.add(com.google.protobuf2.GoGoProtos.stdtime);
+    registry.add(com.google.protobuf.GoGoProtos.castrepeated);
+    registry.add(com.google.protobuf.GoGoProtos.customname);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.stdduration);
+    registry.add(com.google.protobuf.GoGoProtos.stdtime);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
     cosmos.base.v1beta1.CoinOuterClass.getDescriptor();
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
     sentinel.types.v1.StatusOuterClass.getDescriptor();

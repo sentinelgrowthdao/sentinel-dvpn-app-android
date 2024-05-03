@@ -1,11 +1,6 @@
 package cosmos.base.reflection.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/base/reflection/v1beta1/reflection.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class ReflectionServiceGrpc {
 
   private ReflectionServiceGrpc() {}
@@ -133,7 +129,7 @@ public final class ReflectionServiceGrpc {
    * ReflectionService defines a service for interface reflection.
    * </pre>
    */
-  public static abstract class ReflectionServiceImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -141,9 +137,9 @@ public final class ReflectionServiceGrpc {
      * registry.
      * </pre>
      */
-    public void listAllInterfaces(cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesRequest request,
+    default void listAllInterfaces(cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getListAllInterfacesMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getListAllInterfacesMethod(), responseObserver);
     }
 
     /**
@@ -152,37 +148,34 @@ public final class ReflectionServiceGrpc {
      * interface.
      * </pre>
      */
-    public void listImplementations(cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest request,
+    default void listImplementations(cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.reflection.v1beta1.Reflection.ListImplementationsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getListImplementationsMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getListAllInterfacesMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesRequest,
-                cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse>(
-                  this, METHODID_LIST_ALL_INTERFACES)))
-          .addMethod(
-            getListImplementationsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest,
-                cosmos.base.reflection.v1beta1.Reflection.ListImplementationsResponse>(
-                  this, METHODID_LIST_IMPLEMENTATIONS)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getListImplementationsMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service ReflectionService.
    * <pre>
    * ReflectionService defines a service for interface reflection.
    * </pre>
    */
-  public static final class ReflectionServiceStub extends io.grpc.stub.AbstractAsyncStub<ReflectionServiceStub> {
+  public static abstract class ReflectionServiceImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return ReflectionServiceGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service ReflectionService.
+   * <pre>
+   * ReflectionService defines a service for interface reflection.
+   * </pre>
+   */
+  public static final class ReflectionServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<ReflectionServiceStub> {
     private ReflectionServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -202,7 +195,7 @@ public final class ReflectionServiceGrpc {
      */
     public void listAllInterfaces(cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getListAllInterfacesMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -214,17 +207,19 @@ public final class ReflectionServiceGrpc {
      */
     public void listImplementations(cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.reflection.v1beta1.Reflection.ListImplementationsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getListImplementationsMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service ReflectionService.
    * <pre>
    * ReflectionService defines a service for interface reflection.
    * </pre>
    */
-  public static final class ReflectionServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<ReflectionServiceBlockingStub> {
+  public static final class ReflectionServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<ReflectionServiceBlockingStub> {
     private ReflectionServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -243,7 +238,7 @@ public final class ReflectionServiceGrpc {
      * </pre>
      */
     public cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse listAllInterfaces(cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getListAllInterfacesMethod(), getCallOptions(), request);
     }
 
@@ -254,17 +249,19 @@ public final class ReflectionServiceGrpc {
      * </pre>
      */
     public cosmos.base.reflection.v1beta1.Reflection.ListImplementationsResponse listImplementations(cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getListImplementationsMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service ReflectionService.
    * <pre>
    * ReflectionService defines a service for interface reflection.
    * </pre>
    */
-  public static final class ReflectionServiceFutureStub extends io.grpc.stub.AbstractFutureStub<ReflectionServiceFutureStub> {
+  public static final class ReflectionServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<ReflectionServiceFutureStub> {
     private ReflectionServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -284,7 +281,7 @@ public final class ReflectionServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse> listAllInterfaces(
         cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getListAllInterfacesMethod(), getCallOptions()), request);
     }
 
@@ -296,7 +293,7 @@ public final class ReflectionServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.base.reflection.v1beta1.Reflection.ListImplementationsResponse> listImplementations(
         cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getListImplementationsMethod(), getCallOptions()), request);
     }
   }
@@ -309,10 +306,10 @@ public final class ReflectionServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final ReflectionServiceImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(ReflectionServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -343,6 +340,25 @@ public final class ReflectionServiceGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getListAllInterfacesMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesRequest,
+              cosmos.base.reflection.v1beta1.Reflection.ListAllInterfacesResponse>(
+                service, METHODID_LIST_ALL_INTERFACES)))
+        .addMethod(
+          getListImplementationsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.base.reflection.v1beta1.Reflection.ListImplementationsRequest,
+              cosmos.base.reflection.v1beta1.Reflection.ListImplementationsResponse>(
+                service, METHODID_LIST_IMPLEMENTATIONS)))
+        .build();
   }
 
   private static abstract class ReflectionServiceBaseDescriptorSupplier

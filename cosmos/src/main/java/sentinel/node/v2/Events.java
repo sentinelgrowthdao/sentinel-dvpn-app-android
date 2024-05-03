@@ -581,6 +581,42 @@ public final class Events {
      */
     com.google.protobuf.ByteString
         getAddressBytes();
+
+    /**
+     * <code>string gigabyte_prices = 2 [(.gogoproto.moretags) = "yaml:&#92;"gigabyte_prices&#92;""];</code>
+     * @return The gigabytePrices.
+     */
+    java.lang.String getGigabytePrices();
+    /**
+     * <code>string gigabyte_prices = 2 [(.gogoproto.moretags) = "yaml:&#92;"gigabyte_prices&#92;""];</code>
+     * @return The bytes for gigabytePrices.
+     */
+    com.google.protobuf.ByteString
+        getGigabytePricesBytes();
+
+    /**
+     * <code>string hourly_prices = 3 [(.gogoproto.moretags) = "yaml:&#92;"hourly_prices&#92;""];</code>
+     * @return The hourlyPrices.
+     */
+    java.lang.String getHourlyPrices();
+    /**
+     * <code>string hourly_prices = 3 [(.gogoproto.moretags) = "yaml:&#92;"hourly_prices&#92;""];</code>
+     * @return The bytes for hourlyPrices.
+     */
+    com.google.protobuf.ByteString
+        getHourlyPricesBytes();
+
+    /**
+     * <code>string remote_url = 4 [(.gogoproto.customname) = "RemoteURL"];</code>
+     * @return The remoteUrl.
+     */
+    java.lang.String getRemoteUrl();
+    /**
+     * <code>string remote_url = 4 [(.gogoproto.customname) = "RemoteURL"];</code>
+     * @return The bytes for remoteUrl.
+     */
+    com.google.protobuf.ByteString
+        getRemoteUrlBytes();
   }
   /**
    * Protobuf type {@code sentinel.node.v2.EventUpdateDetails}
@@ -596,6 +632,9 @@ public final class Events {
     }
     private EventUpdateDetails() {
       address_ = "";
+      gigabytePrices_ = "";
+      hourlyPrices_ = "";
+      remoteUrl_ = "";
     }
 
     @java.lang.Override
@@ -657,6 +696,123 @@ public final class Events {
       }
     }
 
+    public static final int GIGABYTE_PRICES_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object gigabytePrices_ = "";
+    /**
+     * <code>string gigabyte_prices = 2 [(.gogoproto.moretags) = "yaml:&#92;"gigabyte_prices&#92;""];</code>
+     * @return The gigabytePrices.
+     */
+    @java.lang.Override
+    public java.lang.String getGigabytePrices() {
+      java.lang.Object ref = gigabytePrices_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        gigabytePrices_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string gigabyte_prices = 2 [(.gogoproto.moretags) = "yaml:&#92;"gigabyte_prices&#92;""];</code>
+     * @return The bytes for gigabytePrices.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getGigabytePricesBytes() {
+      java.lang.Object ref = gigabytePrices_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        gigabytePrices_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int HOURLY_PRICES_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object hourlyPrices_ = "";
+    /**
+     * <code>string hourly_prices = 3 [(.gogoproto.moretags) = "yaml:&#92;"hourly_prices&#92;""];</code>
+     * @return The hourlyPrices.
+     */
+    @java.lang.Override
+    public java.lang.String getHourlyPrices() {
+      java.lang.Object ref = hourlyPrices_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        hourlyPrices_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string hourly_prices = 3 [(.gogoproto.moretags) = "yaml:&#92;"hourly_prices&#92;""];</code>
+     * @return The bytes for hourlyPrices.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getHourlyPricesBytes() {
+      java.lang.Object ref = hourlyPrices_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        hourlyPrices_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int REMOTE_URL_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object remoteUrl_ = "";
+    /**
+     * <code>string remote_url = 4 [(.gogoproto.customname) = "RemoteURL"];</code>
+     * @return The remoteUrl.
+     */
+    @java.lang.Override
+    public java.lang.String getRemoteUrl() {
+      java.lang.Object ref = remoteUrl_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        remoteUrl_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string remote_url = 4 [(.gogoproto.customname) = "RemoteURL"];</code>
+     * @return The bytes for remoteUrl.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getRemoteUrlBytes() {
+      java.lang.Object ref = remoteUrl_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        remoteUrl_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -674,6 +830,15 @@ public final class Events {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(gigabytePrices_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, gigabytePrices_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(hourlyPrices_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, hourlyPrices_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(remoteUrl_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, remoteUrl_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -685,6 +850,15 @@ public final class Events {
       size = 0;
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(gigabytePrices_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, gigabytePrices_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(hourlyPrices_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, hourlyPrices_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(remoteUrl_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, remoteUrl_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -703,6 +877,12 @@ public final class Events {
 
       if (!getAddress()
           .equals(other.getAddress())) return false;
+      if (!getGigabytePrices()
+          .equals(other.getGigabytePrices())) return false;
+      if (!getHourlyPrices()
+          .equals(other.getHourlyPrices())) return false;
+      if (!getRemoteUrl()
+          .equals(other.getRemoteUrl())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -716,6 +896,12 @@ public final class Events {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
       hash = (53 * hash) + getAddress().hashCode();
+      hash = (37 * hash) + GIGABYTE_PRICES_FIELD_NUMBER;
+      hash = (53 * hash) + getGigabytePrices().hashCode();
+      hash = (37 * hash) + HOURLY_PRICES_FIELD_NUMBER;
+      hash = (53 * hash) + getHourlyPrices().hashCode();
+      hash = (37 * hash) + REMOTE_URL_FIELD_NUMBER;
+      hash = (53 * hash) + getRemoteUrl().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -848,6 +1034,9 @@ public final class Events {
         super.clear();
         bitField0_ = 0;
         address_ = "";
+        gigabytePrices_ = "";
+        hourlyPrices_ = "";
+        remoteUrl_ = "";
         return this;
       }
 
@@ -883,6 +1072,15 @@ public final class Events {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.address_ = address_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.gigabytePrices_ = gigabytePrices_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.hourlyPrices_ = hourlyPrices_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.remoteUrl_ = remoteUrl_;
         }
       }
 
@@ -935,6 +1133,21 @@ public final class Events {
           bitField0_ |= 0x00000001;
           onChanged();
         }
+        if (!other.getGigabytePrices().isEmpty()) {
+          gigabytePrices_ = other.gigabytePrices_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.getHourlyPrices().isEmpty()) {
+          hourlyPrices_ = other.hourlyPrices_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        if (!other.getRemoteUrl().isEmpty()) {
+          remoteUrl_ = other.remoteUrl_;
+          bitField0_ |= 0x00000008;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -966,6 +1179,21 @@ public final class Events {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
+              case 18: {
+                gigabytePrices_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                hourlyPrices_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                remoteUrl_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1054,6 +1282,222 @@ public final class Events {
         onChanged();
         return this;
       }
+
+      private java.lang.Object gigabytePrices_ = "";
+      /**
+       * <code>string gigabyte_prices = 2 [(.gogoproto.moretags) = "yaml:&#92;"gigabyte_prices&#92;""];</code>
+       * @return The gigabytePrices.
+       */
+      public java.lang.String getGigabytePrices() {
+        java.lang.Object ref = gigabytePrices_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          gigabytePrices_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string gigabyte_prices = 2 [(.gogoproto.moretags) = "yaml:&#92;"gigabyte_prices&#92;""];</code>
+       * @return The bytes for gigabytePrices.
+       */
+      public com.google.protobuf.ByteString
+          getGigabytePricesBytes() {
+        java.lang.Object ref = gigabytePrices_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          gigabytePrices_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string gigabyte_prices = 2 [(.gogoproto.moretags) = "yaml:&#92;"gigabyte_prices&#92;""];</code>
+       * @param value The gigabytePrices to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGigabytePrices(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        gigabytePrices_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string gigabyte_prices = 2 [(.gogoproto.moretags) = "yaml:&#92;"gigabyte_prices&#92;""];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearGigabytePrices() {
+        gigabytePrices_ = getDefaultInstance().getGigabytePrices();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string gigabyte_prices = 2 [(.gogoproto.moretags) = "yaml:&#92;"gigabyte_prices&#92;""];</code>
+       * @param value The bytes for gigabytePrices to set.
+       * @return This builder for chaining.
+       */
+      public Builder setGigabytePricesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        gigabytePrices_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object hourlyPrices_ = "";
+      /**
+       * <code>string hourly_prices = 3 [(.gogoproto.moretags) = "yaml:&#92;"hourly_prices&#92;""];</code>
+       * @return The hourlyPrices.
+       */
+      public java.lang.String getHourlyPrices() {
+        java.lang.Object ref = hourlyPrices_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          hourlyPrices_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string hourly_prices = 3 [(.gogoproto.moretags) = "yaml:&#92;"hourly_prices&#92;""];</code>
+       * @return The bytes for hourlyPrices.
+       */
+      public com.google.protobuf.ByteString
+          getHourlyPricesBytes() {
+        java.lang.Object ref = hourlyPrices_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          hourlyPrices_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string hourly_prices = 3 [(.gogoproto.moretags) = "yaml:&#92;"hourly_prices&#92;""];</code>
+       * @param value The hourlyPrices to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHourlyPrices(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        hourlyPrices_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string hourly_prices = 3 [(.gogoproto.moretags) = "yaml:&#92;"hourly_prices&#92;""];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHourlyPrices() {
+        hourlyPrices_ = getDefaultInstance().getHourlyPrices();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string hourly_prices = 3 [(.gogoproto.moretags) = "yaml:&#92;"hourly_prices&#92;""];</code>
+       * @param value The bytes for hourlyPrices to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHourlyPricesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        hourlyPrices_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object remoteUrl_ = "";
+      /**
+       * <code>string remote_url = 4 [(.gogoproto.customname) = "RemoteURL"];</code>
+       * @return The remoteUrl.
+       */
+      public java.lang.String getRemoteUrl() {
+        java.lang.Object ref = remoteUrl_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          remoteUrl_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string remote_url = 4 [(.gogoproto.customname) = "RemoteURL"];</code>
+       * @return The bytes for remoteUrl.
+       */
+      public com.google.protobuf.ByteString
+          getRemoteUrlBytes() {
+        java.lang.Object ref = remoteUrl_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          remoteUrl_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string remote_url = 4 [(.gogoproto.customname) = "RemoteURL"];</code>
+       * @param value The remoteUrl to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRemoteUrl(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        remoteUrl_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string remote_url = 4 [(.gogoproto.customname) = "RemoteURL"];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRemoteUrl() {
+        remoteUrl_ = getDefaultInstance().getRemoteUrl();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string remote_url = 4 [(.gogoproto.customname) = "RemoteURL"];</code>
+       * @param value The bytes for remoteUrl to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRemoteUrlBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        remoteUrl_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1123,27 +1567,27 @@ public final class Events {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
-     * @return The address.
-     */
-    java.lang.String getAddress();
-    /**
-     * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
-     * @return The bytes for address.
-     */
-    com.google.protobuf.ByteString
-        getAddressBytes();
-
-    /**
-     * <code>.sentinel.types.v1.Status status = 2 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
+     * <code>.sentinel.types.v1.Status status = 1 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
      * @return The enum numeric value on the wire for status.
      */
     int getStatusValue();
     /**
-     * <code>.sentinel.types.v1.Status status = 2 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
+     * <code>.sentinel.types.v1.Status status = 1 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
      * @return The status.
      */
     sentinel.types.v1.StatusOuterClass.Status getStatus();
+
+    /**
+     * <code>string address = 2 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+     * @return The address.
+     */
+    java.lang.String getAddress();
+    /**
+     * <code>string address = 2 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+     * @return The bytes for address.
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
   }
   /**
    * Protobuf type {@code sentinel.node.v2.EventUpdateStatus}
@@ -1158,8 +1602,8 @@ public final class Events {
       super(builder);
     }
     private EventUpdateStatus() {
-      address_ = "";
       status_ = 0;
+      address_ = "";
     }
 
     @java.lang.Override
@@ -1182,11 +1626,29 @@ public final class Events {
               sentinel.node.v2.Events.EventUpdateStatus.class, sentinel.node.v2.Events.EventUpdateStatus.Builder.class);
     }
 
-    public static final int ADDRESS_FIELD_NUMBER = 1;
+    public static final int STATUS_FIELD_NUMBER = 1;
+    private int status_ = 0;
+    /**
+     * <code>.sentinel.types.v1.Status status = 1 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
+     * @return The enum numeric value on the wire for status.
+     */
+    @java.lang.Override public int getStatusValue() {
+      return status_;
+    }
+    /**
+     * <code>.sentinel.types.v1.Status status = 1 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
+     * @return The status.
+     */
+    @java.lang.Override public sentinel.types.v1.StatusOuterClass.Status getStatus() {
+      sentinel.types.v1.StatusOuterClass.Status result = sentinel.types.v1.StatusOuterClass.Status.forNumber(status_);
+      return result == null ? sentinel.types.v1.StatusOuterClass.Status.UNRECOGNIZED : result;
+    }
+
+    public static final int ADDRESS_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
     private volatile java.lang.Object address_ = "";
     /**
-     * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+     * <code>string address = 2 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
      * @return The address.
      */
     @java.lang.Override
@@ -1203,7 +1665,7 @@ public final class Events {
       }
     }
     /**
-     * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+     * <code>string address = 2 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
      * @return The bytes for address.
      */
     @java.lang.Override
@@ -1221,24 +1683,6 @@ public final class Events {
       }
     }
 
-    public static final int STATUS_FIELD_NUMBER = 2;
-    private int status_ = 0;
-    /**
-     * <code>.sentinel.types.v1.Status status = 2 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
-     * @return The enum numeric value on the wire for status.
-     */
-    @java.lang.Override public int getStatusValue() {
-      return status_;
-    }
-    /**
-     * <code>.sentinel.types.v1.Status status = 2 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
-     * @return The status.
-     */
-    @java.lang.Override public sentinel.types.v1.StatusOuterClass.Status getStatus() {
-      sentinel.types.v1.StatusOuterClass.Status result = sentinel.types.v1.StatusOuterClass.Status.forNumber(status_);
-      return result == null ? sentinel.types.v1.StatusOuterClass.Status.UNRECOGNIZED : result;
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1253,11 +1697,11 @@ public final class Events {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
-      }
       if (status_ != sentinel.types.v1.StatusOuterClass.Status.STATUS_UNSPECIFIED.getNumber()) {
-        output.writeEnum(2, status_);
+        output.writeEnum(1, status_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, address_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1268,12 +1712,12 @@ public final class Events {
       if (size != -1) return size;
 
       size = 0;
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
-      }
       if (status_ != sentinel.types.v1.StatusOuterClass.Status.STATUS_UNSPECIFIED.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, status_);
+          .computeEnumSize(1, status_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, address_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1290,9 +1734,9 @@ public final class Events {
       }
       sentinel.node.v2.Events.EventUpdateStatus other = (sentinel.node.v2.Events.EventUpdateStatus) obj;
 
+      if (status_ != other.status_) return false;
       if (!getAddress()
           .equals(other.getAddress())) return false;
-      if (status_ != other.status_) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1304,10 +1748,10 @@ public final class Events {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
-      hash = (53 * hash) + getAddress().hashCode();
       hash = (37 * hash) + STATUS_FIELD_NUMBER;
       hash = (53 * hash) + status_;
+      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getAddress().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1439,8 +1883,8 @@ public final class Events {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        address_ = "";
         status_ = 0;
+        address_ = "";
         return this;
       }
 
@@ -1475,10 +1919,10 @@ public final class Events {
       private void buildPartial0(sentinel.node.v2.Events.EventUpdateStatus result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.address_ = address_;
+          result.status_ = status_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.status_ = status_;
+          result.address_ = address_;
         }
       }
 
@@ -1526,13 +1970,13 @@ public final class Events {
 
       public Builder mergeFrom(sentinel.node.v2.Events.EventUpdateStatus other) {
         if (other == sentinel.node.v2.Events.EventUpdateStatus.getDefaultInstance()) return this;
-        if (!other.getAddress().isEmpty()) {
-          address_ = other.address_;
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
         if (other.status_ != 0) {
           setStatusValue(other.getStatusValue());
+        }
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          bitField0_ |= 0x00000002;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -1560,16 +2004,16 @@ public final class Events {
               case 0:
                 done = true;
                 break;
-              case 10: {
-                address_ = input.readStringRequireUtf8();
+              case 8: {
+                status_ = input.readEnum();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 10
-              case 16: {
-                status_ = input.readEnum();
+              } // case 8
+              case 18: {
+                address_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
-              } // case 16
+              } // case 18
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1587,9 +2031,62 @@ public final class Events {
       }
       private int bitField0_;
 
+      private int status_ = 0;
+      /**
+       * <code>.sentinel.types.v1.Status status = 1 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
+       * @return The enum numeric value on the wire for status.
+       */
+      @java.lang.Override public int getStatusValue() {
+        return status_;
+      }
+      /**
+       * <code>.sentinel.types.v1.Status status = 1 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
+       * @param value The enum numeric value on the wire for status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatusValue(int value) {
+        status_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.sentinel.types.v1.Status status = 1 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
+       * @return The status.
+       */
+      @java.lang.Override
+      public sentinel.types.v1.StatusOuterClass.Status getStatus() {
+        sentinel.types.v1.StatusOuterClass.Status result = sentinel.types.v1.StatusOuterClass.Status.forNumber(status_);
+        return result == null ? sentinel.types.v1.StatusOuterClass.Status.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.sentinel.types.v1.Status status = 1 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(sentinel.types.v1.StatusOuterClass.Status value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000001;
+        status_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.sentinel.types.v1.Status status = 1 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = 0;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object address_ = "";
       /**
-       * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+       * <code>string address = 2 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
        * @return The address.
        */
       public java.lang.String getAddress() {
@@ -1605,7 +2102,7 @@ public final class Events {
         }
       }
       /**
-       * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+       * <code>string address = 2 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
        * @return The bytes for address.
        */
       public com.google.protobuf.ByteString
@@ -1622,7 +2119,7 @@ public final class Events {
         }
       }
       /**
-       * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+       * <code>string address = 2 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
        * @param value The address to set.
        * @return This builder for chaining.
        */
@@ -1630,22 +2127,22 @@ public final class Events {
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         address_ = value;
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+       * <code>string address = 2 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
        * @return This builder for chaining.
        */
       public Builder clearAddress() {
         address_ = getDefaultInstance().getAddress();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
-       * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+       * <code>string address = 2 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
        * @param value The bytes for address to set.
        * @return This builder for chaining.
        */
@@ -1654,60 +2151,7 @@ public final class Events {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         address_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-
-      private int status_ = 0;
-      /**
-       * <code>.sentinel.types.v1.Status status = 2 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
-       * @return The enum numeric value on the wire for status.
-       */
-      @java.lang.Override public int getStatusValue() {
-        return status_;
-      }
-      /**
-       * <code>.sentinel.types.v1.Status status = 2 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
-       * @param value The enum numeric value on the wire for status to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatusValue(int value) {
-        status_ = value;
         bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.sentinel.types.v1.Status status = 2 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
-       * @return The status.
-       */
-      @java.lang.Override
-      public sentinel.types.v1.StatusOuterClass.Status getStatus() {
-        sentinel.types.v1.StatusOuterClass.Status result = sentinel.types.v1.StatusOuterClass.Status.forNumber(status_);
-        return result == null ? sentinel.types.v1.StatusOuterClass.Status.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.sentinel.types.v1.Status status = 2 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
-       * @param value The status to set.
-       * @return This builder for chaining.
-       */
-      public Builder setStatus(sentinel.types.v1.StatusOuterClass.Status value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000002;
-        status_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.sentinel.types.v1.Status status = 2 [(.gogoproto.moretags) = "yaml:&#92;"status&#92;""];</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearStatus() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        status_ = 0;
         onChanged();
         return this;
       }
@@ -1780,10 +2224,16 @@ public final class Events {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint64 id = 1 [(.gogoproto.customname) = "ID", (.gogoproto.moretags) = "yaml:&#92;"id&#92;""];</code>
-     * @return The id.
+     * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+     * @return The address.
      */
-    long getId();
+    java.lang.String getAddress();
+    /**
+     * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+     * @return The bytes for address.
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
 
     /**
      * <code>string node_address = 2 [(.gogoproto.moretags) = "yaml:&#92;"node_address&#92;""];</code>
@@ -1796,6 +2246,12 @@ public final class Events {
      */
     com.google.protobuf.ByteString
         getNodeAddressBytes();
+
+    /**
+     * <code>uint64 id = 3 [(.gogoproto.customname) = "ID", (.gogoproto.moretags) = "yaml:&#92;"id&#92;""];</code>
+     * @return The id.
+     */
+    long getId();
   }
   /**
    * Protobuf type {@code sentinel.node.v2.EventCreateSubscription}
@@ -1810,6 +2266,7 @@ public final class Events {
       super(builder);
     }
     private EventCreateSubscription() {
+      address_ = "";
       nodeAddress_ = "";
     }
 
@@ -1833,15 +2290,43 @@ public final class Events {
               sentinel.node.v2.Events.EventCreateSubscription.class, sentinel.node.v2.Events.EventCreateSubscription.Builder.class);
     }
 
-    public static final int ID_FIELD_NUMBER = 1;
-    private long id_ = 0L;
+    public static final int ADDRESS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object address_ = "";
     /**
-     * <code>uint64 id = 1 [(.gogoproto.customname) = "ID", (.gogoproto.moretags) = "yaml:&#92;"id&#92;""];</code>
-     * @return The id.
+     * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+     * @return The address.
      */
     @java.lang.Override
-    public long getId() {
-      return id_;
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+     * @return The bytes for address.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int NODE_ADDRESS_FIELD_NUMBER = 2;
@@ -1883,6 +2368,17 @@ public final class Events {
       }
     }
 
+    public static final int ID_FIELD_NUMBER = 3;
+    private long id_ = 0L;
+    /**
+     * <code>uint64 id = 3 [(.gogoproto.customname) = "ID", (.gogoproto.moretags) = "yaml:&#92;"id&#92;""];</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public long getId() {
+      return id_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1897,11 +2393,14 @@ public final class Events {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (id_ != 0L) {
-        output.writeUInt64(1, id_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nodeAddress_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, nodeAddress_);
+      }
+      if (id_ != 0L) {
+        output.writeUInt64(3, id_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1912,12 +2411,15 @@ public final class Events {
       if (size != -1) return size;
 
       size = 0;
-      if (id_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, id_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nodeAddress_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, nodeAddress_);
+      }
+      if (id_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(3, id_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1934,10 +2436,12 @@ public final class Events {
       }
       sentinel.node.v2.Events.EventCreateSubscription other = (sentinel.node.v2.Events.EventCreateSubscription) obj;
 
-      if (getId()
-          != other.getId()) return false;
+      if (!getAddress()
+          .equals(other.getAddress())) return false;
       if (!getNodeAddress()
           .equals(other.getNodeAddress())) return false;
+      if (getId()
+          != other.getId()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1949,11 +2453,13 @@ public final class Events {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getAddress().hashCode();
+      hash = (37 * hash) + NODE_ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getNodeAddress().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getId());
-      hash = (37 * hash) + NODE_ADDRESS_FIELD_NUMBER;
-      hash = (53 * hash) + getNodeAddress().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2085,8 +2591,9 @@ public final class Events {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        id_ = 0L;
+        address_ = "";
         nodeAddress_ = "";
+        id_ = 0L;
         return this;
       }
 
@@ -2121,10 +2628,13 @@ public final class Events {
       private void buildPartial0(sentinel.node.v2.Events.EventCreateSubscription result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.id_ = id_;
+          result.address_ = address_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.nodeAddress_ = nodeAddress_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.id_ = id_;
         }
       }
 
@@ -2172,13 +2682,18 @@ public final class Events {
 
       public Builder mergeFrom(sentinel.node.v2.Events.EventCreateSubscription other) {
         if (other == sentinel.node.v2.Events.EventCreateSubscription.getDefaultInstance()) return this;
-        if (other.getId() != 0L) {
-          setId(other.getId());
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
+          bitField0_ |= 0x00000001;
+          onChanged();
         }
         if (!other.getNodeAddress().isEmpty()) {
           nodeAddress_ = other.nodeAddress_;
           bitField0_ |= 0x00000002;
           onChanged();
+        }
+        if (other.getId() != 0L) {
+          setId(other.getId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -2206,16 +2721,21 @@ public final class Events {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                id_ = input.readUInt64();
+              case 10: {
+                address_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 8
+              } // case 10
               case 18: {
                 nodeAddress_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
+              case 24: {
+                id_ = input.readUInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2233,34 +2753,74 @@ public final class Events {
       }
       private int bitField0_;
 
-      private long id_ ;
+      private java.lang.Object address_ = "";
       /**
-       * <code>uint64 id = 1 [(.gogoproto.customname) = "ID", (.gogoproto.moretags) = "yaml:&#92;"id&#92;""];</code>
-       * @return The id.
+       * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+       * @return The address.
        */
-      @java.lang.Override
-      public long getId() {
-        return id_;
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>uint64 id = 1 [(.gogoproto.customname) = "ID", (.gogoproto.moretags) = "yaml:&#92;"id&#92;""];</code>
-       * @param value The id to set.
+       * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+       * @return The bytes for address.
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+       * @param value The address to set.
        * @return This builder for chaining.
        */
-      public Builder setId(long value) {
-
-        id_ = value;
+      public Builder setAddress(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        address_ = value;
         bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
-       * <code>uint64 id = 1 [(.gogoproto.customname) = "ID", (.gogoproto.moretags) = "yaml:&#92;"id&#92;""];</code>
+       * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
        * @return This builder for chaining.
        */
-      public Builder clearId() {
+      public Builder clearAddress() {
+        address_ = getDefaultInstance().getAddress();
         bitField0_ = (bitField0_ & ~0x00000001);
-        id_ = 0L;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 1 [(.gogoproto.moretags) = "yaml:&#92;"address&#92;""];</code>
+       * @param value The bytes for address to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        address_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2333,6 +2893,38 @@ public final class Events {
         checkByteStringIsUtf8(value);
         nodeAddress_ = value;
         bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private long id_ ;
+      /**
+       * <code>uint64 id = 3 [(.gogoproto.customname) = "ID", (.gogoproto.moretags) = "yaml:&#92;"id&#92;""];</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public long getId() {
+        return id_;
+      }
+      /**
+       * <code>uint64 id = 3 [(.gogoproto.customname) = "ID", (.gogoproto.moretags) = "yaml:&#92;"id&#92;""];</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(long value) {
+
+        id_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 id = 3 [(.gogoproto.customname) = "ID", (.gogoproto.moretags) = "yaml:&#92;"id&#92;""];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        id_ = 0L;
         onChanged();
         return this;
       }
@@ -2432,21 +3024,26 @@ public final class Events {
       "\n\035sentinel/node/v2/events.proto\022\020sentine" +
       "l.node.v2\032\024gogoproto/gogo.proto\032\036sentine" +
       "l/types/v1/status.proto\"4\n\rEventRegister" +
-      "\022#\n\007address\030\001 \001(\tB\022\362\336\037\016yaml:\"address\"\"9\n" +
-      "\022EventUpdateDetails\022#\n\007address\030\001 \001(\tB\022\362\336" +
-      "\037\016yaml:\"address\"\"v\n\021EventUpdateStatus\022#\n" +
-      "\007address\030\001 \001(\tB\022\362\336\037\016yaml:\"address\"\022<\n\006st" +
-      "atus\030\002 \001(\0162\031.sentinel.types.v1.StatusB\021\362" +
-      "\336\037\ryaml:\"status\"\"i\n\027EventCreateSubscript" +
-      "ion\022\037\n\002id\030\001 \001(\004B\023\342\336\037\002ID\362\336\037\tyaml:\"id\"\022-\n\014" +
-      "node_address\030\002 \001(\tB\027\362\336\037\023yaml:\"node_addre" +
-      "ss\"B7Z-github.com/sentinel-official/hub/" +
-      "x/node/types\310\341\036\000\250\342\036\000b\006proto3"
+      "\022#\n\007address\030\001 \001(\tB\022\362\336\037\016yaml:\"address\"\"\302\001" +
+      "\n\022EventUpdateDetails\022#\n\007address\030\001 \001(\tB\022\362" +
+      "\336\037\016yaml:\"address\"\0223\n\017gigabyte_prices\030\002 \001" +
+      "(\tB\032\362\336\037\026yaml:\"gigabyte_prices\"\022/\n\rhourly" +
+      "_prices\030\003 \001(\tB\030\362\336\037\024yaml:\"hourly_prices\"\022" +
+      "!\n\nremote_url\030\004 \001(\tB\r\342\336\037\tRemoteURL\"v\n\021Ev" +
+      "entUpdateStatus\022<\n\006status\030\001 \001(\0162\031.sentin" +
+      "el.types.v1.StatusB\021\362\336\037\ryaml:\"status\"\022#\n" +
+      "\007address\030\002 \001(\tB\022\362\336\037\016yaml:\"address\"\"\216\001\n\027E" +
+      "ventCreateSubscription\022#\n\007address\030\001 \001(\tB" +
+      "\022\362\336\037\016yaml:\"address\"\022-\n\014node_address\030\002 \001(" +
+      "\tB\027\362\336\037\023yaml:\"node_address\"\022\037\n\002id\030\003 \001(\004B\023" +
+      "\342\336\037\002ID\362\336\037\tyaml:\"id\"B7Z-github.com/sentin" +
+      "el-official/hub/x/node/types\310\341\036\000\250\342\036\000b\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           sentinel.types.v1.StatusOuterClass.getDescriptor(),
         });
     internal_static_sentinel_node_v2_EventRegister_descriptor =
@@ -2460,28 +3057,28 @@ public final class Events {
     internal_static_sentinel_node_v2_EventUpdateDetails_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sentinel_node_v2_EventUpdateDetails_descriptor,
-        new java.lang.String[] { "Address", });
+        new java.lang.String[] { "Address", "GigabytePrices", "HourlyPrices", "RemoteUrl", });
     internal_static_sentinel_node_v2_EventUpdateStatus_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_sentinel_node_v2_EventUpdateStatus_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sentinel_node_v2_EventUpdateStatus_descriptor,
-        new java.lang.String[] { "Address", "Status", });
+        new java.lang.String[] { "Status", "Address", });
     internal_static_sentinel_node_v2_EventCreateSubscription_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_sentinel_node_v2_EventCreateSubscription_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_sentinel_node_v2_EventCreateSubscription_descriptor,
-        new java.lang.String[] { "Id", "NodeAddress", });
+        new java.lang.String[] { "Address", "NodeAddress", "Id", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.customname);
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.moretags);
+    registry.add(com.google.protobuf.GoGoProtos.customname);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.moretags);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     sentinel.types.v1.StatusOuterClass.getDescriptor();
   }
 

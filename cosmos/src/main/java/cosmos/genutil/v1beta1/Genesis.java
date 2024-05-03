@@ -74,60 +74,6 @@ public final class Genesis {
       return new GenesisState();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GenesisState(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                genTxs_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              genTxs_.add(input.readBytes());
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          genTxs_ = java.util.Collections.unmodifiableList(genTxs_); // C
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.genutil.v1beta1.Genesis.internal_static_cosmos_genutil_v1beta1_GenesisState_descriptor;
@@ -142,6 +88,7 @@ public final class Genesis {
     }
 
     public static final int GEN_TXS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<com.google.protobuf.ByteString> genTxs_;
     /**
      * <pre>
@@ -197,7 +144,7 @@ public final class Genesis {
       for (int i = 0; i < genTxs_.size(); i++) {
         output.writeBytes(1, genTxs_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -215,7 +162,7 @@ public final class Genesis {
         size += dataSize;
         size += 1 * getGenTxsList().size();
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -232,7 +179,7 @@ public final class Genesis {
 
       if (!getGenTxsList()
           .equals(other.getGenTxsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -247,7 +194,7 @@ public final class Genesis {
         hash = (37 * hash) + GEN_TXS_FIELD_NUMBER;
         hash = (53 * hash) + getGenTxsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -296,11 +243,13 @@ public final class Genesis {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.genutil.v1beta1.Genesis.GenesisState parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.genutil.v1beta1.Genesis.GenesisState parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -368,24 +317,19 @@ public final class Genesis {
 
       // Construct using cosmos.genutil.v1beta1.Genesis.GenesisState.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         genTxs_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -412,14 +356,22 @@ public final class Genesis {
       @java.lang.Override
       public cosmos.genutil.v1beta1.Genesis.GenesisState buildPartial() {
         cosmos.genutil.v1beta1.Genesis.GenesisState result = new cosmos.genutil.v1beta1.Genesis.GenesisState(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.genutil.v1beta1.Genesis.GenesisState result) {
         if (((bitField0_ & 0x00000001) != 0)) {
           genTxs_ = java.util.Collections.unmodifiableList(genTxs_);
           bitField0_ = (bitField0_ & ~0x00000001);
         }
         result.genTxs_ = genTxs_;
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(cosmos.genutil.v1beta1.Genesis.GenesisState result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -476,7 +428,7 @@ public final class Genesis {
           }
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -491,17 +443,36 @@ public final class Genesis {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.genutil.v1beta1.Genesis.GenesisState parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.google.protobuf.ByteString v = input.readBytes();
+                ensureGenTxsIsMutable();
+                genTxs_.add(v);
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.genutil.v1beta1.Genesis.GenesisState) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -511,7 +482,7 @@ public final class Genesis {
         if (!((bitField0_ & 0x00000001) != 0)) {
           genTxs_ = new java.util.ArrayList<com.google.protobuf.ByteString>(genTxs_);
           bitField0_ |= 0x00000001;
-         }
+        }
       }
       /**
        * <pre>
@@ -561,10 +532,8 @@ public final class Genesis {
        */
       public Builder setGenTxs(
           int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureGenTxsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureGenTxsIsMutable();
         genTxs_.set(index, value);
         onChanged();
         return this;
@@ -579,10 +548,8 @@ public final class Genesis {
        * @return This builder for chaining.
        */
       public Builder addGenTxs(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureGenTxsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureGenTxsIsMutable();
         genTxs_.add(value);
         onChanged();
         return this;
@@ -651,7 +618,18 @@ public final class Genesis {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GenesisState(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -687,15 +665,15 @@ public final class Genesis {
     java.lang.String[] descriptorData = {
       "\n$cosmos/genutil/v1beta1/genesis.proto\022\026" +
       "cosmos.genutil.v1beta1\032\024gogoproto/gogo.p" +
-      "roto\"X\n\014GenesisState\022H\n\007gen_txs\030\001 \003(\014B7\372" +
-      "\336\037\030encoding/json.RawMessage\352\336\037\006gentxs\362\336\037" +
-      "\ryaml:\"gentxs\"B.Z,github.com/cosmos/cosm" +
+      "roto\"X\n\014GenesisState\022H\n\007gen_txs\030\001 \003(\014B7\352" +
+      "\336\037\006gentxs\362\336\037\ryaml:\"gentxs\"\372\336\037\030encoding/j" +
+      "son.RawMessageB.Z,github.com/cosmos/cosm" +
       "os-sdk/x/genutil/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
         });
     internal_static_cosmos_genutil_v1beta1_GenesisState_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -705,12 +683,12 @@ public final class Genesis {
         new java.lang.String[] { "GenTxs", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.casttype);
-    registry.add(com.google.protobuf2.GoGoProtos.jsontag);
-    registry.add(com.google.protobuf2.GoGoProtos.moretags);
+    registry.add(com.google.protobuf.GoGoProtos.casttype);
+    registry.add(com.google.protobuf.GoGoProtos.jsontag);
+    registry.add(com.google.protobuf.GoGoProtos.moretags);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

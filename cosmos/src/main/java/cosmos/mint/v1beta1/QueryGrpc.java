@@ -1,11 +1,6 @@
 package cosmos.mint.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/mint/v1beta1/query.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class QueryGrpc {
 
   private QueryGrpc() {}
@@ -164,16 +160,16 @@ public final class QueryGrpc {
    * Query provides defines the gRPC querier service.
    * </pre>
    */
-  public static abstract class QueryImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * Params returns the total set of minting parameters.
      * </pre>
      */
-    public void params(cosmos.mint.v1beta1.QueryOuterClass.QueryParamsRequest request,
+    default void params(cosmos.mint.v1beta1.QueryOuterClass.QueryParamsRequest request,
         io.grpc.stub.StreamObserver<cosmos.mint.v1beta1.QueryOuterClass.QueryParamsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
     }
 
     /**
@@ -181,9 +177,9 @@ public final class QueryGrpc {
      * Inflation returns the current minting inflation value.
      * </pre>
      */
-    public void inflation(cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest request,
+    default void inflation(cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest request,
         io.grpc.stub.StreamObserver<cosmos.mint.v1beta1.QueryOuterClass.QueryInflationResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getInflationMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getInflationMethod(), responseObserver);
     }
 
     /**
@@ -191,44 +187,34 @@ public final class QueryGrpc {
      * AnnualProvisions current minting annual provisions value.
      * </pre>
      */
-    public void annualProvisions(cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest request,
+    default void annualProvisions(cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest request,
         io.grpc.stub.StreamObserver<cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getAnnualProvisionsMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getParamsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.mint.v1beta1.QueryOuterClass.QueryParamsRequest,
-                cosmos.mint.v1beta1.QueryOuterClass.QueryParamsResponse>(
-                  this, METHODID_PARAMS)))
-          .addMethod(
-            getInflationMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest,
-                cosmos.mint.v1beta1.QueryOuterClass.QueryInflationResponse>(
-                  this, METHODID_INFLATION)))
-          .addMethod(
-            getAnnualProvisionsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest,
-                cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsResponse>(
-                  this, METHODID_ANNUAL_PROVISIONS)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAnnualProvisionsMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Query.
    * <pre>
    * Query provides defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryStub extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
+  public static abstract class QueryImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return QueryGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Query.
+   * <pre>
+   * Query provides defines the gRPC querier service.
+   * </pre>
+   */
+  public static final class QueryStub
+      extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
     private QueryStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -247,7 +233,7 @@ public final class QueryGrpc {
      */
     public void params(cosmos.mint.v1beta1.QueryOuterClass.QueryParamsRequest request,
         io.grpc.stub.StreamObserver<cosmos.mint.v1beta1.QueryOuterClass.QueryParamsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -258,7 +244,7 @@ public final class QueryGrpc {
      */
     public void inflation(cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest request,
         io.grpc.stub.StreamObserver<cosmos.mint.v1beta1.QueryOuterClass.QueryInflationResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getInflationMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -269,17 +255,19 @@ public final class QueryGrpc {
      */
     public void annualProvisions(cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest request,
         io.grpc.stub.StreamObserver<cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAnnualProvisionsMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Query.
    * <pre>
    * Query provides defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryBlockingStub extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
+  public static final class QueryBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
     private QueryBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -297,7 +285,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.mint.v1beta1.QueryOuterClass.QueryParamsResponse params(cosmos.mint.v1beta1.QueryOuterClass.QueryParamsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getParamsMethod(), getCallOptions(), request);
     }
 
@@ -307,7 +295,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.mint.v1beta1.QueryOuterClass.QueryInflationResponse inflation(cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getInflationMethod(), getCallOptions(), request);
     }
 
@@ -317,17 +305,19 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsResponse annualProvisions(cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAnnualProvisionsMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Query.
    * <pre>
    * Query provides defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryFutureStub extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
+  public static final class QueryFutureStub
+      extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
     private QueryFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -346,7 +336,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.mint.v1beta1.QueryOuterClass.QueryParamsResponse> params(
         cosmos.mint.v1beta1.QueryOuterClass.QueryParamsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request);
     }
 
@@ -357,7 +347,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.mint.v1beta1.QueryOuterClass.QueryInflationResponse> inflation(
         cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getInflationMethod(), getCallOptions()), request);
     }
 
@@ -368,7 +358,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsResponse> annualProvisions(
         cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAnnualProvisionsMethod(), getCallOptions()), request);
     }
   }
@@ -382,10 +372,10 @@ public final class QueryGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final QueryImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(QueryImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -420,6 +410,32 @@ public final class QueryGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getParamsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.mint.v1beta1.QueryOuterClass.QueryParamsRequest,
+              cosmos.mint.v1beta1.QueryOuterClass.QueryParamsResponse>(
+                service, METHODID_PARAMS)))
+        .addMethod(
+          getInflationMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.mint.v1beta1.QueryOuterClass.QueryInflationRequest,
+              cosmos.mint.v1beta1.QueryOuterClass.QueryInflationResponse>(
+                service, METHODID_INFLATION)))
+        .addMethod(
+          getAnnualProvisionsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsRequest,
+              cosmos.mint.v1beta1.QueryOuterClass.QueryAnnualProvisionsResponse>(
+                service, METHODID_ANNUAL_PROVISIONS)))
+        .build();
   }
 
   private static abstract class QueryBaseDescriptorSupplier

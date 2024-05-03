@@ -220,7 +220,6 @@ public final class ParamsOuterClass {
               sentinel.node.v2.ParamsOuterClass.Params.class, sentinel.node.v2.ParamsOuterClass.Params.Builder.class);
     }
 
-    private int bitField0_;
     public static final int DEPOSIT_FIELD_NUMBER = 1;
     private cosmos.base.v1beta1.CoinOuterClass.Coin deposit_;
     /**
@@ -229,7 +228,7 @@ public final class ParamsOuterClass {
      */
     @java.lang.Override
     public boolean hasDeposit() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return deposit_ != null;
     }
     /**
      * <code>.cosmos.base.v1beta1.Coin deposit = 1 [(.gogoproto.nullable) = false];</code>
@@ -255,7 +254,7 @@ public final class ParamsOuterClass {
      */
     @java.lang.Override
     public boolean hasActiveDuration() {
-      return ((bitField0_ & 0x00000002) != 0);
+      return activeDuration_ != null;
     }
     /**
      * <code>.google.protobuf.Duration active_duration = 2 [(.gogoproto.nullable) = false, (.gogoproto.stdduration) = true];</code>
@@ -534,10 +533,10 @@ public final class ParamsOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (deposit_ != null) {
         output.writeMessage(1, getDeposit());
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (activeDuration_ != null) {
         output.writeMessage(2, getActiveDuration());
       }
       for (int i = 0; i < maxGigabytePrices_.size(); i++) {
@@ -576,11 +575,11 @@ public final class ParamsOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (deposit_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getDeposit());
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (activeDuration_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getActiveDuration());
       }
@@ -830,24 +829,13 @@ public final class ParamsOuterClass {
 
       // Construct using sentinel.node.v2.ParamsOuterClass.Params.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getDepositFieldBuilder();
-          getActiveDurationFieldBuilder();
-          getMaxGigabytePricesFieldBuilder();
-          getMinGigabytePricesFieldBuilder();
-          getMaxHourlyPricesFieldBuilder();
-          getMinHourlyPricesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -969,18 +957,15 @@ public final class ParamsOuterClass {
 
       private void buildPartial0(sentinel.node.v2.ParamsOuterClass.Params result) {
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.deposit_ = depositBuilder_ == null
               ? deposit_
               : depositBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.activeDuration_ = activeDurationBuilder_ == null
               ? activeDuration_
               : activeDurationBuilder_.build();
-          to_bitField0_ |= 0x00000002;
         }
         if (((from_bitField0_ & 0x00000040) != 0)) {
           result.maxSubscriptionGigabytes_ = maxSubscriptionGigabytes_;
@@ -997,7 +982,6 @@ public final class ParamsOuterClass {
         if (((from_bitField0_ & 0x00000400) != 0)) {
           result.stakingShare_ = stakingShare_;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -1371,10 +1355,8 @@ public final class ParamsOuterClass {
         } else {
           depositBuilder_.mergeFrom(value);
         }
-        if (deposit_ != null) {
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1492,10 +1474,8 @@ public final class ParamsOuterClass {
         } else {
           activeDurationBuilder_.mergeFrom(value);
         }
-        if (activeDuration_ != null) {
-          bitField0_ |= 0x00000002;
-          onChanged();
-        }
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2813,7 +2793,7 @@ public final class ParamsOuterClass {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           cosmos.base.v1beta1.CoinOuterClass.getDescriptor(),
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           com.google.protobuf.DurationProto.getDescriptor(),
         });
     internal_static_sentinel_node_v2_Params_descriptor =
@@ -2824,16 +2804,16 @@ public final class ParamsOuterClass {
         new java.lang.String[] { "Deposit", "ActiveDuration", "MaxGigabytePrices", "MinGigabytePrices", "MaxHourlyPrices", "MinHourlyPrices", "MaxSubscriptionGigabytes", "MinSubscriptionGigabytes", "MaxSubscriptionHours", "MinSubscriptionHours", "StakingShare", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.castrepeated);
-    registry.add(com.google.protobuf2.GoGoProtos.customtype);
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
-    registry.add(com.google.protobuf2.GoGoProtos.stdduration);
+    registry.add(com.google.protobuf.GoGoProtos.castrepeated);
+    registry.add(com.google.protobuf.GoGoProtos.customtype);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.stdduration);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
     cosmos.base.v1beta1.CoinOuterClass.getDescriptor();
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();
   }
 

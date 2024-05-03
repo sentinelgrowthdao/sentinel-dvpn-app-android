@@ -1,11 +1,6 @@
 package cosmos.bank.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/bank/v1beta1/query.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class QueryGrpc {
 
   private QueryGrpc() {}
@@ -82,6 +78,37 @@ public final class QueryGrpc {
       }
     }
     return getAllBalancesMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest,
+      cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> getSpendableBalancesMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SpendableBalances",
+      requestType = cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest.class,
+      responseType = cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest,
+      cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> getSpendableBalancesMethod() {
+    io.grpc.MethodDescriptor<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest, cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> getSpendableBalancesMethod;
+    if ((getSpendableBalancesMethod = QueryGrpc.getSpendableBalancesMethod) == null) {
+      synchronized (QueryGrpc.class) {
+        if ((getSpendableBalancesMethod = QueryGrpc.getSpendableBalancesMethod) == null) {
+          QueryGrpc.getSpendableBalancesMethod = getSpendableBalancesMethod =
+              io.grpc.MethodDescriptor.<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest, cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SpendableBalances"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new QueryMethodDescriptorSupplier("SpendableBalances"))
+              .build();
+        }
+      }
+    }
+    return getSpendableBalancesMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest,
@@ -288,16 +315,16 @@ public final class QueryGrpc {
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static abstract class QueryImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * Balance queries the balance of a single coin for a single account.
      * </pre>
      */
-    public void balance(cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest request,
+    default void balance(cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getBalanceMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getBalanceMethod(), responseObserver);
     }
 
     /**
@@ -305,9 +332,20 @@ public final class QueryGrpc {
      * AllBalances queries the balance of all coins for a single account.
      * </pre>
      */
-    public void allBalances(cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest request,
+    default void allBalances(cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getAllBalancesMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAllBalancesMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * SpendableBalances queries the spenable balance of all coins for a single
+     * account.
+     * </pre>
+     */
+    default void spendableBalances(cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest request,
+        io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSpendableBalancesMethod(), responseObserver);
     }
 
     /**
@@ -315,9 +353,9 @@ public final class QueryGrpc {
      * TotalSupply queries the total supply of all coins.
      * </pre>
      */
-    public void totalSupply(cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest request,
+    default void totalSupply(cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getTotalSupplyMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTotalSupplyMethod(), responseObserver);
     }
 
     /**
@@ -325,9 +363,9 @@ public final class QueryGrpc {
      * SupplyOf queries the supply of a single coin.
      * </pre>
      */
-    public void supplyOf(cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest request,
+    default void supplyOf(cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getSupplyOfMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSupplyOfMethod(), responseObserver);
     }
 
     /**
@@ -335,9 +373,9 @@ public final class QueryGrpc {
      * Params queries the parameters of x/bank module.
      * </pre>
      */
-    public void params(cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest request,
+    default void params(cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
     }
 
     /**
@@ -345,9 +383,9 @@ public final class QueryGrpc {
      * DenomsMetadata queries the client metadata of a given coin denomination.
      * </pre>
      */
-    public void denomMetadata(cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest request,
+    default void denomMetadata(cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getDenomMetadataMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDenomMetadataMethod(), responseObserver);
     }
 
     /**
@@ -355,72 +393,34 @@ public final class QueryGrpc {
      * DenomsMetadata queries the client metadata for all registered coin denominations.
      * </pre>
      */
-    public void denomsMetadata(cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataRequest request,
+    default void denomsMetadata(cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getDenomsMetadataMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getBalanceMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest,
-                cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse>(
-                  this, METHODID_BALANCE)))
-          .addMethod(
-            getAllBalancesMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest,
-                cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse>(
-                  this, METHODID_ALL_BALANCES)))
-          .addMethod(
-            getTotalSupplyMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest,
-                cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyResponse>(
-                  this, METHODID_TOTAL_SUPPLY)))
-          .addMethod(
-            getSupplyOfMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest,
-                cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfResponse>(
-                  this, METHODID_SUPPLY_OF)))
-          .addMethod(
-            getParamsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest,
-                cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse>(
-                  this, METHODID_PARAMS)))
-          .addMethod(
-            getDenomMetadataMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest,
-                cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataResponse>(
-                  this, METHODID_DENOM_METADATA)))
-          .addMethod(
-            getDenomsMetadataMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataRequest,
-                cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse>(
-                  this, METHODID_DENOMS_METADATA)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDenomsMetadataMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryStub extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
+  public static abstract class QueryImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return QueryGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Query.
+   * <pre>
+   * Query defines the gRPC querier service.
+   * </pre>
+   */
+  public static final class QueryStub
+      extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
     private QueryStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -439,7 +439,7 @@ public final class QueryGrpc {
      */
     public void balance(cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getBalanceMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -450,8 +450,20 @@ public final class QueryGrpc {
      */
     public void allBalances(cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAllBalancesMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * SpendableBalances queries the spenable balance of all coins for a single
+     * account.
+     * </pre>
+     */
+    public void spendableBalances(cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest request,
+        io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSpendableBalancesMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -461,7 +473,7 @@ public final class QueryGrpc {
      */
     public void totalSupply(cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getTotalSupplyMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -472,7 +484,7 @@ public final class QueryGrpc {
      */
     public void supplyOf(cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSupplyOfMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -483,7 +495,7 @@ public final class QueryGrpc {
      */
     public void params(cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -494,7 +506,7 @@ public final class QueryGrpc {
      */
     public void denomMetadata(cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDenomMetadataMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -505,17 +517,19 @@ public final class QueryGrpc {
      */
     public void denomsMetadata(cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataRequest request,
         io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDenomsMetadataMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryBlockingStub extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
+  public static final class QueryBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
     private QueryBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -533,7 +547,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse balance(cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getBalanceMethod(), getCallOptions(), request);
     }
 
@@ -543,8 +557,19 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse allBalances(cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAllBalancesMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * SpendableBalances queries the spenable balance of all coins for a single
+     * account.
+     * </pre>
+     */
+    public cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse spendableBalances(cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSpendableBalancesMethod(), getCallOptions(), request);
     }
 
     /**
@@ -553,7 +578,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyResponse totalSupply(cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getTotalSupplyMethod(), getCallOptions(), request);
     }
 
@@ -563,7 +588,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfResponse supplyOf(cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSupplyOfMethod(), getCallOptions(), request);
     }
 
@@ -573,7 +598,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse params(cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getParamsMethod(), getCallOptions(), request);
     }
 
@@ -583,7 +608,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataResponse denomMetadata(cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDenomMetadataMethod(), getCallOptions(), request);
     }
 
@@ -593,17 +618,19 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse denomsMetadata(cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDenomsMetadataMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryFutureStub extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
+  public static final class QueryFutureStub
+      extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
     private QueryFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -622,7 +649,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse> balance(
         cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getBalanceMethod(), getCallOptions()), request);
     }
 
@@ -633,8 +660,20 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse> allBalances(
         cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAllBalancesMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * SpendableBalances queries the spenable balance of all coins for a single
+     * account.
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse> spendableBalances(
+        cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSpendableBalancesMethod(), getCallOptions()), request);
     }
 
     /**
@@ -644,7 +683,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyResponse> totalSupply(
         cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getTotalSupplyMethod(), getCallOptions()), request);
     }
 
@@ -655,7 +694,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfResponse> supplyOf(
         cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSupplyOfMethod(), getCallOptions()), request);
     }
 
@@ -666,7 +705,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse> params(
         cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request);
     }
 
@@ -677,7 +716,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataResponse> denomMetadata(
         cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDenomMetadataMethod(), getCallOptions()), request);
     }
 
@@ -688,28 +727,29 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse> denomsMetadata(
         cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDenomsMetadataMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_BALANCE = 0;
   private static final int METHODID_ALL_BALANCES = 1;
-  private static final int METHODID_TOTAL_SUPPLY = 2;
-  private static final int METHODID_SUPPLY_OF = 3;
-  private static final int METHODID_PARAMS = 4;
-  private static final int METHODID_DENOM_METADATA = 5;
-  private static final int METHODID_DENOMS_METADATA = 6;
+  private static final int METHODID_SPENDABLE_BALANCES = 2;
+  private static final int METHODID_TOTAL_SUPPLY = 3;
+  private static final int METHODID_SUPPLY_OF = 4;
+  private static final int METHODID_PARAMS = 5;
+  private static final int METHODID_DENOM_METADATA = 6;
+  private static final int METHODID_DENOMS_METADATA = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final QueryImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(QueryImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -725,6 +765,10 @@ public final class QueryGrpc {
         case METHODID_ALL_BALANCES:
           serviceImpl.allBalances((cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest) request,
               (io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse>) responseObserver);
+          break;
+        case METHODID_SPENDABLE_BALANCES:
+          serviceImpl.spendableBalances((cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest) request,
+              (io.grpc.stub.StreamObserver<cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse>) responseObserver);
           break;
         case METHODID_TOTAL_SUPPLY:
           serviceImpl.totalSupply((cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest) request,
@@ -760,6 +804,67 @@ public final class QueryGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getBalanceMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceRequest,
+              cosmos.bank.v1beta1.QueryOuterClass.QueryBalanceResponse>(
+                service, METHODID_BALANCE)))
+        .addMethod(
+          getAllBalancesMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesRequest,
+              cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse>(
+                service, METHODID_ALL_BALANCES)))
+        .addMethod(
+          getSpendableBalancesMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesRequest,
+              cosmos.bank.v1beta1.QueryOuterClass.QuerySpendableBalancesResponse>(
+                service, METHODID_SPENDABLE_BALANCES)))
+        .addMethod(
+          getTotalSupplyMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyRequest,
+              cosmos.bank.v1beta1.QueryOuterClass.QueryTotalSupplyResponse>(
+                service, METHODID_TOTAL_SUPPLY)))
+        .addMethod(
+          getSupplyOfMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfRequest,
+              cosmos.bank.v1beta1.QueryOuterClass.QuerySupplyOfResponse>(
+                service, METHODID_SUPPLY_OF)))
+        .addMethod(
+          getParamsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.bank.v1beta1.QueryOuterClass.QueryParamsRequest,
+              cosmos.bank.v1beta1.QueryOuterClass.QueryParamsResponse>(
+                service, METHODID_PARAMS)))
+        .addMethod(
+          getDenomMetadataMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataRequest,
+              cosmos.bank.v1beta1.QueryOuterClass.QueryDenomMetadataResponse>(
+                service, METHODID_DENOM_METADATA)))
+        .addMethod(
+          getDenomsMetadataMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataRequest,
+              cosmos.bank.v1beta1.QueryOuterClass.QueryDenomsMetadataResponse>(
+                service, METHODID_DENOMS_METADATA)))
+        .build();
   }
 
   private static abstract class QueryBaseDescriptorSupplier
@@ -809,6 +914,7 @@ public final class QueryGrpc {
               .setSchemaDescriptor(new QueryFileDescriptorSupplier())
               .addMethod(getBalanceMethod())
               .addMethod(getAllBalancesMethod())
+              .addMethod(getSpendableBalancesMethod())
               .addMethod(getTotalSupplyMethod())
               .addMethod(getSupplyOfMethod())
               .addMethod(getParamsMethod())

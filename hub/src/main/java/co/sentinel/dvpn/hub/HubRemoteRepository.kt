@@ -30,7 +30,7 @@ import co.sentinel.dvpn.hub.tasks.QueryPlans
 import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.models.KeyPair
 import com.google.protobuf.util.JsonFormat
-import com.google.protobuf2.Any
+import com.google.protobuf.Any
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineStart

@@ -2,7 +2,6 @@ package co.sentinel.cosmos.task.gRpcTask.broadcast
 
 import co.sentinel.cosmos.base.BaseConstant
 import co.sentinel.cosmos.base.BaseCosmosApp
-import co.sentinel.cosmos.network.ChannelBuilder
 import co.sentinel.cosmos.task.CommonTask
 import co.sentinel.cosmos.task.TaskResult
 import com.google.protobuf.util.JsonFormat
@@ -35,7 +34,7 @@ class FetchTransactionTask(
       mResult.resultJson = jsonFormatter.print(response.txResponse)
       if (response.txResponse.code > 0) {
         mResult.errorCode = response.txResponse.code
-        mResult.errorMsg = response.txResponse.raTimber
+        mResult.errorMsg = response.txResponse.rawLog
         mResult.isSuccess = false
       } else {
         mResult.isSuccess = true

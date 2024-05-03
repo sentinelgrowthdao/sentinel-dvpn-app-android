@@ -1,11 +1,6 @@
 package cosmos.staking.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/staking/v1beta1/query.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class QueryGrpc {
 
   private QueryGrpc() {}
@@ -505,16 +501,16 @@ public final class QueryGrpc {
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static abstract class QueryImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * Validators queries all validators that match the given status.
      * </pre>
      */
-    public void validators(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsRequest request,
+    default void validators(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getValidatorsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getValidatorsMethod(), responseObserver);
     }
 
     /**
@@ -522,9 +518,9 @@ public final class QueryGrpc {
      * Validator queries validator info for given validator address.
      * </pre>
      */
-    public void validator(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest request,
+    default void validator(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getValidatorMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getValidatorMethod(), responseObserver);
     }
 
     /**
@@ -532,9 +528,9 @@ public final class QueryGrpc {
      * ValidatorDelegations queries delegate info for given validator.
      * </pre>
      */
-    public void validatorDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsRequest request,
+    default void validatorDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getValidatorDelegationsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getValidatorDelegationsMethod(), responseObserver);
     }
 
     /**
@@ -542,9 +538,9 @@ public final class QueryGrpc {
      * ValidatorUnbondingDelegations queries unbonding delegations of a validator.
      * </pre>
      */
-    public void validatorUnbondingDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsRequest request,
+    default void validatorUnbondingDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getValidatorUnbondingDelegationsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getValidatorUnbondingDelegationsMethod(), responseObserver);
     }
 
     /**
@@ -552,9 +548,9 @@ public final class QueryGrpc {
      * Delegation queries delegate info for given validator delegator pair.
      * </pre>
      */
-    public void delegation(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationRequest request,
+    default void delegation(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getDelegationMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDelegationMethod(), responseObserver);
     }
 
     /**
@@ -563,9 +559,9 @@ public final class QueryGrpc {
      * pair.
      * </pre>
      */
-    public void unbondingDelegation(cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest request,
+    default void unbondingDelegation(cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getUnbondingDelegationMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUnbondingDelegationMethod(), responseObserver);
     }
 
     /**
@@ -573,9 +569,9 @@ public final class QueryGrpc {
      * DelegatorDelegations queries all delegations of a given delegator address.
      * </pre>
      */
-    public void delegatorDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsRequest request,
+    default void delegatorDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getDelegatorDelegationsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDelegatorDelegationsMethod(), responseObserver);
     }
 
     /**
@@ -584,9 +580,9 @@ public final class QueryGrpc {
      * delegator address.
      * </pre>
      */
-    public void delegatorUnbondingDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsRequest request,
+    default void delegatorUnbondingDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getDelegatorUnbondingDelegationsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDelegatorUnbondingDelegationsMethod(), responseObserver);
     }
 
     /**
@@ -594,9 +590,9 @@ public final class QueryGrpc {
      * Redelegations queries redelegations of given address.
      * </pre>
      */
-    public void redelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsRequest request,
+    default void redelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getRedelegationsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRedelegationsMethod(), responseObserver);
     }
 
     /**
@@ -605,9 +601,9 @@ public final class QueryGrpc {
      * address.
      * </pre>
      */
-    public void delegatorValidators(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsRequest request,
+    default void delegatorValidators(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getDelegatorValidatorsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDelegatorValidatorsMethod(), responseObserver);
     }
 
     /**
@@ -616,9 +612,9 @@ public final class QueryGrpc {
      * pair.
      * </pre>
      */
-    public void delegatorValidator(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorRequest request,
+    default void delegatorValidator(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getDelegatorValidatorMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDelegatorValidatorMethod(), responseObserver);
     }
 
     /**
@@ -626,9 +622,9 @@ public final class QueryGrpc {
      * HistoricalInfo queries the historical info for given height.
      * </pre>
      */
-    public void historicalInfo(cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoRequest request,
+    default void historicalInfo(cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getHistoricalInfoMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getHistoricalInfoMethod(), responseObserver);
     }
 
     /**
@@ -636,9 +632,9 @@ public final class QueryGrpc {
      * Pool queries the pool info.
      * </pre>
      */
-    public void pool(cosmos.staking.v1beta1.QueryOuterClass.QueryPoolRequest request,
+    default void pool(cosmos.staking.v1beta1.QueryOuterClass.QueryPoolRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getPoolMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPoolMethod(), responseObserver);
     }
 
     /**
@@ -646,121 +642,34 @@ public final class QueryGrpc {
      * Parameters queries the staking parameters.
      * </pre>
      */
-    public void params(cosmos.staking.v1beta1.QueryOuterClass.QueryParamsRequest request,
+    default void params(cosmos.staking.v1beta1.QueryOuterClass.QueryParamsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryParamsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getValidatorsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsResponse>(
-                  this, METHODID_VALIDATORS)))
-          .addMethod(
-            getValidatorMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorResponse>(
-                  this, METHODID_VALIDATOR)))
-          .addMethod(
-            getValidatorDelegationsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsResponse>(
-                  this, METHODID_VALIDATOR_DELEGATIONS)))
-          .addMethod(
-            getValidatorUnbondingDelegationsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsResponse>(
-                  this, METHODID_VALIDATOR_UNBONDING_DELEGATIONS)))
-          .addMethod(
-            getDelegationMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationResponse>(
-                  this, METHODID_DELEGATION)))
-          .addMethod(
-            getUnbondingDelegationMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationResponse>(
-                  this, METHODID_UNBONDING_DELEGATION)))
-          .addMethod(
-            getDelegatorDelegationsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsResponse>(
-                  this, METHODID_DELEGATOR_DELEGATIONS)))
-          .addMethod(
-            getDelegatorUnbondingDelegationsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse>(
-                  this, METHODID_DELEGATOR_UNBONDING_DELEGATIONS)))
-          .addMethod(
-            getRedelegationsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsResponse>(
-                  this, METHODID_REDELEGATIONS)))
-          .addMethod(
-            getDelegatorValidatorsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse>(
-                  this, METHODID_DELEGATOR_VALIDATORS)))
-          .addMethod(
-            getDelegatorValidatorMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorResponse>(
-                  this, METHODID_DELEGATOR_VALIDATOR)))
-          .addMethod(
-            getHistoricalInfoMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse>(
-                  this, METHODID_HISTORICAL_INFO)))
-          .addMethod(
-            getPoolMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryPoolRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse>(
-                  this, METHODID_POOL)))
-          .addMethod(
-            getParamsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.QueryOuterClass.QueryParamsRequest,
-                cosmos.staking.v1beta1.QueryOuterClass.QueryParamsResponse>(
-                  this, METHODID_PARAMS)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryStub extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
+  public static abstract class QueryImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return QueryGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Query.
+   * <pre>
+   * Query defines the gRPC querier service.
+   * </pre>
+   */
+  public static final class QueryStub
+      extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
     private QueryStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -779,7 +688,7 @@ public final class QueryGrpc {
      */
     public void validators(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getValidatorsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -790,7 +699,7 @@ public final class QueryGrpc {
      */
     public void validator(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getValidatorMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -801,7 +710,7 @@ public final class QueryGrpc {
      */
     public void validatorDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getValidatorDelegationsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -812,7 +721,7 @@ public final class QueryGrpc {
      */
     public void validatorUnbondingDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getValidatorUnbondingDelegationsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -823,7 +732,7 @@ public final class QueryGrpc {
      */
     public void delegation(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDelegationMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -835,7 +744,7 @@ public final class QueryGrpc {
      */
     public void unbondingDelegation(cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getUnbondingDelegationMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -846,7 +755,7 @@ public final class QueryGrpc {
      */
     public void delegatorDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDelegatorDelegationsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -858,7 +767,7 @@ public final class QueryGrpc {
      */
     public void delegatorUnbondingDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDelegatorUnbondingDelegationsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -869,7 +778,7 @@ public final class QueryGrpc {
      */
     public void redelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getRedelegationsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -881,7 +790,7 @@ public final class QueryGrpc {
      */
     public void delegatorValidators(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDelegatorValidatorsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -893,7 +802,7 @@ public final class QueryGrpc {
      */
     public void delegatorValidator(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDelegatorValidatorMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -904,7 +813,7 @@ public final class QueryGrpc {
      */
     public void historicalInfo(cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getHistoricalInfoMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -915,7 +824,7 @@ public final class QueryGrpc {
      */
     public void pool(cosmos.staking.v1beta1.QueryOuterClass.QueryPoolRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getPoolMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -926,17 +835,19 @@ public final class QueryGrpc {
      */
     public void params(cosmos.staking.v1beta1.QueryOuterClass.QueryParamsRequest request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.QueryOuterClass.QueryParamsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryBlockingStub extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
+  public static final class QueryBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
     private QueryBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -954,7 +865,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsResponse validators(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getValidatorsMethod(), getCallOptions(), request);
     }
 
@@ -964,7 +875,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorResponse validator(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getValidatorMethod(), getCallOptions(), request);
     }
 
@@ -974,7 +885,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsResponse validatorDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getValidatorDelegationsMethod(), getCallOptions(), request);
     }
 
@@ -984,7 +895,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsResponse validatorUnbondingDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getValidatorUnbondingDelegationsMethod(), getCallOptions(), request);
     }
 
@@ -994,7 +905,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationResponse delegation(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDelegationMethod(), getCallOptions(), request);
     }
 
@@ -1005,7 +916,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationResponse unbondingDelegation(cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getUnbondingDelegationMethod(), getCallOptions(), request);
     }
 
@@ -1015,7 +926,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsResponse delegatorDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDelegatorDelegationsMethod(), getCallOptions(), request);
     }
 
@@ -1026,7 +937,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse delegatorUnbondingDelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDelegatorUnbondingDelegationsMethod(), getCallOptions(), request);
     }
 
@@ -1036,7 +947,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsResponse redelegations(cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getRedelegationsMethod(), getCallOptions(), request);
     }
 
@@ -1047,7 +958,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse delegatorValidators(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDelegatorValidatorsMethod(), getCallOptions(), request);
     }
 
@@ -1058,7 +969,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorResponse delegatorValidator(cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDelegatorValidatorMethod(), getCallOptions(), request);
     }
 
@@ -1068,7 +979,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse historicalInfo(cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getHistoricalInfoMethod(), getCallOptions(), request);
     }
 
@@ -1078,7 +989,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse pool(cosmos.staking.v1beta1.QueryOuterClass.QueryPoolRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getPoolMethod(), getCallOptions(), request);
     }
 
@@ -1088,17 +999,19 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.QueryOuterClass.QueryParamsResponse params(cosmos.staking.v1beta1.QueryOuterClass.QueryParamsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getParamsMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryFutureStub extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
+  public static final class QueryFutureStub
+      extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
     private QueryFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -1117,7 +1030,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsResponse> validators(
         cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getValidatorsMethod(), getCallOptions()), request);
     }
 
@@ -1128,7 +1041,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorResponse> validator(
         cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getValidatorMethod(), getCallOptions()), request);
     }
 
@@ -1139,7 +1052,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsResponse> validatorDelegations(
         cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getValidatorDelegationsMethod(), getCallOptions()), request);
     }
 
@@ -1150,7 +1063,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsResponse> validatorUnbondingDelegations(
         cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getValidatorUnbondingDelegationsMethod(), getCallOptions()), request);
     }
 
@@ -1161,7 +1074,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationResponse> delegation(
         cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDelegationMethod(), getCallOptions()), request);
     }
 
@@ -1173,7 +1086,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationResponse> unbondingDelegation(
         cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getUnbondingDelegationMethod(), getCallOptions()), request);
     }
 
@@ -1184,7 +1097,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsResponse> delegatorDelegations(
         cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDelegatorDelegationsMethod(), getCallOptions()), request);
     }
 
@@ -1196,7 +1109,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse> delegatorUnbondingDelegations(
         cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDelegatorUnbondingDelegationsMethod(), getCallOptions()), request);
     }
 
@@ -1207,7 +1120,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsResponse> redelegations(
         cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getRedelegationsMethod(), getCallOptions()), request);
     }
 
@@ -1219,7 +1132,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse> delegatorValidators(
         cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDelegatorValidatorsMethod(), getCallOptions()), request);
     }
 
@@ -1231,7 +1144,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorResponse> delegatorValidator(
         cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDelegatorValidatorMethod(), getCallOptions()), request);
     }
 
@@ -1242,7 +1155,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse> historicalInfo(
         cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getHistoricalInfoMethod(), getCallOptions()), request);
     }
 
@@ -1253,7 +1166,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse> pool(
         cosmos.staking.v1beta1.QueryOuterClass.QueryPoolRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getPoolMethod(), getCallOptions()), request);
     }
 
@@ -1264,7 +1177,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.QueryOuterClass.QueryParamsResponse> params(
         cosmos.staking.v1beta1.QueryOuterClass.QueryParamsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request);
     }
   }
@@ -1289,10 +1202,10 @@ public final class QueryGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final QueryImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(QueryImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -1371,6 +1284,109 @@ public final class QueryGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getValidatorsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorsResponse>(
+                service, METHODID_VALIDATORS)))
+        .addMethod(
+          getValidatorMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorResponse>(
+                service, METHODID_VALIDATOR)))
+        .addMethod(
+          getValidatorDelegationsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorDelegationsResponse>(
+                service, METHODID_VALIDATOR_DELEGATIONS)))
+        .addMethod(
+          getValidatorUnbondingDelegationsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryValidatorUnbondingDelegationsResponse>(
+                service, METHODID_VALIDATOR_UNBONDING_DELEGATIONS)))
+        .addMethod(
+          getDelegationMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryDelegationResponse>(
+                service, METHODID_DELEGATION)))
+        .addMethod(
+          getUnbondingDelegationMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryUnbondingDelegationResponse>(
+                service, METHODID_UNBONDING_DELEGATION)))
+        .addMethod(
+          getDelegatorDelegationsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorDelegationsResponse>(
+                service, METHODID_DELEGATOR_DELEGATIONS)))
+        .addMethod(
+          getDelegatorUnbondingDelegationsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorUnbondingDelegationsResponse>(
+                service, METHODID_DELEGATOR_UNBONDING_DELEGATIONS)))
+        .addMethod(
+          getRedelegationsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryRedelegationsResponse>(
+                service, METHODID_REDELEGATIONS)))
+        .addMethod(
+          getDelegatorValidatorsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorsResponse>(
+                service, METHODID_DELEGATOR_VALIDATORS)))
+        .addMethod(
+          getDelegatorValidatorMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryDelegatorValidatorResponse>(
+                service, METHODID_DELEGATOR_VALIDATOR)))
+        .addMethod(
+          getHistoricalInfoMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryHistoricalInfoResponse>(
+                service, METHODID_HISTORICAL_INFO)))
+        .addMethod(
+          getPoolMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryPoolRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryPoolResponse>(
+                service, METHODID_POOL)))
+        .addMethod(
+          getParamsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.QueryOuterClass.QueryParamsRequest,
+              cosmos.staking.v1beta1.QueryOuterClass.QueryParamsResponse>(
+                service, METHODID_PARAMS)))
+        .build();
   }
 
   private static abstract class QueryBaseDescriptorSupplier

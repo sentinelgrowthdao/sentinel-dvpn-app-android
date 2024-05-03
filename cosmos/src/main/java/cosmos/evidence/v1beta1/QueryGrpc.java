@@ -1,11 +1,6 @@
 package cosmos.evidence.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/evidence/v1beta1/query.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class QueryGrpc {
 
   private QueryGrpc() {}
@@ -133,16 +129,16 @@ public final class QueryGrpc {
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static abstract class QueryImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * Evidence queries evidence based on evidence hash.
      * </pre>
      */
-    public void evidence(cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest request,
+    default void evidence(cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest request,
         io.grpc.stub.StreamObserver<cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getEvidenceMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEvidenceMethod(), responseObserver);
     }
 
     /**
@@ -150,37 +146,34 @@ public final class QueryGrpc {
      * AllEvidence queries all evidence.
      * </pre>
      */
-    public void allEvidence(cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest request,
+    default void allEvidence(cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest request,
         io.grpc.stub.StreamObserver<cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getAllEvidenceMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getEvidenceMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest,
-                cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse>(
-                  this, METHODID_EVIDENCE)))
-          .addMethod(
-            getAllEvidenceMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest,
-                cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse>(
-                  this, METHODID_ALL_EVIDENCE)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAllEvidenceMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryStub extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
+  public static abstract class QueryImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return QueryGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Query.
+   * <pre>
+   * Query defines the gRPC querier service.
+   * </pre>
+   */
+  public static final class QueryStub
+      extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
     private QueryStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -199,7 +192,7 @@ public final class QueryGrpc {
      */
     public void evidence(cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest request,
         io.grpc.stub.StreamObserver<cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getEvidenceMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -210,17 +203,19 @@ public final class QueryGrpc {
      */
     public void allEvidence(cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest request,
         io.grpc.stub.StreamObserver<cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAllEvidenceMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryBlockingStub extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
+  public static final class QueryBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
     private QueryBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -238,7 +233,7 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse evidence(cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getEvidenceMethod(), getCallOptions(), request);
     }
 
@@ -248,17 +243,19 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse allEvidence(cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAllEvidenceMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryFutureStub extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
+  public static final class QueryFutureStub
+      extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
     private QueryFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -277,7 +274,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse> evidence(
         cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getEvidenceMethod(), getCallOptions()), request);
     }
 
@@ -288,7 +285,7 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse> allEvidence(
         cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAllEvidenceMethod(), getCallOptions()), request);
     }
   }
@@ -301,10 +298,10 @@ public final class QueryGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final QueryImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(QueryImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -335,6 +332,25 @@ public final class QueryGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getEvidenceMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceRequest,
+              cosmos.evidence.v1beta1.QueryOuterClass.QueryEvidenceResponse>(
+                service, METHODID_EVIDENCE)))
+        .addMethod(
+          getAllEvidenceMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceRequest,
+              cosmos.evidence.v1beta1.QueryOuterClass.QueryAllEvidenceResponse>(
+                service, METHODID_ALL_EVIDENCE)))
+        .build();
   }
 
   private static abstract class QueryBaseDescriptorSupplier

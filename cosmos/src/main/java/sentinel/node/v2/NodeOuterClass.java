@@ -171,7 +171,6 @@ public final class NodeOuterClass {
               sentinel.node.v2.NodeOuterClass.Node.class, sentinel.node.v2.NodeOuterClass.Node.Builder.class);
     }
 
-    private int bitField0_;
     public static final int ADDRESS_FIELD_NUMBER = 1;
     @SuppressWarnings("serial")
     private volatile java.lang.Object address_ = "";
@@ -340,7 +339,7 @@ public final class NodeOuterClass {
      */
     @java.lang.Override
     public boolean hasInactiveAt() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return inactiveAt_ != null;
     }
     /**
      * <code>.google.protobuf.Timestamp inactive_at = 5 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
@@ -384,7 +383,7 @@ public final class NodeOuterClass {
      */
     @java.lang.Override
     public boolean hasStatusAt() {
-      return ((bitField0_ & 0x00000002) != 0);
+      return statusAt_ != null;
     }
     /**
      * <code>.google.protobuf.Timestamp status_at = 7 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
@@ -428,13 +427,13 @@ public final class NodeOuterClass {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(remoteUrl_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, remoteUrl_);
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (inactiveAt_ != null) {
         output.writeMessage(5, getInactiveAt());
       }
       if (status_ != sentinel.types.v1.StatusOuterClass.Status.STATUS_UNSPECIFIED.getNumber()) {
         output.writeEnum(6, status_);
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (statusAt_ != null) {
         output.writeMessage(7, getStatusAt());
       }
       getUnknownFields().writeTo(output);
@@ -460,7 +459,7 @@ public final class NodeOuterClass {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(remoteUrl_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, remoteUrl_);
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (inactiveAt_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getInactiveAt());
       }
@@ -468,7 +467,7 @@ public final class NodeOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(6, status_);
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (statusAt_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, getStatusAt());
       }
@@ -658,22 +657,13 @@ public final class NodeOuterClass {
 
       // Construct using sentinel.node.v2.NodeOuterClass.Node.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getGigabytePricesFieldBuilder();
-          getHourlyPricesFieldBuilder();
-          getInactiveAtFieldBuilder();
-          getStatusAtFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -767,12 +757,10 @@ public final class NodeOuterClass {
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.remoteUrl_ = remoteUrl_;
         }
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000010) != 0)) {
           result.inactiveAt_ = inactiveAtBuilder_ == null
               ? inactiveAt_
               : inactiveAtBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000020) != 0)) {
           result.status_ = status_;
@@ -781,9 +769,7 @@ public final class NodeOuterClass {
           result.statusAt_ = statusAtBuilder_ == null
               ? statusAt_
               : statusAtBuilder_.build();
-          to_bitField0_ |= 0x00000002;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -1689,10 +1675,8 @@ public final class NodeOuterClass {
         } else {
           inactiveAtBuilder_.mergeFrom(value);
         }
-        if (inactiveAt_ != null) {
-          bitField0_ |= 0x00000010;
-          onChanged();
-        }
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -1863,10 +1847,8 @@ public final class NodeOuterClass {
         } else {
           statusAtBuilder_.mergeFrom(value);
         }
-        if (statusAt_ != null) {
-          bitField0_ |= 0x00000040;
-          onChanged();
-        }
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -2017,7 +1999,7 @@ public final class NodeOuterClass {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           cosmos.base.v1beta1.CoinOuterClass.getDescriptor(),
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           com.google.protobuf.TimestampProto.getDescriptor(),
           sentinel.types.v1.StatusOuterClass.getDescriptor(),
         });
@@ -2029,16 +2011,16 @@ public final class NodeOuterClass {
         new java.lang.String[] { "Address", "GigabytePrices", "HourlyPrices", "RemoteUrl", "InactiveAt", "Status", "StatusAt", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.castrepeated);
-    registry.add(com.google.protobuf2.GoGoProtos.customname);
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
-    registry.add(com.google.protobuf2.GoGoProtos.stdtime);
+    registry.add(com.google.protobuf.GoGoProtos.castrepeated);
+    registry.add(com.google.protobuf.GoGoProtos.customname);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.stdtime);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
     cosmos.base.v1beta1.CoinOuterClass.getDescriptor();
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
     sentinel.types.v1.StatusOuterClass.getDescriptor();
   }

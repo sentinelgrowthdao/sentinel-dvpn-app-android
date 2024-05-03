@@ -4,7 +4,7 @@ import static co.sentinel.cosmos.utils.WUtil.integerToBytes;
 import static cosmos.tx.signing.v1beta1.Signing.SignMode.SIGN_MODE_DIRECT;
 
 import com.google.protobuf.ByteString;
-import com.google.protobuf2.Any;
+import com.google.protobuf.Any;
 
 import org.bitcoinj.core.ECKey;
 import org.bitcoinj.core.Sha256Hash;

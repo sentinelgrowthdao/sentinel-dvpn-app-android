@@ -31,28 +31,16 @@ public final class Events {
         getAddressBytes();
 
     /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+     * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+     * @return The coins.
      */
-    java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> 
-        getCoinsList();
+    java.lang.String getCoins();
     /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+     * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+     * @return The bytes for coins.
      */
-    cosmos.base.v1beta1.CoinOuterClass.Coin getCoins(int index);
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    int getCoinsCount();
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
-        getCoinsOrBuilderList();
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder getCoinsOrBuilder(
-        int index);
+    com.google.protobuf.ByteString
+        getCoinsBytes();
   }
   /**
    * Protobuf type {@code sentinel.deposit.v1.EventAdd}
@@ -68,7 +56,7 @@ public final class Events {
     }
     private EventAdd() {
       address_ = "";
-      coins_ = java.util.Collections.emptyList();
+      coins_ = "";
     }
 
     @java.lang.Override
@@ -132,43 +120,41 @@ public final class Events {
 
     public static final int COINS_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> coins_;
+    private volatile java.lang.Object coins_ = "";
     /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+     * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+     * @return The coins.
      */
     @java.lang.Override
-    public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> getCoinsList() {
-      return coins_;
+    public java.lang.String getCoins() {
+      java.lang.Object ref = coins_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        coins_ = s;
+        return s;
+      }
     }
     /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+     * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+     * @return The bytes for coins.
      */
     @java.lang.Override
-    public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
-        getCoinsOrBuilderList() {
-      return coins_;
-    }
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    @java.lang.Override
-    public int getCoinsCount() {
-      return coins_.size();
-    }
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    @java.lang.Override
-    public cosmos.base.v1beta1.CoinOuterClass.Coin getCoins(int index) {
-      return coins_.get(index);
-    }
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    @java.lang.Override
-    public cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder getCoinsOrBuilder(
-        int index) {
-      return coins_.get(index);
+    public com.google.protobuf.ByteString
+        getCoinsBytes() {
+      java.lang.Object ref = coins_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        coins_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -188,8 +174,8 @@ public final class Events {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
-      for (int i = 0; i < coins_.size(); i++) {
-        output.writeMessage(2, coins_.get(i));
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(coins_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, coins_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -203,9 +189,8 @@ public final class Events {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
-      for (int i = 0; i < coins_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, coins_.get(i));
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(coins_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, coins_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -224,8 +209,8 @@ public final class Events {
 
       if (!getAddress()
           .equals(other.getAddress())) return false;
-      if (!getCoinsList()
-          .equals(other.getCoinsList())) return false;
+      if (!getCoins()
+          .equals(other.getCoins())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -239,10 +224,8 @@ public final class Events {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
       hash = (53 * hash) + getAddress().hashCode();
-      if (getCoinsCount() > 0) {
-        hash = (37 * hash) + COINS_FIELD_NUMBER;
-        hash = (53 * hash) + getCoinsList().hashCode();
-      }
+      hash = (37 * hash) + COINS_FIELD_NUMBER;
+      hash = (53 * hash) + getCoins().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -375,13 +358,7 @@ public final class Events {
         super.clear();
         bitField0_ = 0;
         address_ = "";
-        if (coinsBuilder_ == null) {
-          coins_ = java.util.Collections.emptyList();
-        } else {
-          coins_ = null;
-          coinsBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        coins_ = "";
         return this;
       }
 
@@ -408,28 +385,18 @@ public final class Events {
       @java.lang.Override
       public sentinel.deposit.v1.Events.EventAdd buildPartial() {
         sentinel.deposit.v1.Events.EventAdd result = new sentinel.deposit.v1.Events.EventAdd(this);
-        buildPartialRepeatedFields(result);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
-      }
-
-      private void buildPartialRepeatedFields(sentinel.deposit.v1.Events.EventAdd result) {
-        if (coinsBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0)) {
-            coins_ = java.util.Collections.unmodifiableList(coins_);
-            bitField0_ = (bitField0_ & ~0x00000002);
-          }
-          result.coins_ = coins_;
-        } else {
-          result.coins_ = coinsBuilder_.build();
-        }
       }
 
       private void buildPartial0(sentinel.deposit.v1.Events.EventAdd result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.address_ = address_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.coins_ = coins_;
         }
       }
 
@@ -482,31 +449,10 @@ public final class Events {
           bitField0_ |= 0x00000001;
           onChanged();
         }
-        if (coinsBuilder_ == null) {
-          if (!other.coins_.isEmpty()) {
-            if (coins_.isEmpty()) {
-              coins_ = other.coins_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-            } else {
-              ensureCoinsIsMutable();
-              coins_.addAll(other.coins_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.coins_.isEmpty()) {
-            if (coinsBuilder_.isEmpty()) {
-              coinsBuilder_.dispose();
-              coinsBuilder_ = null;
-              coins_ = other.coins_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              coinsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getCoinsFieldBuilder() : null;
-            } else {
-              coinsBuilder_.addAllMessages(other.coins_);
-            }
-          }
+        if (!other.getCoins().isEmpty()) {
+          coins_ = other.coins_;
+          bitField0_ |= 0x00000002;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -540,16 +486,8 @@ public final class Events {
                 break;
               } // case 10
               case 18: {
-                cosmos.base.v1beta1.CoinOuterClass.Coin m =
-                    input.readMessage(
-                        cosmos.base.v1beta1.CoinOuterClass.Coin.parser(),
-                        extensionRegistry);
-                if (coinsBuilder_ == null) {
-                  ensureCoinsIsMutable();
-                  coins_.add(m);
-                } else {
-                  coinsBuilder_.addMessage(m);
-                }
+                coins_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
                 break;
               } // case 18
               default: {
@@ -641,244 +579,76 @@ public final class Events {
         return this;
       }
 
-      private java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> coins_ =
-        java.util.Collections.emptyList();
-      private void ensureCoinsIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          coins_ = new java.util.ArrayList<cosmos.base.v1beta1.CoinOuterClass.Coin>(coins_);
-          bitField0_ |= 0x00000002;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> coinsBuilder_;
-
+      private java.lang.Object coins_ = "";
       /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+       * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+       * @return The coins.
        */
-      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> getCoinsList() {
-        if (coinsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(coins_);
+      public java.lang.String getCoins() {
+        java.lang.Object ref = coins_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          coins_ = s;
+          return s;
         } else {
-          return coinsBuilder_.getMessageList();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+       * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+       * @return The bytes for coins.
        */
-      public int getCoinsCount() {
-        if (coinsBuilder_ == null) {
-          return coins_.size();
+      public com.google.protobuf.ByteString
+          getCoinsBytes() {
+        java.lang.Object ref = coins_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          coins_ = b;
+          return b;
         } else {
-          return coinsBuilder_.getCount();
+          return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public cosmos.base.v1beta1.CoinOuterClass.Coin getCoins(int index) {
-        if (coinsBuilder_ == null) {
-          return coins_.get(index);
-        } else {
-          return coinsBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+       * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+       * @param value The coins to set.
+       * @return This builder for chaining.
        */
       public Builder setCoins(
-          int index, cosmos.base.v1beta1.CoinOuterClass.Coin value) {
-        if (coinsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureCoinsIsMutable();
-          coins_.set(index, value);
-          onChanged();
-        } else {
-          coinsBuilder_.setMessage(index, value);
-        }
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        coins_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder setCoins(
-          int index, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder builderForValue) {
-        if (coinsBuilder_ == null) {
-          ensureCoinsIsMutable();
-          coins_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          coinsBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder addCoins(cosmos.base.v1beta1.CoinOuterClass.Coin value) {
-        if (coinsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureCoinsIsMutable();
-          coins_.add(value);
-          onChanged();
-        } else {
-          coinsBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder addCoins(
-          int index, cosmos.base.v1beta1.CoinOuterClass.Coin value) {
-        if (coinsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureCoinsIsMutable();
-          coins_.add(index, value);
-          onChanged();
-        } else {
-          coinsBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder addCoins(
-          cosmos.base.v1beta1.CoinOuterClass.Coin.Builder builderForValue) {
-        if (coinsBuilder_ == null) {
-          ensureCoinsIsMutable();
-          coins_.add(builderForValue.build());
-          onChanged();
-        } else {
-          coinsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder addCoins(
-          int index, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder builderForValue) {
-        if (coinsBuilder_ == null) {
-          ensureCoinsIsMutable();
-          coins_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          coinsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder addAllCoins(
-          java.lang.Iterable<? extends cosmos.base.v1beta1.CoinOuterClass.Coin> values) {
-        if (coinsBuilder_ == null) {
-          ensureCoinsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, coins_);
-          onChanged();
-        } else {
-          coinsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+       * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+       * @return This builder for chaining.
        */
       public Builder clearCoins() {
-        if (coinsBuilder_ == null) {
-          coins_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-          onChanged();
-        } else {
-          coinsBuilder_.clear();
-        }
+        coins_ = getDefaultInstance().getCoins();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+       * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+       * @param value The bytes for coins to set.
+       * @return This builder for chaining.
        */
-      public Builder removeCoins(int index) {
-        if (coinsBuilder_ == null) {
-          ensureCoinsIsMutable();
-          coins_.remove(index);
-          onChanged();
-        } else {
-          coinsBuilder_.remove(index);
-        }
+      public Builder setCoinsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        coins_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public cosmos.base.v1beta1.CoinOuterClass.Coin.Builder getCoinsBuilder(
-          int index) {
-        return getCoinsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder getCoinsOrBuilder(
-          int index) {
-        if (coinsBuilder_ == null) {
-          return coins_.get(index);  } else {
-          return coinsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
-           getCoinsOrBuilderList() {
-        if (coinsBuilder_ != null) {
-          return coinsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(coins_);
-        }
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public cosmos.base.v1beta1.CoinOuterClass.Coin.Builder addCoinsBuilder() {
-        return getCoinsFieldBuilder().addBuilder(
-            cosmos.base.v1beta1.CoinOuterClass.Coin.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public cosmos.base.v1beta1.CoinOuterClass.Coin.Builder addCoinsBuilder(
-          int index) {
-        return getCoinsFieldBuilder().addBuilder(
-            index, cosmos.base.v1beta1.CoinOuterClass.Coin.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin.Builder> 
-           getCoinsBuilderList() {
-        return getCoinsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
-          getCoinsFieldBuilder() {
-        if (coinsBuilder_ == null) {
-          coinsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>(
-                  coins_,
-                  ((bitField0_ & 0x00000002) != 0),
-                  getParentForChildren(),
-                  isClean());
-          coins_ = null;
-        }
-        return coinsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -961,28 +731,16 @@ public final class Events {
         getAddressBytes();
 
     /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+     * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+     * @return The coins.
      */
-    java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> 
-        getCoinsList();
+    java.lang.String getCoins();
     /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+     * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+     * @return The bytes for coins.
      */
-    cosmos.base.v1beta1.CoinOuterClass.Coin getCoins(int index);
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    int getCoinsCount();
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
-        getCoinsOrBuilderList();
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder getCoinsOrBuilder(
-        int index);
+    com.google.protobuf.ByteString
+        getCoinsBytes();
   }
   /**
    * Protobuf type {@code sentinel.deposit.v1.EventSubtract}
@@ -998,7 +756,7 @@ public final class Events {
     }
     private EventSubtract() {
       address_ = "";
-      coins_ = java.util.Collections.emptyList();
+      coins_ = "";
     }
 
     @java.lang.Override
@@ -1062,43 +820,41 @@ public final class Events {
 
     public static final int COINS_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
-    private java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> coins_;
+    private volatile java.lang.Object coins_ = "";
     /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+     * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+     * @return The coins.
      */
     @java.lang.Override
-    public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> getCoinsList() {
-      return coins_;
+    public java.lang.String getCoins() {
+      java.lang.Object ref = coins_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        coins_ = s;
+        return s;
+      }
     }
     /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+     * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+     * @return The bytes for coins.
      */
     @java.lang.Override
-    public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
-        getCoinsOrBuilderList() {
-      return coins_;
-    }
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    @java.lang.Override
-    public int getCoinsCount() {
-      return coins_.size();
-    }
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    @java.lang.Override
-    public cosmos.base.v1beta1.CoinOuterClass.Coin getCoins(int index) {
-      return coins_.get(index);
-    }
-    /**
-     * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-     */
-    @java.lang.Override
-    public cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder getCoinsOrBuilder(
-        int index) {
-      return coins_.get(index);
+    public com.google.protobuf.ByteString
+        getCoinsBytes() {
+      java.lang.Object ref = coins_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        coins_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1118,8 +874,8 @@ public final class Events {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
-      for (int i = 0; i < coins_.size(); i++) {
-        output.writeMessage(2, coins_.get(i));
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(coins_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, coins_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1133,9 +889,8 @@ public final class Events {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
-      for (int i = 0; i < coins_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, coins_.get(i));
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(coins_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, coins_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1154,8 +909,8 @@ public final class Events {
 
       if (!getAddress()
           .equals(other.getAddress())) return false;
-      if (!getCoinsList()
-          .equals(other.getCoinsList())) return false;
+      if (!getCoins()
+          .equals(other.getCoins())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -1169,10 +924,8 @@ public final class Events {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
       hash = (53 * hash) + getAddress().hashCode();
-      if (getCoinsCount() > 0) {
-        hash = (37 * hash) + COINS_FIELD_NUMBER;
-        hash = (53 * hash) + getCoinsList().hashCode();
-      }
+      hash = (37 * hash) + COINS_FIELD_NUMBER;
+      hash = (53 * hash) + getCoins().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1305,13 +1058,7 @@ public final class Events {
         super.clear();
         bitField0_ = 0;
         address_ = "";
-        if (coinsBuilder_ == null) {
-          coins_ = java.util.Collections.emptyList();
-        } else {
-          coins_ = null;
-          coinsBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        coins_ = "";
         return this;
       }
 
@@ -1338,28 +1085,18 @@ public final class Events {
       @java.lang.Override
       public sentinel.deposit.v1.Events.EventSubtract buildPartial() {
         sentinel.deposit.v1.Events.EventSubtract result = new sentinel.deposit.v1.Events.EventSubtract(this);
-        buildPartialRepeatedFields(result);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
-      }
-
-      private void buildPartialRepeatedFields(sentinel.deposit.v1.Events.EventSubtract result) {
-        if (coinsBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0)) {
-            coins_ = java.util.Collections.unmodifiableList(coins_);
-            bitField0_ = (bitField0_ & ~0x00000002);
-          }
-          result.coins_ = coins_;
-        } else {
-          result.coins_ = coinsBuilder_.build();
-        }
       }
 
       private void buildPartial0(sentinel.deposit.v1.Events.EventSubtract result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.address_ = address_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.coins_ = coins_;
         }
       }
 
@@ -1412,31 +1149,10 @@ public final class Events {
           bitField0_ |= 0x00000001;
           onChanged();
         }
-        if (coinsBuilder_ == null) {
-          if (!other.coins_.isEmpty()) {
-            if (coins_.isEmpty()) {
-              coins_ = other.coins_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-            } else {
-              ensureCoinsIsMutable();
-              coins_.addAll(other.coins_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.coins_.isEmpty()) {
-            if (coinsBuilder_.isEmpty()) {
-              coinsBuilder_.dispose();
-              coinsBuilder_ = null;
-              coins_ = other.coins_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              coinsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getCoinsFieldBuilder() : null;
-            } else {
-              coinsBuilder_.addAllMessages(other.coins_);
-            }
-          }
+        if (!other.getCoins().isEmpty()) {
+          coins_ = other.coins_;
+          bitField0_ |= 0x00000002;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -1470,16 +1186,8 @@ public final class Events {
                 break;
               } // case 10
               case 18: {
-                cosmos.base.v1beta1.CoinOuterClass.Coin m =
-                    input.readMessage(
-                        cosmos.base.v1beta1.CoinOuterClass.Coin.parser(),
-                        extensionRegistry);
-                if (coinsBuilder_ == null) {
-                  ensureCoinsIsMutable();
-                  coins_.add(m);
-                } else {
-                  coinsBuilder_.addMessage(m);
-                }
+                coins_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
                 break;
               } // case 18
               default: {
@@ -1571,244 +1279,76 @@ public final class Events {
         return this;
       }
 
-      private java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> coins_ =
-        java.util.Collections.emptyList();
-      private void ensureCoinsIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          coins_ = new java.util.ArrayList<cosmos.base.v1beta1.CoinOuterClass.Coin>(coins_);
-          bitField0_ |= 0x00000002;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> coinsBuilder_;
-
+      private java.lang.Object coins_ = "";
       /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+       * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+       * @return The coins.
        */
-      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> getCoinsList() {
-        if (coinsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(coins_);
+      public java.lang.String getCoins() {
+        java.lang.Object ref = coins_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          coins_ = s;
+          return s;
         } else {
-          return coinsBuilder_.getMessageList();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+       * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+       * @return The bytes for coins.
        */
-      public int getCoinsCount() {
-        if (coinsBuilder_ == null) {
-          return coins_.size();
+      public com.google.protobuf.ByteString
+          getCoinsBytes() {
+        java.lang.Object ref = coins_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          coins_ = b;
+          return b;
         } else {
-          return coinsBuilder_.getCount();
+          return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public cosmos.base.v1beta1.CoinOuterClass.Coin getCoins(int index) {
-        if (coinsBuilder_ == null) {
-          return coins_.get(index);
-        } else {
-          return coinsBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+       * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+       * @param value The coins to set.
+       * @return This builder for chaining.
        */
       public Builder setCoins(
-          int index, cosmos.base.v1beta1.CoinOuterClass.Coin value) {
-        if (coinsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureCoinsIsMutable();
-          coins_.set(index, value);
-          onChanged();
-        } else {
-          coinsBuilder_.setMessage(index, value);
-        }
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        coins_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder setCoins(
-          int index, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder builderForValue) {
-        if (coinsBuilder_ == null) {
-          ensureCoinsIsMutable();
-          coins_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          coinsBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder addCoins(cosmos.base.v1beta1.CoinOuterClass.Coin value) {
-        if (coinsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureCoinsIsMutable();
-          coins_.add(value);
-          onChanged();
-        } else {
-          coinsBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder addCoins(
-          int index, cosmos.base.v1beta1.CoinOuterClass.Coin value) {
-        if (coinsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureCoinsIsMutable();
-          coins_.add(index, value);
-          onChanged();
-        } else {
-          coinsBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder addCoins(
-          cosmos.base.v1beta1.CoinOuterClass.Coin.Builder builderForValue) {
-        if (coinsBuilder_ == null) {
-          ensureCoinsIsMutable();
-          coins_.add(builderForValue.build());
-          onChanged();
-        } else {
-          coinsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder addCoins(
-          int index, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder builderForValue) {
-        if (coinsBuilder_ == null) {
-          ensureCoinsIsMutable();
-          coins_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          coinsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public Builder addAllCoins(
-          java.lang.Iterable<? extends cosmos.base.v1beta1.CoinOuterClass.Coin> values) {
-        if (coinsBuilder_ == null) {
-          ensureCoinsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, coins_);
-          onChanged();
-        } else {
-          coinsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+       * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+       * @return This builder for chaining.
        */
       public Builder clearCoins() {
-        if (coinsBuilder_ == null) {
-          coins_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
-          onChanged();
-        } else {
-          coinsBuilder_.clear();
-        }
+        coins_ = getDefaultInstance().getCoins();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
+       * <code>string coins = 2 [(.gogoproto.moretags) = "yaml:&#92;"coins&#92;""];</code>
+       * @param value The bytes for coins to set.
+       * @return This builder for chaining.
        */
-      public Builder removeCoins(int index) {
-        if (coinsBuilder_ == null) {
-          ensureCoinsIsMutable();
-          coins_.remove(index);
-          onChanged();
-        } else {
-          coinsBuilder_.remove(index);
-        }
+      public Builder setCoinsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        coins_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public cosmos.base.v1beta1.CoinOuterClass.Coin.Builder getCoinsBuilder(
-          int index) {
-        return getCoinsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder getCoinsOrBuilder(
-          int index) {
-        if (coinsBuilder_ == null) {
-          return coins_.get(index);  } else {
-          return coinsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
-           getCoinsOrBuilderList() {
-        if (coinsBuilder_ != null) {
-          return coinsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(coins_);
-        }
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public cosmos.base.v1beta1.CoinOuterClass.Coin.Builder addCoinsBuilder() {
-        return getCoinsFieldBuilder().addBuilder(
-            cosmos.base.v1beta1.CoinOuterClass.Coin.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public cosmos.base.v1beta1.CoinOuterClass.Coin.Builder addCoinsBuilder(
-          int index) {
-        return getCoinsFieldBuilder().addBuilder(
-            index, cosmos.base.v1beta1.CoinOuterClass.Coin.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .cosmos.base.v1beta1.Coin coins = 2 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"coins&#92;"", (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
-       */
-      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin.Builder> 
-           getCoinsBuilderList() {
-        return getCoinsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
-          getCoinsFieldBuilder() {
-        if (coinsBuilder_ == null) {
-          coinsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>(
-                  coins_,
-                  ((bitField0_ & 0x00000002) != 0),
-                  getParentForChildren(),
-                  isClean());
-          coins_ = null;
-        }
-        return coinsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -1894,24 +1434,18 @@ public final class Events {
   static {
     java.lang.String[] descriptorData = {
       "\n sentinel/deposit/v1/events.proto\022\023sent" +
-      "inel.deposit.v1\032\036cosmos/base/v1beta1/coi" +
-      "n.proto\032\024gogoproto/gogo.proto\"\233\001\n\010EventA" +
-      "dd\022#\n\007address\030\001 \001(\tB\022\362\336\037\016yaml:\"address\"\022" +
-      "j\n\005coins\030\002 \003(\0132\031.cosmos.base.v1beta1.Coi" +
-      "nB@\310\336\037\000\362\336\037\014yaml:\"coins\"\252\337\037(github.com/co" +
-      "smos/cosmos-sdk/types.Coins\"\240\001\n\rEventSub" +
-      "tract\022#\n\007address\030\001 \001(\tB\022\362\336\037\016yaml:\"addres" +
-      "s\"\022j\n\005coins\030\002 \003(\0132\031.cosmos.base.v1beta1." +
-      "CoinB@\310\336\037\000\362\336\037\014yaml:\"coins\"\252\337\037(github.com" +
-      "/cosmos/cosmos-sdk/types.CoinsB:Z0github" +
-      ".com/sentinel-official/hub/x/deposit/typ" +
-      "es\310\341\036\000\250\342\036\000b\006proto3"
+      "inel.deposit.v1\032\024gogoproto/gogo.proto\"P\n" +
+      "\010EventAdd\022#\n\007address\030\001 \001(\tB\022\362\336\037\016yaml:\"ad" +
+      "dress\"\022\037\n\005coins\030\002 \001(\tB\020\362\336\037\014yaml:\"coins\"\"" +
+      "U\n\rEventSubtract\022#\n\007address\030\001 \001(\tB\022\362\336\037\016y" +
+      "aml:\"address\"\022\037\n\005coins\030\002 \001(\tB\020\362\336\037\014yaml:\"" +
+      "coins\"B:Z0github.com/sentinel-official/h" +
+      "ub/x/deposit/types\310\341\036\000\250\342\036\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          cosmos.base.v1beta1.CoinOuterClass.getDescriptor(),
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
         });
     internal_static_sentinel_deposit_v1_EventAdd_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -1927,15 +1461,12 @@ public final class Events {
         new java.lang.String[] { "Address", "Coins", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.castrepeated);
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.moretags);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.moretags);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    cosmos.base.v1beta1.CoinOuterClass.getDescriptor();
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

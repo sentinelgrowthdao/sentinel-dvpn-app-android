@@ -39,8 +39,8 @@ import co.sentinel.cosmos.utils.WUtil
 import co.sentinel.cosmos.utils.toByteArray
 import co.uk.basedapps.domain.exception.Failure
 import co.uk.basedapps.domain.exception.logNonFatal
+import com.google.protobuf.Any
 import com.google.protobuf.util.JsonFormat
-import com.google.protobuf2.Any
 import cosmos.bank.v1beta1.QueryOuterClass.QueryAllBalancesResponse
 import cosmos.distribution.v1beta1.Distribution
 import cosmos.staking.v1beta1.Staking

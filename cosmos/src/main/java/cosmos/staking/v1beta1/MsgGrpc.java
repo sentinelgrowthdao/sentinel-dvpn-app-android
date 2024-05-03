@@ -1,11 +1,6 @@
 package cosmos.staking.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/staking/v1beta1/tx.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class MsgGrpc {
 
   private MsgGrpc() {}
@@ -226,16 +222,16 @@ public final class MsgGrpc {
    * Msg defines the staking Msg service.
    * </pre>
    */
-  public static abstract class MsgImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * CreateValidator defines a method for creating a new validator.
      * </pre>
      */
-    public void createValidator(cosmos.staking.v1beta1.Tx.MsgCreateValidator request,
+    default void createValidator(cosmos.staking.v1beta1.Tx.MsgCreateValidator request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.Tx.MsgCreateValidatorResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getCreateValidatorMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateValidatorMethod(), responseObserver);
     }
 
     /**
@@ -243,9 +239,9 @@ public final class MsgGrpc {
      * EditValidator defines a method for editing an existing validator.
      * </pre>
      */
-    public void editValidator(cosmos.staking.v1beta1.Tx.MsgEditValidator request,
+    default void editValidator(cosmos.staking.v1beta1.Tx.MsgEditValidator request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getEditValidatorMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEditValidatorMethod(), responseObserver);
     }
 
     /**
@@ -254,9 +250,9 @@ public final class MsgGrpc {
      * from a delegator to a validator.
      * </pre>
      */
-    public void delegate(cosmos.staking.v1beta1.Tx.MsgDelegate request,
+    default void delegate(cosmos.staking.v1beta1.Tx.MsgDelegate request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.Tx.MsgDelegateResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getDelegateMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDelegateMethod(), responseObserver);
     }
 
     /**
@@ -265,9 +261,9 @@ public final class MsgGrpc {
      * of coins from a delegator and source validator to a destination validator.
      * </pre>
      */
-    public void beginRedelegate(cosmos.staking.v1beta1.Tx.MsgBeginRedelegate request,
+    default void beginRedelegate(cosmos.staking.v1beta1.Tx.MsgBeginRedelegate request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.Tx.MsgBeginRedelegateResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getBeginRedelegateMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getBeginRedelegateMethod(), responseObserver);
     }
 
     /**
@@ -276,58 +272,34 @@ public final class MsgGrpc {
      * delegate and a validator.
      * </pre>
      */
-    public void undelegate(cosmos.staking.v1beta1.Tx.MsgUndelegate request,
+    default void undelegate(cosmos.staking.v1beta1.Tx.MsgUndelegate request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.Tx.MsgUndelegateResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getUndelegateMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getCreateValidatorMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.Tx.MsgCreateValidator,
-                cosmos.staking.v1beta1.Tx.MsgCreateValidatorResponse>(
-                  this, METHODID_CREATE_VALIDATOR)))
-          .addMethod(
-            getEditValidatorMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.Tx.MsgEditValidator,
-                cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse>(
-                  this, METHODID_EDIT_VALIDATOR)))
-          .addMethod(
-            getDelegateMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.Tx.MsgDelegate,
-                cosmos.staking.v1beta1.Tx.MsgDelegateResponse>(
-                  this, METHODID_DELEGATE)))
-          .addMethod(
-            getBeginRedelegateMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.Tx.MsgBeginRedelegate,
-                cosmos.staking.v1beta1.Tx.MsgBeginRedelegateResponse>(
-                  this, METHODID_BEGIN_REDELEGATE)))
-          .addMethod(
-            getUndelegateMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.staking.v1beta1.Tx.MsgUndelegate,
-                cosmos.staking.v1beta1.Tx.MsgUndelegateResponse>(
-                  this, METHODID_UNDELEGATE)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getUndelegateMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Msg.
    * <pre>
    * Msg defines the staking Msg service.
    * </pre>
    */
-  public static final class MsgStub extends io.grpc.stub.AbstractAsyncStub<MsgStub> {
+  public static abstract class MsgImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return MsgGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Msg.
+   * <pre>
+   * Msg defines the staking Msg service.
+   * </pre>
+   */
+  public static final class MsgStub
+      extends io.grpc.stub.AbstractAsyncStub<MsgStub> {
     private MsgStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -346,7 +318,7 @@ public final class MsgGrpc {
      */
     public void createValidator(cosmos.staking.v1beta1.Tx.MsgCreateValidator request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.Tx.MsgCreateValidatorResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCreateValidatorMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -357,7 +329,7 @@ public final class MsgGrpc {
      */
     public void editValidator(cosmos.staking.v1beta1.Tx.MsgEditValidator request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getEditValidatorMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -369,7 +341,7 @@ public final class MsgGrpc {
      */
     public void delegate(cosmos.staking.v1beta1.Tx.MsgDelegate request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.Tx.MsgDelegateResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDelegateMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -381,7 +353,7 @@ public final class MsgGrpc {
      */
     public void beginRedelegate(cosmos.staking.v1beta1.Tx.MsgBeginRedelegate request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.Tx.MsgBeginRedelegateResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getBeginRedelegateMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -393,17 +365,19 @@ public final class MsgGrpc {
      */
     public void undelegate(cosmos.staking.v1beta1.Tx.MsgUndelegate request,
         io.grpc.stub.StreamObserver<cosmos.staking.v1beta1.Tx.MsgUndelegateResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getUndelegateMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Msg.
    * <pre>
    * Msg defines the staking Msg service.
    * </pre>
    */
-  public static final class MsgBlockingStub extends io.grpc.stub.AbstractBlockingStub<MsgBlockingStub> {
+  public static final class MsgBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<MsgBlockingStub> {
     private MsgBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -421,7 +395,7 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.Tx.MsgCreateValidatorResponse createValidator(cosmos.staking.v1beta1.Tx.MsgCreateValidator request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCreateValidatorMethod(), getCallOptions(), request);
     }
 
@@ -431,7 +405,7 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse editValidator(cosmos.staking.v1beta1.Tx.MsgEditValidator request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getEditValidatorMethod(), getCallOptions(), request);
     }
 
@@ -442,7 +416,7 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.Tx.MsgDelegateResponse delegate(cosmos.staking.v1beta1.Tx.MsgDelegate request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDelegateMethod(), getCallOptions(), request);
     }
 
@@ -453,7 +427,7 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.Tx.MsgBeginRedelegateResponse beginRedelegate(cosmos.staking.v1beta1.Tx.MsgBeginRedelegate request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getBeginRedelegateMethod(), getCallOptions(), request);
     }
 
@@ -464,17 +438,19 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.staking.v1beta1.Tx.MsgUndelegateResponse undelegate(cosmos.staking.v1beta1.Tx.MsgUndelegate request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getUndelegateMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Msg.
    * <pre>
    * Msg defines the staking Msg service.
    * </pre>
    */
-  public static final class MsgFutureStub extends io.grpc.stub.AbstractFutureStub<MsgFutureStub> {
+  public static final class MsgFutureStub
+      extends io.grpc.stub.AbstractFutureStub<MsgFutureStub> {
     private MsgFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -493,7 +469,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.Tx.MsgCreateValidatorResponse> createValidator(
         cosmos.staking.v1beta1.Tx.MsgCreateValidator request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCreateValidatorMethod(), getCallOptions()), request);
     }
 
@@ -504,7 +480,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse> editValidator(
         cosmos.staking.v1beta1.Tx.MsgEditValidator request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getEditValidatorMethod(), getCallOptions()), request);
     }
 
@@ -516,7 +492,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.Tx.MsgDelegateResponse> delegate(
         cosmos.staking.v1beta1.Tx.MsgDelegate request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDelegateMethod(), getCallOptions()), request);
     }
 
@@ -528,7 +504,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.Tx.MsgBeginRedelegateResponse> beginRedelegate(
         cosmos.staking.v1beta1.Tx.MsgBeginRedelegate request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getBeginRedelegateMethod(), getCallOptions()), request);
     }
 
@@ -540,7 +516,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.staking.v1beta1.Tx.MsgUndelegateResponse> undelegate(
         cosmos.staking.v1beta1.Tx.MsgUndelegate request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getUndelegateMethod(), getCallOptions()), request);
     }
   }
@@ -556,10 +532,10 @@ public final class MsgGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final MsgImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(MsgImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -602,6 +578,46 @@ public final class MsgGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getCreateValidatorMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.Tx.MsgCreateValidator,
+              cosmos.staking.v1beta1.Tx.MsgCreateValidatorResponse>(
+                service, METHODID_CREATE_VALIDATOR)))
+        .addMethod(
+          getEditValidatorMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.Tx.MsgEditValidator,
+              cosmos.staking.v1beta1.Tx.MsgEditValidatorResponse>(
+                service, METHODID_EDIT_VALIDATOR)))
+        .addMethod(
+          getDelegateMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.Tx.MsgDelegate,
+              cosmos.staking.v1beta1.Tx.MsgDelegateResponse>(
+                service, METHODID_DELEGATE)))
+        .addMethod(
+          getBeginRedelegateMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.Tx.MsgBeginRedelegate,
+              cosmos.staking.v1beta1.Tx.MsgBeginRedelegateResponse>(
+                service, METHODID_BEGIN_REDELEGATE)))
+        .addMethod(
+          getUndelegateMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.staking.v1beta1.Tx.MsgUndelegate,
+              cosmos.staking.v1beta1.Tx.MsgUndelegateResponse>(
+                service, METHODID_UNDELEGATE)))
+        .build();
   }
 
   private static abstract class MsgBaseDescriptorSupplier

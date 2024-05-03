@@ -28,7 +28,7 @@ public final class Types {
      * <code>repeated uint64 elems = 2;</code>
      * @return A list containing the elems.
      */
-    java.util.List<Long> getElemsList();
+    java.util.List<java.lang.Long> getElemsList();
     /**
      * <code>repeated uint64 elems = 2;</code>
      * @return The count of elems.
@@ -57,117 +57,46 @@ public final class Types {
       elems_ = emptyLongList();
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new BitArray();
     }
 
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private BitArray(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              bits_ = input.readInt64();
-              break;
-            }
-            case 16: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                elems_ = newLongList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              elems_.addLong(input.readUInt64());
-              break;
-            }
-            case 18: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-                elems_ = newLongList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              while (input.getBytesUntilLimit() > 0) {
-                elems_.addLong(input.readUInt64());
-              }
-              input.popLimit(limit);
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          elems_.makeImmutable(); // C
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Types.internal_static_tendermint_libs_bits_BitArray_descriptor;
+      return tendermint.libs.bits.Types.internal_static_tendermint_libs_bits_BitArray_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Types.internal_static_tendermint_libs_bits_BitArray_fieldAccessorTable
+      return tendermint.libs.bits.Types.internal_static_tendermint_libs_bits_BitArray_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              BitArray.class, Builder.class);
+              tendermint.libs.bits.Types.BitArray.class, tendermint.libs.bits.Types.BitArray.Builder.class);
     }
 
     public static final int BITS_FIELD_NUMBER = 1;
-    private long bits_;
+    private long bits_ = 0L;
     /**
      * <code>int64 bits = 1;</code>
      * @return The bits.
      */
-    @Override
+    @java.lang.Override
     public long getBits() {
       return bits_;
     }
 
     public static final int ELEMS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private com.google.protobuf.Internal.LongList elems_;
     /**
      * <code>repeated uint64 elems = 2;</code>
      * @return A list containing the elems.
      */
-    @Override
-    public java.util.List<Long>
+    @java.lang.Override
+    public java.util.List<java.lang.Long>
         getElemsList() {
       return elems_;
     }
@@ -189,7 +118,7 @@ public final class Types {
     private int elemsMemoizedSerializedSize = -1;
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -199,7 +128,7 @@ public final class Types {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -213,10 +142,10 @@ public final class Types {
       for (int i = 0; i < elems_.size(); i++) {
         output.writeUInt64NoTag(elems_.getLong(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -240,30 +169,30 @@ public final class Types {
         }
         elemsMemoizedSerializedSize = dataSize;
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof BitArray)) {
+      if (!(obj instanceof tendermint.libs.bits.Types.BitArray)) {
         return super.equals(obj);
       }
-      BitArray other = (BitArray) obj;
+      tendermint.libs.bits.Types.BitArray other = (tendermint.libs.bits.Types.BitArray) obj;
 
       if (getBits()
           != other.getBits()) return false;
       if (!getElemsList()
           .equals(other.getElemsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -277,74 +206,76 @@ public final class Types {
         hash = (37 * hash) + ELEMS_FIELD_NUMBER;
         hash = (53 * hash) + getElemsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static BitArray parseFrom(
+    public static tendermint.libs.bits.Types.BitArray parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BitArray parseFrom(
+    public static tendermint.libs.bits.Types.BitArray parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BitArray parseFrom(
+    public static tendermint.libs.bits.Types.BitArray parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BitArray parseFrom(
+    public static tendermint.libs.bits.Types.BitArray parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BitArray parseFrom(byte[] data)
+    public static tendermint.libs.bits.Types.BitArray parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static BitArray parseFrom(
+    public static tendermint.libs.bits.Types.BitArray parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static BitArray parseFrom(java.io.InputStream input)
+    public static tendermint.libs.bits.Types.BitArray parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static BitArray parseFrom(
+    public static tendermint.libs.bits.Types.BitArray parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static BitArray parseDelimitedFrom(java.io.InputStream input)
+
+    public static tendermint.libs.bits.Types.BitArray parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static BitArray parseDelimitedFrom(
+
+    public static tendermint.libs.bits.Types.BitArray parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static BitArray parseFrom(
+    public static tendermint.libs.bits.Types.BitArray parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static BitArray parseFrom(
+    public static tendermint.libs.bits.Types.BitArray parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -352,23 +283,23 @@ public final class Types {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(BitArray prototype) {
+    public static Builder newBuilder(tendermint.libs.bits.Types.BitArray prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -378,162 +309,200 @@ public final class Types {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:tendermint.libs.bits.BitArray)
-        BitArrayOrBuilder {
+        tendermint.libs.bits.Types.BitArrayOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Types.internal_static_tendermint_libs_bits_BitArray_descriptor;
+        return tendermint.libs.bits.Types.internal_static_tendermint_libs_bits_BitArray_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Types.internal_static_tendermint_libs_bits_BitArray_fieldAccessorTable
+        return tendermint.libs.bits.Types.internal_static_tendermint_libs_bits_BitArray_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                BitArray.class, Builder.class);
+                tendermint.libs.bits.Types.BitArray.class, tendermint.libs.bits.Types.BitArray.Builder.class);
       }
 
       // Construct using tendermint.libs.bits.Types.BitArray.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
+
       }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         bits_ = 0L;
-
         elems_ = emptyLongList();
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Types.internal_static_tendermint_libs_bits_BitArray_descriptor;
+        return tendermint.libs.bits.Types.internal_static_tendermint_libs_bits_BitArray_descriptor;
       }
 
-      @Override
-      public BitArray getDefaultInstanceForType() {
-        return BitArray.getDefaultInstance();
+      @java.lang.Override
+      public tendermint.libs.bits.Types.BitArray getDefaultInstanceForType() {
+        return tendermint.libs.bits.Types.BitArray.getDefaultInstance();
       }
 
-      @Override
-      public BitArray build() {
-        BitArray result = buildPartial();
+      @java.lang.Override
+      public tendermint.libs.bits.Types.BitArray build() {
+        tendermint.libs.bits.Types.BitArray result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public BitArray buildPartial() {
-        BitArray result = new BitArray(this);
-        int from_bitField0_ = bitField0_;
-        result.bits_ = bits_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          elems_.makeImmutable();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.elems_ = elems_;
+      @java.lang.Override
+      public tendermint.libs.bits.Types.BitArray buildPartial() {
+        tendermint.libs.bits.Types.BitArray result = new tendermint.libs.bits.Types.BitArray(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @Override
+      private void buildPartialRepeatedFields(tendermint.libs.bits.Types.BitArray result) {
+        if (((bitField0_ & 0x00000002) != 0)) {
+          elems_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.elems_ = elems_;
+      }
+
+      private void buildPartial0(tendermint.libs.bits.Types.BitArray result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.bits_ = bits_;
+        }
+      }
+
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof BitArray) {
-          return mergeFrom((BitArray)other);
+        if (other instanceof tendermint.libs.bits.Types.BitArray) {
+          return mergeFrom((tendermint.libs.bits.Types.BitArray)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(BitArray other) {
-        if (other == BitArray.getDefaultInstance()) return this;
+      public Builder mergeFrom(tendermint.libs.bits.Types.BitArray other) {
+        if (other == tendermint.libs.bits.Types.BitArray.getDefaultInstance()) return this;
         if (other.getBits() != 0L) {
           setBits(other.getBits());
         }
         if (!other.elems_.isEmpty()) {
           if (elems_.isEmpty()) {
             elems_ = other.elems_;
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           } else {
             ensureElemsIsMutable();
             elems_.addAll(other.elems_);
           }
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        BitArray parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                bits_ = input.readInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                long v = input.readUInt64();
+                ensureElemsIsMutable();
+                elems_.addLong(v);
+                break;
+              } // case 16
+              case 18: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                ensureElemsIsMutable();
+                while (input.getBytesUntilLimit() > 0) {
+                  elems_.addLong(input.readUInt64());
+                }
+                input.popLimit(limit);
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (BitArray) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -543,7 +512,7 @@ public final class Types {
        * <code>int64 bits = 1;</code>
        * @return The bits.
        */
-      @Override
+      @java.lang.Override
       public long getBits() {
         return bits_;
       }
@@ -553,8 +522,9 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder setBits(long value) {
-        
+
         bits_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -563,7 +533,7 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder clearBits() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         bits_ = 0L;
         onChanged();
         return this;
@@ -571,18 +541,18 @@ public final class Types {
 
       private com.google.protobuf.Internal.LongList elems_ = emptyLongList();
       private void ensureElemsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           elems_ = mutableCopy(elems_);
-          bitField0_ |= 0x00000001;
-         }
+          bitField0_ |= 0x00000002;
+        }
       }
       /**
        * <code>repeated uint64 elems = 2;</code>
        * @return A list containing the elems.
        */
-      public java.util.List<Long>
+      public java.util.List<java.lang.Long>
           getElemsList() {
-        return ((bitField0_ & 0x00000001) != 0) ?
+        return ((bitField0_ & 0x00000002) != 0) ?
                  java.util.Collections.unmodifiableList(elems_) : elems_;
       }
       /**
@@ -608,6 +578,7 @@ public final class Types {
        */
       public Builder setElems(
           int index, long value) {
+
         ensureElemsIsMutable();
         elems_.setLong(index, value);
         onChanged();
@@ -619,6 +590,7 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder addElems(long value) {
+
         ensureElemsIsMutable();
         elems_.addLong(value);
         onChanged();
@@ -630,7 +602,7 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder addAllElems(
-          Iterable<? extends Long> values) {
+          java.lang.Iterable<? extends java.lang.Long> values) {
         ensureElemsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, elems_);
@@ -643,17 +615,17 @@ public final class Types {
        */
       public Builder clearElems() {
         elems_ = emptyLongList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -664,23 +636,34 @@ public final class Types {
     }
 
     // @@protoc_insertion_point(class_scope:tendermint.libs.bits.BitArray)
-    private static final BitArray DEFAULT_INSTANCE;
+    private static final tendermint.libs.bits.Types.BitArray DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new BitArray();
+      DEFAULT_INSTANCE = new tendermint.libs.bits.Types.BitArray();
     }
 
-    public static BitArray getDefaultInstance() {
+    public static tendermint.libs.bits.Types.BitArray getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<BitArray>
         PARSER = new com.google.protobuf.AbstractParser<BitArray>() {
-      @Override
+      @java.lang.Override
       public BitArray parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new BitArray(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -688,13 +671,13 @@ public final class Types {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<BitArray> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public BitArray getDefaultInstanceForType() {
+    @java.lang.Override
+    public tendermint.libs.bits.Types.BitArray getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -713,7 +696,7 @@ public final class Types {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n tendermint/libs/bits/types.proto\022\024tend" +
       "ermint.libs.bits\"\'\n\010BitArray\022\014\n\004bits\030\001 \001" +
       "(\003\022\r\n\005elems\030\002 \003(\004B=Z;github.com/tendermi" +
@@ -729,7 +712,7 @@ public final class Types {
     internal_static_tendermint_libs_bits_BitArray_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tendermint_libs_bits_BitArray_descriptor,
-        new String[] { "Bits", "Elems", });
+        new java.lang.String[] { "Bits", "Elems", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

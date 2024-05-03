@@ -1,11 +1,6 @@
 package cosmos.distribution.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/distribution/v1beta1/tx.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class MsgGrpc {
 
   private MsgGrpc() {}
@@ -195,7 +191,7 @@ public final class MsgGrpc {
    * Msg defines the distribution Msg service.
    * </pre>
    */
-  public static abstract class MsgImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
@@ -203,9 +199,9 @@ public final class MsgGrpc {
      * for a delegator (or validator self-delegation).
      * </pre>
      */
-    public void setWithdrawAddress(cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddress request,
+    default void setWithdrawAddress(cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddress request,
         io.grpc.stub.StreamObserver<cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getSetWithdrawAddressMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSetWithdrawAddressMethod(), responseObserver);
     }
 
     /**
@@ -214,9 +210,9 @@ public final class MsgGrpc {
      * from a single validator.
      * </pre>
      */
-    public void withdrawDelegatorReward(cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorReward request,
+    default void withdrawDelegatorReward(cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorReward request,
         io.grpc.stub.StreamObserver<cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorRewardResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getWithdrawDelegatorRewardMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getWithdrawDelegatorRewardMethod(), responseObserver);
     }
 
     /**
@@ -225,9 +221,9 @@ public final class MsgGrpc {
      * full commission to the validator address.
      * </pre>
      */
-    public void withdrawValidatorCommission(cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommission request,
+    default void withdrawValidatorCommission(cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommission request,
         io.grpc.stub.StreamObserver<cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getWithdrawValidatorCommissionMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getWithdrawValidatorCommissionMethod(), responseObserver);
     }
 
     /**
@@ -236,51 +232,34 @@ public final class MsgGrpc {
      * fund the community pool.
      * </pre>
      */
-    public void fundCommunityPool(cosmos.distribution.v1beta1.Tx.MsgFundCommunityPool request,
+    default void fundCommunityPool(cosmos.distribution.v1beta1.Tx.MsgFundCommunityPool request,
         io.grpc.stub.StreamObserver<cosmos.distribution.v1beta1.Tx.MsgFundCommunityPoolResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getFundCommunityPoolMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getSetWithdrawAddressMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddress,
-                cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse>(
-                  this, METHODID_SET_WITHDRAW_ADDRESS)))
-          .addMethod(
-            getWithdrawDelegatorRewardMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorReward,
-                cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorRewardResponse>(
-                  this, METHODID_WITHDRAW_DELEGATOR_REWARD)))
-          .addMethod(
-            getWithdrawValidatorCommissionMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommission,
-                cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse>(
-                  this, METHODID_WITHDRAW_VALIDATOR_COMMISSION)))
-          .addMethod(
-            getFundCommunityPoolMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.distribution.v1beta1.Tx.MsgFundCommunityPool,
-                cosmos.distribution.v1beta1.Tx.MsgFundCommunityPoolResponse>(
-                  this, METHODID_FUND_COMMUNITY_POOL)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getFundCommunityPoolMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Msg.
    * <pre>
    * Msg defines the distribution Msg service.
    * </pre>
    */
-  public static final class MsgStub extends io.grpc.stub.AbstractAsyncStub<MsgStub> {
+  public static abstract class MsgImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return MsgGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Msg.
+   * <pre>
+   * Msg defines the distribution Msg service.
+   * </pre>
+   */
+  public static final class MsgStub
+      extends io.grpc.stub.AbstractAsyncStub<MsgStub> {
     private MsgStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -300,7 +279,7 @@ public final class MsgGrpc {
      */
     public void setWithdrawAddress(cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddress request,
         io.grpc.stub.StreamObserver<cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSetWithdrawAddressMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -312,7 +291,7 @@ public final class MsgGrpc {
      */
     public void withdrawDelegatorReward(cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorReward request,
         io.grpc.stub.StreamObserver<cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorRewardResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getWithdrawDelegatorRewardMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -324,7 +303,7 @@ public final class MsgGrpc {
      */
     public void withdrawValidatorCommission(cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommission request,
         io.grpc.stub.StreamObserver<cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getWithdrawValidatorCommissionMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -336,17 +315,19 @@ public final class MsgGrpc {
      */
     public void fundCommunityPool(cosmos.distribution.v1beta1.Tx.MsgFundCommunityPool request,
         io.grpc.stub.StreamObserver<cosmos.distribution.v1beta1.Tx.MsgFundCommunityPoolResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getFundCommunityPoolMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Msg.
    * <pre>
    * Msg defines the distribution Msg service.
    * </pre>
    */
-  public static final class MsgBlockingStub extends io.grpc.stub.AbstractBlockingStub<MsgBlockingStub> {
+  public static final class MsgBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<MsgBlockingStub> {
     private MsgBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -365,7 +346,7 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse setWithdrawAddress(cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddress request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSetWithdrawAddressMethod(), getCallOptions(), request);
     }
 
@@ -376,7 +357,7 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorRewardResponse withdrawDelegatorReward(cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorReward request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getWithdrawDelegatorRewardMethod(), getCallOptions(), request);
     }
 
@@ -387,7 +368,7 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse withdrawValidatorCommission(cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommission request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getWithdrawValidatorCommissionMethod(), getCallOptions(), request);
     }
 
@@ -398,17 +379,19 @@ public final class MsgGrpc {
      * </pre>
      */
     public cosmos.distribution.v1beta1.Tx.MsgFundCommunityPoolResponse fundCommunityPool(cosmos.distribution.v1beta1.Tx.MsgFundCommunityPool request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getFundCommunityPoolMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Msg.
    * <pre>
    * Msg defines the distribution Msg service.
    * </pre>
    */
-  public static final class MsgFutureStub extends io.grpc.stub.AbstractFutureStub<MsgFutureStub> {
+  public static final class MsgFutureStub
+      extends io.grpc.stub.AbstractFutureStub<MsgFutureStub> {
     private MsgFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -428,7 +411,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse> setWithdrawAddress(
         cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddress request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSetWithdrawAddressMethod(), getCallOptions()), request);
     }
 
@@ -440,7 +423,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorRewardResponse> withdrawDelegatorReward(
         cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorReward request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getWithdrawDelegatorRewardMethod(), getCallOptions()), request);
     }
 
@@ -452,7 +435,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse> withdrawValidatorCommission(
         cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommission request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getWithdrawValidatorCommissionMethod(), getCallOptions()), request);
     }
 
@@ -464,7 +447,7 @@ public final class MsgGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.distribution.v1beta1.Tx.MsgFundCommunityPoolResponse> fundCommunityPool(
         cosmos.distribution.v1beta1.Tx.MsgFundCommunityPool request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getFundCommunityPoolMethod(), getCallOptions()), request);
     }
   }
@@ -479,10 +462,10 @@ public final class MsgGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final MsgImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(MsgImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -521,6 +504,39 @@ public final class MsgGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getSetWithdrawAddressMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddress,
+              cosmos.distribution.v1beta1.Tx.MsgSetWithdrawAddressResponse>(
+                service, METHODID_SET_WITHDRAW_ADDRESS)))
+        .addMethod(
+          getWithdrawDelegatorRewardMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorReward,
+              cosmos.distribution.v1beta1.Tx.MsgWithdrawDelegatorRewardResponse>(
+                service, METHODID_WITHDRAW_DELEGATOR_REWARD)))
+        .addMethod(
+          getWithdrawValidatorCommissionMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommission,
+              cosmos.distribution.v1beta1.Tx.MsgWithdrawValidatorCommissionResponse>(
+                service, METHODID_WITHDRAW_VALIDATOR_COMMISSION)))
+        .addMethod(
+          getFundCommunityPoolMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.distribution.v1beta1.Tx.MsgFundCommunityPool,
+              cosmos.distribution.v1beta1.Tx.MsgFundCommunityPoolResponse>(
+                service, METHODID_FUND_COMMUNITY_POOL)))
+        .build();
   }
 
   private static abstract class MsgBaseDescriptorSupplier

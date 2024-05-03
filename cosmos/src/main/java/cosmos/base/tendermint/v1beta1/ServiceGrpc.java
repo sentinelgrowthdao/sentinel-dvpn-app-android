@@ -1,11 +1,6 @@
 package cosmos.base.tendermint.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/base/tendermint/v1beta1/query.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class ServiceGrpc {
 
   private ServiceGrpc() {}
@@ -257,16 +253,16 @@ public final class ServiceGrpc {
    * Service defines the gRPC querier service for tendermint queries.
    * </pre>
    */
-  public static abstract class ServiceImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      * <pre>
      * GetNodeInfo queries the current node info.
      * </pre>
      */
-    public void getNodeInfo(cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest request,
+    default void getNodeInfo(cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetNodeInfoResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetNodeInfoMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetNodeInfoMethod(), responseObserver);
     }
 
     /**
@@ -274,9 +270,9 @@ public final class ServiceGrpc {
      * GetSyncing queries node syncing.
      * </pre>
      */
-    public void getSyncing(cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest request,
+    default void getSyncing(cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetSyncingResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetSyncingMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetSyncingMethod(), responseObserver);
     }
 
     /**
@@ -284,9 +280,9 @@ public final class ServiceGrpc {
      * GetLatestBlock returns the latest block.
      * </pre>
      */
-    public void getLatestBlock(cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest request,
+    default void getLatestBlock(cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetLatestBlockMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetLatestBlockMethod(), responseObserver);
     }
 
     /**
@@ -294,9 +290,9 @@ public final class ServiceGrpc {
      * GetBlockByHeight queries block for given height.
      * </pre>
      */
-    public void getBlockByHeight(cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightRequest request,
+    default void getBlockByHeight(cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetBlockByHeightMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetBlockByHeightMethod(), responseObserver);
     }
 
     /**
@@ -304,9 +300,9 @@ public final class ServiceGrpc {
      * GetLatestValidatorSet queries latest validator-set.
      * </pre>
      */
-    public void getLatestValidatorSet(cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest request,
+    default void getLatestValidatorSet(cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetLatestValidatorSetMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetLatestValidatorSetMethod(), responseObserver);
     }
 
     /**
@@ -314,65 +310,34 @@ public final class ServiceGrpc {
      * GetValidatorSetByHeight queries validator-set at a given height.
      * </pre>
      */
-    public void getValidatorSetByHeight(cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightRequest request,
+    default void getValidatorSetByHeight(cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetValidatorSetByHeightMethod(), responseObserver);
-    }
-
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getGetNodeInfoMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest,
-                cosmos.base.tendermint.v1beta1.Query.GetNodeInfoResponse>(
-                  this, METHODID_GET_NODE_INFO)))
-          .addMethod(
-            getGetSyncingMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest,
-                cosmos.base.tendermint.v1beta1.Query.GetSyncingResponse>(
-                  this, METHODID_GET_SYNCING)))
-          .addMethod(
-            getGetLatestBlockMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest,
-                cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse>(
-                  this, METHODID_GET_LATEST_BLOCK)))
-          .addMethod(
-            getGetBlockByHeightMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightRequest,
-                cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightResponse>(
-                  this, METHODID_GET_BLOCK_BY_HEIGHT)))
-          .addMethod(
-            getGetLatestValidatorSetMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest,
-                cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetResponse>(
-                  this, METHODID_GET_LATEST_VALIDATOR_SET)))
-          .addMethod(
-            getGetValidatorSetByHeightMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightRequest,
-                cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightResponse>(
-                  this, METHODID_GET_VALIDATOR_SET_BY_HEIGHT)))
-          .build();
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetValidatorSetByHeightMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Service.
    * <pre>
    * Service defines the gRPC querier service for tendermint queries.
    * </pre>
    */
-  public static final class ServiceStub extends io.grpc.stub.AbstractAsyncStub<ServiceStub> {
+  public static abstract class ServiceImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return ServiceGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Service.
+   * <pre>
+   * Service defines the gRPC querier service for tendermint queries.
+   * </pre>
+   */
+  public static final class ServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<ServiceStub> {
     private ServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -391,7 +356,7 @@ public final class ServiceGrpc {
      */
     public void getNodeInfo(cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetNodeInfoResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetNodeInfoMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -402,7 +367,7 @@ public final class ServiceGrpc {
      */
     public void getSyncing(cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetSyncingResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetSyncingMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -413,7 +378,7 @@ public final class ServiceGrpc {
      */
     public void getLatestBlock(cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetLatestBlockMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -424,7 +389,7 @@ public final class ServiceGrpc {
      */
     public void getBlockByHeight(cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetBlockByHeightMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -435,7 +400,7 @@ public final class ServiceGrpc {
      */
     public void getLatestValidatorSet(cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetLatestValidatorSetMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -446,17 +411,19 @@ public final class ServiceGrpc {
      */
     public void getValidatorSetByHeight(cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightRequest request,
         io.grpc.stub.StreamObserver<cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetValidatorSetByHeightMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Service.
    * <pre>
    * Service defines the gRPC querier service for tendermint queries.
    * </pre>
    */
-  public static final class ServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<ServiceBlockingStub> {
+  public static final class ServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<ServiceBlockingStub> {
     private ServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -474,7 +441,7 @@ public final class ServiceGrpc {
      * </pre>
      */
     public cosmos.base.tendermint.v1beta1.Query.GetNodeInfoResponse getNodeInfo(cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetNodeInfoMethod(), getCallOptions(), request);
     }
 
@@ -484,7 +451,7 @@ public final class ServiceGrpc {
      * </pre>
      */
     public cosmos.base.tendermint.v1beta1.Query.GetSyncingResponse getSyncing(cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetSyncingMethod(), getCallOptions(), request);
     }
 
@@ -494,7 +461,7 @@ public final class ServiceGrpc {
      * </pre>
      */
     public cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse getLatestBlock(cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetLatestBlockMethod(), getCallOptions(), request);
     }
 
@@ -504,7 +471,7 @@ public final class ServiceGrpc {
      * </pre>
      */
     public cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightResponse getBlockByHeight(cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetBlockByHeightMethod(), getCallOptions(), request);
     }
 
@@ -514,7 +481,7 @@ public final class ServiceGrpc {
      * </pre>
      */
     public cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetResponse getLatestValidatorSet(cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetLatestValidatorSetMethod(), getCallOptions(), request);
     }
 
@@ -524,17 +491,19 @@ public final class ServiceGrpc {
      * </pre>
      */
     public cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightResponse getValidatorSetByHeight(cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetValidatorSetByHeightMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Service.
    * <pre>
    * Service defines the gRPC querier service for tendermint queries.
    * </pre>
    */
-  public static final class ServiceFutureStub extends io.grpc.stub.AbstractFutureStub<ServiceFutureStub> {
+  public static final class ServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<ServiceFutureStub> {
     private ServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -553,7 +522,7 @@ public final class ServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.base.tendermint.v1beta1.Query.GetNodeInfoResponse> getNodeInfo(
         cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetNodeInfoMethod(), getCallOptions()), request);
     }
 
@@ -564,7 +533,7 @@ public final class ServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.base.tendermint.v1beta1.Query.GetSyncingResponse> getSyncing(
         cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetSyncingMethod(), getCallOptions()), request);
     }
 
@@ -575,7 +544,7 @@ public final class ServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse> getLatestBlock(
         cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetLatestBlockMethod(), getCallOptions()), request);
     }
 
@@ -586,7 +555,7 @@ public final class ServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightResponse> getBlockByHeight(
         cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetBlockByHeightMethod(), getCallOptions()), request);
     }
 
@@ -597,7 +566,7 @@ public final class ServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetResponse> getLatestValidatorSet(
         cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetLatestValidatorSetMethod(), getCallOptions()), request);
     }
 
@@ -608,7 +577,7 @@ public final class ServiceGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightResponse> getValidatorSetByHeight(
         cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetValidatorSetByHeightMethod(), getCallOptions()), request);
     }
   }
@@ -625,10 +594,10 @@ public final class ServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final ServiceImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(ServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -675,6 +644,53 @@ public final class ServiceGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getGetNodeInfoMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.base.tendermint.v1beta1.Query.GetNodeInfoRequest,
+              cosmos.base.tendermint.v1beta1.Query.GetNodeInfoResponse>(
+                service, METHODID_GET_NODE_INFO)))
+        .addMethod(
+          getGetSyncingMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.base.tendermint.v1beta1.Query.GetSyncingRequest,
+              cosmos.base.tendermint.v1beta1.Query.GetSyncingResponse>(
+                service, METHODID_GET_SYNCING)))
+        .addMethod(
+          getGetLatestBlockMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.base.tendermint.v1beta1.Query.GetLatestBlockRequest,
+              cosmos.base.tendermint.v1beta1.Query.GetLatestBlockResponse>(
+                service, METHODID_GET_LATEST_BLOCK)))
+        .addMethod(
+          getGetBlockByHeightMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightRequest,
+              cosmos.base.tendermint.v1beta1.Query.GetBlockByHeightResponse>(
+                service, METHODID_GET_BLOCK_BY_HEIGHT)))
+        .addMethod(
+          getGetLatestValidatorSetMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetRequest,
+              cosmos.base.tendermint.v1beta1.Query.GetLatestValidatorSetResponse>(
+                service, METHODID_GET_LATEST_VALIDATOR_SET)))
+        .addMethod(
+          getGetValidatorSetByHeightMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightRequest,
+              cosmos.base.tendermint.v1beta1.Query.GetValidatorSetByHeightResponse>(
+                service, METHODID_GET_VALIDATOR_SET_BY_HEIGHT)))
+        .build();
   }
 
   private static abstract class ServiceBaseDescriptorSupplier

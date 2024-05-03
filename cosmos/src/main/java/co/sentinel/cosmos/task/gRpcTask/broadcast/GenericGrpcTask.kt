@@ -12,8 +12,8 @@ import co.sentinel.cosmos.network.ChannelBuilder
 import co.sentinel.cosmos.task.CommonTask
 import co.sentinel.cosmos.task.TaskResult
 import co.sentinel.cosmos.utils.WKey
+import com.google.protobuf.Any
 import com.google.protobuf.util.JsonFormat
-import com.google.protobuf2.Any
 import cosmos.auth.v1beta1.QueryGrpc
 import cosmos.auth.v1beta1.QueryOuterClass
 import cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse
@@ -76,7 +76,7 @@ class GenericGrpcTask(
       mResult.resultJson = jsonFormatter.print(response.txResponse)
       if (response.txResponse.code > 0) {
         mResult.errorCode = response.txResponse.code
-        mResult.errorMsg = response.txResponse.raTimber
+        mResult.errorMsg = response.txResponse.rawLog
         mResult.isSuccess = false
       } else {
         mResult.isSuccess = true

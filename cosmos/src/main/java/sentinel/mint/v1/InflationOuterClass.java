@@ -107,7 +107,6 @@ public final class InflationOuterClass {
               sentinel.mint.v1.InflationOuterClass.Inflation.class, sentinel.mint.v1.InflationOuterClass.Inflation.Builder.class);
     }
 
-    private int bitField0_;
     public static final int MAX_FIELD_NUMBER = 1;
     @SuppressWarnings("serial")
     private volatile java.lang.Object max_ = "";
@@ -233,7 +232,7 @@ public final class InflationOuterClass {
      */
     @java.lang.Override
     public boolean hasTimestamp() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return timestamp_ != null;
     }
     /**
      * <code>.google.protobuf.Timestamp timestamp = 4 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"timestamp&#92;"", (.gogoproto.stdtime) = true];</code>
@@ -274,7 +273,7 @@ public final class InflationOuterClass {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rateChange_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, rateChange_);
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (timestamp_ != null) {
         output.writeMessage(4, getTimestamp());
       }
       getUnknownFields().writeTo(output);
@@ -295,7 +294,7 @@ public final class InflationOuterClass {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rateChange_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, rateChange_);
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (timestamp_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getTimestamp());
       }
@@ -465,19 +464,13 @@ public final class InflationOuterClass {
 
       // Construct using sentinel.mint.v1.InflationOuterClass.Inflation.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getTimestampFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -533,14 +526,11 @@ public final class InflationOuterClass {
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.rateChange_ = rateChange_;
         }
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.timestamp_ = timestampBuilder_ == null
               ? timestamp_
               : timestampBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -952,10 +942,8 @@ public final class InflationOuterClass {
         } else {
           timestampBuilder_.mergeFrom(value);
         }
-        if (timestamp_ != null) {
-          bitField0_ |= 0x00000008;
-          onChanged();
-        }
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -1101,7 +1089,7 @@ public final class InflationOuterClass {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           com.google.protobuf.TimestampProto.getDescriptor(),
         });
     internal_static_sentinel_mint_v1_Inflation_descriptor =
@@ -1112,15 +1100,15 @@ public final class InflationOuterClass {
         new java.lang.String[] { "Max", "Min", "RateChange", "Timestamp", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.customtype);
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.moretags);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
-    registry.add(com.google.protobuf2.GoGoProtos.stdtime);
+    registry.add(com.google.protobuf.GoGoProtos.customtype);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.moretags);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.stdtime);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
   }
 

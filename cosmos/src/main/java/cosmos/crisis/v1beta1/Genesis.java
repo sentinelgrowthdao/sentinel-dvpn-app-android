@@ -74,61 +74,6 @@ public final class Genesis {
       return new GenesisState();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GenesisState(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 26: {
-              cosmos.base.v1beta1.CoinOuterClass.Coin.Builder subBuilder = null;
-              if (constantFee_ != null) {
-                subBuilder = constantFee_.toBuilder();
-              }
-              constantFee_ = input.readMessage(cosmos.base.v1beta1.CoinOuterClass.Coin.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(constantFee_);
-                constantFee_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.crisis.v1beta1.Genesis.internal_static_cosmos_crisis_v1beta1_GenesisState_descriptor;
@@ -180,7 +125,7 @@ public final class Genesis {
      */
     @java.lang.Override
     public cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder getConstantFeeOrBuilder() {
-      return getConstantFee();
+      return constantFee_ == null ? cosmos.base.v1beta1.CoinOuterClass.Coin.getDefaultInstance() : constantFee_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -200,7 +145,7 @@ public final class Genesis {
       if (constantFee_ != null) {
         output.writeMessage(3, getConstantFee());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -213,7 +158,7 @@ public final class Genesis {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getConstantFee());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -233,7 +178,7 @@ public final class Genesis {
         if (!getConstantFee()
             .equals(other.getConstantFee())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -248,7 +193,7 @@ public final class Genesis {
         hash = (37 * hash) + CONSTANT_FEE_FIELD_NUMBER;
         hash = (53 * hash) + getConstantFee().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -297,11 +242,13 @@ public final class Genesis {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.crisis.v1beta1.Genesis.GenesisState parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.crisis.v1beta1.Genesis.GenesisState parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -369,26 +316,21 @@ public final class Genesis {
 
       // Construct using cosmos.crisis.v1beta1.Genesis.GenesisState.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (constantFeeBuilder_ == null) {
-          constantFee_ = null;
-        } else {
-          constantFee_ = null;
+        bitField0_ = 0;
+        constantFee_ = null;
+        if (constantFeeBuilder_ != null) {
+          constantFeeBuilder_.dispose();
           constantFeeBuilder_ = null;
         }
         return this;
@@ -417,13 +359,18 @@ public final class Genesis {
       @java.lang.Override
       public cosmos.crisis.v1beta1.Genesis.GenesisState buildPartial() {
         cosmos.crisis.v1beta1.Genesis.GenesisState result = new cosmos.crisis.v1beta1.Genesis.GenesisState(this);
-        if (constantFeeBuilder_ == null) {
-          result.constantFee_ = constantFee_;
-        } else {
-          result.constantFee_ = constantFeeBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.crisis.v1beta1.Genesis.GenesisState result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.constantFee_ = constantFeeBuilder_ == null
+              ? constantFee_
+              : constantFeeBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -473,7 +420,7 @@ public final class Genesis {
         if (other.hasConstantFee()) {
           mergeConstantFee(other.getConstantFee());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -488,19 +435,40 @@ public final class Genesis {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.crisis.v1beta1.Genesis.GenesisState parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 26: {
+                input.readMessage(
+                    getConstantFeeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.crisis.v1beta1.Genesis.GenesisState) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private cosmos.base.v1beta1.CoinOuterClass.Coin constantFee_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -515,7 +483,7 @@ public final class Genesis {
        * @return Whether the constantFee field is set.
        */
       public boolean hasConstantFee() {
-        return constantFeeBuilder_ != null || constantFee_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -547,11 +515,11 @@ public final class Genesis {
             throw new NullPointerException();
           }
           constantFee_ = value;
-          onChanged();
         } else {
           constantFeeBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -566,11 +534,11 @@ public final class Genesis {
           cosmos.base.v1beta1.CoinOuterClass.Coin.Builder builderForValue) {
         if (constantFeeBuilder_ == null) {
           constantFee_ = builderForValue.build();
-          onChanged();
         } else {
           constantFeeBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -583,17 +551,18 @@ public final class Genesis {
        */
       public Builder mergeConstantFee(cosmos.base.v1beta1.CoinOuterClass.Coin value) {
         if (constantFeeBuilder_ == null) {
-          if (constantFee_ != null) {
-            constantFee_ =
-              cosmos.base.v1beta1.CoinOuterClass.Coin.newBuilder(constantFee_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            constantFee_ != null &&
+            constantFee_ != cosmos.base.v1beta1.CoinOuterClass.Coin.getDefaultInstance()) {
+            getConstantFeeBuilder().mergeFrom(value);
           } else {
             constantFee_ = value;
           }
-          onChanged();
         } else {
           constantFeeBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -605,14 +574,13 @@ public final class Genesis {
        * <code>.cosmos.base.v1beta1.Coin constant_fee = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"constant_fee&#92;""];</code>
        */
       public Builder clearConstantFee() {
-        if (constantFeeBuilder_ == null) {
-          constantFee_ = null;
-          onChanged();
-        } else {
-          constantFee_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        constantFee_ = null;
+        if (constantFeeBuilder_ != null) {
+          constantFeeBuilder_.dispose();
           constantFeeBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -624,7 +592,7 @@ public final class Genesis {
        * <code>.cosmos.base.v1beta1.Coin constant_fee = 3 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"constant_fee&#92;""];</code>
        */
       public cosmos.base.v1beta1.CoinOuterClass.Coin.Builder getConstantFeeBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getConstantFeeFieldBuilder().getBuilder();
       }
@@ -698,7 +666,18 @@ public final class Genesis {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GenesisState(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -743,7 +722,7 @@ public final class Genesis {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           cosmos.base.v1beta1.CoinOuterClass.getDescriptor(),
         });
     internal_static_cosmos_crisis_v1beta1_GenesisState_descriptor =
@@ -754,11 +733,11 @@ public final class Genesis {
         new java.lang.String[] { "ConstantFee", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.moretags);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.moretags);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     cosmos.base.v1beta1.CoinOuterClass.getDescriptor();
   }
 

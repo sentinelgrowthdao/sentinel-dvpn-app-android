@@ -31,7 +31,7 @@ import static co.sentinel.cosmos.base.BaseChain.SIF_MAIN;
 
 import com.google.common.collect.ImmutableList;
 import com.google.protobuf.ByteString;
-import com.google.protobuf2.Any;
+import com.google.protobuf.Any;
 
 import org.bitcoinj.core.Bech32;
 import org.bitcoinj.core.ECKey;

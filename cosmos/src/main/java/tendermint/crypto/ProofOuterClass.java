@@ -77,75 +77,6 @@ public final class ProofOuterClass {
       return new Proof();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Proof(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              total_ = input.readInt64();
-              break;
-            }
-            case 16: {
-
-              index_ = input.readInt64();
-              break;
-            }
-            case 26: {
-
-              leafHash_ = input.readBytes();
-              break;
-            }
-            case 34: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                aunts_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              aunts_.add(input.readBytes());
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          aunts_ = java.util.Collections.unmodifiableList(aunts_); // C
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tendermint.crypto.ProofOuterClass.internal_static_tendermint_crypto_Proof_descriptor;
@@ -160,7 +91,7 @@ public final class ProofOuterClass {
     }
 
     public static final int TOTAL_FIELD_NUMBER = 1;
-    private long total_;
+    private long total_ = 0L;
     /**
      * <code>int64 total = 1;</code>
      * @return The total.
@@ -171,7 +102,7 @@ public final class ProofOuterClass {
     }
 
     public static final int INDEX_FIELD_NUMBER = 2;
-    private long index_;
+    private long index_ = 0L;
     /**
      * <code>int64 index = 2;</code>
      * @return The index.
@@ -182,7 +113,7 @@ public final class ProofOuterClass {
     }
 
     public static final int LEAF_HASH_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString leafHash_;
+    private com.google.protobuf.ByteString leafHash_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes leaf_hash = 3;</code>
      * @return The leafHash.
@@ -193,6 +124,7 @@ public final class ProofOuterClass {
     }
 
     public static final int AUNTS_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<com.google.protobuf.ByteString> aunts_;
     /**
      * <code>repeated bytes aunts = 4;</code>
@@ -245,7 +177,7 @@ public final class ProofOuterClass {
       for (int i = 0; i < aunts_.size(); i++) {
         output.writeBytes(4, aunts_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -275,7 +207,7 @@ public final class ProofOuterClass {
         size += dataSize;
         size += 1 * getAuntsList().size();
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -298,7 +230,7 @@ public final class ProofOuterClass {
           .equals(other.getLeafHash())) return false;
       if (!getAuntsList()
           .equals(other.getAuntsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -321,7 +253,7 @@ public final class ProofOuterClass {
         hash = (37 * hash) + AUNTS_FIELD_NUMBER;
         hash = (53 * hash) + getAuntsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -370,11 +302,13 @@ public final class ProofOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static tendermint.crypto.ProofOuterClass.Proof parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static tendermint.crypto.ProofOuterClass.Proof parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -438,30 +372,22 @@ public final class ProofOuterClass {
 
       // Construct using tendermint.crypto.ProofOuterClass.Proof.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         total_ = 0L;
-
         index_ = 0L;
-
         leafHash_ = com.google.protobuf.ByteString.EMPTY;
-
         aunts_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -488,17 +414,31 @@ public final class ProofOuterClass {
       @java.lang.Override
       public tendermint.crypto.ProofOuterClass.Proof buildPartial() {
         tendermint.crypto.ProofOuterClass.Proof result = new tendermint.crypto.ProofOuterClass.Proof(this);
-        int from_bitField0_ = bitField0_;
-        result.total_ = total_;
-        result.index_ = index_;
-        result.leafHash_ = leafHash_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          aunts_ = java.util.Collections.unmodifiableList(aunts_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.aunts_ = aunts_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartialRepeatedFields(tendermint.crypto.ProofOuterClass.Proof result) {
+        if (((bitField0_ & 0x00000008) != 0)) {
+          aunts_ = java.util.Collections.unmodifiableList(aunts_);
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.aunts_ = aunts_;
+      }
+
+      private void buildPartial0(tendermint.crypto.ProofOuterClass.Proof result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.total_ = total_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.index_ = index_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.leafHash_ = leafHash_;
+        }
       }
 
       @java.lang.Override
@@ -557,14 +497,14 @@ public final class ProofOuterClass {
         if (!other.aunts_.isEmpty()) {
           if (aunts_.isEmpty()) {
             aunts_ = other.aunts_;
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000008);
           } else {
             ensureAuntsIsMutable();
             aunts_.addAll(other.aunts_);
           }
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -579,17 +519,51 @@ public final class ProofOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tendermint.crypto.ProofOuterClass.Proof parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                total_ = input.readInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                index_ = input.readInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 26: {
+                leafHash_ = input.readBytes();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                com.google.protobuf.ByteString v = input.readBytes();
+                ensureAuntsIsMutable();
+                aunts_.add(v);
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tendermint.crypto.ProofOuterClass.Proof) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -609,8 +583,9 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder setTotal(long value) {
-        
+
         total_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -619,7 +594,7 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearTotal() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         total_ = 0L;
         onChanged();
         return this;
@@ -640,8 +615,9 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder setIndex(long value) {
-        
+
         index_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -650,7 +626,7 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearIndex() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         index_ = 0L;
         onChanged();
         return this;
@@ -671,11 +647,9 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder setLeafHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         leafHash_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -684,7 +658,7 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearLeafHash() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         leafHash_ = getDefaultInstance().getLeafHash();
         onChanged();
         return this;
@@ -692,10 +666,10 @@ public final class ProofOuterClass {
 
       private java.util.List<com.google.protobuf.ByteString> aunts_ = java.util.Collections.emptyList();
       private void ensureAuntsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000008) != 0)) {
           aunts_ = new java.util.ArrayList<com.google.protobuf.ByteString>(aunts_);
-          bitField0_ |= 0x00000001;
-         }
+          bitField0_ |= 0x00000008;
+        }
       }
       /**
        * <code>repeated bytes aunts = 4;</code>
@@ -703,7 +677,7 @@ public final class ProofOuterClass {
        */
       public java.util.List<com.google.protobuf.ByteString>
           getAuntsList() {
-        return ((bitField0_ & 0x00000001) != 0) ?
+        return ((bitField0_ & 0x00000008) != 0) ?
                  java.util.Collections.unmodifiableList(aunts_) : aunts_;
       }
       /**
@@ -729,10 +703,8 @@ public final class ProofOuterClass {
        */
       public Builder setAunts(
           int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureAuntsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureAuntsIsMutable();
         aunts_.set(index, value);
         onChanged();
         return this;
@@ -743,10 +715,8 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder addAunts(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureAuntsIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureAuntsIsMutable();
         aunts_.add(value);
         onChanged();
         return this;
@@ -770,7 +740,7 @@ public final class ProofOuterClass {
        */
       public Builder clearAunts() {
         aunts_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -807,7 +777,18 @@ public final class ProofOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Proof(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -891,66 +872,6 @@ public final class ProofOuterClass {
       return new ValueOp();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ValueOp(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-              key_ = input.readBytes();
-              break;
-            }
-            case 18: {
-              tendermint.crypto.ProofOuterClass.Proof.Builder subBuilder = null;
-              if (proof_ != null) {
-                subBuilder = proof_.toBuilder();
-              }
-              proof_ = input.readMessage(tendermint.crypto.ProofOuterClass.Proof.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(proof_);
-                proof_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tendermint.crypto.ProofOuterClass.internal_static_tendermint_crypto_ValueOp_descriptor;
@@ -965,7 +886,7 @@ public final class ProofOuterClass {
     }
 
     public static final int KEY_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString key_;
+    private com.google.protobuf.ByteString key_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * Encoded in ProofOp.Key.
@@ -1014,7 +935,7 @@ public final class ProofOuterClass {
      */
     @java.lang.Override
     public tendermint.crypto.ProofOuterClass.ProofOrBuilder getProofOrBuilder() {
-      return getProof();
+      return proof_ == null ? tendermint.crypto.ProofOuterClass.Proof.getDefaultInstance() : proof_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1037,7 +958,7 @@ public final class ProofOuterClass {
       if (proof_ != null) {
         output.writeMessage(2, getProof());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1054,7 +975,7 @@ public final class ProofOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getProof());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1076,7 +997,7 @@ public final class ProofOuterClass {
         if (!getProof()
             .equals(other.getProof())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1093,7 +1014,7 @@ public final class ProofOuterClass {
         hash = (37 * hash) + PROOF_FIELD_NUMBER;
         hash = (53 * hash) + getProof().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1142,11 +1063,13 @@ public final class ProofOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static tendermint.crypto.ProofOuterClass.ValueOp parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static tendermint.crypto.ProofOuterClass.ValueOp parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1210,28 +1133,22 @@ public final class ProofOuterClass {
 
       // Construct using tendermint.crypto.ProofOuterClass.ValueOp.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         key_ = com.google.protobuf.ByteString.EMPTY;
-
-        if (proofBuilder_ == null) {
-          proof_ = null;
-        } else {
-          proof_ = null;
+        proof_ = null;
+        if (proofBuilder_ != null) {
+          proofBuilder_.dispose();
           proofBuilder_ = null;
         }
         return this;
@@ -1260,14 +1177,21 @@ public final class ProofOuterClass {
       @java.lang.Override
       public tendermint.crypto.ProofOuterClass.ValueOp buildPartial() {
         tendermint.crypto.ProofOuterClass.ValueOp result = new tendermint.crypto.ProofOuterClass.ValueOp(this);
-        result.key_ = key_;
-        if (proofBuilder_ == null) {
-          result.proof_ = proof_;
-        } else {
-          result.proof_ = proofBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tendermint.crypto.ProofOuterClass.ValueOp result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.key_ = key_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.proof_ = proofBuilder_ == null
+              ? proof_
+              : proofBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1320,7 +1244,7 @@ public final class ProofOuterClass {
         if (other.hasProof()) {
           mergeProof(other.getProof());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1335,19 +1259,45 @@ public final class ProofOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tendermint.crypto.ProofOuterClass.ValueOp parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                key_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getProofFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tendermint.crypto.ProofOuterClass.ValueOp) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.google.protobuf.ByteString key_ = com.google.protobuf.ByteString.EMPTY;
       /**
@@ -1372,11 +1322,9 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder setKey(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         key_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1389,7 +1337,7 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearKey() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         key_ = getDefaultInstance().getKey();
         onChanged();
         return this;
@@ -1407,7 +1355,7 @@ public final class ProofOuterClass {
        * @return Whether the proof field is set.
        */
       public boolean hasProof() {
-        return proofBuilder_ != null || proof_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -1437,11 +1385,11 @@ public final class ProofOuterClass {
             throw new NullPointerException();
           }
           proof_ = value;
-          onChanged();
         } else {
           proofBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1455,11 +1403,11 @@ public final class ProofOuterClass {
           tendermint.crypto.ProofOuterClass.Proof.Builder builderForValue) {
         if (proofBuilder_ == null) {
           proof_ = builderForValue.build();
-          onChanged();
         } else {
           proofBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1471,17 +1419,18 @@ public final class ProofOuterClass {
        */
       public Builder mergeProof(tendermint.crypto.ProofOuterClass.Proof value) {
         if (proofBuilder_ == null) {
-          if (proof_ != null) {
-            proof_ =
-              tendermint.crypto.ProofOuterClass.Proof.newBuilder(proof_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            proof_ != null &&
+            proof_ != tendermint.crypto.ProofOuterClass.Proof.getDefaultInstance()) {
+            getProofBuilder().mergeFrom(value);
           } else {
             proof_ = value;
           }
-          onChanged();
         } else {
           proofBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1492,14 +1441,13 @@ public final class ProofOuterClass {
        * <code>.tendermint.crypto.Proof proof = 2;</code>
        */
       public Builder clearProof() {
-        if (proofBuilder_ == null) {
-          proof_ = null;
-          onChanged();
-        } else {
-          proof_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        proof_ = null;
+        if (proofBuilder_ != null) {
+          proofBuilder_.dispose();
           proofBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1510,7 +1458,7 @@ public final class ProofOuterClass {
        * <code>.tendermint.crypto.Proof proof = 2;</code>
        */
       public tendermint.crypto.ProofOuterClass.Proof.Builder getProofBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getProofFieldBuilder().getBuilder();
       }
@@ -1582,7 +1530,18 @@ public final class ProofOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ValueOp(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1667,66 +1626,6 @@ public final class ProofOuterClass {
       return new DominoOp();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private DominoOp(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              key_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              input_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              output_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tendermint.crypto.ProofOuterClass.internal_static_tendermint_crypto_DominoOp_descriptor;
@@ -1741,7 +1640,8 @@ public final class ProofOuterClass {
     }
 
     public static final int KEY_FIELD_NUMBER = 1;
-    private volatile java.lang.Object key_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object key_ = "";
     /**
      * <code>string key = 1;</code>
      * @return The key.
@@ -1779,7 +1679,8 @@ public final class ProofOuterClass {
     }
 
     public static final int INPUT_FIELD_NUMBER = 2;
-    private volatile java.lang.Object input_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object input_ = "";
     /**
      * <code>string input = 2;</code>
      * @return The input.
@@ -1817,7 +1718,8 @@ public final class ProofOuterClass {
     }
 
     public static final int OUTPUT_FIELD_NUMBER = 3;
-    private volatile java.lang.Object output_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object output_ = "";
     /**
      * <code>string output = 3;</code>
      * @return The output.
@@ -1868,16 +1770,16 @@ public final class ProofOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, key_);
       }
-      if (!getInputBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(input_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, input_);
       }
-      if (!getOutputBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(output_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, output_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1886,16 +1788,16 @@ public final class ProofOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getKeyBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(key_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, key_);
       }
-      if (!getInputBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(input_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, input_);
       }
-      if (!getOutputBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(output_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, output_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1916,7 +1818,7 @@ public final class ProofOuterClass {
           .equals(other.getInput())) return false;
       if (!getOutput()
           .equals(other.getOutput())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1933,7 +1835,7 @@ public final class ProofOuterClass {
       hash = (53 * hash) + getInput().hashCode();
       hash = (37 * hash) + OUTPUT_FIELD_NUMBER;
       hash = (53 * hash) + getOutput().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1982,11 +1884,13 @@ public final class ProofOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static tendermint.crypto.ProofOuterClass.DominoOp parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static tendermint.crypto.ProofOuterClass.DominoOp parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2050,28 +1954,21 @@ public final class ProofOuterClass {
 
       // Construct using tendermint.crypto.ProofOuterClass.DominoOp.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         key_ = "";
-
         input_ = "";
-
         output_ = "";
-
         return this;
       }
 
@@ -2098,11 +1995,22 @@ public final class ProofOuterClass {
       @java.lang.Override
       public tendermint.crypto.ProofOuterClass.DominoOp buildPartial() {
         tendermint.crypto.ProofOuterClass.DominoOp result = new tendermint.crypto.ProofOuterClass.DominoOp(this);
-        result.key_ = key_;
-        result.input_ = input_;
-        result.output_ = output_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tendermint.crypto.ProofOuterClass.DominoOp result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.key_ = key_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.input_ = input_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.output_ = output_;
+        }
       }
 
       @java.lang.Override
@@ -2151,17 +2059,20 @@ public final class ProofOuterClass {
         if (other == tendermint.crypto.ProofOuterClass.DominoOp.getDefaultInstance()) return this;
         if (!other.getKey().isEmpty()) {
           key_ = other.key_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getInput().isEmpty()) {
           input_ = other.input_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getOutput().isEmpty()) {
           output_ = other.output_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2176,19 +2087,48 @@ public final class ProofOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tendermint.crypto.ProofOuterClass.DominoOp parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                key_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                output_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tendermint.crypto.ProofOuterClass.DominoOp) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object key_ = "";
       /**
@@ -2231,11 +2171,9 @@ public final class ProofOuterClass {
        */
       public Builder setKey(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         key_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2244,8 +2182,8 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearKey() {
-        
         key_ = getDefaultInstance().getKey();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -2256,12 +2194,10 @@ public final class ProofOuterClass {
        */
       public Builder setKeyBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         key_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2307,11 +2243,9 @@ public final class ProofOuterClass {
        */
       public Builder setInput(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         input_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2320,8 +2254,8 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearInput() {
-        
         input_ = getDefaultInstance().getInput();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -2332,12 +2266,10 @@ public final class ProofOuterClass {
        */
       public Builder setInputBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         input_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2383,11 +2315,9 @@ public final class ProofOuterClass {
        */
       public Builder setOutput(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         output_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2396,8 +2326,8 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearOutput() {
-        
         output_ = getDefaultInstance().getOutput();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -2408,12 +2338,10 @@ public final class ProofOuterClass {
        */
       public Builder setOutputBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         output_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2450,7 +2378,18 @@ public final class ProofOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DominoOp(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2529,64 +2468,6 @@ public final class ProofOuterClass {
       return new ProofOp();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ProofOp(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              type_ = s;
-              break;
-            }
-            case 18: {
-
-              key_ = input.readBytes();
-              break;
-            }
-            case 26: {
-
-              data_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tendermint.crypto.ProofOuterClass.internal_static_tendermint_crypto_ProofOp_descriptor;
@@ -2601,7 +2482,8 @@ public final class ProofOuterClass {
     }
 
     public static final int TYPE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object type_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object type_ = "";
     /**
      * <code>string type = 1;</code>
      * @return The type.
@@ -2639,7 +2521,7 @@ public final class ProofOuterClass {
     }
 
     public static final int KEY_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString key_;
+    private com.google.protobuf.ByteString key_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes key = 2;</code>
      * @return The key.
@@ -2650,7 +2532,7 @@ public final class ProofOuterClass {
     }
 
     public static final int DATA_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString data_;
+    private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <code>bytes data = 3;</code>
      * @return The data.
@@ -2674,7 +2556,7 @@ public final class ProofOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTypeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(type_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
       }
       if (!key_.isEmpty()) {
@@ -2683,7 +2565,7 @@ public final class ProofOuterClass {
       if (!data_.isEmpty()) {
         output.writeBytes(3, data_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2692,7 +2574,7 @@ public final class ProofOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTypeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(type_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
       }
       if (!key_.isEmpty()) {
@@ -2703,7 +2585,7 @@ public final class ProofOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, data_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2724,7 +2606,7 @@ public final class ProofOuterClass {
           .equals(other.getKey())) return false;
       if (!getData()
           .equals(other.getData())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2741,7 +2623,7 @@ public final class ProofOuterClass {
       hash = (53 * hash) + getKey().hashCode();
       hash = (37 * hash) + DATA_FIELD_NUMBER;
       hash = (53 * hash) + getData().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2790,11 +2672,13 @@ public final class ProofOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static tendermint.crypto.ProofOuterClass.ProofOp parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static tendermint.crypto.ProofOuterClass.ProofOp parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2864,28 +2748,21 @@ public final class ProofOuterClass {
 
       // Construct using tendermint.crypto.ProofOuterClass.ProofOp.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         type_ = "";
-
         key_ = com.google.protobuf.ByteString.EMPTY;
-
         data_ = com.google.protobuf.ByteString.EMPTY;
-
         return this;
       }
 
@@ -2912,11 +2789,22 @@ public final class ProofOuterClass {
       @java.lang.Override
       public tendermint.crypto.ProofOuterClass.ProofOp buildPartial() {
         tendermint.crypto.ProofOuterClass.ProofOp result = new tendermint.crypto.ProofOuterClass.ProofOp(this);
-        result.type_ = type_;
-        result.key_ = key_;
-        result.data_ = data_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(tendermint.crypto.ProofOuterClass.ProofOp result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.key_ = key_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.data_ = data_;
+        }
       }
 
       @java.lang.Override
@@ -2965,6 +2853,7 @@ public final class ProofOuterClass {
         if (other == tendermint.crypto.ProofOuterClass.ProofOp.getDefaultInstance()) return this;
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.getKey() != com.google.protobuf.ByteString.EMPTY) {
@@ -2973,7 +2862,7 @@ public final class ProofOuterClass {
         if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
           setData(other.getData());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2988,19 +2877,48 @@ public final class ProofOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tendermint.crypto.ProofOuterClass.ProofOp parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                type_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                key_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                data_ = input.readBytes();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tendermint.crypto.ProofOuterClass.ProofOp) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object type_ = "";
       /**
@@ -3043,11 +2961,9 @@ public final class ProofOuterClass {
        */
       public Builder setType(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         type_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3056,8 +2972,8 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearType() {
-        
         type_ = getDefaultInstance().getType();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -3068,12 +2984,10 @@ public final class ProofOuterClass {
        */
       public Builder setTypeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         type_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3093,11 +3007,9 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder setKey(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         key_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -3106,7 +3018,7 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearKey() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         key_ = getDefaultInstance().getKey();
         onChanged();
         return this;
@@ -3127,11 +3039,9 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder setData(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         data_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -3140,7 +3050,7 @@ public final class ProofOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearData() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         data_ = getDefaultInstance().getData();
         onChanged();
         return this;
@@ -3178,7 +3088,18 @@ public final class ProofOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ProofOp(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3253,61 +3174,6 @@ public final class ProofOuterClass {
       return new ProofOps();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ProofOps(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                ops_ = new java.util.ArrayList<tendermint.crypto.ProofOuterClass.ProofOp>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              ops_.add(
-                  input.readMessage(tendermint.crypto.ProofOuterClass.ProofOp.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          ops_ = java.util.Collections.unmodifiableList(ops_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return tendermint.crypto.ProofOuterClass.internal_static_tendermint_crypto_ProofOps_descriptor;
@@ -3322,6 +3188,7 @@ public final class ProofOuterClass {
     }
 
     public static final int OPS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<tendermint.crypto.ProofOuterClass.ProofOp> ops_;
     /**
      * <code>repeated .tendermint.crypto.ProofOp ops = 1 [(.gogoproto.nullable) = false];</code>
@@ -3378,7 +3245,7 @@ public final class ProofOuterClass {
       for (int i = 0; i < ops_.size(); i++) {
         output.writeMessage(1, ops_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3391,7 +3258,7 @@ public final class ProofOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, ops_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3408,7 +3275,7 @@ public final class ProofOuterClass {
 
       if (!getOpsList()
           .equals(other.getOpsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3423,7 +3290,7 @@ public final class ProofOuterClass {
         hash = (37 * hash) + OPS_FIELD_NUMBER;
         hash = (53 * hash) + getOpsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3472,11 +3339,13 @@ public final class ProofOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static tendermint.crypto.ProofOuterClass.ProofOps parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static tendermint.crypto.ProofOuterClass.ProofOps parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3544,29 +3413,25 @@ public final class ProofOuterClass {
 
       // Construct using tendermint.crypto.ProofOuterClass.ProofOps.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getOpsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (opsBuilder_ == null) {
           ops_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          ops_ = null;
           opsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -3593,7 +3458,13 @@ public final class ProofOuterClass {
       @java.lang.Override
       public tendermint.crypto.ProofOuterClass.ProofOps buildPartial() {
         tendermint.crypto.ProofOuterClass.ProofOps result = new tendermint.crypto.ProofOuterClass.ProofOps(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(tendermint.crypto.ProofOuterClass.ProofOps result) {
         if (opsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             ops_ = java.util.Collections.unmodifiableList(ops_);
@@ -3603,8 +3474,10 @@ public final class ProofOuterClass {
         } else {
           result.ops_ = opsBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(tendermint.crypto.ProofOuterClass.ProofOps result) {
+        int from_bitField0_ = bitField0_;
       }
 
       @java.lang.Override
@@ -3677,7 +3550,7 @@ public final class ProofOuterClass {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3692,17 +3565,43 @@ public final class ProofOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        tendermint.crypto.ProofOuterClass.ProofOps parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                tendermint.crypto.ProofOuterClass.ProofOp m =
+                    input.readMessage(
+                        tendermint.crypto.ProofOuterClass.ProofOp.parser(),
+                        extensionRegistry);
+                if (opsBuilder_ == null) {
+                  ensureOpsIsMutable();
+                  ops_.add(m);
+                } else {
+                  opsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (tendermint.crypto.ProofOuterClass.ProofOps) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -3979,7 +3878,18 @@ public final class ProofOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ProofOps(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -4049,7 +3959,7 @@ public final class ProofOuterClass {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
         });
     internal_static_tendermint_crypto_Proof_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -4083,10 +3993,10 @@ public final class ProofOuterClass {
         new java.lang.String[] { "Ops", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

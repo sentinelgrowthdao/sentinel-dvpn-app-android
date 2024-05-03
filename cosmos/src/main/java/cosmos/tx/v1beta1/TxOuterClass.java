@@ -137,86 +137,6 @@ public final class TxOuterClass {
       return new Tx();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Tx(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.tx.v1beta1.TxOuterClass.TxBody.Builder subBuilder = null;
-              if (body_ != null) {
-                subBuilder = body_.toBuilder();
-              }
-              body_ = input.readMessage(cosmos.tx.v1beta1.TxOuterClass.TxBody.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(body_);
-                body_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              cosmos.tx.v1beta1.TxOuterClass.AuthInfo.Builder subBuilder = null;
-              if (authInfo_ != null) {
-                subBuilder = authInfo_.toBuilder();
-              }
-              authInfo_ = input.readMessage(cosmos.tx.v1beta1.TxOuterClass.AuthInfo.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(authInfo_);
-                authInfo_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 26: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              signatures_.add(input.readBytes());
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          signatures_ = java.util.Collections.unmodifiableList(signatures_); // C
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.tx.v1beta1.TxOuterClass.internal_static_cosmos_tx_v1beta1_Tx_descriptor;
@@ -265,7 +185,7 @@ public final class TxOuterClass {
      */
     @java.lang.Override
     public cosmos.tx.v1beta1.TxOuterClass.TxBodyOrBuilder getBodyOrBuilder() {
-      return getBody();
+      return body_ == null ? cosmos.tx.v1beta1.TxOuterClass.TxBody.getDefaultInstance() : body_;
     }
 
     public static final int AUTH_INFO_FIELD_NUMBER = 2;
@@ -306,10 +226,11 @@ public final class TxOuterClass {
      */
     @java.lang.Override
     public cosmos.tx.v1beta1.TxOuterClass.AuthInfoOrBuilder getAuthInfoOrBuilder() {
-      return getAuthInfo();
+      return authInfo_ == null ? cosmos.tx.v1beta1.TxOuterClass.AuthInfo.getDefaultInstance() : authInfo_;
     }
 
     public static final int SIGNATURES_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private java.util.List<com.google.protobuf.ByteString> signatures_;
     /**
      * <pre>
@@ -377,7 +298,7 @@ public final class TxOuterClass {
       for (int i = 0; i < signatures_.size(); i++) {
         output.writeBytes(3, signatures_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -403,7 +324,7 @@ public final class TxOuterClass {
         size += dataSize;
         size += 1 * getSignaturesList().size();
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -430,7 +351,7 @@ public final class TxOuterClass {
       }
       if (!getSignaturesList()
           .equals(other.getSignaturesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -453,7 +374,7 @@ public final class TxOuterClass {
         hash = (37 * hash) + SIGNATURES_FIELD_NUMBER;
         hash = (53 * hash) + getSignaturesList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -502,11 +423,13 @@ public final class TxOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.Tx parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.Tx parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -574,36 +497,29 @@ public final class TxOuterClass {
 
       // Construct using cosmos.tx.v1beta1.TxOuterClass.Tx.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (bodyBuilder_ == null) {
-          body_ = null;
-        } else {
-          body_ = null;
+        bitField0_ = 0;
+        body_ = null;
+        if (bodyBuilder_ != null) {
+          bodyBuilder_.dispose();
           bodyBuilder_ = null;
         }
-        if (authInfoBuilder_ == null) {
-          authInfo_ = null;
-        } else {
-          authInfo_ = null;
+        authInfo_ = null;
+        if (authInfoBuilder_ != null) {
+          authInfoBuilder_.dispose();
           authInfoBuilder_ = null;
         }
         signatures_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -630,24 +546,32 @@ public final class TxOuterClass {
       @java.lang.Override
       public cosmos.tx.v1beta1.TxOuterClass.Tx buildPartial() {
         cosmos.tx.v1beta1.TxOuterClass.Tx result = new cosmos.tx.v1beta1.TxOuterClass.Tx(this);
-        int from_bitField0_ = bitField0_;
-        if (bodyBuilder_ == null) {
-          result.body_ = body_;
-        } else {
-          result.body_ = bodyBuilder_.build();
-        }
-        if (authInfoBuilder_ == null) {
-          result.authInfo_ = authInfo_;
-        } else {
-          result.authInfo_ = authInfoBuilder_.build();
-        }
-        if (((bitField0_ & 0x00000001) != 0)) {
-          signatures_ = java.util.Collections.unmodifiableList(signatures_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.signatures_ = signatures_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.tx.v1beta1.TxOuterClass.Tx result) {
+        if (((bitField0_ & 0x00000004) != 0)) {
+          signatures_ = java.util.Collections.unmodifiableList(signatures_);
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.signatures_ = signatures_;
+      }
+
+      private void buildPartial0(cosmos.tx.v1beta1.TxOuterClass.Tx result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.body_ = bodyBuilder_ == null
+              ? body_
+              : bodyBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.authInfo_ = authInfoBuilder_ == null
+              ? authInfo_
+              : authInfoBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -703,14 +627,14 @@ public final class TxOuterClass {
         if (!other.signatures_.isEmpty()) {
           if (signatures_.isEmpty()) {
             signatures_ = other.signatures_;
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000004);
           } else {
             ensureSignaturesIsMutable();
             signatures_.addAll(other.signatures_);
           }
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -725,17 +649,50 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.tx.v1beta1.TxOuterClass.Tx parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getBodyFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getAuthInfoFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                com.google.protobuf.ByteString v = input.readBytes();
+                ensureSignaturesIsMutable();
+                signatures_.add(v);
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.tx.v1beta1.TxOuterClass.Tx) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -752,7 +709,7 @@ public final class TxOuterClass {
        * @return Whether the body field is set.
        */
       public boolean hasBody() {
-        return bodyBuilder_ != null || body_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -782,11 +739,11 @@ public final class TxOuterClass {
             throw new NullPointerException();
           }
           body_ = value;
-          onChanged();
         } else {
           bodyBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -800,11 +757,11 @@ public final class TxOuterClass {
           cosmos.tx.v1beta1.TxOuterClass.TxBody.Builder builderForValue) {
         if (bodyBuilder_ == null) {
           body_ = builderForValue.build();
-          onChanged();
         } else {
           bodyBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -816,17 +773,18 @@ public final class TxOuterClass {
        */
       public Builder mergeBody(cosmos.tx.v1beta1.TxOuterClass.TxBody value) {
         if (bodyBuilder_ == null) {
-          if (body_ != null) {
-            body_ =
-              cosmos.tx.v1beta1.TxOuterClass.TxBody.newBuilder(body_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            body_ != null &&
+            body_ != cosmos.tx.v1beta1.TxOuterClass.TxBody.getDefaultInstance()) {
+            getBodyBuilder().mergeFrom(value);
           } else {
             body_ = value;
           }
-          onChanged();
         } else {
           bodyBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -837,14 +795,13 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.TxBody body = 1;</code>
        */
       public Builder clearBody() {
-        if (bodyBuilder_ == null) {
-          body_ = null;
-          onChanged();
-        } else {
-          body_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        body_ = null;
+        if (bodyBuilder_ != null) {
+          bodyBuilder_.dispose();
           bodyBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -855,7 +812,7 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.TxBody body = 1;</code>
        */
       public cosmos.tx.v1beta1.TxOuterClass.TxBody.Builder getBodyBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getBodyFieldBuilder().getBuilder();
       }
@@ -882,7 +839,7 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.TxBody body = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.tx.v1beta1.TxOuterClass.TxBody, cosmos.tx.v1beta1.TxOuterClass.TxBody.Builder, cosmos.tx.v1beta1.TxOuterClass.TxBodyOrBuilder> 
+          cosmos.tx.v1beta1.TxOuterClass.TxBody, cosmos.tx.v1beta1.TxOuterClass.TxBody.Builder, cosmos.tx.v1beta1.TxOuterClass.TxBodyOrBuilder>
           getBodyFieldBuilder() {
         if (bodyBuilder_ == null) {
           bodyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -908,7 +865,7 @@ public final class TxOuterClass {
        * @return Whether the authInfo field is set.
        */
       public boolean hasAuthInfo() {
-        return authInfoBuilder_ != null || authInfo_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -940,11 +897,11 @@ public final class TxOuterClass {
             throw new NullPointerException();
           }
           authInfo_ = value;
-          onChanged();
         } else {
           authInfoBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -959,11 +916,11 @@ public final class TxOuterClass {
           cosmos.tx.v1beta1.TxOuterClass.AuthInfo.Builder builderForValue) {
         if (authInfoBuilder_ == null) {
           authInfo_ = builderForValue.build();
-          onChanged();
         } else {
           authInfoBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -976,17 +933,18 @@ public final class TxOuterClass {
        */
       public Builder mergeAuthInfo(cosmos.tx.v1beta1.TxOuterClass.AuthInfo value) {
         if (authInfoBuilder_ == null) {
-          if (authInfo_ != null) {
-            authInfo_ =
-              cosmos.tx.v1beta1.TxOuterClass.AuthInfo.newBuilder(authInfo_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            authInfo_ != null &&
+            authInfo_ != cosmos.tx.v1beta1.TxOuterClass.AuthInfo.getDefaultInstance()) {
+            getAuthInfoBuilder().mergeFrom(value);
           } else {
             authInfo_ = value;
           }
-          onChanged();
         } else {
           authInfoBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -998,14 +956,13 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
        */
       public Builder clearAuthInfo() {
-        if (authInfoBuilder_ == null) {
-          authInfo_ = null;
-          onChanged();
-        } else {
-          authInfo_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        authInfo_ = null;
+        if (authInfoBuilder_ != null) {
+          authInfoBuilder_.dispose();
           authInfoBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -1017,7 +974,7 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
        */
       public cosmos.tx.v1beta1.TxOuterClass.AuthInfo.Builder getAuthInfoBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getAuthInfoFieldBuilder().getBuilder();
       }
@@ -1046,7 +1003,7 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.AuthInfo auth_info = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.tx.v1beta1.TxOuterClass.AuthInfo, cosmos.tx.v1beta1.TxOuterClass.AuthInfo.Builder, cosmos.tx.v1beta1.TxOuterClass.AuthInfoOrBuilder> 
+          cosmos.tx.v1beta1.TxOuterClass.AuthInfo, cosmos.tx.v1beta1.TxOuterClass.AuthInfo.Builder, cosmos.tx.v1beta1.TxOuterClass.AuthInfoOrBuilder>
           getAuthInfoFieldBuilder() {
         if (authInfoBuilder_ == null) {
           authInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1061,10 +1018,10 @@ public final class TxOuterClass {
 
       private java.util.List<com.google.protobuf.ByteString> signatures_ = java.util.Collections.emptyList();
       private void ensureSignaturesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000004) != 0)) {
           signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>(signatures_);
-          bitField0_ |= 0x00000001;
-         }
+          bitField0_ |= 0x00000004;
+        }
       }
       /**
        * <pre>
@@ -1078,7 +1035,7 @@ public final class TxOuterClass {
        */
       public java.util.List<com.google.protobuf.ByteString>
           getSignaturesList() {
-        return ((bitField0_ & 0x00000001) != 0) ?
+        return ((bitField0_ & 0x00000004) != 0) ?
                  java.util.Collections.unmodifiableList(signatures_) : signatures_;
       }
       /**
@@ -1122,10 +1079,8 @@ public final class TxOuterClass {
        */
       public Builder setSignatures(
           int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSignaturesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureSignaturesIsMutable();
         signatures_.set(index, value);
         onChanged();
         return this;
@@ -1142,10 +1097,8 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder addSignatures(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSignaturesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureSignaturesIsMutable();
         signatures_.add(value);
         onChanged();
         return this;
@@ -1181,7 +1134,7 @@ public final class TxOuterClass {
        */
       public Builder clearSignatures() {
         signatures_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -1218,7 +1171,18 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Tx(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1332,70 +1296,6 @@ public final class TxOuterClass {
       return new TxRaw();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private TxRaw(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-              bodyBytes_ = input.readBytes();
-              break;
-            }
-            case 18: {
-
-              authInfoBytes_ = input.readBytes();
-              break;
-            }
-            case 26: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              signatures_.add(input.readBytes());
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          signatures_ = java.util.Collections.unmodifiableList(signatures_); // C
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.tx.v1beta1.TxOuterClass.internal_static_cosmos_tx_v1beta1_TxRaw_descriptor;
@@ -1410,7 +1310,7 @@ public final class TxOuterClass {
     }
 
     public static final int BODY_BYTES_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString bodyBytes_;
+    private com.google.protobuf.ByteString bodyBytes_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * body_bytes is a protobuf serialization of a TxBody that matches the
@@ -1426,7 +1326,7 @@ public final class TxOuterClass {
     }
 
     public static final int AUTH_INFO_BYTES_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString authInfoBytes_;
+    private com.google.protobuf.ByteString authInfoBytes_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
@@ -1442,6 +1342,7 @@ public final class TxOuterClass {
     }
 
     public static final int SIGNATURES_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private java.util.List<com.google.protobuf.ByteString> signatures_;
     /**
      * <pre>
@@ -1509,7 +1410,7 @@ public final class TxOuterClass {
       for (int i = 0; i < signatures_.size(); i++) {
         output.writeBytes(3, signatures_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1535,7 +1436,7 @@ public final class TxOuterClass {
         size += dataSize;
         size += 1 * getSignaturesList().size();
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1556,7 +1457,7 @@ public final class TxOuterClass {
           .equals(other.getAuthInfoBytes())) return false;
       if (!getSignaturesList()
           .equals(other.getSignaturesList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1575,7 +1476,7 @@ public final class TxOuterClass {
         hash = (37 * hash) + SIGNATURES_FIELD_NUMBER;
         hash = (53 * hash) + getSignaturesList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1624,11 +1525,13 @@ public final class TxOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.TxRaw parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.TxRaw parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1700,28 +1603,21 @@ public final class TxOuterClass {
 
       // Construct using cosmos.tx.v1beta1.TxOuterClass.TxRaw.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         bodyBytes_ = com.google.protobuf.ByteString.EMPTY;
-
         authInfoBytes_ = com.google.protobuf.ByteString.EMPTY;
-
         signatures_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
 
@@ -1748,16 +1644,28 @@ public final class TxOuterClass {
       @java.lang.Override
       public cosmos.tx.v1beta1.TxOuterClass.TxRaw buildPartial() {
         cosmos.tx.v1beta1.TxOuterClass.TxRaw result = new cosmos.tx.v1beta1.TxOuterClass.TxRaw(this);
-        int from_bitField0_ = bitField0_;
-        result.bodyBytes_ = bodyBytes_;
-        result.authInfoBytes_ = authInfoBytes_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          signatures_ = java.util.Collections.unmodifiableList(signatures_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.signatures_ = signatures_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.tx.v1beta1.TxOuterClass.TxRaw result) {
+        if (((bitField0_ & 0x00000004) != 0)) {
+          signatures_ = java.util.Collections.unmodifiableList(signatures_);
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.signatures_ = signatures_;
+      }
+
+      private void buildPartial0(cosmos.tx.v1beta1.TxOuterClass.TxRaw result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.bodyBytes_ = bodyBytes_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.authInfoBytes_ = authInfoBytes_;
+        }
       }
 
       @java.lang.Override
@@ -1813,14 +1721,14 @@ public final class TxOuterClass {
         if (!other.signatures_.isEmpty()) {
           if (signatures_.isEmpty()) {
             signatures_ = other.signatures_;
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000004);
           } else {
             ensureSignaturesIsMutable();
             signatures_.addAll(other.signatures_);
           }
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1835,17 +1743,46 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.tx.v1beta1.TxOuterClass.TxRaw parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                bodyBytes_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                authInfoBytes_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                com.google.protobuf.ByteString v = input.readBytes();
+                ensureSignaturesIsMutable();
+                signatures_.add(v);
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.tx.v1beta1.TxOuterClass.TxRaw) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1875,11 +1812,9 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder setBodyBytes(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         bodyBytes_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1893,7 +1828,7 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearBodyBytes() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         bodyBytes_ = getDefaultInstance().getBodyBytes();
         onChanged();
         return this;
@@ -1924,11 +1859,9 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder setAuthInfoBytes(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         authInfoBytes_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1942,7 +1875,7 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearAuthInfoBytes() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         authInfoBytes_ = getDefaultInstance().getAuthInfoBytes();
         onChanged();
         return this;
@@ -1950,10 +1883,10 @@ public final class TxOuterClass {
 
       private java.util.List<com.google.protobuf.ByteString> signatures_ = java.util.Collections.emptyList();
       private void ensureSignaturesIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000004) != 0)) {
           signatures_ = new java.util.ArrayList<com.google.protobuf.ByteString>(signatures_);
-          bitField0_ |= 0x00000001;
-         }
+          bitField0_ |= 0x00000004;
+        }
       }
       /**
        * <pre>
@@ -1967,7 +1900,7 @@ public final class TxOuterClass {
        */
       public java.util.List<com.google.protobuf.ByteString>
           getSignaturesList() {
-        return ((bitField0_ & 0x00000001) != 0) ?
+        return ((bitField0_ & 0x00000004) != 0) ?
                  java.util.Collections.unmodifiableList(signatures_) : signatures_;
       }
       /**
@@ -2011,10 +1944,8 @@ public final class TxOuterClass {
        */
       public Builder setSignatures(
           int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSignaturesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureSignaturesIsMutable();
         signatures_.set(index, value);
         onChanged();
         return this;
@@ -2031,10 +1962,8 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder addSignatures(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSignaturesIsMutable();
+        if (value == null) { throw new NullPointerException(); }
+        ensureSignaturesIsMutable();
         signatures_.add(value);
         onChanged();
         return this;
@@ -2070,7 +1999,7 @@ public final class TxOuterClass {
        */
       public Builder clearSignatures() {
         signatures_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -2107,7 +2036,18 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new TxRaw(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2216,69 +2156,6 @@ public final class TxOuterClass {
       return new SignDoc();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SignDoc(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-
-              bodyBytes_ = input.readBytes();
-              break;
-            }
-            case 18: {
-
-              authInfoBytes_ = input.readBytes();
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              chainId_ = s;
-              break;
-            }
-            case 32: {
-
-              accountNumber_ = input.readUInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.tx.v1beta1.TxOuterClass.internal_static_cosmos_tx_v1beta1_SignDoc_descriptor;
@@ -2293,7 +2170,7 @@ public final class TxOuterClass {
     }
 
     public static final int BODY_BYTES_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString bodyBytes_;
+    private com.google.protobuf.ByteString bodyBytes_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * body_bytes is protobuf serialization of a TxBody that matches the
@@ -2309,7 +2186,7 @@ public final class TxOuterClass {
     }
 
     public static final int AUTH_INFO_BYTES_FIELD_NUMBER = 2;
-    private com.google.protobuf.ByteString authInfoBytes_;
+    private com.google.protobuf.ByteString authInfoBytes_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * auth_info_bytes is a protobuf serialization of an AuthInfo that matches the
@@ -2325,7 +2202,8 @@ public final class TxOuterClass {
     }
 
     public static final int CHAIN_ID_FIELD_NUMBER = 3;
-    private volatile java.lang.Object chainId_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object chainId_ = "";
     /**
      * <pre>
      * chain_id is the unique identifier of the chain this transaction targets.
@@ -2342,7 +2220,7 @@ public final class TxOuterClass {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         chainId_ = s;
@@ -2364,7 +2242,7 @@ public final class TxOuterClass {
         getChainIdBytes() {
       java.lang.Object ref = chainId_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         chainId_ = b;
@@ -2375,7 +2253,7 @@ public final class TxOuterClass {
     }
 
     public static final int ACCOUNT_NUMBER_FIELD_NUMBER = 4;
-    private long accountNumber_;
+    private long accountNumber_ = 0L;
     /**
      * <pre>
      * account_number is the account number of the account in state
@@ -2409,13 +2287,13 @@ public final class TxOuterClass {
       if (!authInfoBytes_.isEmpty()) {
         output.writeBytes(2, authInfoBytes_);
       }
-      if (!getChainIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(chainId_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, chainId_);
       }
       if (accountNumber_ != 0L) {
         output.writeUInt64(4, accountNumber_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2432,14 +2310,14 @@ public final class TxOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, authInfoBytes_);
       }
-      if (!getChainIdBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(chainId_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, chainId_);
       }
       if (accountNumber_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(4, accountNumber_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2462,7 +2340,7 @@ public final class TxOuterClass {
           .equals(other.getChainId())) return false;
       if (getAccountNumber()
           != other.getAccountNumber()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2482,7 +2360,7 @@ public final class TxOuterClass {
       hash = (37 * hash) + ACCOUNT_NUMBER_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getAccountNumber());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2531,11 +2409,13 @@ public final class TxOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.SignDoc parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.SignDoc parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2603,30 +2483,22 @@ public final class TxOuterClass {
 
       // Construct using cosmos.tx.v1beta1.TxOuterClass.SignDoc.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         bodyBytes_ = com.google.protobuf.ByteString.EMPTY;
-
         authInfoBytes_ = com.google.protobuf.ByteString.EMPTY;
-
         chainId_ = "";
-
         accountNumber_ = 0L;
-
         return this;
       }
 
@@ -2653,12 +2525,25 @@ public final class TxOuterClass {
       @java.lang.Override
       public cosmos.tx.v1beta1.TxOuterClass.SignDoc buildPartial() {
         cosmos.tx.v1beta1.TxOuterClass.SignDoc result = new cosmos.tx.v1beta1.TxOuterClass.SignDoc(this);
-        result.bodyBytes_ = bodyBytes_;
-        result.authInfoBytes_ = authInfoBytes_;
-        result.chainId_ = chainId_;
-        result.accountNumber_ = accountNumber_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.tx.v1beta1.TxOuterClass.SignDoc result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.bodyBytes_ = bodyBytes_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.authInfoBytes_ = authInfoBytes_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.chainId_ = chainId_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.accountNumber_ = accountNumber_;
+        }
       }
 
       @java.lang.Override
@@ -2713,12 +2598,13 @@ public final class TxOuterClass {
         }
         if (!other.getChainId().isEmpty()) {
           chainId_ = other.chainId_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (other.getAccountNumber() != 0L) {
           setAccountNumber(other.getAccountNumber());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2733,19 +2619,53 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.tx.v1beta1.TxOuterClass.SignDoc parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                bodyBytes_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                authInfoBytes_ = input.readBytes();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                chainId_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 32: {
+                accountNumber_ = input.readUInt64();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.tx.v1beta1.TxOuterClass.SignDoc) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.google.protobuf.ByteString bodyBytes_ = com.google.protobuf.ByteString.EMPTY;
       /**
@@ -2772,11 +2692,9 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder setBodyBytes(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         bodyBytes_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -2790,7 +2708,7 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearBodyBytes() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         bodyBytes_ = getDefaultInstance().getBodyBytes();
         onChanged();
         return this;
@@ -2821,11 +2739,9 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder setAuthInfoBytes(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         authInfoBytes_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2839,7 +2755,7 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearAuthInfoBytes() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         authInfoBytes_ = getDefaultInstance().getAuthInfoBytes();
         onChanged();
         return this;
@@ -2882,7 +2798,7 @@ public final class TxOuterClass {
           getChainIdBytes() {
         java.lang.Object ref = chainId_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           chainId_ = b;
@@ -2904,11 +2820,9 @@ public final class TxOuterClass {
        */
       public Builder setChainId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         chainId_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2923,8 +2837,8 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearChainId() {
-        
         chainId_ = getDefaultInstance().getChainId();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -2941,12 +2855,10 @@ public final class TxOuterClass {
        */
       public Builder setChainIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         chainId_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2974,8 +2886,9 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder setAccountNumber(long value) {
-        
+
         accountNumber_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -2988,7 +2901,7 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearAccountNumber() {
-        
+        bitField0_ = (bitField0_ & ~0x00000008);
         accountNumber_ = 0L;
         onChanged();
         return this;
@@ -3026,7 +2939,18 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SignDoc(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3061,9 +2985,9 @@ public final class TxOuterClass {
      * transaction.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any messages = 1;</code>
+     * <code>repeated .google.protobuf.Any messages = 1;</code>
      */
-    java.util.List<com.google.protobuf2.Any> 
+    java.util.List<com.google.protobuf.Any>
         getMessagesList();
     /**
      * <pre>
@@ -3076,9 +3000,9 @@ public final class TxOuterClass {
      * transaction.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any messages = 1;</code>
+     * <code>repeated .google.protobuf.Any messages = 1;</code>
      */
-    com.google.protobuf2.Any getMessages(int index);
+    com.google.protobuf.Any getMessages(int index);
     /**
      * <pre>
      * messages is a list of messages to be executed. The required signers of
@@ -3090,7 +3014,7 @@ public final class TxOuterClass {
      * transaction.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any messages = 1;</code>
+     * <code>repeated .google.protobuf.Any messages = 1;</code>
      */
     int getMessagesCount();
     /**
@@ -3104,9 +3028,9 @@ public final class TxOuterClass {
      * transaction.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any messages = 1;</code>
+     * <code>repeated .google.protobuf.Any messages = 1;</code>
      */
-    java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+    java.util.List<? extends com.google.protobuf.AnyOrBuilder>
         getMessagesOrBuilderList();
     /**
      * <pre>
@@ -3119,14 +3043,16 @@ public final class TxOuterClass {
      * transaction.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any messages = 1;</code>
+     * <code>repeated .google.protobuf.Any messages = 1;</code>
      */
-    com.google.protobuf2.AnyOrBuilder getMessagesOrBuilder(
+    com.google.protobuf.AnyOrBuilder getMessagesOrBuilder(
         int index);
 
     /**
      * <pre>
-     * memo is any arbitrary memo to be added to the transaction
+     * memo is any arbitrary note/comment to be added to the transaction.
+     * WARNING: in clients, any publicly exposed text should not be called memo,
+     * but should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122).
      * </pre>
      *
      * <code>string memo = 2;</code>
@@ -3135,7 +3061,9 @@ public final class TxOuterClass {
     java.lang.String getMemo();
     /**
      * <pre>
-     * memo is any arbitrary memo to be added to the transaction
+     * memo is any arbitrary note/comment to be added to the transaction.
+     * WARNING: in clients, any publicly exposed text should not be called memo,
+     * but should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122).
      * </pre>
      *
      * <code>string memo = 2;</code>
@@ -3162,9 +3090,9 @@ public final class TxOuterClass {
      * and can't be handled, the transaction will be rejected
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+     * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
      */
-    java.util.List<com.google.protobuf2.Any> 
+    java.util.List<com.google.protobuf.Any>
         getExtensionOptionsList();
     /**
      * <pre>
@@ -3173,9 +3101,9 @@ public final class TxOuterClass {
      * and can't be handled, the transaction will be rejected
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+     * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
      */
-    com.google.protobuf2.Any getExtensionOptions(int index);
+    com.google.protobuf.Any getExtensionOptions(int index);
     /**
      * <pre>
      * extension_options are arbitrary options that can be added by chains
@@ -3183,7 +3111,7 @@ public final class TxOuterClass {
      * and can't be handled, the transaction will be rejected
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+     * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
      */
     int getExtensionOptionsCount();
     /**
@@ -3193,9 +3121,9 @@ public final class TxOuterClass {
      * and can't be handled, the transaction will be rejected
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+     * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
      */
-    java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+    java.util.List<? extends com.google.protobuf.AnyOrBuilder>
         getExtensionOptionsOrBuilderList();
     /**
      * <pre>
@@ -3204,9 +3132,9 @@ public final class TxOuterClass {
      * and can't be handled, the transaction will be rejected
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+     * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
      */
-    com.google.protobuf2.AnyOrBuilder getExtensionOptionsOrBuilder(
+    com.google.protobuf.AnyOrBuilder getExtensionOptionsOrBuilder(
         int index);
 
     /**
@@ -3216,9 +3144,9 @@ public final class TxOuterClass {
      * and can't be handled, they will be ignored
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+     * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
      */
-    java.util.List<com.google.protobuf2.Any> 
+    java.util.List<com.google.protobuf.Any>
         getNonCriticalExtensionOptionsList();
     /**
      * <pre>
@@ -3227,9 +3155,9 @@ public final class TxOuterClass {
      * and can't be handled, they will be ignored
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+     * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
      */
-    com.google.protobuf2.Any getNonCriticalExtensionOptions(int index);
+    com.google.protobuf.Any getNonCriticalExtensionOptions(int index);
     /**
      * <pre>
      * extension_options are arbitrary options that can be added by chains
@@ -3237,7 +3165,7 @@ public final class TxOuterClass {
      * and can't be handled, they will be ignored
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+     * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
      */
     int getNonCriticalExtensionOptionsCount();
     /**
@@ -3247,9 +3175,9 @@ public final class TxOuterClass {
      * and can't be handled, they will be ignored
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+     * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
      */
-    java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+    java.util.List<? extends com.google.protobuf.AnyOrBuilder>
         getNonCriticalExtensionOptionsOrBuilderList();
     /**
      * <pre>
@@ -3258,9 +3186,9 @@ public final class TxOuterClass {
      * and can't be handled, they will be ignored
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+     * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
      */
-    com.google.protobuf2.AnyOrBuilder getNonCriticalExtensionOptionsOrBuilder(
+    com.google.protobuf.AnyOrBuilder getNonCriticalExtensionOptionsOrBuilder(
         int index);
   }
   /**
@@ -3293,96 +3221,6 @@ public final class TxOuterClass {
       return new TxBody();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private TxBody(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                messages_ = new java.util.ArrayList<com.google.protobuf2.Any>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              messages_.add(
-                  input.readMessage(com.google.protobuf2.Any.parser(), extensionRegistry));
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              memo_ = s;
-              break;
-            }
-            case 24: {
-
-              timeoutHeight_ = input.readUInt64();
-              break;
-            }
-            case 8186: {
-              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                extensionOptions_ = new java.util.ArrayList<com.google.protobuf2.Any>();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              extensionOptions_.add(
-                  input.readMessage(com.google.protobuf2.Any.parser(), extensionRegistry));
-              break;
-            }
-            case 16378: {
-              if (!((mutable_bitField0_ & 0x00000004) != 0)) {
-                nonCriticalExtensionOptions_ = new java.util.ArrayList<com.google.protobuf2.Any>();
-                mutable_bitField0_ |= 0x00000004;
-              }
-              nonCriticalExtensionOptions_.add(
-                  input.readMessage(com.google.protobuf2.Any.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          messages_ = java.util.Collections.unmodifiableList(messages_);
-        }
-        if (((mutable_bitField0_ & 0x00000002) != 0)) {
-          extensionOptions_ = java.util.Collections.unmodifiableList(extensionOptions_);
-        }
-        if (((mutable_bitField0_ & 0x00000004) != 0)) {
-          nonCriticalExtensionOptions_ = java.util.Collections.unmodifiableList(nonCriticalExtensionOptions_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.tx.v1beta1.TxOuterClass.internal_static_cosmos_tx_v1beta1_TxBody_descriptor;
@@ -3397,7 +3235,8 @@ public final class TxOuterClass {
     }
 
     public static final int MESSAGES_FIELD_NUMBER = 1;
-    private java.util.List<com.google.protobuf2.Any> messages_;
+    @SuppressWarnings("serial")
+    private java.util.List<com.google.protobuf.Any> messages_;
     /**
      * <pre>
      * messages is a list of messages to be executed. The required signers of
@@ -3409,10 +3248,10 @@ public final class TxOuterClass {
      * transaction.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any messages = 1;</code>
+     * <code>repeated .google.protobuf.Any messages = 1;</code>
      */
     @java.lang.Override
-    public java.util.List<com.google.protobuf2.Any> getMessagesList() {
+    public java.util.List<com.google.protobuf.Any> getMessagesList() {
       return messages_;
     }
     /**
@@ -3426,10 +3265,10 @@ public final class TxOuterClass {
      * transaction.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any messages = 1;</code>
+     * <code>repeated .google.protobuf.Any messages = 1;</code>
      */
     @java.lang.Override
-    public java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+    public java.util.List<? extends com.google.protobuf.AnyOrBuilder>
         getMessagesOrBuilderList() {
       return messages_;
     }
@@ -3444,7 +3283,7 @@ public final class TxOuterClass {
      * transaction.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any messages = 1;</code>
+     * <code>repeated .google.protobuf.Any messages = 1;</code>
      */
     @java.lang.Override
     public int getMessagesCount() {
@@ -3461,10 +3300,10 @@ public final class TxOuterClass {
      * transaction.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any messages = 1;</code>
+     * <code>repeated .google.protobuf.Any messages = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.Any getMessages(int index) {
+    public com.google.protobuf.Any getMessages(int index) {
       return messages_.get(index);
     }
     /**
@@ -3478,19 +3317,22 @@ public final class TxOuterClass {
      * transaction.
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any messages = 1;</code>
+     * <code>repeated .google.protobuf.Any messages = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.AnyOrBuilder getMessagesOrBuilder(
+    public com.google.protobuf.AnyOrBuilder getMessagesOrBuilder(
         int index) {
       return messages_.get(index);
     }
 
     public static final int MEMO_FIELD_NUMBER = 2;
-    private volatile java.lang.Object memo_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object memo_ = "";
     /**
      * <pre>
-     * memo is any arbitrary memo to be added to the transaction
+     * memo is any arbitrary note/comment to be added to the transaction.
+     * WARNING: in clients, any publicly exposed text should not be called memo,
+     * but should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122).
      * </pre>
      *
      * <code>string memo = 2;</code>
@@ -3502,7 +3344,7 @@ public final class TxOuterClass {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         memo_ = s;
@@ -3511,7 +3353,9 @@ public final class TxOuterClass {
     }
     /**
      * <pre>
-     * memo is any arbitrary memo to be added to the transaction
+     * memo is any arbitrary note/comment to be added to the transaction.
+     * WARNING: in clients, any publicly exposed text should not be called memo,
+     * but should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122).
      * </pre>
      *
      * <code>string memo = 2;</code>
@@ -3522,7 +3366,7 @@ public final class TxOuterClass {
         getMemoBytes() {
       java.lang.Object ref = memo_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         memo_ = b;
@@ -3533,7 +3377,7 @@ public final class TxOuterClass {
     }
 
     public static final int TIMEOUT_HEIGHT_FIELD_NUMBER = 3;
-    private long timeoutHeight_;
+    private long timeoutHeight_ = 0L;
     /**
      * <pre>
      * timeout is the block height after which this transaction will not
@@ -3549,7 +3393,8 @@ public final class TxOuterClass {
     }
 
     public static final int EXTENSION_OPTIONS_FIELD_NUMBER = 1023;
-    private java.util.List<com.google.protobuf2.Any> extensionOptions_;
+    @SuppressWarnings("serial")
+    private java.util.List<com.google.protobuf.Any> extensionOptions_;
     /**
      * <pre>
      * extension_options are arbitrary options that can be added by chains
@@ -3557,10 +3402,10 @@ public final class TxOuterClass {
      * and can't be handled, the transaction will be rejected
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+     * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
      */
     @java.lang.Override
-    public java.util.List<com.google.protobuf2.Any> getExtensionOptionsList() {
+    public java.util.List<com.google.protobuf.Any> getExtensionOptionsList() {
       return extensionOptions_;
     }
     /**
@@ -3570,10 +3415,10 @@ public final class TxOuterClass {
      * and can't be handled, the transaction will be rejected
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+     * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
      */
     @java.lang.Override
-    public java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+    public java.util.List<? extends com.google.protobuf.AnyOrBuilder>
         getExtensionOptionsOrBuilderList() {
       return extensionOptions_;
     }
@@ -3584,7 +3429,7 @@ public final class TxOuterClass {
      * and can't be handled, the transaction will be rejected
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+     * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
      */
     @java.lang.Override
     public int getExtensionOptionsCount() {
@@ -3597,10 +3442,10 @@ public final class TxOuterClass {
      * and can't be handled, the transaction will be rejected
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+     * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.Any getExtensionOptions(int index) {
+    public com.google.protobuf.Any getExtensionOptions(int index) {
       return extensionOptions_.get(index);
     }
     /**
@@ -3610,16 +3455,17 @@ public final class TxOuterClass {
      * and can't be handled, the transaction will be rejected
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+     * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.AnyOrBuilder getExtensionOptionsOrBuilder(
+    public com.google.protobuf.AnyOrBuilder getExtensionOptionsOrBuilder(
         int index) {
       return extensionOptions_.get(index);
     }
 
     public static final int NON_CRITICAL_EXTENSION_OPTIONS_FIELD_NUMBER = 2047;
-    private java.util.List<com.google.protobuf2.Any> nonCriticalExtensionOptions_;
+    @SuppressWarnings("serial")
+    private java.util.List<com.google.protobuf.Any> nonCriticalExtensionOptions_;
     /**
      * <pre>
      * extension_options are arbitrary options that can be added by chains
@@ -3627,10 +3473,10 @@ public final class TxOuterClass {
      * and can't be handled, they will be ignored
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+     * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
      */
     @java.lang.Override
-    public java.util.List<com.google.protobuf2.Any> getNonCriticalExtensionOptionsList() {
+    public java.util.List<com.google.protobuf.Any> getNonCriticalExtensionOptionsList() {
       return nonCriticalExtensionOptions_;
     }
     /**
@@ -3640,10 +3486,10 @@ public final class TxOuterClass {
      * and can't be handled, they will be ignored
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+     * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
      */
     @java.lang.Override
-    public java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+    public java.util.List<? extends com.google.protobuf.AnyOrBuilder>
         getNonCriticalExtensionOptionsOrBuilderList() {
       return nonCriticalExtensionOptions_;
     }
@@ -3654,7 +3500,7 @@ public final class TxOuterClass {
      * and can't be handled, they will be ignored
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+     * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
      */
     @java.lang.Override
     public int getNonCriticalExtensionOptionsCount() {
@@ -3667,10 +3513,10 @@ public final class TxOuterClass {
      * and can't be handled, they will be ignored
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+     * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.Any getNonCriticalExtensionOptions(int index) {
+    public com.google.protobuf.Any getNonCriticalExtensionOptions(int index) {
       return nonCriticalExtensionOptions_.get(index);
     }
     /**
@@ -3680,10 +3526,10 @@ public final class TxOuterClass {
      * and can't be handled, they will be ignored
      * </pre>
      *
-     * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+     * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.AnyOrBuilder getNonCriticalExtensionOptionsOrBuilder(
+    public com.google.protobuf.AnyOrBuilder getNonCriticalExtensionOptionsOrBuilder(
         int index) {
       return nonCriticalExtensionOptions_.get(index);
     }
@@ -3705,7 +3551,7 @@ public final class TxOuterClass {
       for (int i = 0; i < messages_.size(); i++) {
         output.writeMessage(1, messages_.get(i));
       }
-      if (!getMemoBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(memo_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, memo_);
       }
       if (timeoutHeight_ != 0L) {
@@ -3717,7 +3563,7 @@ public final class TxOuterClass {
       for (int i = 0; i < nonCriticalExtensionOptions_.size(); i++) {
         output.writeMessage(2047, nonCriticalExtensionOptions_.get(i));
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3730,7 +3576,7 @@ public final class TxOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, messages_.get(i));
       }
-      if (!getMemoBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(memo_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, memo_);
       }
       if (timeoutHeight_ != 0L) {
@@ -3745,7 +3591,7 @@ public final class TxOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2047, nonCriticalExtensionOptions_.get(i));
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3770,7 +3616,7 @@ public final class TxOuterClass {
           .equals(other.getExtensionOptionsList())) return false;
       if (!getNonCriticalExtensionOptionsList()
           .equals(other.getNonCriticalExtensionOptionsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3798,7 +3644,7 @@ public final class TxOuterClass {
         hash = (37 * hash) + NON_CRITICAL_EXTENSION_OPTIONS_FIELD_NUMBER;
         hash = (53 * hash) + getNonCriticalExtensionOptionsList().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3847,11 +3693,13 @@ public final class TxOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.TxBody parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.TxBody parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3919,47 +3767,41 @@ public final class TxOuterClass {
 
       // Construct using cosmos.tx.v1beta1.TxOuterClass.TxBody.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getMessagesFieldBuilder();
-          getExtensionOptionsFieldBuilder();
-          getNonCriticalExtensionOptionsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (messagesBuilder_ == null) {
           messages_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          messages_ = null;
           messagesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         memo_ = "";
-
         timeoutHeight_ = 0L;
-
         if (extensionOptionsBuilder_ == null) {
           extensionOptions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          extensionOptions_ = null;
           extensionOptionsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000008);
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           nonCriticalExtensionOptions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
+          nonCriticalExtensionOptions_ = null;
           nonCriticalExtensionOptionsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -3986,7 +3828,13 @@ public final class TxOuterClass {
       @java.lang.Override
       public cosmos.tx.v1beta1.TxOuterClass.TxBody buildPartial() {
         cosmos.tx.v1beta1.TxOuterClass.TxBody result = new cosmos.tx.v1beta1.TxOuterClass.TxBody(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.tx.v1beta1.TxOuterClass.TxBody result) {
         if (messagesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             messages_ = java.util.Collections.unmodifiableList(messages_);
@@ -3996,28 +3844,34 @@ public final class TxOuterClass {
         } else {
           result.messages_ = messagesBuilder_.build();
         }
-        result.memo_ = memo_;
-        result.timeoutHeight_ = timeoutHeight_;
         if (extensionOptionsBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0)) {
+          if (((bitField0_ & 0x00000008) != 0)) {
             extensionOptions_ = java.util.Collections.unmodifiableList(extensionOptions_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000008);
           }
           result.extensionOptions_ = extensionOptions_;
         } else {
           result.extensionOptions_ = extensionOptionsBuilder_.build();
         }
         if (nonCriticalExtensionOptionsBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) != 0)) {
+          if (((bitField0_ & 0x00000010) != 0)) {
             nonCriticalExtensionOptions_ = java.util.Collections.unmodifiableList(nonCriticalExtensionOptions_);
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000010);
           }
           result.nonCriticalExtensionOptions_ = nonCriticalExtensionOptions_;
         } else {
           result.nonCriticalExtensionOptions_ = nonCriticalExtensionOptionsBuilder_.build();
         }
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(cosmos.tx.v1beta1.TxOuterClass.TxBody result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.memo_ = memo_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.timeoutHeight_ = timeoutHeight_;
+        }
       }
 
       @java.lang.Override
@@ -4082,7 +3936,7 @@ public final class TxOuterClass {
               messagesBuilder_ = null;
               messages_ = other.messages_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              messagesBuilder_ = 
+              messagesBuilder_ =
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getMessagesFieldBuilder() : null;
             } else {
@@ -4092,6 +3946,7 @@ public final class TxOuterClass {
         }
         if (!other.getMemo().isEmpty()) {
           memo_ = other.memo_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (other.getTimeoutHeight() != 0L) {
@@ -4101,7 +3956,7 @@ public final class TxOuterClass {
           if (!other.extensionOptions_.isEmpty()) {
             if (extensionOptions_.isEmpty()) {
               extensionOptions_ = other.extensionOptions_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000008);
             } else {
               ensureExtensionOptionsIsMutable();
               extensionOptions_.addAll(other.extensionOptions_);
@@ -4114,8 +3969,8 @@ public final class TxOuterClass {
               extensionOptionsBuilder_.dispose();
               extensionOptionsBuilder_ = null;
               extensionOptions_ = other.extensionOptions_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              extensionOptionsBuilder_ = 
+              bitField0_ = (bitField0_ & ~0x00000008);
+              extensionOptionsBuilder_ =
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getExtensionOptionsFieldBuilder() : null;
             } else {
@@ -4127,7 +3982,7 @@ public final class TxOuterClass {
           if (!other.nonCriticalExtensionOptions_.isEmpty()) {
             if (nonCriticalExtensionOptions_.isEmpty()) {
               nonCriticalExtensionOptions_ = other.nonCriticalExtensionOptions_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000010);
             } else {
               ensureNonCriticalExtensionOptionsIsMutable();
               nonCriticalExtensionOptions_.addAll(other.nonCriticalExtensionOptions_);
@@ -4140,8 +3995,8 @@ public final class TxOuterClass {
               nonCriticalExtensionOptionsBuilder_.dispose();
               nonCriticalExtensionOptionsBuilder_ = null;
               nonCriticalExtensionOptions_ = other.nonCriticalExtensionOptions_;
-              bitField0_ = (bitField0_ & ~0x00000004);
-              nonCriticalExtensionOptionsBuilder_ = 
+              bitField0_ = (bitField0_ & ~0x00000010);
+              nonCriticalExtensionOptionsBuilder_ =
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getNonCriticalExtensionOptionsFieldBuilder() : null;
             } else {
@@ -4149,7 +4004,7 @@ public final class TxOuterClass {
             }
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -4164,32 +4019,94 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.tx.v1beta1.TxOuterClass.TxBody parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                com.google.protobuf.Any m =
+                    input.readMessage(
+                        com.google.protobuf.Any.parser(),
+                        extensionRegistry);
+                if (messagesBuilder_ == null) {
+                  ensureMessagesIsMutable();
+                  messages_.add(m);
+                } else {
+                  messagesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                memo_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                timeoutHeight_ = input.readUInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 8186: {
+                com.google.protobuf.Any m =
+                    input.readMessage(
+                        com.google.protobuf.Any.parser(),
+                        extensionRegistry);
+                if (extensionOptionsBuilder_ == null) {
+                  ensureExtensionOptionsIsMutable();
+                  extensionOptions_.add(m);
+                } else {
+                  extensionOptionsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 8186
+              case 16378: {
+                com.google.protobuf.Any m =
+                    input.readMessage(
+                        com.google.protobuf.Any.parser(),
+                        extensionRegistry);
+                if (nonCriticalExtensionOptionsBuilder_ == null) {
+                  ensureNonCriticalExtensionOptionsIsMutable();
+                  nonCriticalExtensionOptions_.add(m);
+                } else {
+                  nonCriticalExtensionOptionsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 16378
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.tx.v1beta1.TxOuterClass.TxBody) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
 
-      private java.util.List<com.google.protobuf2.Any> messages_ =
+      private java.util.List<com.google.protobuf.Any> messages_ =
         java.util.Collections.emptyList();
       private void ensureMessagesIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          messages_ = new java.util.ArrayList<com.google.protobuf2.Any>(messages_);
+          messages_ = new java.util.ArrayList<com.google.protobuf.Any>(messages_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> messagesBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> messagesBuilder_;
 
       /**
        * <pre>
@@ -4202,9 +4119,9 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
-      public java.util.List<com.google.protobuf2.Any> getMessagesList() {
+      public java.util.List<com.google.protobuf.Any> getMessagesList() {
         if (messagesBuilder_ == null) {
           return java.util.Collections.unmodifiableList(messages_);
         } else {
@@ -4222,7 +4139,7 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
       public int getMessagesCount() {
         if (messagesBuilder_ == null) {
@@ -4242,9 +4159,9 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
-      public com.google.protobuf2.Any getMessages(int index) {
+      public com.google.protobuf.Any getMessages(int index) {
         if (messagesBuilder_ == null) {
           return messages_.get(index);
         } else {
@@ -4262,10 +4179,10 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
       public Builder setMessages(
-          int index, com.google.protobuf2.Any value) {
+          int index, com.google.protobuf.Any value) {
         if (messagesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4289,10 +4206,10 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
       public Builder setMessages(
-          int index, com.google.protobuf2.Any.Builder builderForValue) {
+          int index, com.google.protobuf.Any.Builder builderForValue) {
         if (messagesBuilder_ == null) {
           ensureMessagesIsMutable();
           messages_.set(index, builderForValue.build());
@@ -4313,9 +4230,9 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
-      public Builder addMessages(com.google.protobuf2.Any value) {
+      public Builder addMessages(com.google.protobuf.Any value) {
         if (messagesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4339,10 +4256,10 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
       public Builder addMessages(
-          int index, com.google.protobuf2.Any value) {
+          int index, com.google.protobuf.Any value) {
         if (messagesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4366,10 +4283,10 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
       public Builder addMessages(
-          com.google.protobuf2.Any.Builder builderForValue) {
+          com.google.protobuf.Any.Builder builderForValue) {
         if (messagesBuilder_ == null) {
           ensureMessagesIsMutable();
           messages_.add(builderForValue.build());
@@ -4390,10 +4307,10 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
       public Builder addMessages(
-          int index, com.google.protobuf2.Any.Builder builderForValue) {
+          int index, com.google.protobuf.Any.Builder builderForValue) {
         if (messagesBuilder_ == null) {
           ensureMessagesIsMutable();
           messages_.add(index, builderForValue.build());
@@ -4414,10 +4331,10 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
       public Builder addAllMessages(
-          java.lang.Iterable<? extends com.google.protobuf2.Any> values) {
+          java.lang.Iterable<? extends com.google.protobuf.Any> values) {
         if (messagesBuilder_ == null) {
           ensureMessagesIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -4439,7 +4356,7 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
       public Builder clearMessages() {
         if (messagesBuilder_ == null) {
@@ -4462,7 +4379,7 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
       public Builder removeMessages(int index) {
         if (messagesBuilder_ == null) {
@@ -4485,9 +4402,9 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
-      public com.google.protobuf2.Any.Builder getMessagesBuilder(
+      public com.google.protobuf.Any.Builder getMessagesBuilder(
           int index) {
         return getMessagesFieldBuilder().getBuilder(index);
       }
@@ -4502,9 +4419,9 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
-      public com.google.protobuf2.AnyOrBuilder getMessagesOrBuilder(
+      public com.google.protobuf.AnyOrBuilder getMessagesOrBuilder(
           int index) {
         if (messagesBuilder_ == null) {
           return messages_.get(index);  } else {
@@ -4522,9 +4439,9 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
-      public java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+      public java.util.List<? extends com.google.protobuf.AnyOrBuilder>
            getMessagesOrBuilderList() {
         if (messagesBuilder_ != null) {
           return messagesBuilder_.getMessageOrBuilderList();
@@ -4543,11 +4460,11 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
-      public com.google.protobuf2.Any.Builder addMessagesBuilder() {
+      public com.google.protobuf.Any.Builder addMessagesBuilder() {
         return getMessagesFieldBuilder().addBuilder(
-            com.google.protobuf2.Any.getDefaultInstance());
+            com.google.protobuf.Any.getDefaultInstance());
       }
       /**
        * <pre>
@@ -4560,12 +4477,12 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
-      public com.google.protobuf2.Any.Builder addMessagesBuilder(
+      public com.google.protobuf.Any.Builder addMessagesBuilder(
           int index) {
         return getMessagesFieldBuilder().addBuilder(
-            index, com.google.protobuf2.Any.getDefaultInstance());
+            index, com.google.protobuf.Any.getDefaultInstance());
       }
       /**
        * <pre>
@@ -4578,18 +4495,18 @@ public final class TxOuterClass {
        * transaction.
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any messages = 1;</code>
+       * <code>repeated .google.protobuf.Any messages = 1;</code>
        */
-      public java.util.List<com.google.protobuf2.Any.Builder> 
+      public java.util.List<com.google.protobuf.Any.Builder>
            getMessagesBuilderList() {
         return getMessagesFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>
           getMessagesFieldBuilder() {
         if (messagesBuilder_ == null) {
           messagesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder>(
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   messages_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -4602,7 +4519,9 @@ public final class TxOuterClass {
       private java.lang.Object memo_ = "";
       /**
        * <pre>
-       * memo is any arbitrary memo to be added to the transaction
+       * memo is any arbitrary note/comment to be added to the transaction.
+       * WARNING: in clients, any publicly exposed text should not be called memo,
+       * but should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122).
        * </pre>
        *
        * <code>string memo = 2;</code>
@@ -4622,7 +4541,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * memo is any arbitrary memo to be added to the transaction
+       * memo is any arbitrary note/comment to be added to the transaction.
+       * WARNING: in clients, any publicly exposed text should not be called memo,
+       * but should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122).
        * </pre>
        *
        * <code>string memo = 2;</code>
@@ -4632,7 +4553,7 @@ public final class TxOuterClass {
           getMemoBytes() {
         java.lang.Object ref = memo_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           memo_ = b;
@@ -4643,7 +4564,9 @@ public final class TxOuterClass {
       }
       /**
        * <pre>
-       * memo is any arbitrary memo to be added to the transaction
+       * memo is any arbitrary note/comment to be added to the transaction.
+       * WARNING: in clients, any publicly exposed text should not be called memo,
+       * but should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122).
        * </pre>
        *
        * <code>string memo = 2;</code>
@@ -4652,31 +4575,33 @@ public final class TxOuterClass {
        */
       public Builder setMemo(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         memo_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * memo is any arbitrary memo to be added to the transaction
+       * memo is any arbitrary note/comment to be added to the transaction.
+       * WARNING: in clients, any publicly exposed text should not be called memo,
+       * but should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122).
        * </pre>
        *
        * <code>string memo = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearMemo() {
-        
         memo_ = getDefaultInstance().getMemo();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
        * <pre>
-       * memo is any arbitrary memo to be added to the transaction
+       * memo is any arbitrary note/comment to be added to the transaction.
+       * WARNING: in clients, any publicly exposed text should not be called memo,
+       * but should be called `note` instead (see https://github.com/cosmos/cosmos-sdk/issues/9122).
        * </pre>
        *
        * <code>string memo = 2;</code>
@@ -4685,12 +4610,10 @@ public final class TxOuterClass {
        */
       public Builder setMemoBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         memo_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -4720,8 +4643,9 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder setTimeoutHeight(long value) {
-        
+
         timeoutHeight_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -4735,23 +4659,23 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearTimeoutHeight() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         timeoutHeight_ = 0L;
         onChanged();
         return this;
       }
 
-      private java.util.List<com.google.protobuf2.Any> extensionOptions_ =
+      private java.util.List<com.google.protobuf.Any> extensionOptions_ =
         java.util.Collections.emptyList();
       private void ensureExtensionOptionsIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          extensionOptions_ = new java.util.ArrayList<com.google.protobuf2.Any>(extensionOptions_);
-          bitField0_ |= 0x00000002;
+        if (!((bitField0_ & 0x00000008) != 0)) {
+          extensionOptions_ = new java.util.ArrayList<com.google.protobuf.Any>(extensionOptions_);
+          bitField0_ |= 0x00000008;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> extensionOptionsBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> extensionOptionsBuilder_;
 
       /**
        * <pre>
@@ -4760,9 +4684,9 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
-      public java.util.List<com.google.protobuf2.Any> getExtensionOptionsList() {
+      public java.util.List<com.google.protobuf.Any> getExtensionOptionsList() {
         if (extensionOptionsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(extensionOptions_);
         } else {
@@ -4776,7 +4700,7 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
       public int getExtensionOptionsCount() {
         if (extensionOptionsBuilder_ == null) {
@@ -4792,9 +4716,9 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
-      public com.google.protobuf2.Any getExtensionOptions(int index) {
+      public com.google.protobuf.Any getExtensionOptions(int index) {
         if (extensionOptionsBuilder_ == null) {
           return extensionOptions_.get(index);
         } else {
@@ -4808,10 +4732,10 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
       public Builder setExtensionOptions(
-          int index, com.google.protobuf2.Any value) {
+          int index, com.google.protobuf.Any value) {
         if (extensionOptionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4831,10 +4755,10 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
       public Builder setExtensionOptions(
-          int index, com.google.protobuf2.Any.Builder builderForValue) {
+          int index, com.google.protobuf.Any.Builder builderForValue) {
         if (extensionOptionsBuilder_ == null) {
           ensureExtensionOptionsIsMutable();
           extensionOptions_.set(index, builderForValue.build());
@@ -4851,9 +4775,9 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
-      public Builder addExtensionOptions(com.google.protobuf2.Any value) {
+      public Builder addExtensionOptions(com.google.protobuf.Any value) {
         if (extensionOptionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4873,10 +4797,10 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
       public Builder addExtensionOptions(
-          int index, com.google.protobuf2.Any value) {
+          int index, com.google.protobuf.Any value) {
         if (extensionOptionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4896,10 +4820,10 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
       public Builder addExtensionOptions(
-          com.google.protobuf2.Any.Builder builderForValue) {
+          com.google.protobuf.Any.Builder builderForValue) {
         if (extensionOptionsBuilder_ == null) {
           ensureExtensionOptionsIsMutable();
           extensionOptions_.add(builderForValue.build());
@@ -4916,10 +4840,10 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
       public Builder addExtensionOptions(
-          int index, com.google.protobuf2.Any.Builder builderForValue) {
+          int index, com.google.protobuf.Any.Builder builderForValue) {
         if (extensionOptionsBuilder_ == null) {
           ensureExtensionOptionsIsMutable();
           extensionOptions_.add(index, builderForValue.build());
@@ -4936,10 +4860,10 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
       public Builder addAllExtensionOptions(
-          java.lang.Iterable<? extends com.google.protobuf2.Any> values) {
+          java.lang.Iterable<? extends com.google.protobuf.Any> values) {
         if (extensionOptionsBuilder_ == null) {
           ensureExtensionOptionsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -4957,12 +4881,12 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
       public Builder clearExtensionOptions() {
         if (extensionOptionsBuilder_ == null) {
           extensionOptions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
           extensionOptionsBuilder_.clear();
@@ -4976,7 +4900,7 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
       public Builder removeExtensionOptions(int index) {
         if (extensionOptionsBuilder_ == null) {
@@ -4995,9 +4919,9 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
-      public com.google.protobuf2.Any.Builder getExtensionOptionsBuilder(
+      public com.google.protobuf.Any.Builder getExtensionOptionsBuilder(
           int index) {
         return getExtensionOptionsFieldBuilder().getBuilder(index);
       }
@@ -5008,9 +4932,9 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
-      public com.google.protobuf2.AnyOrBuilder getExtensionOptionsOrBuilder(
+      public com.google.protobuf.AnyOrBuilder getExtensionOptionsOrBuilder(
           int index) {
         if (extensionOptionsBuilder_ == null) {
           return extensionOptions_.get(index);  } else {
@@ -5024,9 +4948,9 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
-      public java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+      public java.util.List<? extends com.google.protobuf.AnyOrBuilder>
            getExtensionOptionsOrBuilderList() {
         if (extensionOptionsBuilder_ != null) {
           return extensionOptionsBuilder_.getMessageOrBuilderList();
@@ -5041,11 +4965,11 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
-      public com.google.protobuf2.Any.Builder addExtensionOptionsBuilder() {
+      public com.google.protobuf.Any.Builder addExtensionOptionsBuilder() {
         return getExtensionOptionsFieldBuilder().addBuilder(
-            com.google.protobuf2.Any.getDefaultInstance());
+            com.google.protobuf.Any.getDefaultInstance());
       }
       /**
        * <pre>
@@ -5054,12 +4978,12 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
-      public com.google.protobuf2.Any.Builder addExtensionOptionsBuilder(
+      public com.google.protobuf.Any.Builder addExtensionOptionsBuilder(
           int index) {
         return getExtensionOptionsFieldBuilder().addBuilder(
-            index, com.google.protobuf2.Any.getDefaultInstance());
+            index, com.google.protobuf.Any.getDefaultInstance());
       }
       /**
        * <pre>
@@ -5068,20 +4992,20 @@ public final class TxOuterClass {
        * and can't be handled, the transaction will be rejected
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any extension_options = 1023;</code>
+       * <code>repeated .google.protobuf.Any extension_options = 1023;</code>
        */
-      public java.util.List<com.google.protobuf2.Any.Builder> 
+      public java.util.List<com.google.protobuf.Any.Builder>
            getExtensionOptionsBuilderList() {
         return getExtensionOptionsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>
           getExtensionOptionsFieldBuilder() {
         if (extensionOptionsBuilder_ == null) {
           extensionOptionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder>(
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   extensionOptions_,
-                  ((bitField0_ & 0x00000002) != 0),
+                  ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
                   isClean());
           extensionOptions_ = null;
@@ -5089,17 +5013,17 @@ public final class TxOuterClass {
         return extensionOptionsBuilder_;
       }
 
-      private java.util.List<com.google.protobuf2.Any> nonCriticalExtensionOptions_ =
+      private java.util.List<com.google.protobuf.Any> nonCriticalExtensionOptions_ =
         java.util.Collections.emptyList();
       private void ensureNonCriticalExtensionOptionsIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
-          nonCriticalExtensionOptions_ = new java.util.ArrayList<com.google.protobuf2.Any>(nonCriticalExtensionOptions_);
-          bitField0_ |= 0x00000004;
+        if (!((bitField0_ & 0x00000010) != 0)) {
+          nonCriticalExtensionOptions_ = new java.util.ArrayList<com.google.protobuf.Any>(nonCriticalExtensionOptions_);
+          bitField0_ |= 0x00000010;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> nonCriticalExtensionOptionsBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> nonCriticalExtensionOptionsBuilder_;
 
       /**
        * <pre>
@@ -5108,9 +5032,9 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
-      public java.util.List<com.google.protobuf2.Any> getNonCriticalExtensionOptionsList() {
+      public java.util.List<com.google.protobuf.Any> getNonCriticalExtensionOptionsList() {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(nonCriticalExtensionOptions_);
         } else {
@@ -5124,7 +5048,7 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
       public int getNonCriticalExtensionOptionsCount() {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
@@ -5140,9 +5064,9 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
-      public com.google.protobuf2.Any getNonCriticalExtensionOptions(int index) {
+      public com.google.protobuf.Any getNonCriticalExtensionOptions(int index) {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           return nonCriticalExtensionOptions_.get(index);
         } else {
@@ -5156,10 +5080,10 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
       public Builder setNonCriticalExtensionOptions(
-          int index, com.google.protobuf2.Any value) {
+          int index, com.google.protobuf.Any value) {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5179,10 +5103,10 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
       public Builder setNonCriticalExtensionOptions(
-          int index, com.google.protobuf2.Any.Builder builderForValue) {
+          int index, com.google.protobuf.Any.Builder builderForValue) {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           ensureNonCriticalExtensionOptionsIsMutable();
           nonCriticalExtensionOptions_.set(index, builderForValue.build());
@@ -5199,9 +5123,9 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
-      public Builder addNonCriticalExtensionOptions(com.google.protobuf2.Any value) {
+      public Builder addNonCriticalExtensionOptions(com.google.protobuf.Any value) {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5221,10 +5145,10 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
       public Builder addNonCriticalExtensionOptions(
-          int index, com.google.protobuf2.Any value) {
+          int index, com.google.protobuf.Any value) {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5244,10 +5168,10 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
       public Builder addNonCriticalExtensionOptions(
-          com.google.protobuf2.Any.Builder builderForValue) {
+          com.google.protobuf.Any.Builder builderForValue) {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           ensureNonCriticalExtensionOptionsIsMutable();
           nonCriticalExtensionOptions_.add(builderForValue.build());
@@ -5264,10 +5188,10 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
       public Builder addNonCriticalExtensionOptions(
-          int index, com.google.protobuf2.Any.Builder builderForValue) {
+          int index, com.google.protobuf.Any.Builder builderForValue) {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           ensureNonCriticalExtensionOptionsIsMutable();
           nonCriticalExtensionOptions_.add(index, builderForValue.build());
@@ -5284,10 +5208,10 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
       public Builder addAllNonCriticalExtensionOptions(
-          java.lang.Iterable<? extends com.google.protobuf2.Any> values) {
+          java.lang.Iterable<? extends com.google.protobuf.Any> values) {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           ensureNonCriticalExtensionOptionsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -5305,12 +5229,12 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
       public Builder clearNonCriticalExtensionOptions() {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           nonCriticalExtensionOptions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000010);
           onChanged();
         } else {
           nonCriticalExtensionOptionsBuilder_.clear();
@@ -5324,7 +5248,7 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
       public Builder removeNonCriticalExtensionOptions(int index) {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
@@ -5343,9 +5267,9 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
-      public com.google.protobuf2.Any.Builder getNonCriticalExtensionOptionsBuilder(
+      public com.google.protobuf.Any.Builder getNonCriticalExtensionOptionsBuilder(
           int index) {
         return getNonCriticalExtensionOptionsFieldBuilder().getBuilder(index);
       }
@@ -5356,9 +5280,9 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
-      public com.google.protobuf2.AnyOrBuilder getNonCriticalExtensionOptionsOrBuilder(
+      public com.google.protobuf.AnyOrBuilder getNonCriticalExtensionOptionsOrBuilder(
           int index) {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           return nonCriticalExtensionOptions_.get(index);  } else {
@@ -5372,9 +5296,9 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
-      public java.util.List<? extends com.google.protobuf2.AnyOrBuilder> 
+      public java.util.List<? extends com.google.protobuf.AnyOrBuilder>
            getNonCriticalExtensionOptionsOrBuilderList() {
         if (nonCriticalExtensionOptionsBuilder_ != null) {
           return nonCriticalExtensionOptionsBuilder_.getMessageOrBuilderList();
@@ -5389,11 +5313,11 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
-      public com.google.protobuf2.Any.Builder addNonCriticalExtensionOptionsBuilder() {
+      public com.google.protobuf.Any.Builder addNonCriticalExtensionOptionsBuilder() {
         return getNonCriticalExtensionOptionsFieldBuilder().addBuilder(
-            com.google.protobuf2.Any.getDefaultInstance());
+            com.google.protobuf.Any.getDefaultInstance());
       }
       /**
        * <pre>
@@ -5402,12 +5326,12 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
-      public com.google.protobuf2.Any.Builder addNonCriticalExtensionOptionsBuilder(
+      public com.google.protobuf.Any.Builder addNonCriticalExtensionOptionsBuilder(
           int index) {
         return getNonCriticalExtensionOptionsFieldBuilder().addBuilder(
-            index, com.google.protobuf2.Any.getDefaultInstance());
+            index, com.google.protobuf.Any.getDefaultInstance());
       }
       /**
        * <pre>
@@ -5416,20 +5340,20 @@ public final class TxOuterClass {
        * and can't be handled, they will be ignored
        * </pre>
        *
-       * <code>repeated .google.protobuf2.Any non_critical_extension_options = 2047;</code>
+       * <code>repeated .google.protobuf.Any non_critical_extension_options = 2047;</code>
        */
-      public java.util.List<com.google.protobuf2.Any.Builder> 
+      public java.util.List<com.google.protobuf.Any.Builder>
            getNonCriticalExtensionOptionsBuilderList() {
         return getNonCriticalExtensionOptionsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>
           getNonCriticalExtensionOptionsFieldBuilder() {
         if (nonCriticalExtensionOptionsBuilder_ == null) {
           nonCriticalExtensionOptionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder>(
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   nonCriticalExtensionOptions_,
-                  ((bitField0_ & 0x00000004) != 0),
+                  ((bitField0_ & 0x00000010) != 0),
                   getParentForChildren(),
                   isClean());
           nonCriticalExtensionOptions_ = null;
@@ -5469,7 +5393,18 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new TxBody(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -5503,7 +5438,7 @@ public final class TxOuterClass {
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
      */
-    java.util.List<cosmos.tx.v1beta1.TxOuterClass.SignerInfo> 
+    java.util.List<cosmos.tx.v1beta1.TxOuterClass.SignerInfo>
         getSignerInfosList();
     /**
      * <pre>
@@ -5537,7 +5472,7 @@ public final class TxOuterClass {
      *
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
      */
-    java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.SignerInfoOrBuilder> 
+    java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.SignerInfoOrBuilder>
         getSignerInfosOrBuilderList();
     /**
      * <pre>
@@ -5616,74 +5551,6 @@ public final class TxOuterClass {
       return new AuthInfo();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private AuthInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                signerInfos_ = new java.util.ArrayList<cosmos.tx.v1beta1.TxOuterClass.SignerInfo>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              signerInfos_.add(
-                  input.readMessage(cosmos.tx.v1beta1.TxOuterClass.SignerInfo.parser(), extensionRegistry));
-              break;
-            }
-            case 18: {
-              cosmos.tx.v1beta1.TxOuterClass.Fee.Builder subBuilder = null;
-              if (fee_ != null) {
-                subBuilder = fee_.toBuilder();
-              }
-              fee_ = input.readMessage(cosmos.tx.v1beta1.TxOuterClass.Fee.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(fee_);
-                fee_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          signerInfos_ = java.util.Collections.unmodifiableList(signerInfos_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.tx.v1beta1.TxOuterClass.internal_static_cosmos_tx_v1beta1_AuthInfo_descriptor;
@@ -5698,6 +5565,7 @@ public final class TxOuterClass {
     }
 
     public static final int SIGNER_INFOS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.tx.v1beta1.TxOuterClass.SignerInfo> signerInfos_;
     /**
      * <pre>
@@ -5724,7 +5592,7 @@ public final class TxOuterClass {
      * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
      */
     @java.lang.Override
-    public java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.SignerInfoOrBuilder> 
+    public java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.SignerInfoOrBuilder>
         getSignerInfosOrBuilderList() {
       return signerInfos_;
     }
@@ -5816,7 +5684,7 @@ public final class TxOuterClass {
      */
     @java.lang.Override
     public cosmos.tx.v1beta1.TxOuterClass.FeeOrBuilder getFeeOrBuilder() {
-      return getFee();
+      return fee_ == null ? cosmos.tx.v1beta1.TxOuterClass.Fee.getDefaultInstance() : fee_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5839,7 +5707,7 @@ public final class TxOuterClass {
       if (fee_ != null) {
         output.writeMessage(2, getFee());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -5856,7 +5724,7 @@ public final class TxOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getFee());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -5878,7 +5746,7 @@ public final class TxOuterClass {
         if (!getFee()
             .equals(other.getFee())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -5897,7 +5765,7 @@ public final class TxOuterClass {
         hash = (37 * hash) + FEE_FIELD_NUMBER;
         hash = (53 * hash) + getFee().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -5946,11 +5814,13 @@ public final class TxOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.AuthInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.AuthInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6019,33 +5889,28 @@ public final class TxOuterClass {
 
       // Construct using cosmos.tx.v1beta1.TxOuterClass.AuthInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getSignerInfosFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (signerInfosBuilder_ == null) {
           signerInfos_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          signerInfos_ = null;
           signerInfosBuilder_.clear();
         }
-        if (feeBuilder_ == null) {
-          fee_ = null;
-        } else {
-          fee_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        fee_ = null;
+        if (feeBuilder_ != null) {
+          feeBuilder_.dispose();
           feeBuilder_ = null;
         }
         return this;
@@ -6074,7 +5939,13 @@ public final class TxOuterClass {
       @java.lang.Override
       public cosmos.tx.v1beta1.TxOuterClass.AuthInfo buildPartial() {
         cosmos.tx.v1beta1.TxOuterClass.AuthInfo result = new cosmos.tx.v1beta1.TxOuterClass.AuthInfo(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.tx.v1beta1.TxOuterClass.AuthInfo result) {
         if (signerInfosBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             signerInfos_ = java.util.Collections.unmodifiableList(signerInfos_);
@@ -6084,13 +5955,15 @@ public final class TxOuterClass {
         } else {
           result.signerInfos_ = signerInfosBuilder_.build();
         }
-        if (feeBuilder_ == null) {
-          result.fee_ = fee_;
-        } else {
-          result.fee_ = feeBuilder_.build();
+      }
+
+      private void buildPartial0(cosmos.tx.v1beta1.TxOuterClass.AuthInfo result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.fee_ = feeBuilder_ == null
+              ? fee_
+              : feeBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
       @java.lang.Override
@@ -6155,7 +6028,7 @@ public final class TxOuterClass {
               signerInfosBuilder_ = null;
               signerInfos_ = other.signerInfos_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              signerInfosBuilder_ = 
+              signerInfosBuilder_ =
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getSignerInfosFieldBuilder() : null;
             } else {
@@ -6166,7 +6039,7 @@ public final class TxOuterClass {
         if (other.hasFee()) {
           mergeFee(other.getFee());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -6181,17 +6054,50 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.tx.v1beta1.TxOuterClass.AuthInfo parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                cosmos.tx.v1beta1.TxOuterClass.SignerInfo m =
+                    input.readMessage(
+                        cosmos.tx.v1beta1.TxOuterClass.SignerInfo.parser(),
+                        extensionRegistry);
+                if (signerInfosBuilder_ == null) {
+                  ensureSignerInfosIsMutable();
+                  signerInfos_.add(m);
+                } else {
+                  signerInfosBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getFeeFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.tx.v1beta1.TxOuterClass.AuthInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -6496,7 +6402,7 @@ public final class TxOuterClass {
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
        */
-      public java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.SignerInfoOrBuilder> 
+      public java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.SignerInfoOrBuilder>
            getSignerInfosOrBuilderList() {
         if (signerInfosBuilder_ != null) {
           return signerInfosBuilder_.getMessageOrBuilderList();
@@ -6543,12 +6449,12 @@ public final class TxOuterClass {
        *
        * <code>repeated .cosmos.tx.v1beta1.SignerInfo signer_infos = 1;</code>
        */
-      public java.util.List<cosmos.tx.v1beta1.TxOuterClass.SignerInfo.Builder> 
+      public java.util.List<cosmos.tx.v1beta1.TxOuterClass.SignerInfo.Builder>
            getSignerInfosBuilderList() {
         return getSignerInfosFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          cosmos.tx.v1beta1.TxOuterClass.SignerInfo, cosmos.tx.v1beta1.TxOuterClass.SignerInfo.Builder, cosmos.tx.v1beta1.TxOuterClass.SignerInfoOrBuilder> 
+          cosmos.tx.v1beta1.TxOuterClass.SignerInfo, cosmos.tx.v1beta1.TxOuterClass.SignerInfo.Builder, cosmos.tx.v1beta1.TxOuterClass.SignerInfoOrBuilder>
           getSignerInfosFieldBuilder() {
         if (signerInfosBuilder_ == null) {
           signerInfosBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
@@ -6577,7 +6483,7 @@ public final class TxOuterClass {
        * @return Whether the fee field is set.
        */
       public boolean hasFee() {
-        return feeBuilder_ != null || fee_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -6613,11 +6519,11 @@ public final class TxOuterClass {
             throw new NullPointerException();
           }
           fee_ = value;
-          onChanged();
         } else {
           feeBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -6634,11 +6540,11 @@ public final class TxOuterClass {
           cosmos.tx.v1beta1.TxOuterClass.Fee.Builder builderForValue) {
         if (feeBuilder_ == null) {
           fee_ = builderForValue.build();
-          onChanged();
         } else {
           feeBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -6653,17 +6559,18 @@ public final class TxOuterClass {
        */
       public Builder mergeFee(cosmos.tx.v1beta1.TxOuterClass.Fee value) {
         if (feeBuilder_ == null) {
-          if (fee_ != null) {
-            fee_ =
-              cosmos.tx.v1beta1.TxOuterClass.Fee.newBuilder(fee_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            fee_ != null &&
+            fee_ != cosmos.tx.v1beta1.TxOuterClass.Fee.getDefaultInstance()) {
+            getFeeBuilder().mergeFrom(value);
           } else {
             fee_ = value;
           }
-          onChanged();
         } else {
           feeBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -6677,14 +6584,13 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.Fee fee = 2;</code>
        */
       public Builder clearFee() {
-        if (feeBuilder_ == null) {
-          fee_ = null;
-          onChanged();
-        } else {
-          fee_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        fee_ = null;
+        if (feeBuilder_ != null) {
+          feeBuilder_.dispose();
           feeBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -6698,7 +6604,7 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.Fee fee = 2;</code>
        */
       public cosmos.tx.v1beta1.TxOuterClass.Fee.Builder getFeeBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getFeeFieldBuilder().getBuilder();
       }
@@ -6731,7 +6637,7 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.Fee fee = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.tx.v1beta1.TxOuterClass.Fee, cosmos.tx.v1beta1.TxOuterClass.Fee.Builder, cosmos.tx.v1beta1.TxOuterClass.FeeOrBuilder> 
+          cosmos.tx.v1beta1.TxOuterClass.Fee, cosmos.tx.v1beta1.TxOuterClass.Fee.Builder, cosmos.tx.v1beta1.TxOuterClass.FeeOrBuilder>
           getFeeFieldBuilder() {
         if (feeBuilder_ == null) {
           feeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -6776,7 +6682,18 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AuthInfo(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -6807,7 +6724,7 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.google.protobuf2.Any public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return Whether the publicKey field is set.
      */
     boolean hasPublicKey();
@@ -6818,10 +6735,10 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.google.protobuf2.Any public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return The publicKey.
      */
-    com.google.protobuf2.Any getPublicKey();
+    com.google.protobuf.Any getPublicKey();
     /**
      * <pre>
      * public_key is the public key of the signer. It is optional for accounts
@@ -6829,9 +6746,9 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.google.protobuf2.Any public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      */
-    com.google.protobuf2.AnyOrBuilder getPublicKeyOrBuilder();
+    com.google.protobuf.AnyOrBuilder getPublicKeyOrBuilder();
 
     /**
      * <pre>
@@ -6902,79 +6819,6 @@ public final class TxOuterClass {
       return new SignerInfo();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SignerInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.google.protobuf2.Any.Builder subBuilder = null;
-              if (publicKey_ != null) {
-                subBuilder = publicKey_.toBuilder();
-              }
-              publicKey_ = input.readMessage(com.google.protobuf2.Any.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(publicKey_);
-                publicKey_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder subBuilder = null;
-              if (modeInfo_ != null) {
-                subBuilder = modeInfo_.toBuilder();
-              }
-              modeInfo_ = input.readMessage(cosmos.tx.v1beta1.TxOuterClass.ModeInfo.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(modeInfo_);
-                modeInfo_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 24: {
-
-              sequence_ = input.readUInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.tx.v1beta1.TxOuterClass.internal_static_cosmos_tx_v1beta1_SignerInfo_descriptor;
@@ -6989,7 +6833,7 @@ public final class TxOuterClass {
     }
 
     public static final int PUBLIC_KEY_FIELD_NUMBER = 1;
-    private com.google.protobuf2.Any publicKey_;
+    private com.google.protobuf.Any publicKey_;
     /**
      * <pre>
      * public_key is the public key of the signer. It is optional for accounts
@@ -6997,7 +6841,7 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.google.protobuf2.Any public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return Whether the publicKey field is set.
      */
     @java.lang.Override
@@ -7011,12 +6855,12 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.google.protobuf2.Any public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      * @return The publicKey.
      */
     @java.lang.Override
-    public com.google.protobuf2.Any getPublicKey() {
-      return publicKey_ == null ? com.google.protobuf2.Any.getDefaultInstance() : publicKey_;
+    public com.google.protobuf.Any getPublicKey() {
+      return publicKey_ == null ? com.google.protobuf.Any.getDefaultInstance() : publicKey_;
     }
     /**
      * <pre>
@@ -7025,11 +6869,11 @@ public final class TxOuterClass {
      * signer address for this position and lookup the public key.
      * </pre>
      *
-     * <code>.google.protobuf2.Any public_key = 1;</code>
+     * <code>.google.protobuf.Any public_key = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.AnyOrBuilder getPublicKeyOrBuilder() {
-      return getPublicKey();
+    public com.google.protobuf.AnyOrBuilder getPublicKeyOrBuilder() {
+      return publicKey_ == null ? com.google.protobuf.Any.getDefaultInstance() : publicKey_;
     }
 
     public static final int MODE_INFO_FIELD_NUMBER = 2;
@@ -7070,11 +6914,11 @@ public final class TxOuterClass {
      */
     @java.lang.Override
     public cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder getModeInfoOrBuilder() {
-      return getModeInfo();
+      return modeInfo_ == null ? cosmos.tx.v1beta1.TxOuterClass.ModeInfo.getDefaultInstance() : modeInfo_;
     }
 
     public static final int SEQUENCE_FIELD_NUMBER = 3;
-    private long sequence_;
+    private long sequence_ = 0L;
     /**
      * <pre>
      * sequence is the sequence of the account, which describes the
@@ -7113,7 +6957,7 @@ public final class TxOuterClass {
       if (sequence_ != 0L) {
         output.writeUInt64(3, sequence_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -7134,7 +6978,7 @@ public final class TxOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(3, sequence_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -7161,7 +7005,7 @@ public final class TxOuterClass {
       }
       if (getSequence()
           != other.getSequence()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -7183,7 +7027,7 @@ public final class TxOuterClass {
       hash = (37 * hash) + SEQUENCE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getSequence());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -7232,11 +7076,13 @@ public final class TxOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.SignerInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.SignerInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7305,36 +7151,29 @@ public final class TxOuterClass {
 
       // Construct using cosmos.tx.v1beta1.TxOuterClass.SignerInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (publicKeyBuilder_ == null) {
-          publicKey_ = null;
-        } else {
-          publicKey_ = null;
+        bitField0_ = 0;
+        publicKey_ = null;
+        if (publicKeyBuilder_ != null) {
+          publicKeyBuilder_.dispose();
           publicKeyBuilder_ = null;
         }
-        if (modeInfoBuilder_ == null) {
-          modeInfo_ = null;
-        } else {
-          modeInfo_ = null;
+        modeInfo_ = null;
+        if (modeInfoBuilder_ != null) {
+          modeInfoBuilder_.dispose();
           modeInfoBuilder_ = null;
         }
         sequence_ = 0L;
-
         return this;
       }
 
@@ -7361,19 +7200,26 @@ public final class TxOuterClass {
       @java.lang.Override
       public cosmos.tx.v1beta1.TxOuterClass.SignerInfo buildPartial() {
         cosmos.tx.v1beta1.TxOuterClass.SignerInfo result = new cosmos.tx.v1beta1.TxOuterClass.SignerInfo(this);
-        if (publicKeyBuilder_ == null) {
-          result.publicKey_ = publicKey_;
-        } else {
-          result.publicKey_ = publicKeyBuilder_.build();
-        }
-        if (modeInfoBuilder_ == null) {
-          result.modeInfo_ = modeInfo_;
-        } else {
-          result.modeInfo_ = modeInfoBuilder_.build();
-        }
-        result.sequence_ = sequence_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.tx.v1beta1.TxOuterClass.SignerInfo result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.publicKey_ = publicKeyBuilder_ == null
+              ? publicKey_
+              : publicKeyBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.modeInfo_ = modeInfoBuilder_ == null
+              ? modeInfo_
+              : modeInfoBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.sequence_ = sequence_;
+        }
       }
 
       @java.lang.Override
@@ -7429,7 +7275,7 @@ public final class TxOuterClass {
         if (other.getSequence() != 0L) {
           setSequence(other.getSequence());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -7444,23 +7290,56 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.tx.v1beta1.TxOuterClass.SignerInfo parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getPublicKeyFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getModeInfoFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                sequence_ = input.readUInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.tx.v1beta1.TxOuterClass.SignerInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
-      private com.google.protobuf2.Any publicKey_;
+      private com.google.protobuf.Any publicKey_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> publicKeyBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> publicKeyBuilder_;
       /**
        * <pre>
        * public_key is the public key of the signer. It is optional for accounts
@@ -7468,11 +7347,11 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.google.protobuf2.Any public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        * @return Whether the publicKey field is set.
        */
       public boolean hasPublicKey() {
-        return publicKeyBuilder_ != null || publicKey_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -7481,12 +7360,12 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.google.protobuf2.Any public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        * @return The publicKey.
        */
-      public com.google.protobuf2.Any getPublicKey() {
+      public com.google.protobuf.Any getPublicKey() {
         if (publicKeyBuilder_ == null) {
-          return publicKey_ == null ? com.google.protobuf2.Any.getDefaultInstance() : publicKey_;
+          return publicKey_ == null ? com.google.protobuf.Any.getDefaultInstance() : publicKey_;
         } else {
           return publicKeyBuilder_.getMessage();
         }
@@ -7498,19 +7377,19 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.google.protobuf2.Any public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public Builder setPublicKey(com.google.protobuf2.Any value) {
+      public Builder setPublicKey(com.google.protobuf.Any value) {
         if (publicKeyBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
           publicKey_ = value;
-          onChanged();
         } else {
           publicKeyBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -7520,17 +7399,17 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.google.protobuf2.Any public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
       public Builder setPublicKey(
-          com.google.protobuf2.Any.Builder builderForValue) {
+          com.google.protobuf.Any.Builder builderForValue) {
         if (publicKeyBuilder_ == null) {
           publicKey_ = builderForValue.build();
-          onChanged();
         } else {
           publicKeyBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -7540,21 +7419,22 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.google.protobuf2.Any public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public Builder mergePublicKey(com.google.protobuf2.Any value) {
+      public Builder mergePublicKey(com.google.protobuf.Any value) {
         if (publicKeyBuilder_ == null) {
-          if (publicKey_ != null) {
-            publicKey_ =
-              com.google.protobuf2.Any.newBuilder(publicKey_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            publicKey_ != null &&
+            publicKey_ != com.google.protobuf.Any.getDefaultInstance()) {
+            getPublicKeyBuilder().mergeFrom(value);
           } else {
             publicKey_ = value;
           }
-          onChanged();
         } else {
           publicKeyBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -7564,17 +7444,16 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.google.protobuf2.Any public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
       public Builder clearPublicKey() {
-        if (publicKeyBuilder_ == null) {
-          publicKey_ = null;
-          onChanged();
-        } else {
-          publicKey_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        publicKey_ = null;
+        if (publicKeyBuilder_ != null) {
+          publicKeyBuilder_.dispose();
           publicKeyBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -7584,10 +7463,10 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.google.protobuf2.Any public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public com.google.protobuf2.Any.Builder getPublicKeyBuilder() {
-        
+      public com.google.protobuf.Any.Builder getPublicKeyBuilder() {
+        bitField0_ |= 0x00000001;
         onChanged();
         return getPublicKeyFieldBuilder().getBuilder();
       }
@@ -7598,14 +7477,14 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.google.protobuf2.Any public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
-      public com.google.protobuf2.AnyOrBuilder getPublicKeyOrBuilder() {
+      public com.google.protobuf.AnyOrBuilder getPublicKeyOrBuilder() {
         if (publicKeyBuilder_ != null) {
           return publicKeyBuilder_.getMessageOrBuilder();
         } else {
           return publicKey_ == null ?
-              com.google.protobuf2.Any.getDefaultInstance() : publicKey_;
+              com.google.protobuf.Any.getDefaultInstance() : publicKey_;
         }
       }
       /**
@@ -7615,14 +7494,14 @@ public final class TxOuterClass {
        * signer address for this position and lookup the public key.
        * </pre>
        *
-       * <code>.google.protobuf2.Any public_key = 1;</code>
+       * <code>.google.protobuf.Any public_key = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>
           getPublicKeyFieldBuilder() {
         if (publicKeyBuilder_ == null) {
           publicKeyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder>(
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   getPublicKey(),
                   getParentForChildren(),
                   isClean());
@@ -7644,7 +7523,7 @@ public final class TxOuterClass {
        * @return Whether the modeInfo field is set.
        */
       public boolean hasModeInfo() {
-        return modeInfoBuilder_ != null || modeInfo_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -7676,11 +7555,11 @@ public final class TxOuterClass {
             throw new NullPointerException();
           }
           modeInfo_ = value;
-          onChanged();
         } else {
           modeInfoBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -7695,11 +7574,11 @@ public final class TxOuterClass {
           cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder builderForValue) {
         if (modeInfoBuilder_ == null) {
           modeInfo_ = builderForValue.build();
-          onChanged();
         } else {
           modeInfoBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -7712,17 +7591,18 @@ public final class TxOuterClass {
        */
       public Builder mergeModeInfo(cosmos.tx.v1beta1.TxOuterClass.ModeInfo value) {
         if (modeInfoBuilder_ == null) {
-          if (modeInfo_ != null) {
-            modeInfo_ =
-              cosmos.tx.v1beta1.TxOuterClass.ModeInfo.newBuilder(modeInfo_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            modeInfo_ != null &&
+            modeInfo_ != cosmos.tx.v1beta1.TxOuterClass.ModeInfo.getDefaultInstance()) {
+            getModeInfoBuilder().mergeFrom(value);
           } else {
             modeInfo_ = value;
           }
-          onChanged();
         } else {
           modeInfoBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -7734,14 +7614,13 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.ModeInfo mode_info = 2;</code>
        */
       public Builder clearModeInfo() {
-        if (modeInfoBuilder_ == null) {
-          modeInfo_ = null;
-          onChanged();
-        } else {
-          modeInfo_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        modeInfo_ = null;
+        if (modeInfoBuilder_ != null) {
+          modeInfoBuilder_.dispose();
           modeInfoBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -7753,7 +7632,7 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.ModeInfo mode_info = 2;</code>
        */
       public cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder getModeInfoBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getModeInfoFieldBuilder().getBuilder();
       }
@@ -7782,7 +7661,7 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.ModeInfo mode_info = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.tx.v1beta1.TxOuterClass.ModeInfo, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder, cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder> 
+          cosmos.tx.v1beta1.TxOuterClass.ModeInfo, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder, cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder>
           getModeInfoFieldBuilder() {
         if (modeInfoBuilder_ == null) {
           modeInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -7822,8 +7701,9 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder setSequence(long value) {
-        
+
         sequence_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -7838,7 +7718,7 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearSequence() {
-        
+        bitField0_ = (bitField0_ & ~0x00000004);
         sequence_ = 0L;
         onChanged();
         return this;
@@ -7876,7 +7756,18 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SignerInfo(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -7954,7 +7845,7 @@ public final class TxOuterClass {
      */
     cosmos.tx.v1beta1.TxOuterClass.ModeInfo.MultiOrBuilder getMultiOrBuilder();
 
-    public cosmos.tx.v1beta1.TxOuterClass.ModeInfo.SumCase getSumCase();
+    cosmos.tx.v1beta1.TxOuterClass.ModeInfo.SumCase getSumCase();
   }
   /**
    * <pre>
@@ -7982,76 +7873,6 @@ public final class TxOuterClass {
       return new ModeInfo();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ModeInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.Builder subBuilder = null;
-              if (sumCase_ == 1) {
-                subBuilder = ((cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single) sum_).toBuilder();
-              }
-              sum_ =
-                  input.readMessage(cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single) sum_);
-                sum_ = subBuilder.buildPartial();
-              }
-              sumCase_ = 1;
-              break;
-            }
-            case 18: {
-              cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.Builder subBuilder = null;
-              if (sumCase_ == 2) {
-                subBuilder = ((cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi) sum_).toBuilder();
-              }
-              sum_ =
-                  input.readMessage(cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi) sum_);
-                sum_ = subBuilder.buildPartial();
-              }
-              sumCase_ = 2;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.tx.v1beta1.TxOuterClass.internal_static_cosmos_tx_v1beta1_ModeInfo_descriptor;
@@ -8117,54 +7938,6 @@ public final class TxOuterClass {
         return new Single();
       }
 
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-      private Single(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 8: {
-                int rawValue = input.readEnum();
-
-                mode_ = rawValue;
-                break;
-              }
-              default: {
-                if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return cosmos.tx.v1beta1.TxOuterClass.internal_static_cosmos_tx_v1beta1_ModeInfo_Single_descriptor;
@@ -8179,7 +7952,7 @@ public final class TxOuterClass {
       }
 
       public static final int MODE_FIELD_NUMBER = 1;
-      private int mode_;
+      private int mode_ = 0;
       /**
        * <pre>
        * mode is the signing mode of the single signer
@@ -8200,8 +7973,7 @@ public final class TxOuterClass {
        * @return The mode.
        */
       @java.lang.Override public cosmos.tx.signing.v1beta1.Signing.SignMode getMode() {
-        @SuppressWarnings("deprecation")
-        cosmos.tx.signing.v1beta1.Signing.SignMode result = cosmos.tx.signing.v1beta1.Signing.SignMode.valueOf(mode_);
+        cosmos.tx.signing.v1beta1.Signing.SignMode result = cosmos.tx.signing.v1beta1.Signing.SignMode.forNumber(mode_);
         return result == null ? cosmos.tx.signing.v1beta1.Signing.SignMode.UNRECOGNIZED : result;
       }
 
@@ -8222,7 +7994,7 @@ public final class TxOuterClass {
         if (mode_ != cosmos.tx.signing.v1beta1.Signing.SignMode.SIGN_MODE_UNSPECIFIED.getNumber()) {
           output.writeEnum(1, mode_);
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
       @java.lang.Override
@@ -8235,7 +8007,7 @@ public final class TxOuterClass {
           size += com.google.protobuf.CodedOutputStream
             .computeEnumSize(1, mode_);
         }
-        size += unknownFields.getSerializedSize();
+        size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
       }
@@ -8251,7 +8023,7 @@ public final class TxOuterClass {
         cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single other = (cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single) obj;
 
         if (mode_ != other.mode_) return false;
-        if (!unknownFields.equals(other.unknownFields)) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
       }
 
@@ -8264,7 +8036,7 @@ public final class TxOuterClass {
         hash = (19 * hash) + getDescriptor().hashCode();
         hash = (37 * hash) + MODE_FIELD_NUMBER;
         hash = (53 * hash) + mode_;
-        hash = (29 * hash) + unknownFields.hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
       }
@@ -8313,11 +8085,13 @@ public final class TxOuterClass {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
+
       public static cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
       }
+
       public static cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8387,24 +8161,19 @@ public final class TxOuterClass {
 
         // Construct using cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.newBuilder()
         private Builder() {
-          maybeForceBuilderInitialization();
+
         }
 
         private Builder(
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
           super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
+
         }
         @java.lang.Override
         public Builder clear() {
           super.clear();
+          bitField0_ = 0;
           mode_ = 0;
-
           return this;
         }
 
@@ -8431,9 +8200,16 @@ public final class TxOuterClass {
         @java.lang.Override
         public cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single buildPartial() {
           cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single result = new cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single(this);
-          result.mode_ = mode_;
+          if (bitField0_ != 0) { buildPartial0(result); }
           onBuilt();
           return result;
+        }
+
+        private void buildPartial0(cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single result) {
+          int from_bitField0_ = bitField0_;
+          if (((from_bitField0_ & 0x00000001) != 0)) {
+            result.mode_ = mode_;
+          }
         }
 
         @java.lang.Override
@@ -8483,7 +8259,7 @@ public final class TxOuterClass {
           if (other.mode_ != 0) {
             setModeValue(other.getModeValue());
           }
-          this.mergeUnknownFields(other.unknownFields);
+          this.mergeUnknownFields(other.getUnknownFields());
           onChanged();
           return this;
         }
@@ -8498,19 +8274,38 @@ public final class TxOuterClass {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single parsedMessage = null;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 8: {
+                  mode_ = input.readEnum();
+                  bitField0_ |= 0x00000001;
+                  break;
+                } // case 8
+                default: {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
+              } // switch (tag)
+            } // while (!done)
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single) e.getUnfinishedMessage();
             throw e.unwrapIOException();
           } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
+            onChanged();
+          } // finally
           return this;
         }
+        private int bitField0_;
 
         private int mode_ = 0;
         /**
@@ -8534,8 +8329,8 @@ public final class TxOuterClass {
          * @return This builder for chaining.
          */
         public Builder setModeValue(int value) {
-          
           mode_ = value;
+          bitField0_ |= 0x00000001;
           onChanged();
           return this;
         }
@@ -8549,8 +8344,7 @@ public final class TxOuterClass {
          */
         @java.lang.Override
         public cosmos.tx.signing.v1beta1.Signing.SignMode getMode() {
-          @SuppressWarnings("deprecation")
-          cosmos.tx.signing.v1beta1.Signing.SignMode result = cosmos.tx.signing.v1beta1.Signing.SignMode.valueOf(mode_);
+          cosmos.tx.signing.v1beta1.Signing.SignMode result = cosmos.tx.signing.v1beta1.Signing.SignMode.forNumber(mode_);
           return result == null ? cosmos.tx.signing.v1beta1.Signing.SignMode.UNRECOGNIZED : result;
         }
         /**
@@ -8566,7 +8360,7 @@ public final class TxOuterClass {
           if (value == null) {
             throw new NullPointerException();
           }
-          
+          bitField0_ |= 0x00000001;
           mode_ = value.getNumber();
           onChanged();
           return this;
@@ -8580,7 +8374,7 @@ public final class TxOuterClass {
          * @return This builder for chaining.
          */
         public Builder clearMode() {
-          
+          bitField0_ = (bitField0_ & ~0x00000001);
           mode_ = 0;
           onChanged();
           return this;
@@ -8618,7 +8412,18 @@ public final class TxOuterClass {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Single(input, extensionRegistry);
+          Builder builder = newBuilder();
+          try {
+            builder.mergeFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
+          }
+          return builder.buildPartial();
         }
       };
 
@@ -8677,7 +8482,7 @@ public final class TxOuterClass {
        *
        * <code>repeated .cosmos.tx.v1beta1.ModeInfo mode_infos = 2;</code>
        */
-      java.util.List<cosmos.tx.v1beta1.TxOuterClass.ModeInfo> 
+      java.util.List<cosmos.tx.v1beta1.TxOuterClass.ModeInfo>
           getModeInfosList();
       /**
        * <pre>
@@ -8705,7 +8510,7 @@ public final class TxOuterClass {
        *
        * <code>repeated .cosmos.tx.v1beta1.ModeInfo mode_infos = 2;</code>
        */
-      java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder> 
+      java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder>
           getModeInfosOrBuilderList();
       /**
        * <pre>
@@ -8745,74 +8550,6 @@ public final class TxOuterClass {
         return new Multi();
       }
 
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-      private Multi(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        int mutable_bitField0_ = 0;
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder subBuilder = null;
-                if (bitarray_ != null) {
-                  subBuilder = bitarray_.toBuilder();
-                }
-                bitarray_ = input.readMessage(cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.parser(), extensionRegistry);
-                if (subBuilder != null) {
-                  subBuilder.mergeFrom(bitarray_);
-                  bitarray_ = subBuilder.buildPartial();
-                }
-
-                break;
-              }
-              case 18: {
-                if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                  modeInfos_ = new java.util.ArrayList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo>();
-                  mutable_bitField0_ |= 0x00000001;
-                }
-                modeInfos_.add(
-                    input.readMessage(cosmos.tx.v1beta1.TxOuterClass.ModeInfo.parser(), extensionRegistry));
-                break;
-              }
-              default: {
-                if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          if (((mutable_bitField0_ & 0x00000001) != 0)) {
-            modeInfos_ = java.util.Collections.unmodifiableList(modeInfos_);
-          }
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
         return cosmos.tx.v1beta1.TxOuterClass.internal_static_cosmos_tx_v1beta1_ModeInfo_Multi_descriptor;
@@ -8861,10 +8598,11 @@ public final class TxOuterClass {
        */
       @java.lang.Override
       public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder getBitarrayOrBuilder() {
-        return getBitarray();
+        return bitarray_ == null ? cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.getDefaultInstance() : bitarray_;
       }
 
       public static final int MODE_INFOS_FIELD_NUMBER = 2;
+      @SuppressWarnings("serial")
       private java.util.List<cosmos.tx.v1beta1.TxOuterClass.ModeInfo> modeInfos_;
       /**
        * <pre>
@@ -8887,7 +8625,7 @@ public final class TxOuterClass {
        * <code>repeated .cosmos.tx.v1beta1.ModeInfo mode_infos = 2;</code>
        */
       @java.lang.Override
-      public java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder> 
+      public java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder>
           getModeInfosOrBuilderList() {
         return modeInfos_;
       }
@@ -8949,7 +8687,7 @@ public final class TxOuterClass {
         for (int i = 0; i < modeInfos_.size(); i++) {
           output.writeMessage(2, modeInfos_.get(i));
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
       }
 
       @java.lang.Override
@@ -8966,7 +8704,7 @@ public final class TxOuterClass {
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(2, modeInfos_.get(i));
         }
-        size += unknownFields.getSerializedSize();
+        size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
       }
@@ -8988,7 +8726,7 @@ public final class TxOuterClass {
         }
         if (!getModeInfosList()
             .equals(other.getModeInfosList())) return false;
-        if (!unknownFields.equals(other.unknownFields)) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
       }
 
@@ -9007,7 +8745,7 @@ public final class TxOuterClass {
           hash = (37 * hash) + MODE_INFOS_FIELD_NUMBER;
           hash = (53 * hash) + getModeInfosList().hashCode();
         }
-        hash = (29 * hash) + unknownFields.hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
       }
@@ -9056,11 +8794,13 @@ public final class TxOuterClass {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
+
       public static cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
       }
+
       public static cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9128,35 +8868,30 @@ public final class TxOuterClass {
 
         // Construct using cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.newBuilder()
         private Builder() {
-          maybeForceBuilderInitialization();
+
         }
 
         private Builder(
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
           super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-            getModeInfosFieldBuilder();
-          }
+
         }
         @java.lang.Override
         public Builder clear() {
           super.clear();
-          if (bitarrayBuilder_ == null) {
-            bitarray_ = null;
-          } else {
-            bitarray_ = null;
+          bitField0_ = 0;
+          bitarray_ = null;
+          if (bitarrayBuilder_ != null) {
+            bitarrayBuilder_.dispose();
             bitarrayBuilder_ = null;
           }
           if (modeInfosBuilder_ == null) {
             modeInfos_ = java.util.Collections.emptyList();
-            bitField0_ = (bitField0_ & ~0x00000001);
           } else {
+            modeInfos_ = null;
             modeInfosBuilder_.clear();
           }
+          bitField0_ = (bitField0_ & ~0x00000002);
           return this;
         }
 
@@ -9183,23 +8918,31 @@ public final class TxOuterClass {
         @java.lang.Override
         public cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi buildPartial() {
           cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi result = new cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi(this);
-          int from_bitField0_ = bitField0_;
-          if (bitarrayBuilder_ == null) {
-            result.bitarray_ = bitarray_;
-          } else {
-            result.bitarray_ = bitarrayBuilder_.build();
-          }
+          buildPartialRepeatedFields(result);
+          if (bitField0_ != 0) { buildPartial0(result); }
+          onBuilt();
+          return result;
+        }
+
+        private void buildPartialRepeatedFields(cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi result) {
           if (modeInfosBuilder_ == null) {
-            if (((bitField0_ & 0x00000001) != 0)) {
+            if (((bitField0_ & 0x00000002) != 0)) {
               modeInfos_ = java.util.Collections.unmodifiableList(modeInfos_);
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
             }
             result.modeInfos_ = modeInfos_;
           } else {
             result.modeInfos_ = modeInfosBuilder_.build();
           }
-          onBuilt();
-          return result;
+        }
+
+        private void buildPartial0(cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi result) {
+          int from_bitField0_ = bitField0_;
+          if (((from_bitField0_ & 0x00000001) != 0)) {
+            result.bitarray_ = bitarrayBuilder_ == null
+                ? bitarray_
+                : bitarrayBuilder_.build();
+          }
         }
 
         @java.lang.Override
@@ -9253,7 +8996,7 @@ public final class TxOuterClass {
             if (!other.modeInfos_.isEmpty()) {
               if (modeInfos_.isEmpty()) {
                 modeInfos_ = other.modeInfos_;
-                bitField0_ = (bitField0_ & ~0x00000001);
+                bitField0_ = (bitField0_ & ~0x00000002);
               } else {
                 ensureModeInfosIsMutable();
                 modeInfos_.addAll(other.modeInfos_);
@@ -9266,8 +9009,8 @@ public final class TxOuterClass {
                 modeInfosBuilder_.dispose();
                 modeInfosBuilder_ = null;
                 modeInfos_ = other.modeInfos_;
-                bitField0_ = (bitField0_ & ~0x00000001);
-                modeInfosBuilder_ = 
+                bitField0_ = (bitField0_ & ~0x00000002);
+                modeInfosBuilder_ =
                   com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                      getModeInfosFieldBuilder() : null;
               } else {
@@ -9275,7 +9018,7 @@ public final class TxOuterClass {
               }
             }
           }
-          this.mergeUnknownFields(other.unknownFields);
+          this.mergeUnknownFields(other.getUnknownFields());
           onChanged();
           return this;
         }
@@ -9290,17 +9033,50 @@ public final class TxOuterClass {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi parsedMessage = null;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
           try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 10: {
+                  input.readMessage(
+                      getBitarrayFieldBuilder().getBuilder(),
+                      extensionRegistry);
+                  bitField0_ |= 0x00000001;
+                  break;
+                } // case 10
+                case 18: {
+                  cosmos.tx.v1beta1.TxOuterClass.ModeInfo m =
+                      input.readMessage(
+                          cosmos.tx.v1beta1.TxOuterClass.ModeInfo.parser(),
+                          extensionRegistry);
+                  if (modeInfosBuilder_ == null) {
+                    ensureModeInfosIsMutable();
+                    modeInfos_.add(m);
+                  } else {
+                    modeInfosBuilder_.addMessage(m);
+                  }
+                  break;
+                } // case 18
+                default: {
+                  if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                    done = true; // was an endgroup tag
+                  }
+                  break;
+                } // default:
+              } // switch (tag)
+            } // while (!done)
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi) e.getUnfinishedMessage();
             throw e.unwrapIOException();
           } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
+            onChanged();
+          } // finally
           return this;
         }
         private int bitField0_;
@@ -9317,7 +9093,7 @@ public final class TxOuterClass {
          * @return Whether the bitarray field is set.
          */
         public boolean hasBitarray() {
-          return bitarrayBuilder_ != null || bitarray_ != null;
+          return ((bitField0_ & 0x00000001) != 0);
         }
         /**
          * <pre>
@@ -9347,11 +9123,11 @@ public final class TxOuterClass {
               throw new NullPointerException();
             }
             bitarray_ = value;
-            onChanged();
           } else {
             bitarrayBuilder_.setMessage(value);
           }
-
+          bitField0_ |= 0x00000001;
+          onChanged();
           return this;
         }
         /**
@@ -9365,11 +9141,11 @@ public final class TxOuterClass {
             cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder builderForValue) {
           if (bitarrayBuilder_ == null) {
             bitarray_ = builderForValue.build();
-            onChanged();
           } else {
             bitarrayBuilder_.setMessage(builderForValue.build());
           }
-
+          bitField0_ |= 0x00000001;
+          onChanged();
           return this;
         }
         /**
@@ -9381,17 +9157,18 @@ public final class TxOuterClass {
          */
         public Builder mergeBitarray(cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray value) {
           if (bitarrayBuilder_ == null) {
-            if (bitarray_ != null) {
-              bitarray_ =
-                cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.newBuilder(bitarray_).mergeFrom(value).buildPartial();
+            if (((bitField0_ & 0x00000001) != 0) &&
+              bitarray_ != null &&
+              bitarray_ != cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.getDefaultInstance()) {
+              getBitarrayBuilder().mergeFrom(value);
             } else {
               bitarray_ = value;
             }
-            onChanged();
           } else {
             bitarrayBuilder_.mergeFrom(value);
           }
-
+          bitField0_ |= 0x00000001;
+          onChanged();
           return this;
         }
         /**
@@ -9402,14 +9179,13 @@ public final class TxOuterClass {
          * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
         public Builder clearBitarray() {
-          if (bitarrayBuilder_ == null) {
-            bitarray_ = null;
-            onChanged();
-          } else {
-            bitarray_ = null;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          bitarray_ = null;
+          if (bitarrayBuilder_ != null) {
+            bitarrayBuilder_.dispose();
             bitarrayBuilder_ = null;
           }
-
+          onChanged();
           return this;
         }
         /**
@@ -9420,7 +9196,7 @@ public final class TxOuterClass {
          * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
         public cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder getBitarrayBuilder() {
-          
+          bitField0_ |= 0x00000001;
           onChanged();
           return getBitarrayFieldBuilder().getBuilder();
         }
@@ -9447,7 +9223,7 @@ public final class TxOuterClass {
          * <code>.cosmos.crypto.multisig.v1beta1.CompactBitArray bitarray = 1;</code>
          */
         private com.google.protobuf.SingleFieldBuilderV3<
-            cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder> 
+            cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArray.Builder, cosmos.crypto.multisig.v1beta1.Multisig.CompactBitArrayOrBuilder>
             getBitarrayFieldBuilder() {
           if (bitarrayBuilder_ == null) {
             bitarrayBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -9463,9 +9239,9 @@ public final class TxOuterClass {
         private java.util.List<cosmos.tx.v1beta1.TxOuterClass.ModeInfo> modeInfos_ =
           java.util.Collections.emptyList();
         private void ensureModeInfosIsMutable() {
-          if (!((bitField0_ & 0x00000001) != 0)) {
+          if (!((bitField0_ & 0x00000002) != 0)) {
             modeInfos_ = new java.util.ArrayList<cosmos.tx.v1beta1.TxOuterClass.ModeInfo>(modeInfos_);
-            bitField0_ |= 0x00000001;
+            bitField0_ |= 0x00000002;
            }
         }
 
@@ -9670,7 +9446,7 @@ public final class TxOuterClass {
         public Builder clearModeInfos() {
           if (modeInfosBuilder_ == null) {
             modeInfos_ = java.util.Collections.emptyList();
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
             onChanged();
           } else {
             modeInfosBuilder_.clear();
@@ -9730,7 +9506,7 @@ public final class TxOuterClass {
          *
          * <code>repeated .cosmos.tx.v1beta1.ModeInfo mode_infos = 2;</code>
          */
-        public java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder> 
+        public java.util.List<? extends cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder>
              getModeInfosOrBuilderList() {
           if (modeInfosBuilder_ != null) {
             return modeInfosBuilder_.getMessageOrBuilderList();
@@ -9771,18 +9547,18 @@ public final class TxOuterClass {
          *
          * <code>repeated .cosmos.tx.v1beta1.ModeInfo mode_infos = 2;</code>
          */
-        public java.util.List<cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder> 
+        public java.util.List<cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder>
              getModeInfosBuilderList() {
           return getModeInfosFieldBuilder().getBuilderList();
         }
         private com.google.protobuf.RepeatedFieldBuilderV3<
-            cosmos.tx.v1beta1.TxOuterClass.ModeInfo, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder, cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder> 
+            cosmos.tx.v1beta1.TxOuterClass.ModeInfo, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder, cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder>
             getModeInfosFieldBuilder() {
           if (modeInfosBuilder_ == null) {
             modeInfosBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
                 cosmos.tx.v1beta1.TxOuterClass.ModeInfo, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Builder, cosmos.tx.v1beta1.TxOuterClass.ModeInfoOrBuilder>(
                     modeInfos_,
-                    ((bitField0_ & 0x00000001) != 0),
+                    ((bitField0_ & 0x00000002) != 0),
                     getParentForChildren(),
                     isClean());
             modeInfos_ = null;
@@ -9822,7 +9598,18 @@ public final class TxOuterClass {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Multi(input, extensionRegistry);
+          Builder builder = newBuilder();
+          try {
+            builder.mergeFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(builder.buildPartial());
+          } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                .setUnfinishedMessage(builder.buildPartial());
+          }
+          return builder.buildPartial();
         }
       };
 
@@ -9843,6 +9630,7 @@ public final class TxOuterClass {
     }
 
     private int sumCase_ = 0;
+    @SuppressWarnings("serial")
     private java.lang.Object sum_;
     public enum SumCase
         implements com.google.protobuf.Internal.EnumLite,
@@ -9989,7 +9777,7 @@ public final class TxOuterClass {
       if (sumCase_ == 2) {
         output.writeMessage(2, (cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi) sum_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -10006,7 +9794,7 @@ public final class TxOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, (cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi) sum_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -10034,7 +9822,7 @@ public final class TxOuterClass {
         case 0:
         default:
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -10057,7 +9845,7 @@ public final class TxOuterClass {
         case 0:
         default:
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -10106,11 +9894,13 @@ public final class TxOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.ModeInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.ModeInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10178,22 +9968,24 @@ public final class TxOuterClass {
 
       // Construct using cosmos.tx.v1beta1.TxOuterClass.ModeInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
+        if (singleBuilder_ != null) {
+          singleBuilder_.clear();
+        }
+        if (multiBuilder_ != null) {
+          multiBuilder_.clear();
+        }
         sumCase_ = 0;
         sum_ = null;
         return this;
@@ -10222,23 +10014,27 @@ public final class TxOuterClass {
       @java.lang.Override
       public cosmos.tx.v1beta1.TxOuterClass.ModeInfo buildPartial() {
         cosmos.tx.v1beta1.TxOuterClass.ModeInfo result = new cosmos.tx.v1beta1.TxOuterClass.ModeInfo(this);
-        if (sumCase_ == 1) {
-          if (singleBuilder_ == null) {
-            result.sum_ = sum_;
-          } else {
-            result.sum_ = singleBuilder_.build();
-          }
-        }
-        if (sumCase_ == 2) {
-          if (multiBuilder_ == null) {
-            result.sum_ = sum_;
-          } else {
-            result.sum_ = multiBuilder_.build();
-          }
-        }
-        result.sumCase_ = sumCase_;
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.tx.v1beta1.TxOuterClass.ModeInfo result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      private void buildPartialOneofs(cosmos.tx.v1beta1.TxOuterClass.ModeInfo result) {
+        result.sumCase_ = sumCase_;
+        result.sum_ = this.sum_;
+        if (sumCase_ == 1 &&
+            singleBuilder_ != null) {
+          result.sum_ = singleBuilder_.build();
+        }
+        if (sumCase_ == 2 &&
+            multiBuilder_ != null) {
+          result.sum_ = multiBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -10298,7 +10094,7 @@ public final class TxOuterClass {
             break;
           }
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -10313,17 +10109,44 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.tx.v1beta1.TxOuterClass.ModeInfo parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getSingleFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                sumCase_ = 1;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getMultiFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                sumCase_ = 2;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.tx.v1beta1.TxOuterClass.ModeInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int sumCase_ = 0;
@@ -10341,6 +10164,7 @@ public final class TxOuterClass {
         return this;
       }
 
+      private int bitField0_;
 
       private com.google.protobuf.SingleFieldBuilderV3<
           cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.Builder, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.SingleOrBuilder> singleBuilder_;
@@ -10436,8 +10260,9 @@ public final class TxOuterClass {
         } else {
           if (sumCase_ == 1) {
             singleBuilder_.mergeFrom(value);
+          } else {
+            singleBuilder_.setMessage(value);
           }
-          singleBuilder_.setMessage(value);
         }
         sumCase_ = 1;
         return this;
@@ -10501,7 +10326,7 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.ModeInfo.Single single = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.Builder, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.SingleOrBuilder> 
+          cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Single.Builder, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.SingleOrBuilder>
           getSingleFieldBuilder() {
         if (singleBuilder_ == null) {
           if (!(sumCase_ == 1)) {
@@ -10515,7 +10340,7 @@ public final class TxOuterClass {
           sum_ = null;
         }
         sumCase_ = 1;
-        onChanged();;
+        onChanged();
         return singleBuilder_;
       }
 
@@ -10613,8 +10438,9 @@ public final class TxOuterClass {
         } else {
           if (sumCase_ == 2) {
             multiBuilder_.mergeFrom(value);
+          } else {
+            multiBuilder_.setMessage(value);
           }
-          multiBuilder_.setMessage(value);
         }
         sumCase_ = 2;
         return this;
@@ -10678,7 +10504,7 @@ public final class TxOuterClass {
        * <code>.cosmos.tx.v1beta1.ModeInfo.Multi multi = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.Builder, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.MultiOrBuilder> 
+          cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.Multi.Builder, cosmos.tx.v1beta1.TxOuterClass.ModeInfo.MultiOrBuilder>
           getMultiFieldBuilder() {
         if (multiBuilder_ == null) {
           if (!(sumCase_ == 2)) {
@@ -10692,7 +10518,7 @@ public final class TxOuterClass {
           sum_ = null;
         }
         sumCase_ = 2;
-        onChanged();;
+        onChanged();
         return multiBuilder_;
       }
       @java.lang.Override
@@ -10728,7 +10554,18 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ModeInfo(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -10759,7 +10596,7 @@ public final class TxOuterClass {
      *
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-    java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> 
+    java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin>
         getAmountList();
     /**
      * <pre>
@@ -10784,7 +10621,7 @@ public final class TxOuterClass {
      *
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
-    java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+    java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
         getAmountOrBuilderList();
     /**
      * <pre>
@@ -10886,78 +10723,6 @@ public final class TxOuterClass {
       return new Fee();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Fee(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                amount_ = new java.util.ArrayList<cosmos.base.v1beta1.CoinOuterClass.Coin>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              amount_.add(
-                  input.readMessage(cosmos.base.v1beta1.CoinOuterClass.Coin.parser(), extensionRegistry));
-              break;
-            }
-            case 16: {
-
-              gasLimit_ = input.readUInt64();
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              payer_ = s;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              granter_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          amount_ = java.util.Collections.unmodifiableList(amount_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.tx.v1beta1.TxOuterClass.internal_static_cosmos_tx_v1beta1_Fee_descriptor;
@@ -10972,6 +10737,7 @@ public final class TxOuterClass {
     }
 
     public static final int AMOUNT_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin> amount_;
     /**
      * <pre>
@@ -10992,7 +10758,7 @@ public final class TxOuterClass {
      * <code>repeated .cosmos.base.v1beta1.Coin amount = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
      */
     @java.lang.Override
-    public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+    public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
         getAmountOrBuilderList() {
       return amount_;
     }
@@ -11032,7 +10798,7 @@ public final class TxOuterClass {
     }
 
     public static final int GAS_LIMIT_FIELD_NUMBER = 2;
-    private long gasLimit_;
+    private long gasLimit_ = 0L;
     /**
      * <pre>
      * gas_limit is the maximum gas that can be used in transaction processing
@@ -11048,7 +10814,8 @@ public final class TxOuterClass {
     }
 
     public static final int PAYER_FIELD_NUMBER = 3;
-    private volatile java.lang.Object payer_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object payer_ = "";
     /**
      * <pre>
      * if unset, the first signer is responsible for paying the fees. If set, the specified account must pay the fees.
@@ -11065,7 +10832,7 @@ public final class TxOuterClass {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         payer_ = s;
@@ -11087,7 +10854,7 @@ public final class TxOuterClass {
         getPayerBytes() {
       java.lang.Object ref = payer_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         payer_ = b;
@@ -11098,7 +10865,8 @@ public final class TxOuterClass {
     }
 
     public static final int GRANTER_FIELD_NUMBER = 4;
-    private volatile java.lang.Object granter_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object granter_ = "";
     /**
      * <pre>
      * if set, the fee payer (either the first signer or the value of the payer field) requests that a fee grant be used
@@ -11115,7 +10883,7 @@ public final class TxOuterClass {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         granter_ = s;
@@ -11137,7 +10905,7 @@ public final class TxOuterClass {
         getGranterBytes() {
       java.lang.Object ref = granter_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
         granter_ = b;
@@ -11167,13 +10935,13 @@ public final class TxOuterClass {
       if (gasLimit_ != 0L) {
         output.writeUInt64(2, gasLimit_);
       }
-      if (!getPayerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(payer_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, payer_);
       }
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, granter_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -11190,13 +10958,13 @@ public final class TxOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(2, gasLimit_);
       }
-      if (!getPayerBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(payer_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, payer_);
       }
-      if (!getGranterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(granter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, granter_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -11219,7 +10987,7 @@ public final class TxOuterClass {
           .equals(other.getPayer())) return false;
       if (!getGranter()
           .equals(other.getGranter())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -11241,7 +11009,7 @@ public final class TxOuterClass {
       hash = (53 * hash) + getPayer().hashCode();
       hash = (37 * hash) + GRANTER_FIELD_NUMBER;
       hash = (53 * hash) + getGranter().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -11290,11 +11058,13 @@ public final class TxOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.Fee parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.tx.v1beta1.TxOuterClass.Fee parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11364,35 +11134,28 @@ public final class TxOuterClass {
 
       // Construct using cosmos.tx.v1beta1.TxOuterClass.Fee.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getAmountFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (amountBuilder_ == null) {
           amount_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          amount_ = null;
           amountBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000001);
         gasLimit_ = 0L;
-
         payer_ = "";
-
         granter_ = "";
-
         return this;
       }
 
@@ -11419,7 +11182,13 @@ public final class TxOuterClass {
       @java.lang.Override
       public cosmos.tx.v1beta1.TxOuterClass.Fee buildPartial() {
         cosmos.tx.v1beta1.TxOuterClass.Fee result = new cosmos.tx.v1beta1.TxOuterClass.Fee(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.tx.v1beta1.TxOuterClass.Fee result) {
         if (amountBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             amount_ = java.util.Collections.unmodifiableList(amount_);
@@ -11429,11 +11198,19 @@ public final class TxOuterClass {
         } else {
           result.amount_ = amountBuilder_.build();
         }
-        result.gasLimit_ = gasLimit_;
-        result.payer_ = payer_;
-        result.granter_ = granter_;
-        onBuilt();
-        return result;
+      }
+
+      private void buildPartial0(cosmos.tx.v1beta1.TxOuterClass.Fee result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.gasLimit_ = gasLimit_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.payer_ = payer_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.granter_ = granter_;
+        }
       }
 
       @java.lang.Override
@@ -11498,7 +11275,7 @@ public final class TxOuterClass {
               amountBuilder_ = null;
               amount_ = other.amount_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              amountBuilder_ = 
+              amountBuilder_ =
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getAmountFieldBuilder() : null;
             } else {
@@ -11511,13 +11288,15 @@ public final class TxOuterClass {
         }
         if (!other.getPayer().isEmpty()) {
           payer_ = other.payer_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (!other.getGranter().isEmpty()) {
           granter_ = other.granter_;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -11532,17 +11311,58 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.tx.v1beta1.TxOuterClass.Fee parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                cosmos.base.v1beta1.CoinOuterClass.Coin m =
+                    input.readMessage(
+                        cosmos.base.v1beta1.CoinOuterClass.Coin.parser(),
+                        extensionRegistry);
+                if (amountBuilder_ == null) {
+                  ensureAmountIsMutable();
+                  amount_.add(m);
+                } else {
+                  amountBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 16: {
+                gasLimit_ = input.readUInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 26: {
+                payer_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                granter_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.tx.v1beta1.TxOuterClass.Fee) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -11802,7 +11622,7 @@ public final class TxOuterClass {
        *
        * <code>repeated .cosmos.base.v1beta1.Coin amount = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
        */
-      public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+      public java.util.List<? extends cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
            getAmountOrBuilderList() {
         if (amountBuilder_ != null) {
           return amountBuilder_.getMessageOrBuilderList();
@@ -11840,12 +11660,12 @@ public final class TxOuterClass {
        *
        * <code>repeated .cosmos.base.v1beta1.Coin amount = 1 [(.gogoproto.nullable) = false, (.gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];</code>
        */
-      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin.Builder> 
+      public java.util.List<cosmos.base.v1beta1.CoinOuterClass.Coin.Builder>
            getAmountBuilderList() {
         return getAmountFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder> 
+          cosmos.base.v1beta1.CoinOuterClass.Coin, cosmos.base.v1beta1.CoinOuterClass.Coin.Builder, cosmos.base.v1beta1.CoinOuterClass.CoinOrBuilder>
           getAmountFieldBuilder() {
         if (amountBuilder_ == null) {
           amountBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
@@ -11884,8 +11704,9 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder setGasLimit(long value) {
-        
+
         gasLimit_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -11899,7 +11720,7 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearGasLimit() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         gasLimit_ = 0L;
         onChanged();
         return this;
@@ -11942,7 +11763,7 @@ public final class TxOuterClass {
           getPayerBytes() {
         java.lang.Object ref = payer_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           payer_ = b;
@@ -11964,11 +11785,9 @@ public final class TxOuterClass {
        */
       public Builder setPayer(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         payer_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -11983,8 +11802,8 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearPayer() {
-        
         payer_ = getDefaultInstance().getPayer();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -12001,12 +11820,10 @@ public final class TxOuterClass {
        */
       public Builder setPayerBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         payer_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -12048,7 +11865,7 @@ public final class TxOuterClass {
           getGranterBytes() {
         java.lang.Object ref = granter_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
           granter_ = b;
@@ -12070,11 +11887,9 @@ public final class TxOuterClass {
        */
       public Builder setGranter(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         granter_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -12089,8 +11904,8 @@ public final class TxOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearGranter() {
-        
         granter_ = getDefaultInstance().getGranter();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -12107,12 +11922,10 @@ public final class TxOuterClass {
        */
       public Builder setGranterBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         granter_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -12149,7 +11962,18 @@ public final class TxOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Fee(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -12171,52 +11995,52 @@ public final class TxOuterClass {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_tx_v1beta1_Tx_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_tx_v1beta1_Tx_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_tx_v1beta1_TxRaw_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_tx_v1beta1_TxRaw_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_tx_v1beta1_SignDoc_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_tx_v1beta1_SignDoc_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_tx_v1beta1_TxBody_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_tx_v1beta1_TxBody_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_tx_v1beta1_AuthInfo_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_tx_v1beta1_AuthInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_tx_v1beta1_SignerInfo_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_tx_v1beta1_SignerInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_tx_v1beta1_ModeInfo_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_tx_v1beta1_ModeInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_tx_v1beta1_ModeInfo_Single_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_tx_v1beta1_ModeInfo_Single_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_tx_v1beta1_ModeInfo_Multi_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_tx_v1beta1_ModeInfo_Multi_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_cosmos_tx_v1beta1_Fee_descriptor;
-  private static final 
+  private static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_cosmos_tx_v1beta1_Fee_fieldAccessorTable;
 
@@ -12232,48 +12056,48 @@ public final class TxOuterClass {
       "v1beta1\032\024gogoproto/gogo.proto\032-cosmos/cr" +
       "ypto/multisig/v1beta1/multisig.proto\032\036co" +
       "smos/base/v1beta1/coin.proto\032\'cosmos/tx/" +
-      "signing/v1beta1/signing.proto\032\032google/pr" +
-      "otobuf2/any.proto\"q\n\002Tx\022\'\n\004body\030\001 \001(\0132\031." +
-      "cosmos.tx.v1beta1.TxBody\022.\n\tauth_info\030\002 " +
-      "\001(\0132\033.cosmos.tx.v1beta1.AuthInfo\022\022\n\nsign" +
-      "atures\030\003 \003(\014\"H\n\005TxRaw\022\022\n\nbody_bytes\030\001 \001(" +
-      "\014\022\027\n\017auth_info_bytes\030\002 \001(\014\022\022\n\nsignatures" +
-      "\030\003 \003(\014\"`\n\007SignDoc\022\022\n\nbody_bytes\030\001 \001(\014\022\027\n" +
-      "\017auth_info_bytes\030\002 \001(\014\022\020\n\010chain_id\030\003 \001(\t" +
-      "\022\026\n\016account_number\030\004 \001(\004\"\312\001\n\006TxBody\022\'\n\010m" +
-      "essages\030\001 \003(\0132\025.google.protobuf2.Any\022\014\n\004" +
-      "memo\030\002 \001(\t\022\026\n\016timeout_height\030\003 \001(\004\0221\n\021ex" +
-      "tension_options\030\377\007 \003(\0132\025.google.protobuf" +
-      "2.Any\022>\n\036non_critical_extension_options\030" +
-      "\377\017 \003(\0132\025.google.protobuf2.Any\"d\n\010AuthInf" +
-      "o\0223\n\014signer_infos\030\001 \003(\0132\035.cosmos.tx.v1be" +
-      "ta1.SignerInfo\022#\n\003fee\030\002 \001(\0132\026.cosmos.tx." +
-      "v1beta1.Fee\"y\n\nSignerInfo\022)\n\npublic_key\030" +
-      "\001 \001(\0132\025.google.protobuf2.Any\022.\n\tmode_inf" +
-      "o\030\002 \001(\0132\033.cosmos.tx.v1beta1.ModeInfo\022\020\n\010" +
-      "sequence\030\003 \001(\004\"\265\002\n\010ModeInfo\0224\n\006single\030\001 " +
-      "\001(\0132\".cosmos.tx.v1beta1.ModeInfo.SingleH" +
-      "\000\0222\n\005multi\030\002 \001(\0132!.cosmos.tx.v1beta1.Mod" +
-      "eInfo.MultiH\000\032;\n\006Single\0221\n\004mode\030\001 \001(\0162#." +
-      "cosmos.tx.signing.v1beta1.SignMode\032{\n\005Mu" +
-      "lti\022A\n\010bitarray\030\001 \001(\0132/.cosmos.crypto.mu" +
-      "ltisig.v1beta1.CompactBitArray\022/\n\nmode_i" +
-      "nfos\030\002 \003(\0132\033.cosmos.tx.v1beta1.ModeInfoB" +
-      "\005\n\003sum\"\225\001\n\003Fee\022[\n\006amount\030\001 \003(\0132\031.cosmos." +
-      "base.v1beta1.CoinB0\310\336\037\000\252\337\037(github.com/co" +
-      "smos/cosmos-sdk/types.Coins\022\021\n\tgas_limit" +
-      "\030\002 \001(\004\022\r\n\005payer\030\003 \001(\t\022\017\n\007granter\030\004 \001(\tB\'" +
-      "Z%github.com/cosmos/cosmos-sdk/types/txb" +
-      "\006proto3"
+      "signing/v1beta1/signing.proto\032\031google/pr" +
+      "otobuf/any.proto\"q\n\002Tx\022\'\n\004body\030\001 \001(\0132\031.c" +
+      "osmos.tx.v1beta1.TxBody\022.\n\tauth_info\030\002 \001" +
+      "(\0132\033.cosmos.tx.v1beta1.AuthInfo\022\022\n\nsigna" +
+      "tures\030\003 \003(\014\"H\n\005TxRaw\022\022\n\nbody_bytes\030\001 \001(\014" +
+      "\022\027\n\017auth_info_bytes\030\002 \001(\014\022\022\n\nsignatures\030" +
+      "\003 \003(\014\"`\n\007SignDoc\022\022\n\nbody_bytes\030\001 \001(\014\022\027\n\017" +
+      "auth_info_bytes\030\002 \001(\014\022\020\n\010chain_id\030\003 \001(\t\022" +
+      "\026\n\016account_number\030\004 \001(\004\"\307\001\n\006TxBody\022&\n\010me" +
+      "ssages\030\001 \003(\0132\024.google.protobuf.Any\022\014\n\004me" +
+      "mo\030\002 \001(\t\022\026\n\016timeout_height\030\003 \001(\004\0220\n\021exte" +
+      "nsion_options\030\377\007 \003(\0132\024.google.protobuf.A" +
+      "ny\022=\n\036non_critical_extension_options\030\377\017 " +
+      "\003(\0132\024.google.protobuf.Any\"d\n\010AuthInfo\0223\n" +
+      "\014signer_infos\030\001 \003(\0132\035.cosmos.tx.v1beta1." +
+      "SignerInfo\022#\n\003fee\030\002 \001(\0132\026.cosmos.tx.v1be" +
+      "ta1.Fee\"x\n\nSignerInfo\022(\n\npublic_key\030\001 \001(" +
+      "\0132\024.google.protobuf.Any\022.\n\tmode_info\030\002 \001" +
+      "(\0132\033.cosmos.tx.v1beta1.ModeInfo\022\020\n\010seque" +
+      "nce\030\003 \001(\004\"\265\002\n\010ModeInfo\0224\n\006single\030\001 \001(\0132\"" +
+      ".cosmos.tx.v1beta1.ModeInfo.SingleH\000\0222\n\005" +
+      "multi\030\002 \001(\0132!.cosmos.tx.v1beta1.ModeInfo" +
+      ".MultiH\000\032;\n\006Single\0221\n\004mode\030\001 \001(\0162#.cosmo" +
+      "s.tx.signing.v1beta1.SignMode\032{\n\005Multi\022A" +
+      "\n\010bitarray\030\001 \001(\0132/.cosmos.crypto.multisi" +
+      "g.v1beta1.CompactBitArray\022/\n\nmode_infos\030" +
+      "\002 \003(\0132\033.cosmos.tx.v1beta1.ModeInfoB\005\n\003su" +
+      "m\"\225\001\n\003Fee\022[\n\006amount\030\001 \003(\0132\031.cosmos.base." +
+      "v1beta1.CoinB0\310\336\037\000\252\337\037(github.com/cosmos/" +
+      "cosmos-sdk/types.Coins\022\021\n\tgas_limit\030\002 \001(" +
+      "\004\022\r\n\005payer\030\003 \001(\t\022\017\n\007granter\030\004 \001(\tB\'Z%git" +
+      "hub.com/cosmos/cosmos-sdk/types/txb\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           cosmos.crypto.multisig.v1beta1.Multisig.getDescriptor(),
           cosmos.base.v1beta1.CoinOuterClass.getDescriptor(),
           cosmos.tx.signing.v1beta1.Signing.getDescriptor(),
-          com.google.protobuf2.AnyProto.getDescriptor(),
+          com.google.protobuf.AnyProto.getDescriptor(),
         });
     internal_static_cosmos_tx_v1beta1_Tx_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -12337,15 +12161,15 @@ public final class TxOuterClass {
         new java.lang.String[] { "Amount", "GasLimit", "Payer", "Granter", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.castrepeated);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.castrepeated);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     cosmos.crypto.multisig.v1beta1.Multisig.getDescriptor();
     cosmos.base.v1beta1.CoinOuterClass.getDescriptor();
     cosmos.tx.signing.v1beta1.Signing.getDescriptor();
-    com.google.protobuf2.AnyProto.getDescriptor();
+    com.google.protobuf.AnyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

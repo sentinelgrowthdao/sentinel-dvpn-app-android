@@ -1,6 +1,6 @@
 package co.sentinel.dvpn.hub.tasks
 
-import com.google.protobuf2.Any
+import com.google.protobuf.Any
 import cosmos.base.v1beta1.CoinOuterClass
 
 object CreateDirectTransaction {

@@ -270,129 +270,6 @@ public final class Genesis {
       return new GenesisState();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private GenesisState(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              startingProposalId_ = input.readUInt64();
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                deposits_ = new java.util.ArrayList<cosmos.gov.v1beta1.Gov.Deposit>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              deposits_.add(
-                  input.readMessage(cosmos.gov.v1beta1.Gov.Deposit.parser(), extensionRegistry));
-              break;
-            }
-            case 26: {
-              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                votes_ = new java.util.ArrayList<cosmos.gov.v1beta1.Gov.Vote>();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              votes_.add(
-                  input.readMessage(cosmos.gov.v1beta1.Gov.Vote.parser(), extensionRegistry));
-              break;
-            }
-            case 34: {
-              if (!((mutable_bitField0_ & 0x00000004) != 0)) {
-                proposals_ = new java.util.ArrayList<cosmos.gov.v1beta1.Gov.Proposal>();
-                mutable_bitField0_ |= 0x00000004;
-              }
-              proposals_.add(
-                  input.readMessage(cosmos.gov.v1beta1.Gov.Proposal.parser(), extensionRegistry));
-              break;
-            }
-            case 42: {
-              cosmos.gov.v1beta1.Gov.DepositParams.Builder subBuilder = null;
-              if (depositParams_ != null) {
-                subBuilder = depositParams_.toBuilder();
-              }
-              depositParams_ = input.readMessage(cosmos.gov.v1beta1.Gov.DepositParams.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(depositParams_);
-                depositParams_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 50: {
-              cosmos.gov.v1beta1.Gov.VotingParams.Builder subBuilder = null;
-              if (votingParams_ != null) {
-                subBuilder = votingParams_.toBuilder();
-              }
-              votingParams_ = input.readMessage(cosmos.gov.v1beta1.Gov.VotingParams.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(votingParams_);
-                votingParams_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 58: {
-              cosmos.gov.v1beta1.Gov.TallyParams.Builder subBuilder = null;
-              if (tallyParams_ != null) {
-                subBuilder = tallyParams_.toBuilder();
-              }
-              tallyParams_ = input.readMessage(cosmos.gov.v1beta1.Gov.TallyParams.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(tallyParams_);
-                tallyParams_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          deposits_ = java.util.Collections.unmodifiableList(deposits_);
-        }
-        if (((mutable_bitField0_ & 0x00000002) != 0)) {
-          votes_ = java.util.Collections.unmodifiableList(votes_);
-        }
-        if (((mutable_bitField0_ & 0x00000004) != 0)) {
-          proposals_ = java.util.Collections.unmodifiableList(proposals_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.Genesis.internal_static_cosmos_gov_v1beta1_GenesisState_descriptor;
@@ -407,7 +284,7 @@ public final class Genesis {
     }
 
     public static final int STARTING_PROPOSAL_ID_FIELD_NUMBER = 1;
-    private long startingProposalId_;
+    private long startingProposalId_ = 0L;
     /**
      * <pre>
      * starting_proposal_id is the ID of the starting proposal.
@@ -422,6 +299,7 @@ public final class Genesis {
     }
 
     public static final int DEPOSITS_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.gov.v1beta1.Gov.Deposit> deposits_;
     /**
      * <pre>
@@ -482,6 +360,7 @@ public final class Genesis {
     }
 
     public static final int VOTES_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.gov.v1beta1.Gov.Vote> votes_;
     /**
      * <pre>
@@ -542,6 +421,7 @@ public final class Genesis {
     }
 
     public static final int PROPOSALS_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.gov.v1beta1.Gov.Proposal> proposals_;
     /**
      * <pre>
@@ -636,7 +516,7 @@ public final class Genesis {
      */
     @java.lang.Override
     public cosmos.gov.v1beta1.Gov.DepositParamsOrBuilder getDepositParamsOrBuilder() {
-      return getDepositParams();
+      return depositParams_ == null ? cosmos.gov.v1beta1.Gov.DepositParams.getDefaultInstance() : depositParams_;
     }
 
     public static final int VOTING_PARAMS_FIELD_NUMBER = 6;
@@ -674,7 +554,7 @@ public final class Genesis {
      */
     @java.lang.Override
     public cosmos.gov.v1beta1.Gov.VotingParamsOrBuilder getVotingParamsOrBuilder() {
-      return getVotingParams();
+      return votingParams_ == null ? cosmos.gov.v1beta1.Gov.VotingParams.getDefaultInstance() : votingParams_;
     }
 
     public static final int TALLY_PARAMS_FIELD_NUMBER = 7;
@@ -712,7 +592,7 @@ public final class Genesis {
      */
     @java.lang.Override
     public cosmos.gov.v1beta1.Gov.TallyParamsOrBuilder getTallyParamsOrBuilder() {
-      return getTallyParams();
+      return tallyParams_ == null ? cosmos.gov.v1beta1.Gov.TallyParams.getDefaultInstance() : tallyParams_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -750,7 +630,7 @@ public final class Genesis {
       if (tallyParams_ != null) {
         output.writeMessage(7, getTallyParams());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -787,7 +667,7 @@ public final class Genesis {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, getTallyParams());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -825,7 +705,7 @@ public final class Genesis {
         if (!getTallyParams()
             .equals(other.getTallyParams())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -863,7 +743,7 @@ public final class Genesis {
         hash = (37 * hash) + TALLY_PARAMS_FIELD_NUMBER;
         hash = (53 * hash) + getTallyParams().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -912,11 +792,13 @@ public final class Genesis {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.Genesis.GenesisState parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.Genesis.GenesisState parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -984,61 +866,53 @@ public final class Genesis {
 
       // Construct using cosmos.gov.v1beta1.Genesis.GenesisState.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getDepositsFieldBuilder();
-          getVotesFieldBuilder();
-          getProposalsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         startingProposalId_ = 0L;
-
         if (depositsBuilder_ == null) {
           deposits_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          deposits_ = null;
           depositsBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (votesBuilder_ == null) {
           votes_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
+          votes_ = null;
           votesBuilder_.clear();
         }
+        bitField0_ = (bitField0_ & ~0x00000004);
         if (proposalsBuilder_ == null) {
           proposals_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
+          proposals_ = null;
           proposalsBuilder_.clear();
         }
-        if (depositParamsBuilder_ == null) {
-          depositParams_ = null;
-        } else {
-          depositParams_ = null;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        depositParams_ = null;
+        if (depositParamsBuilder_ != null) {
+          depositParamsBuilder_.dispose();
           depositParamsBuilder_ = null;
         }
-        if (votingParamsBuilder_ == null) {
-          votingParams_ = null;
-        } else {
-          votingParams_ = null;
+        votingParams_ = null;
+        if (votingParamsBuilder_ != null) {
+          votingParamsBuilder_.dispose();
           votingParamsBuilder_ = null;
         }
-        if (tallyParamsBuilder_ == null) {
-          tallyParams_ = null;
-        } else {
-          tallyParams_ = null;
+        tallyParams_ = null;
+        if (tallyParamsBuilder_ != null) {
+          tallyParamsBuilder_.dispose();
           tallyParamsBuilder_ = null;
         }
         return this;
@@ -1067,52 +941,62 @@ public final class Genesis {
       @java.lang.Override
       public cosmos.gov.v1beta1.Genesis.GenesisState buildPartial() {
         cosmos.gov.v1beta1.Genesis.GenesisState result = new cosmos.gov.v1beta1.Genesis.GenesisState(this);
-        int from_bitField0_ = bitField0_;
-        result.startingProposalId_ = startingProposalId_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.gov.v1beta1.Genesis.GenesisState result) {
         if (depositsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             deposits_ = java.util.Collections.unmodifiableList(deposits_);
-            bitField0_ = (bitField0_ & ~0x00000001);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.deposits_ = deposits_;
         } else {
           result.deposits_ = depositsBuilder_.build();
         }
         if (votesBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0)) {
+          if (((bitField0_ & 0x00000004) != 0)) {
             votes_ = java.util.Collections.unmodifiableList(votes_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000004);
           }
           result.votes_ = votes_;
         } else {
           result.votes_ = votesBuilder_.build();
         }
         if (proposalsBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) != 0)) {
+          if (((bitField0_ & 0x00000008) != 0)) {
             proposals_ = java.util.Collections.unmodifiableList(proposals_);
-            bitField0_ = (bitField0_ & ~0x00000004);
+            bitField0_ = (bitField0_ & ~0x00000008);
           }
           result.proposals_ = proposals_;
         } else {
           result.proposals_ = proposalsBuilder_.build();
         }
-        if (depositParamsBuilder_ == null) {
-          result.depositParams_ = depositParams_;
-        } else {
-          result.depositParams_ = depositParamsBuilder_.build();
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.Genesis.GenesisState result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.startingProposalId_ = startingProposalId_;
         }
-        if (votingParamsBuilder_ == null) {
-          result.votingParams_ = votingParams_;
-        } else {
-          result.votingParams_ = votingParamsBuilder_.build();
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.depositParams_ = depositParamsBuilder_ == null
+              ? depositParams_
+              : depositParamsBuilder_.build();
         }
-        if (tallyParamsBuilder_ == null) {
-          result.tallyParams_ = tallyParams_;
-        } else {
-          result.tallyParams_ = tallyParamsBuilder_.build();
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.votingParams_ = votingParamsBuilder_ == null
+              ? votingParams_
+              : votingParamsBuilder_.build();
         }
-        onBuilt();
-        return result;
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.tallyParams_ = tallyParamsBuilder_ == null
+              ? tallyParams_
+              : tallyParamsBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1166,7 +1050,7 @@ public final class Genesis {
           if (!other.deposits_.isEmpty()) {
             if (deposits_.isEmpty()) {
               deposits_ = other.deposits_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
             } else {
               ensureDepositsIsMutable();
               deposits_.addAll(other.deposits_);
@@ -1179,7 +1063,7 @@ public final class Genesis {
               depositsBuilder_.dispose();
               depositsBuilder_ = null;
               deposits_ = other.deposits_;
-              bitField0_ = (bitField0_ & ~0x00000001);
+              bitField0_ = (bitField0_ & ~0x00000002);
               depositsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getDepositsFieldBuilder() : null;
@@ -1192,7 +1076,7 @@ public final class Genesis {
           if (!other.votes_.isEmpty()) {
             if (votes_.isEmpty()) {
               votes_ = other.votes_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000004);
             } else {
               ensureVotesIsMutable();
               votes_.addAll(other.votes_);
@@ -1205,7 +1089,7 @@ public final class Genesis {
               votesBuilder_.dispose();
               votesBuilder_ = null;
               votes_ = other.votes_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000004);
               votesBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getVotesFieldBuilder() : null;
@@ -1218,7 +1102,7 @@ public final class Genesis {
           if (!other.proposals_.isEmpty()) {
             if (proposals_.isEmpty()) {
               proposals_ = other.proposals_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000008);
             } else {
               ensureProposalsIsMutable();
               proposals_.addAll(other.proposals_);
@@ -1231,7 +1115,7 @@ public final class Genesis {
               proposalsBuilder_.dispose();
               proposalsBuilder_ = null;
               proposals_ = other.proposals_;
-              bitField0_ = (bitField0_ & ~0x00000004);
+              bitField0_ = (bitField0_ & ~0x00000008);
               proposalsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getProposalsFieldBuilder() : null;
@@ -1249,7 +1133,7 @@ public final class Genesis {
         if (other.hasTallyParams()) {
           mergeTallyParams(other.getTallyParams());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1264,17 +1148,95 @@ public final class Genesis {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.Genesis.GenesisState parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                startingProposalId_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                cosmos.gov.v1beta1.Gov.Deposit m =
+                    input.readMessage(
+                        cosmos.gov.v1beta1.Gov.Deposit.parser(),
+                        extensionRegistry);
+                if (depositsBuilder_ == null) {
+                  ensureDepositsIsMutable();
+                  deposits_.add(m);
+                } else {
+                  depositsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 18
+              case 26: {
+                cosmos.gov.v1beta1.Gov.Vote m =
+                    input.readMessage(
+                        cosmos.gov.v1beta1.Gov.Vote.parser(),
+                        extensionRegistry);
+                if (votesBuilder_ == null) {
+                  ensureVotesIsMutable();
+                  votes_.add(m);
+                } else {
+                  votesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 26
+              case 34: {
+                cosmos.gov.v1beta1.Gov.Proposal m =
+                    input.readMessage(
+                        cosmos.gov.v1beta1.Gov.Proposal.parser(),
+                        extensionRegistry);
+                if (proposalsBuilder_ == null) {
+                  ensureProposalsIsMutable();
+                  proposals_.add(m);
+                } else {
+                  proposalsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 34
+              case 42: {
+                input.readMessage(
+                    getDepositParamsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 50: {
+                input.readMessage(
+                    getVotingParamsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
+              case 58: {
+                input.readMessage(
+                    getTallyParamsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 58
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.Genesis.GenesisState) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -1302,8 +1264,9 @@ public final class Genesis {
        * @return This builder for chaining.
        */
       public Builder setStartingProposalId(long value) {
-        
+
         startingProposalId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1316,7 +1279,7 @@ public final class Genesis {
        * @return This builder for chaining.
        */
       public Builder clearStartingProposalId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         startingProposalId_ = 0L;
         onChanged();
         return this;
@@ -1325,9 +1288,9 @@ public final class Genesis {
       private java.util.List<cosmos.gov.v1beta1.Gov.Deposit> deposits_ =
         java.util.Collections.emptyList();
       private void ensureDepositsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           deposits_ = new java.util.ArrayList<cosmos.gov.v1beta1.Gov.Deposit>(deposits_);
-          bitField0_ |= 0x00000001;
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -1521,7 +1484,7 @@ public final class Genesis {
       public Builder clearDeposits() {
         if (depositsBuilder_ == null) {
           deposits_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           depositsBuilder_.clear();
@@ -1626,7 +1589,7 @@ public final class Genesis {
           depositsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.gov.v1beta1.Gov.Deposit, cosmos.gov.v1beta1.Gov.Deposit.Builder, cosmos.gov.v1beta1.Gov.DepositOrBuilder>(
                   deposits_,
-                  ((bitField0_ & 0x00000001) != 0),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           deposits_ = null;
@@ -1637,9 +1600,9 @@ public final class Genesis {
       private java.util.List<cosmos.gov.v1beta1.Gov.Vote> votes_ =
         java.util.Collections.emptyList();
       private void ensureVotesIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
+        if (!((bitField0_ & 0x00000004) != 0)) {
           votes_ = new java.util.ArrayList<cosmos.gov.v1beta1.Gov.Vote>(votes_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
          }
       }
 
@@ -1833,7 +1796,7 @@ public final class Genesis {
       public Builder clearVotes() {
         if (votesBuilder_ == null) {
           votes_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
         } else {
           votesBuilder_.clear();
@@ -1938,7 +1901,7 @@ public final class Genesis {
           votesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.gov.v1beta1.Gov.Vote, cosmos.gov.v1beta1.Gov.Vote.Builder, cosmos.gov.v1beta1.Gov.VoteOrBuilder>(
                   votes_,
-                  ((bitField0_ & 0x00000002) != 0),
+                  ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
                   isClean());
           votes_ = null;
@@ -1949,9 +1912,9 @@ public final class Genesis {
       private java.util.List<cosmos.gov.v1beta1.Gov.Proposal> proposals_ =
         java.util.Collections.emptyList();
       private void ensureProposalsIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
+        if (!((bitField0_ & 0x00000008) != 0)) {
           proposals_ = new java.util.ArrayList<cosmos.gov.v1beta1.Gov.Proposal>(proposals_);
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
          }
       }
 
@@ -2145,7 +2108,7 @@ public final class Genesis {
       public Builder clearProposals() {
         if (proposalsBuilder_ == null) {
           proposals_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
           proposalsBuilder_.clear();
@@ -2250,7 +2213,7 @@ public final class Genesis {
           proposalsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               cosmos.gov.v1beta1.Gov.Proposal, cosmos.gov.v1beta1.Gov.Proposal.Builder, cosmos.gov.v1beta1.Gov.ProposalOrBuilder>(
                   proposals_,
-                  ((bitField0_ & 0x00000004) != 0),
+                  ((bitField0_ & 0x00000008) != 0),
                   getParentForChildren(),
                   isClean());
           proposals_ = null;
@@ -2270,7 +2233,7 @@ public final class Genesis {
        * @return Whether the depositParams field is set.
        */
       public boolean hasDepositParams() {
-        return depositParamsBuilder_ != null || depositParams_ != null;
+        return ((bitField0_ & 0x00000010) != 0);
       }
       /**
        * <pre>
@@ -2300,11 +2263,11 @@ public final class Genesis {
             throw new NullPointerException();
           }
           depositParams_ = value;
-          onChanged();
         } else {
           depositParamsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -2318,11 +2281,11 @@ public final class Genesis {
           cosmos.gov.v1beta1.Gov.DepositParams.Builder builderForValue) {
         if (depositParamsBuilder_ == null) {
           depositParams_ = builderForValue.build();
-          onChanged();
         } else {
           depositParamsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -2334,17 +2297,18 @@ public final class Genesis {
        */
       public Builder mergeDepositParams(cosmos.gov.v1beta1.Gov.DepositParams value) {
         if (depositParamsBuilder_ == null) {
-          if (depositParams_ != null) {
-            depositParams_ =
-              cosmos.gov.v1beta1.Gov.DepositParams.newBuilder(depositParams_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000010) != 0) &&
+            depositParams_ != null &&
+            depositParams_ != cosmos.gov.v1beta1.Gov.DepositParams.getDefaultInstance()) {
+            getDepositParamsBuilder().mergeFrom(value);
           } else {
             depositParams_ = value;
           }
-          onChanged();
         } else {
           depositParamsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -2355,14 +2319,13 @@ public final class Genesis {
        * <code>.cosmos.gov.v1beta1.DepositParams deposit_params = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"deposit_params&#92;""];</code>
        */
       public Builder clearDepositParams() {
-        if (depositParamsBuilder_ == null) {
-          depositParams_ = null;
-          onChanged();
-        } else {
-          depositParams_ = null;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        depositParams_ = null;
+        if (depositParamsBuilder_ != null) {
+          depositParamsBuilder_.dispose();
           depositParamsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2373,7 +2336,7 @@ public final class Genesis {
        * <code>.cosmos.gov.v1beta1.DepositParams deposit_params = 5 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"deposit_params&#92;""];</code>
        */
       public cosmos.gov.v1beta1.Gov.DepositParams.Builder getDepositParamsBuilder() {
-        
+        bitField0_ |= 0x00000010;
         onChanged();
         return getDepositParamsFieldBuilder().getBuilder();
       }
@@ -2425,7 +2388,7 @@ public final class Genesis {
        * @return Whether the votingParams field is set.
        */
       public boolean hasVotingParams() {
-        return votingParamsBuilder_ != null || votingParams_ != null;
+        return ((bitField0_ & 0x00000020) != 0);
       }
       /**
        * <pre>
@@ -2455,11 +2418,11 @@ public final class Genesis {
             throw new NullPointerException();
           }
           votingParams_ = value;
-          onChanged();
         } else {
           votingParamsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -2473,11 +2436,11 @@ public final class Genesis {
           cosmos.gov.v1beta1.Gov.VotingParams.Builder builderForValue) {
         if (votingParamsBuilder_ == null) {
           votingParams_ = builderForValue.build();
-          onChanged();
         } else {
           votingParamsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -2489,17 +2452,18 @@ public final class Genesis {
        */
       public Builder mergeVotingParams(cosmos.gov.v1beta1.Gov.VotingParams value) {
         if (votingParamsBuilder_ == null) {
-          if (votingParams_ != null) {
-            votingParams_ =
-              cosmos.gov.v1beta1.Gov.VotingParams.newBuilder(votingParams_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000020) != 0) &&
+            votingParams_ != null &&
+            votingParams_ != cosmos.gov.v1beta1.Gov.VotingParams.getDefaultInstance()) {
+            getVotingParamsBuilder().mergeFrom(value);
           } else {
             votingParams_ = value;
           }
-          onChanged();
         } else {
           votingParamsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -2510,14 +2474,13 @@ public final class Genesis {
        * <code>.cosmos.gov.v1beta1.VotingParams voting_params = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"voting_params&#92;""];</code>
        */
       public Builder clearVotingParams() {
-        if (votingParamsBuilder_ == null) {
-          votingParams_ = null;
-          onChanged();
-        } else {
-          votingParams_ = null;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        votingParams_ = null;
+        if (votingParamsBuilder_ != null) {
+          votingParamsBuilder_.dispose();
           votingParamsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2528,7 +2491,7 @@ public final class Genesis {
        * <code>.cosmos.gov.v1beta1.VotingParams voting_params = 6 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"voting_params&#92;""];</code>
        */
       public cosmos.gov.v1beta1.Gov.VotingParams.Builder getVotingParamsBuilder() {
-        
+        bitField0_ |= 0x00000020;
         onChanged();
         return getVotingParamsFieldBuilder().getBuilder();
       }
@@ -2580,7 +2543,7 @@ public final class Genesis {
        * @return Whether the tallyParams field is set.
        */
       public boolean hasTallyParams() {
-        return tallyParamsBuilder_ != null || tallyParams_ != null;
+        return ((bitField0_ & 0x00000040) != 0);
       }
       /**
        * <pre>
@@ -2610,11 +2573,11 @@ public final class Genesis {
             throw new NullPointerException();
           }
           tallyParams_ = value;
-          onChanged();
         } else {
           tallyParamsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -2628,11 +2591,11 @@ public final class Genesis {
           cosmos.gov.v1beta1.Gov.TallyParams.Builder builderForValue) {
         if (tallyParamsBuilder_ == null) {
           tallyParams_ = builderForValue.build();
-          onChanged();
         } else {
           tallyParamsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -2644,17 +2607,18 @@ public final class Genesis {
        */
       public Builder mergeTallyParams(cosmos.gov.v1beta1.Gov.TallyParams value) {
         if (tallyParamsBuilder_ == null) {
-          if (tallyParams_ != null) {
-            tallyParams_ =
-              cosmos.gov.v1beta1.Gov.TallyParams.newBuilder(tallyParams_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000040) != 0) &&
+            tallyParams_ != null &&
+            tallyParams_ != cosmos.gov.v1beta1.Gov.TallyParams.getDefaultInstance()) {
+            getTallyParamsBuilder().mergeFrom(value);
           } else {
             tallyParams_ = value;
           }
-          onChanged();
         } else {
           tallyParamsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000040;
+        onChanged();
         return this;
       }
       /**
@@ -2665,14 +2629,13 @@ public final class Genesis {
        * <code>.cosmos.gov.v1beta1.TallyParams tally_params = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"tally_params&#92;""];</code>
        */
       public Builder clearTallyParams() {
-        if (tallyParamsBuilder_ == null) {
-          tallyParams_ = null;
-          onChanged();
-        } else {
-          tallyParams_ = null;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        tallyParams_ = null;
+        if (tallyParamsBuilder_ != null) {
+          tallyParamsBuilder_.dispose();
           tallyParamsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2683,7 +2646,7 @@ public final class Genesis {
        * <code>.cosmos.gov.v1beta1.TallyParams tally_params = 7 [(.gogoproto.nullable) = false, (.gogoproto.moretags) = "yaml:&#92;"tally_params&#92;""];</code>
        */
       public cosmos.gov.v1beta1.Gov.TallyParams.Builder getTallyParamsBuilder() {
-        
+        bitField0_ |= 0x00000040;
         onChanged();
         return getTallyParamsFieldBuilder().getBuilder();
       }
@@ -2755,7 +2718,18 @@ public final class Genesis {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GenesisState(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2794,11 +2768,11 @@ public final class Genesis {
       "smos/gov/v1beta1/gov.proto\"\217\004\n\014GenesisSt" +
       "ate\022=\n\024starting_proposal_id\030\001 \001(\004B\037\362\336\037\033y" +
       "aml:\"starting_proposal_id\"\022?\n\010deposits\030\002" +
-      " \003(\0132\033.cosmos.gov.v1beta1.DepositB\020\252\337\037\010D" +
-      "eposits\310\336\037\000\0226\n\005votes\030\003 \003(\0132\030.cosmos.gov." +
-      "v1beta1.VoteB\r\252\337\037\005Votes\310\336\037\000\022B\n\tproposals" +
-      "\030\004 \003(\0132\034.cosmos.gov.v1beta1.ProposalB\021\252\337" +
-      "\037\tProposals\310\336\037\000\022X\n\016deposit_params\030\005 \001(\0132" +
+      " \003(\0132\033.cosmos.gov.v1beta1.DepositB\020\310\336\037\000\252" +
+      "\337\037\010Deposits\0226\n\005votes\030\003 \003(\0132\030.cosmos.gov." +
+      "v1beta1.VoteB\r\310\336\037\000\252\337\037\005Votes\022B\n\tproposals" +
+      "\030\004 \003(\0132\034.cosmos.gov.v1beta1.ProposalB\021\310\336" +
+      "\037\000\252\337\037\tProposals\022X\n\016deposit_params\030\005 \001(\0132" +
       "!.cosmos.gov.v1beta1.DepositParamsB\035\310\336\037\000" +
       "\362\336\037\025yaml:\"deposit_params\"\022U\n\rvoting_para" +
       "ms\030\006 \001(\0132 .cosmos.gov.v1beta1.VotingPara" +
@@ -2811,7 +2785,7 @@ public final class Genesis {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           cosmos.gov.v1beta1.Gov.getDescriptor(),
         });
     internal_static_cosmos_gov_v1beta1_GenesisState_descriptor =
@@ -2822,12 +2796,12 @@ public final class Genesis {
         new java.lang.String[] { "StartingProposalId", "Deposits", "Votes", "Proposals", "DepositParams", "VotingParams", "TallyParams", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.castrepeated);
-    registry.add(com.google.protobuf2.GoGoProtos.moretags);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.castrepeated);
+    registry.add(com.google.protobuf.GoGoProtos.moretags);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     cosmos.gov.v1beta1.Gov.getDescriptor();
   }
 

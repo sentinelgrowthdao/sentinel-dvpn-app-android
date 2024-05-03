@@ -163,7 +163,6 @@ public final class Genesis {
               sentinel.vpn.v1.Genesis.GenesisState.class, sentinel.vpn.v1.Genesis.GenesisState.Builder.class);
     }
 
-    private int bitField0_;
     public static final int DEPOSITS_FIELD_NUMBER = 1;
     @SuppressWarnings("serial")
     private java.util.List<sentinel.deposit.v1.DepositOuterClass.Deposit> deposits_;
@@ -213,7 +212,7 @@ public final class Genesis {
      */
     @java.lang.Override
     public boolean hasNodes() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return nodes_ != null;
     }
     /**
      * <code>.sentinel.node.v2.GenesisState nodes = 2;</code>
@@ -280,7 +279,7 @@ public final class Genesis {
      */
     @java.lang.Override
     public boolean hasProviders() {
-      return ((bitField0_ & 0x00000002) != 0);
+      return providers_ != null;
     }
     /**
      * <code>.sentinel.provider.v2.GenesisState providers = 4;</code>
@@ -306,7 +305,7 @@ public final class Genesis {
      */
     @java.lang.Override
     public boolean hasSessions() {
-      return ((bitField0_ & 0x00000004) != 0);
+      return sessions_ != null;
     }
     /**
      * <code>.sentinel.session.v2.GenesisState sessions = 5;</code>
@@ -332,7 +331,7 @@ public final class Genesis {
      */
     @java.lang.Override
     public boolean hasSubscriptions() {
-      return ((bitField0_ & 0x00000008) != 0);
+      return subscriptions_ != null;
     }
     /**
      * <code>.sentinel.subscription.v2.GenesisState subscriptions = 6;</code>
@@ -367,19 +366,19 @@ public final class Genesis {
       for (int i = 0; i < deposits_.size(); i++) {
         output.writeMessage(1, deposits_.get(i));
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (nodes_ != null) {
         output.writeMessage(2, getNodes());
       }
       for (int i = 0; i < plans_.size(); i++) {
         output.writeMessage(3, plans_.get(i));
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (providers_ != null) {
         output.writeMessage(4, getProviders());
       }
-      if (((bitField0_ & 0x00000004) != 0)) {
+      if (sessions_ != null) {
         output.writeMessage(5, getSessions());
       }
-      if (((bitField0_ & 0x00000008) != 0)) {
+      if (subscriptions_ != null) {
         output.writeMessage(6, getSubscriptions());
       }
       getUnknownFields().writeTo(output);
@@ -395,7 +394,7 @@ public final class Genesis {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, deposits_.get(i));
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (nodes_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getNodes());
       }
@@ -403,15 +402,15 @@ public final class Genesis {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, plans_.get(i));
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (providers_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getProviders());
       }
-      if (((bitField0_ & 0x00000004) != 0)) {
+      if (sessions_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, getSessions());
       }
-      if (((bitField0_ & 0x00000008) != 0)) {
+      if (subscriptions_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, getSubscriptions());
       }
@@ -608,24 +607,13 @@ public final class Genesis {
 
       // Construct using sentinel.vpn.v1.Genesis.GenesisState.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getDepositsFieldBuilder();
-          getNodesFieldBuilder();
-          getPlansFieldBuilder();
-          getProvidersFieldBuilder();
-          getSessionsFieldBuilder();
-          getSubscriptionsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -720,32 +708,26 @@ public final class Genesis {
 
       private void buildPartial0(sentinel.vpn.v1.Genesis.GenesisState result) {
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.nodes_ = nodesBuilder_ == null
               ? nodes_
               : nodesBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.providers_ = providersBuilder_ == null
               ? providers_
               : providersBuilder_.build();
-          to_bitField0_ |= 0x00000002;
         }
         if (((from_bitField0_ & 0x00000010) != 0)) {
           result.sessions_ = sessionsBuilder_ == null
               ? sessions_
               : sessionsBuilder_.build();
-          to_bitField0_ |= 0x00000004;
         }
         if (((from_bitField0_ & 0x00000020) != 0)) {
           result.subscriptions_ = subscriptionsBuilder_ == null
               ? subscriptions_
               : subscriptionsBuilder_.build();
-          to_bitField0_ |= 0x00000008;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -1259,10 +1241,8 @@ public final class Genesis {
         } else {
           nodesBuilder_.mergeFrom(value);
         }
-        if (nodes_ != null) {
-          bitField0_ |= 0x00000002;
-          onChanged();
-        }
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -1620,10 +1600,8 @@ public final class Genesis {
         } else {
           providersBuilder_.mergeFrom(value);
         }
-        if (providers_ != null) {
-          bitField0_ |= 0x00000008;
-          onChanged();
-        }
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -1741,10 +1719,8 @@ public final class Genesis {
         } else {
           sessionsBuilder_.mergeFrom(value);
         }
-        if (sessions_ != null) {
-          bitField0_ |= 0x00000010;
-          onChanged();
-        }
+        bitField0_ |= 0x00000010;
+        onChanged();
         return this;
       }
       /**
@@ -1862,10 +1838,8 @@ public final class Genesis {
         } else {
           subscriptionsBuilder_.mergeFrom(value);
         }
-        if (subscriptions_ != null) {
-          bitField0_ |= 0x00000020;
-          onChanged();
-        }
+        bitField0_ |= 0x00000020;
+        onChanged();
         return this;
       }
       /**
@@ -2016,7 +1990,7 @@ public final class Genesis {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           sentinel.deposit.v1.DepositOuterClass.getDescriptor(),
           sentinel.node.v2.Genesis.getDescriptor(),
           sentinel.plan.v2.Genesis.getDescriptor(),
@@ -2032,12 +2006,12 @@ public final class Genesis {
         new java.lang.String[] { "Deposits", "Nodes", "Plans", "Providers", "Sessions", "Subscriptions", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     sentinel.deposit.v1.DepositOuterClass.getDescriptor();
     sentinel.node.v2.Genesis.getDescriptor();
     sentinel.plan.v2.Genesis.getDescriptor();

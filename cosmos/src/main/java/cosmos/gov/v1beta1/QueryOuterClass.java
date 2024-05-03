@@ -54,53 +54,6 @@ public final class QueryOuterClass {
       return new QueryProposalRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryProposalRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              proposalId_ = input.readUInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryProposalRequest_descriptor;
@@ -115,7 +68,7 @@ public final class QueryOuterClass {
     }
 
     public static final int PROPOSAL_ID_FIELD_NUMBER = 1;
-    private long proposalId_;
+    private long proposalId_ = 0L;
     /**
      * <pre>
      * proposal_id defines the unique id of the proposal.
@@ -146,7 +99,7 @@ public final class QueryOuterClass {
       if (proposalId_ != 0L) {
         output.writeUInt64(1, proposalId_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -159,7 +112,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, proposalId_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -176,7 +129,7 @@ public final class QueryOuterClass {
 
       if (getProposalId()
           != other.getProposalId()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -190,7 +143,7 @@ public final class QueryOuterClass {
       hash = (37 * hash) + PROPOSAL_ID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getProposalId());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -239,11 +192,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryProposalRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryProposalRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -311,24 +266,19 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryProposalRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         proposalId_ = 0L;
-
         return this;
       }
 
@@ -355,9 +305,16 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryProposalRequest buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryProposalRequest result = new cosmos.gov.v1beta1.QueryOuterClass.QueryProposalRequest(this);
-        result.proposalId_ = proposalId_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryProposalRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.proposalId_ = proposalId_;
+        }
       }
 
       @java.lang.Override
@@ -407,7 +364,7 @@ public final class QueryOuterClass {
         if (other.getProposalId() != 0L) {
           setProposalId(other.getProposalId());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -422,19 +379,38 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryProposalRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                proposalId_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryProposalRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long proposalId_ ;
       /**
@@ -459,8 +435,9 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder setProposalId(long value) {
-        
+
         proposalId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -473,7 +450,7 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearProposalId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         proposalId_ = 0L;
         onChanged();
         return this;
@@ -511,7 +488,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryProposalRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -576,61 +564,6 @@ public final class QueryOuterClass {
       return new QueryProposalResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryProposalResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.gov.v1beta1.Gov.Proposal.Builder subBuilder = null;
-              if (proposal_ != null) {
-                subBuilder = proposal_.toBuilder();
-              }
-              proposal_ = input.readMessage(cosmos.gov.v1beta1.Gov.Proposal.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(proposal_);
-                proposal_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryProposalResponse_descriptor;
@@ -667,7 +600,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.gov.v1beta1.Gov.ProposalOrBuilder getProposalOrBuilder() {
-      return getProposal();
+      return proposal_ == null ? cosmos.gov.v1beta1.Gov.Proposal.getDefaultInstance() : proposal_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -687,7 +620,7 @@ public final class QueryOuterClass {
       if (proposal_ != null) {
         output.writeMessage(1, getProposal());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -700,7 +633,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getProposal());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -720,7 +653,7 @@ public final class QueryOuterClass {
         if (!getProposal()
             .equals(other.getProposal())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -735,7 +668,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + PROPOSAL_FIELD_NUMBER;
         hash = (53 * hash) + getProposal().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -784,11 +717,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryProposalResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryProposalResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -856,26 +791,21 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryProposalResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (proposalBuilder_ == null) {
-          proposal_ = null;
-        } else {
-          proposal_ = null;
+        bitField0_ = 0;
+        proposal_ = null;
+        if (proposalBuilder_ != null) {
+          proposalBuilder_.dispose();
           proposalBuilder_ = null;
         }
         return this;
@@ -904,13 +834,18 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryProposalResponse buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryProposalResponse result = new cosmos.gov.v1beta1.QueryOuterClass.QueryProposalResponse(this);
-        if (proposalBuilder_ == null) {
-          result.proposal_ = proposal_;
-        } else {
-          result.proposal_ = proposalBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryProposalResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.proposal_ = proposalBuilder_ == null
+              ? proposal_
+              : proposalBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -960,7 +895,7 @@ public final class QueryOuterClass {
         if (other.hasProposal()) {
           mergeProposal(other.getProposal());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -975,19 +910,40 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryProposalResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getProposalFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryProposalResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private cosmos.gov.v1beta1.Gov.Proposal proposal_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -997,7 +953,7 @@ public final class QueryOuterClass {
        * @return Whether the proposal field is set.
        */
       public boolean hasProposal() {
-        return proposalBuilder_ != null || proposal_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <code>.cosmos.gov.v1beta1.Proposal proposal = 1 [(.gogoproto.nullable) = false];</code>
@@ -1019,11 +975,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           proposal_ = value;
-          onChanged();
         } else {
           proposalBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1033,11 +989,11 @@ public final class QueryOuterClass {
           cosmos.gov.v1beta1.Gov.Proposal.Builder builderForValue) {
         if (proposalBuilder_ == null) {
           proposal_ = builderForValue.build();
-          onChanged();
         } else {
           proposalBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1045,38 +1001,38 @@ public final class QueryOuterClass {
        */
       public Builder mergeProposal(cosmos.gov.v1beta1.Gov.Proposal value) {
         if (proposalBuilder_ == null) {
-          if (proposal_ != null) {
-            proposal_ =
-              cosmos.gov.v1beta1.Gov.Proposal.newBuilder(proposal_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            proposal_ != null &&
+            proposal_ != cosmos.gov.v1beta1.Gov.Proposal.getDefaultInstance()) {
+            getProposalBuilder().mergeFrom(value);
           } else {
             proposal_ = value;
           }
-          onChanged();
         } else {
           proposalBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
        * <code>.cosmos.gov.v1beta1.Proposal proposal = 1 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearProposal() {
-        if (proposalBuilder_ == null) {
-          proposal_ = null;
-          onChanged();
-        } else {
-          proposal_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        proposal_ = null;
+        if (proposalBuilder_ != null) {
+          proposalBuilder_.dispose();
           proposalBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
        * <code>.cosmos.gov.v1beta1.Proposal proposal = 1 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.Proposal.Builder getProposalBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getProposalFieldBuilder().getBuilder();
       }
@@ -1140,7 +1096,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryProposalResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1279,79 +1246,6 @@ public final class QueryOuterClass {
       return new QueryProposalsRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryProposalsRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-              int rawValue = input.readEnum();
-
-              proposalStatus_ = rawValue;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              voter_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              depositor_ = s;
-              break;
-            }
-            case 34: {
-              cosmos.base.query.v1beta1.Pagination.PageRequest.Builder subBuilder = null;
-              if (pagination_ != null) {
-                subBuilder = pagination_.toBuilder();
-              }
-              pagination_ = input.readMessage(cosmos.base.query.v1beta1.Pagination.PageRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pagination_);
-                pagination_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryProposalsRequest_descriptor;
@@ -1366,7 +1260,7 @@ public final class QueryOuterClass {
     }
 
     public static final int PROPOSAL_STATUS_FIELD_NUMBER = 1;
-    private int proposalStatus_;
+    private int proposalStatus_ = 0;
     /**
      * <pre>
      * proposal_status defines the status of the proposals.
@@ -1387,13 +1281,13 @@ public final class QueryOuterClass {
      * @return The proposalStatus.
      */
     @java.lang.Override public cosmos.gov.v1beta1.Gov.ProposalStatus getProposalStatus() {
-      @SuppressWarnings("deprecation")
-      cosmos.gov.v1beta1.Gov.ProposalStatus result = cosmos.gov.v1beta1.Gov.ProposalStatus.valueOf(proposalStatus_);
+      cosmos.gov.v1beta1.Gov.ProposalStatus result = cosmos.gov.v1beta1.Gov.ProposalStatus.forNumber(proposalStatus_);
       return result == null ? cosmos.gov.v1beta1.Gov.ProposalStatus.UNRECOGNIZED : result;
     }
 
     public static final int VOTER_FIELD_NUMBER = 2;
-    private volatile java.lang.Object voter_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object voter_ = "";
     /**
      * <pre>
      * voter defines the voter address for the proposals.
@@ -1439,7 +1333,8 @@ public final class QueryOuterClass {
     }
 
     public static final int DEPOSITOR_FIELD_NUMBER = 3;
-    private volatile java.lang.Object depositor_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object depositor_ = "";
     /**
      * <pre>
      * depositor defines the deposit addresses from the proposals.
@@ -1519,7 +1414,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.base.query.v1beta1.Pagination.PageRequestOrBuilder getPaginationOrBuilder() {
-      return getPagination();
+      return pagination_ == null ? cosmos.base.query.v1beta1.Pagination.PageRequest.getDefaultInstance() : pagination_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1539,16 +1434,16 @@ public final class QueryOuterClass {
       if (proposalStatus_ != cosmos.gov.v1beta1.Gov.ProposalStatus.PROPOSAL_STATUS_UNSPECIFIED.getNumber()) {
         output.writeEnum(1, proposalStatus_);
       }
-      if (!getVoterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(voter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, voter_);
       }
-      if (!getDepositorBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(depositor_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, depositor_);
       }
       if (pagination_ != null) {
         output.writeMessage(4, getPagination());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1561,17 +1456,17 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(1, proposalStatus_);
       }
-      if (!getVoterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(voter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, voter_);
       }
-      if (!getDepositorBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(depositor_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, depositor_);
       }
       if (pagination_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, getPagination());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1596,7 +1491,7 @@ public final class QueryOuterClass {
         if (!getPagination()
             .equals(other.getPagination())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1617,7 +1512,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + PAGINATION_FIELD_NUMBER;
         hash = (53 * hash) + getPagination().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1666,11 +1561,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1738,32 +1635,24 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         proposalStatus_ = 0;
-
         voter_ = "";
-
         depositor_ = "";
-
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-        } else {
-          pagination_ = null;
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
         return this;
@@ -1792,16 +1681,27 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest result = new cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest(this);
-        result.proposalStatus_ = proposalStatus_;
-        result.voter_ = voter_;
-        result.depositor_ = depositor_;
-        if (paginationBuilder_ == null) {
-          result.pagination_ = pagination_;
-        } else {
-          result.pagination_ = paginationBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.proposalStatus_ = proposalStatus_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.voter_ = voter_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.depositor_ = depositor_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.pagination_ = paginationBuilder_ == null
+              ? pagination_
+              : paginationBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1853,16 +1753,18 @@ public final class QueryOuterClass {
         }
         if (!other.getVoter().isEmpty()) {
           voter_ = other.voter_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getDepositor().isEmpty()) {
           depositor_ = other.depositor_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (other.hasPagination()) {
           mergePagination(other.getPagination());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1877,19 +1779,55 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                proposalStatus_ = input.readEnum();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                voter_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                depositor_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                input.readMessage(
+                    getPaginationFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private int proposalStatus_ = 0;
       /**
@@ -1913,8 +1851,8 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder setProposalStatusValue(int value) {
-        
         proposalStatus_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1928,8 +1866,7 @@ public final class QueryOuterClass {
        */
       @java.lang.Override
       public cosmos.gov.v1beta1.Gov.ProposalStatus getProposalStatus() {
-        @SuppressWarnings("deprecation")
-        cosmos.gov.v1beta1.Gov.ProposalStatus result = cosmos.gov.v1beta1.Gov.ProposalStatus.valueOf(proposalStatus_);
+        cosmos.gov.v1beta1.Gov.ProposalStatus result = cosmos.gov.v1beta1.Gov.ProposalStatus.forNumber(proposalStatus_);
         return result == null ? cosmos.gov.v1beta1.Gov.ProposalStatus.UNRECOGNIZED : result;
       }
       /**
@@ -1945,7 +1882,7 @@ public final class QueryOuterClass {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+        bitField0_ |= 0x00000001;
         proposalStatus_ = value.getNumber();
         onChanged();
         return this;
@@ -1959,7 +1896,7 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearProposalStatus() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         proposalStatus_ = 0;
         onChanged();
         return this;
@@ -2018,11 +1955,9 @@ public final class QueryOuterClass {
        */
       public Builder setVoter(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         voter_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2035,8 +1970,8 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearVoter() {
-        
         voter_ = getDefaultInstance().getVoter();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -2051,12 +1986,10 @@ public final class QueryOuterClass {
        */
       public Builder setVoterBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         voter_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -2114,11 +2047,9 @@ public final class QueryOuterClass {
        */
       public Builder setDepositor(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         depositor_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2131,8 +2062,8 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDepositor() {
-        
         depositor_ = getDefaultInstance().getDepositor();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -2147,12 +2078,10 @@ public final class QueryOuterClass {
        */
       public Builder setDepositorBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         depositor_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2169,7 +2098,7 @@ public final class QueryOuterClass {
        * @return Whether the pagination field is set.
        */
       public boolean hasPagination() {
-        return paginationBuilder_ != null || pagination_ != null;
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
        * <pre>
@@ -2199,11 +2128,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           pagination_ = value;
-          onChanged();
         } else {
           paginationBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -2217,11 +2146,11 @@ public final class QueryOuterClass {
           cosmos.base.query.v1beta1.Pagination.PageRequest.Builder builderForValue) {
         if (paginationBuilder_ == null) {
           pagination_ = builderForValue.build();
-          onChanged();
         } else {
           paginationBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -2233,17 +2162,18 @@ public final class QueryOuterClass {
        */
       public Builder mergePagination(cosmos.base.query.v1beta1.Pagination.PageRequest value) {
         if (paginationBuilder_ == null) {
-          if (pagination_ != null) {
-            pagination_ =
-              cosmos.base.query.v1beta1.Pagination.PageRequest.newBuilder(pagination_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000008) != 0) &&
+            pagination_ != null &&
+            pagination_ != cosmos.base.query.v1beta1.Pagination.PageRequest.getDefaultInstance()) {
+            getPaginationBuilder().mergeFrom(value);
           } else {
             pagination_ = value;
           }
-          onChanged();
         } else {
           paginationBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000008;
+        onChanged();
         return this;
       }
       /**
@@ -2254,14 +2184,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 4;</code>
        */
       public Builder clearPagination() {
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-          onChanged();
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -2272,7 +2201,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 4;</code>
        */
       public cosmos.base.query.v1beta1.Pagination.PageRequest.Builder getPaginationBuilder() {
-        
+        bitField0_ |= 0x00000008;
         onChanged();
         return getPaginationFieldBuilder().getBuilder();
       }
@@ -2344,7 +2273,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryProposalsRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2447,74 +2387,6 @@ public final class QueryOuterClass {
       return new QueryProposalsResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryProposalsResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                proposals_ = new java.util.ArrayList<cosmos.gov.v1beta1.Gov.Proposal>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              proposals_.add(
-                  input.readMessage(cosmos.gov.v1beta1.Gov.Proposal.parser(), extensionRegistry));
-              break;
-            }
-            case 18: {
-              cosmos.base.query.v1beta1.Pagination.PageResponse.Builder subBuilder = null;
-              if (pagination_ != null) {
-                subBuilder = pagination_.toBuilder();
-              }
-              pagination_ = input.readMessage(cosmos.base.query.v1beta1.Pagination.PageResponse.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pagination_);
-                pagination_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          proposals_ = java.util.Collections.unmodifiableList(proposals_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryProposalsResponse_descriptor;
@@ -2529,6 +2401,7 @@ public final class QueryOuterClass {
     }
 
     public static final int PROPOSALS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.gov.v1beta1.Gov.Proposal> proposals_;
     /**
      * <code>repeated .cosmos.gov.v1beta1.Proposal proposals = 1 [(.gogoproto.nullable) = false];</code>
@@ -2603,7 +2476,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.base.query.v1beta1.Pagination.PageResponseOrBuilder getPaginationOrBuilder() {
-      return getPagination();
+      return pagination_ == null ? cosmos.base.query.v1beta1.Pagination.PageResponse.getDefaultInstance() : pagination_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2626,7 +2499,7 @@ public final class QueryOuterClass {
       if (pagination_ != null) {
         output.writeMessage(2, getPagination());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -2643,7 +2516,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getPagination());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -2665,7 +2538,7 @@ public final class QueryOuterClass {
         if (!getPagination()
             .equals(other.getPagination())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -2684,7 +2557,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + PAGINATION_FIELD_NUMBER;
         hash = (53 * hash) + getPagination().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -2733,11 +2606,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2806,33 +2681,28 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getProposalsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (proposalsBuilder_ == null) {
           proposals_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          proposals_ = null;
           proposalsBuilder_.clear();
         }
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
         return this;
@@ -2861,7 +2731,13 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsResponse buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsResponse result = new cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsResponse(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsResponse result) {
         if (proposalsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             proposals_ = java.util.Collections.unmodifiableList(proposals_);
@@ -2871,13 +2747,15 @@ public final class QueryOuterClass {
         } else {
           result.proposals_ = proposalsBuilder_.build();
         }
-        if (paginationBuilder_ == null) {
-          result.pagination_ = pagination_;
-        } else {
-          result.pagination_ = paginationBuilder_.build();
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.pagination_ = paginationBuilder_ == null
+              ? pagination_
+              : paginationBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
       @java.lang.Override
@@ -2953,7 +2831,7 @@ public final class QueryOuterClass {
         if (other.hasPagination()) {
           mergePagination(other.getPagination());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -2968,17 +2846,50 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                cosmos.gov.v1beta1.Gov.Proposal m =
+                    input.readMessage(
+                        cosmos.gov.v1beta1.Gov.Proposal.parser(),
+                        extensionRegistry);
+                if (proposalsBuilder_ == null) {
+                  ensureProposalsIsMutable();
+                  proposals_.add(m);
+                } else {
+                  proposalsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getPaginationFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryProposalsResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -3235,7 +3146,7 @@ public final class QueryOuterClass {
        * @return Whether the pagination field is set.
        */
       public boolean hasPagination() {
-        return paginationBuilder_ != null || pagination_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -3265,11 +3176,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           pagination_ = value;
-          onChanged();
         } else {
           paginationBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3283,11 +3194,11 @@ public final class QueryOuterClass {
           cosmos.base.query.v1beta1.Pagination.PageResponse.Builder builderForValue) {
         if (paginationBuilder_ == null) {
           pagination_ = builderForValue.build();
-          onChanged();
         } else {
           paginationBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3299,17 +3210,18 @@ public final class QueryOuterClass {
        */
       public Builder mergePagination(cosmos.base.query.v1beta1.Pagination.PageResponse value) {
         if (paginationBuilder_ == null) {
-          if (pagination_ != null) {
-            pagination_ =
-              cosmos.base.query.v1beta1.Pagination.PageResponse.newBuilder(pagination_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            pagination_ != null &&
+            pagination_ != cosmos.base.query.v1beta1.Pagination.PageResponse.getDefaultInstance()) {
+            getPaginationBuilder().mergeFrom(value);
           } else {
             pagination_ = value;
           }
-          onChanged();
         } else {
           paginationBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -3320,14 +3232,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
        */
       public Builder clearPagination() {
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-          onChanged();
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -3338,7 +3249,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
        */
       public cosmos.base.query.v1beta1.Pagination.PageResponse.Builder getPaginationBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getPaginationFieldBuilder().getBuilder();
       }
@@ -3410,7 +3321,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryProposalsResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -3491,59 +3413,6 @@ public final class QueryOuterClass {
       return new QueryVoteRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryVoteRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              proposalId_ = input.readUInt64();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              voter_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryVoteRequest_descriptor;
@@ -3558,7 +3427,7 @@ public final class QueryOuterClass {
     }
 
     public static final int PROPOSAL_ID_FIELD_NUMBER = 1;
-    private long proposalId_;
+    private long proposalId_ = 0L;
     /**
      * <pre>
      * proposal_id defines the unique id of the proposal.
@@ -3573,7 +3442,8 @@ public final class QueryOuterClass {
     }
 
     public static final int VOTER_FIELD_NUMBER = 2;
-    private volatile java.lang.Object voter_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object voter_ = "";
     /**
      * <pre>
      * voter defines the oter address for the proposals.
@@ -3635,10 +3505,10 @@ public final class QueryOuterClass {
       if (proposalId_ != 0L) {
         output.writeUInt64(1, proposalId_);
       }
-      if (!getVoterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(voter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, voter_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -3651,10 +3521,10 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, proposalId_);
       }
-      if (!getVoterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(voter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, voter_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -3673,7 +3543,7 @@ public final class QueryOuterClass {
           != other.getProposalId()) return false;
       if (!getVoter()
           .equals(other.getVoter())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -3689,7 +3559,7 @@ public final class QueryOuterClass {
           getProposalId());
       hash = (37 * hash) + VOTER_FIELD_NUMBER;
       hash = (53 * hash) + getVoter().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -3738,11 +3608,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryVoteRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryVoteRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3810,26 +3682,20 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryVoteRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         proposalId_ = 0L;
-
         voter_ = "";
-
         return this;
       }
 
@@ -3856,10 +3722,19 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryVoteRequest buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryVoteRequest result = new cosmos.gov.v1beta1.QueryOuterClass.QueryVoteRequest(this);
-        result.proposalId_ = proposalId_;
-        result.voter_ = voter_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryVoteRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.proposalId_ = proposalId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.voter_ = voter_;
+        }
       }
 
       @java.lang.Override
@@ -3911,9 +3786,10 @@ public final class QueryOuterClass {
         }
         if (!other.getVoter().isEmpty()) {
           voter_ = other.voter_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -3928,19 +3804,43 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryVoteRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                proposalId_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                voter_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryVoteRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long proposalId_ ;
       /**
@@ -3965,8 +3865,9 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder setProposalId(long value) {
-        
+
         proposalId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -3979,7 +3880,7 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearProposalId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         proposalId_ = 0L;
         onChanged();
         return this;
@@ -4038,11 +3939,9 @@ public final class QueryOuterClass {
        */
       public Builder setVoter(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         voter_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -4055,8 +3954,8 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearVoter() {
-        
         voter_ = getDefaultInstance().getVoter();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -4071,12 +3970,10 @@ public final class QueryOuterClass {
        */
       public Builder setVoterBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         voter_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -4113,7 +4010,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryVoteRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -4190,61 +4098,6 @@ public final class QueryOuterClass {
       return new QueryVoteResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryVoteResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.gov.v1beta1.Gov.Vote.Builder subBuilder = null;
-              if (vote_ != null) {
-                subBuilder = vote_.toBuilder();
-              }
-              vote_ = input.readMessage(cosmos.gov.v1beta1.Gov.Vote.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(vote_);
-                vote_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryVoteResponse_descriptor;
@@ -4293,7 +4146,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.gov.v1beta1.Gov.VoteOrBuilder getVoteOrBuilder() {
-      return getVote();
+      return vote_ == null ? cosmos.gov.v1beta1.Gov.Vote.getDefaultInstance() : vote_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4313,7 +4166,7 @@ public final class QueryOuterClass {
       if (vote_ != null) {
         output.writeMessage(1, getVote());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -4326,7 +4179,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getVote());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -4346,7 +4199,7 @@ public final class QueryOuterClass {
         if (!getVote()
             .equals(other.getVote())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -4361,7 +4214,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + VOTE_FIELD_NUMBER;
         hash = (53 * hash) + getVote().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -4410,11 +4263,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryVoteResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryVoteResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -4482,26 +4337,21 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryVoteResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (voteBuilder_ == null) {
-          vote_ = null;
-        } else {
-          vote_ = null;
+        bitField0_ = 0;
+        vote_ = null;
+        if (voteBuilder_ != null) {
+          voteBuilder_.dispose();
           voteBuilder_ = null;
         }
         return this;
@@ -4530,13 +4380,18 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryVoteResponse buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryVoteResponse result = new cosmos.gov.v1beta1.QueryOuterClass.QueryVoteResponse(this);
-        if (voteBuilder_ == null) {
-          result.vote_ = vote_;
-        } else {
-          result.vote_ = voteBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryVoteResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.vote_ = voteBuilder_ == null
+              ? vote_
+              : voteBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -4586,7 +4441,7 @@ public final class QueryOuterClass {
         if (other.hasVote()) {
           mergeVote(other.getVote());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -4601,19 +4456,40 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryVoteResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getVoteFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryVoteResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private cosmos.gov.v1beta1.Gov.Vote vote_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -4627,7 +4503,7 @@ public final class QueryOuterClass {
        * @return Whether the vote field is set.
        */
       public boolean hasVote() {
-        return voteBuilder_ != null || vote_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -4657,11 +4533,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           vote_ = value;
-          onChanged();
         } else {
           voteBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -4675,11 +4551,11 @@ public final class QueryOuterClass {
           cosmos.gov.v1beta1.Gov.Vote.Builder builderForValue) {
         if (voteBuilder_ == null) {
           vote_ = builderForValue.build();
-          onChanged();
         } else {
           voteBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -4691,17 +4567,18 @@ public final class QueryOuterClass {
        */
       public Builder mergeVote(cosmos.gov.v1beta1.Gov.Vote value) {
         if (voteBuilder_ == null) {
-          if (vote_ != null) {
-            vote_ =
-              cosmos.gov.v1beta1.Gov.Vote.newBuilder(vote_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            vote_ != null &&
+            vote_ != cosmos.gov.v1beta1.Gov.Vote.getDefaultInstance()) {
+            getVoteBuilder().mergeFrom(value);
           } else {
             vote_ = value;
           }
-          onChanged();
         } else {
           voteBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -4712,14 +4589,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.Vote vote = 1 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearVote() {
-        if (voteBuilder_ == null) {
-          vote_ = null;
-          onChanged();
-        } else {
-          vote_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        vote_ = null;
+        if (voteBuilder_ != null) {
+          voteBuilder_.dispose();
           voteBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -4730,7 +4606,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.Vote vote = 1 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.Vote.Builder getVoteBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getVoteFieldBuilder().getBuilder();
       }
@@ -4802,7 +4678,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryVoteResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -4889,66 +4776,6 @@ public final class QueryOuterClass {
       return new QueryVotesRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryVotesRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              proposalId_ = input.readUInt64();
-              break;
-            }
-            case 18: {
-              cosmos.base.query.v1beta1.Pagination.PageRequest.Builder subBuilder = null;
-              if (pagination_ != null) {
-                subBuilder = pagination_.toBuilder();
-              }
-              pagination_ = input.readMessage(cosmos.base.query.v1beta1.Pagination.PageRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pagination_);
-                pagination_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryVotesRequest_descriptor;
@@ -4963,7 +4790,7 @@ public final class QueryOuterClass {
     }
 
     public static final int PROPOSAL_ID_FIELD_NUMBER = 1;
-    private long proposalId_;
+    private long proposalId_ = 0L;
     /**
      * <pre>
      * proposal_id defines the unique id of the proposal.
@@ -5012,7 +4839,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.base.query.v1beta1.Pagination.PageRequestOrBuilder getPaginationOrBuilder() {
-      return getPagination();
+      return pagination_ == null ? cosmos.base.query.v1beta1.Pagination.PageRequest.getDefaultInstance() : pagination_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5035,7 +4862,7 @@ public final class QueryOuterClass {
       if (pagination_ != null) {
         output.writeMessage(2, getPagination());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -5052,7 +4879,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getPagination());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -5074,7 +4901,7 @@ public final class QueryOuterClass {
         if (!getPagination()
             .equals(other.getPagination())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -5092,7 +4919,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + PAGINATION_FIELD_NUMBER;
         hash = (53 * hash) + getPagination().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -5141,11 +4968,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryVotesRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryVotesRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5213,28 +5042,22 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryVotesRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         proposalId_ = 0L;
-
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-        } else {
-          pagination_ = null;
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
         return this;
@@ -5263,14 +5086,21 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryVotesRequest buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryVotesRequest result = new cosmos.gov.v1beta1.QueryOuterClass.QueryVotesRequest(this);
-        result.proposalId_ = proposalId_;
-        if (paginationBuilder_ == null) {
-          result.pagination_ = pagination_;
-        } else {
-          result.pagination_ = paginationBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryVotesRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.proposalId_ = proposalId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.pagination_ = paginationBuilder_ == null
+              ? pagination_
+              : paginationBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -5323,7 +5153,7 @@ public final class QueryOuterClass {
         if (other.hasPagination()) {
           mergePagination(other.getPagination());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -5338,19 +5168,45 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryVotesRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                proposalId_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                input.readMessage(
+                    getPaginationFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryVotesRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long proposalId_ ;
       /**
@@ -5375,8 +5231,9 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder setProposalId(long value) {
-        
+
         proposalId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -5389,7 +5246,7 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearProposalId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         proposalId_ = 0L;
         onChanged();
         return this;
@@ -5407,7 +5264,7 @@ public final class QueryOuterClass {
        * @return Whether the pagination field is set.
        */
       public boolean hasPagination() {
-        return paginationBuilder_ != null || pagination_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -5437,11 +5294,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           pagination_ = value;
-          onChanged();
         } else {
           paginationBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -5455,11 +5312,11 @@ public final class QueryOuterClass {
           cosmos.base.query.v1beta1.Pagination.PageRequest.Builder builderForValue) {
         if (paginationBuilder_ == null) {
           pagination_ = builderForValue.build();
-          onChanged();
         } else {
           paginationBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -5471,17 +5328,18 @@ public final class QueryOuterClass {
        */
       public Builder mergePagination(cosmos.base.query.v1beta1.Pagination.PageRequest value) {
         if (paginationBuilder_ == null) {
-          if (pagination_ != null) {
-            pagination_ =
-              cosmos.base.query.v1beta1.Pagination.PageRequest.newBuilder(pagination_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            pagination_ != null &&
+            pagination_ != cosmos.base.query.v1beta1.Pagination.PageRequest.getDefaultInstance()) {
+            getPaginationBuilder().mergeFrom(value);
           } else {
             pagination_ = value;
           }
-          onChanged();
         } else {
           paginationBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -5492,14 +5350,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 2;</code>
        */
       public Builder clearPagination() {
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-          onChanged();
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -5510,7 +5367,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 2;</code>
        */
       public cosmos.base.query.v1beta1.Pagination.PageRequest.Builder getPaginationBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getPaginationFieldBuilder().getBuilder();
       }
@@ -5582,7 +5439,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryVotesRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -5704,74 +5572,6 @@ public final class QueryOuterClass {
       return new QueryVotesResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryVotesResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                votes_ = new java.util.ArrayList<cosmos.gov.v1beta1.Gov.Vote>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              votes_.add(
-                  input.readMessage(cosmos.gov.v1beta1.Gov.Vote.parser(), extensionRegistry));
-              break;
-            }
-            case 18: {
-              cosmos.base.query.v1beta1.Pagination.PageResponse.Builder subBuilder = null;
-              if (pagination_ != null) {
-                subBuilder = pagination_.toBuilder();
-              }
-              pagination_ = input.readMessage(cosmos.base.query.v1beta1.Pagination.PageResponse.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pagination_);
-                pagination_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          votes_ = java.util.Collections.unmodifiableList(votes_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryVotesResponse_descriptor;
@@ -5786,6 +5586,7 @@ public final class QueryOuterClass {
     }
 
     public static final int VOTES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.gov.v1beta1.Gov.Vote> votes_;
     /**
      * <pre>
@@ -5880,7 +5681,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.base.query.v1beta1.Pagination.PageResponseOrBuilder getPaginationOrBuilder() {
-      return getPagination();
+      return pagination_ == null ? cosmos.base.query.v1beta1.Pagination.PageResponse.getDefaultInstance() : pagination_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5903,7 +5704,7 @@ public final class QueryOuterClass {
       if (pagination_ != null) {
         output.writeMessage(2, getPagination());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -5920,7 +5721,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getPagination());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -5942,7 +5743,7 @@ public final class QueryOuterClass {
         if (!getPagination()
             .equals(other.getPagination())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -5961,7 +5762,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + PAGINATION_FIELD_NUMBER;
         hash = (53 * hash) + getPagination().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -6010,11 +5811,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryVotesResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryVotesResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6082,33 +5885,28 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryVotesResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getVotesFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (votesBuilder_ == null) {
           votes_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          votes_ = null;
           votesBuilder_.clear();
         }
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
         return this;
@@ -6137,7 +5935,13 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryVotesResponse buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryVotesResponse result = new cosmos.gov.v1beta1.QueryOuterClass.QueryVotesResponse(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.gov.v1beta1.QueryOuterClass.QueryVotesResponse result) {
         if (votesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             votes_ = java.util.Collections.unmodifiableList(votes_);
@@ -6147,13 +5951,15 @@ public final class QueryOuterClass {
         } else {
           result.votes_ = votesBuilder_.build();
         }
-        if (paginationBuilder_ == null) {
-          result.pagination_ = pagination_;
-        } else {
-          result.pagination_ = paginationBuilder_.build();
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryVotesResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.pagination_ = paginationBuilder_ == null
+              ? pagination_
+              : paginationBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
       @java.lang.Override
@@ -6229,7 +6035,7 @@ public final class QueryOuterClass {
         if (other.hasPagination()) {
           mergePagination(other.getPagination());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -6244,17 +6050,50 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryVotesResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                cosmos.gov.v1beta1.Gov.Vote m =
+                    input.readMessage(
+                        cosmos.gov.v1beta1.Gov.Vote.parser(),
+                        extensionRegistry);
+                if (votesBuilder_ == null) {
+                  ensureVotesIsMutable();
+                  votes_.add(m);
+                } else {
+                  votesBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getPaginationFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryVotesResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -6583,7 +6422,7 @@ public final class QueryOuterClass {
        * @return Whether the pagination field is set.
        */
       public boolean hasPagination() {
-        return paginationBuilder_ != null || pagination_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -6613,11 +6452,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           pagination_ = value;
-          onChanged();
         } else {
           paginationBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -6631,11 +6470,11 @@ public final class QueryOuterClass {
           cosmos.base.query.v1beta1.Pagination.PageResponse.Builder builderForValue) {
         if (paginationBuilder_ == null) {
           pagination_ = builderForValue.build();
-          onChanged();
         } else {
           paginationBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -6647,17 +6486,18 @@ public final class QueryOuterClass {
        */
       public Builder mergePagination(cosmos.base.query.v1beta1.Pagination.PageResponse value) {
         if (paginationBuilder_ == null) {
-          if (pagination_ != null) {
-            pagination_ =
-              cosmos.base.query.v1beta1.Pagination.PageResponse.newBuilder(pagination_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            pagination_ != null &&
+            pagination_ != cosmos.base.query.v1beta1.Pagination.PageResponse.getDefaultInstance()) {
+            getPaginationBuilder().mergeFrom(value);
           } else {
             pagination_ = value;
           }
-          onChanged();
         } else {
           paginationBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -6668,14 +6508,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
        */
       public Builder clearPagination() {
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-          onChanged();
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -6686,7 +6525,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
        */
       public cosmos.base.query.v1beta1.Pagination.PageResponse.Builder getPaginationBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getPaginationFieldBuilder().getBuilder();
       }
@@ -6758,7 +6597,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryVotesResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -6831,54 +6681,6 @@ public final class QueryOuterClass {
       return new QueryParamsRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryParamsRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              paramsType_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryParamsRequest_descriptor;
@@ -6893,7 +6695,8 @@ public final class QueryOuterClass {
     }
 
     public static final int PARAMS_TYPE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object paramsType_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object paramsType_ = "";
     /**
      * <pre>
      * params_type defines which parameters to query for, can be one of "voting",
@@ -6954,10 +6757,10 @@ public final class QueryOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getParamsTypeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(paramsType_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, paramsType_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -6966,10 +6769,10 @@ public final class QueryOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getParamsTypeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(paramsType_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, paramsType_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -6986,7 +6789,7 @@ public final class QueryOuterClass {
 
       if (!getParamsType()
           .equals(other.getParamsType())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -6999,7 +6802,7 @@ public final class QueryOuterClass {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + PARAMS_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getParamsType().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -7048,11 +6851,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryParamsRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryParamsRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7120,24 +6925,19 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryParamsRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         paramsType_ = "";
-
         return this;
       }
 
@@ -7164,9 +6964,16 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryParamsRequest buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryParamsRequest result = new cosmos.gov.v1beta1.QueryOuterClass.QueryParamsRequest(this);
-        result.paramsType_ = paramsType_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryParamsRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.paramsType_ = paramsType_;
+        }
       }
 
       @java.lang.Override
@@ -7215,9 +7022,10 @@ public final class QueryOuterClass {
         if (other == cosmos.gov.v1beta1.QueryOuterClass.QueryParamsRequest.getDefaultInstance()) return this;
         if (!other.getParamsType().isEmpty()) {
           paramsType_ = other.paramsType_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -7232,19 +7040,38 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryParamsRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                paramsType_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryParamsRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object paramsType_ = "";
       /**
@@ -7302,11 +7129,9 @@ public final class QueryOuterClass {
        */
       public Builder setParamsType(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         paramsType_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -7320,8 +7145,8 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearParamsType() {
-        
         paramsType_ = getDefaultInstance().getParamsType();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -7337,12 +7162,10 @@ public final class QueryOuterClass {
        */
       public Builder setParamsTypeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         paramsType_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -7379,7 +7202,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryParamsRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -7510,87 +7344,6 @@ public final class QueryOuterClass {
       return new QueryParamsResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryParamsResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.gov.v1beta1.Gov.VotingParams.Builder subBuilder = null;
-              if (votingParams_ != null) {
-                subBuilder = votingParams_.toBuilder();
-              }
-              votingParams_ = input.readMessage(cosmos.gov.v1beta1.Gov.VotingParams.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(votingParams_);
-                votingParams_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 18: {
-              cosmos.gov.v1beta1.Gov.DepositParams.Builder subBuilder = null;
-              if (depositParams_ != null) {
-                subBuilder = depositParams_.toBuilder();
-              }
-              depositParams_ = input.readMessage(cosmos.gov.v1beta1.Gov.DepositParams.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(depositParams_);
-                depositParams_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 26: {
-              cosmos.gov.v1beta1.Gov.TallyParams.Builder subBuilder = null;
-              if (tallyParams_ != null) {
-                subBuilder = tallyParams_.toBuilder();
-              }
-              tallyParams_ = input.readMessage(cosmos.gov.v1beta1.Gov.TallyParams.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(tallyParams_);
-                tallyParams_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryParamsResponse_descriptor;
@@ -7639,7 +7392,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.gov.v1beta1.Gov.VotingParamsOrBuilder getVotingParamsOrBuilder() {
-      return getVotingParams();
+      return votingParams_ == null ? cosmos.gov.v1beta1.Gov.VotingParams.getDefaultInstance() : votingParams_;
     }
 
     public static final int DEPOSIT_PARAMS_FIELD_NUMBER = 2;
@@ -7677,7 +7430,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.gov.v1beta1.Gov.DepositParamsOrBuilder getDepositParamsOrBuilder() {
-      return getDepositParams();
+      return depositParams_ == null ? cosmos.gov.v1beta1.Gov.DepositParams.getDefaultInstance() : depositParams_;
     }
 
     public static final int TALLY_PARAMS_FIELD_NUMBER = 3;
@@ -7715,7 +7468,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.gov.v1beta1.Gov.TallyParamsOrBuilder getTallyParamsOrBuilder() {
-      return getTallyParams();
+      return tallyParams_ == null ? cosmos.gov.v1beta1.Gov.TallyParams.getDefaultInstance() : tallyParams_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -7741,7 +7494,7 @@ public final class QueryOuterClass {
       if (tallyParams_ != null) {
         output.writeMessage(3, getTallyParams());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -7762,7 +7515,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, getTallyParams());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -7792,7 +7545,7 @@ public final class QueryOuterClass {
         if (!getTallyParams()
             .equals(other.getTallyParams())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -7815,7 +7568,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + TALLY_PARAMS_FIELD_NUMBER;
         hash = (53 * hash) + getTallyParams().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -7864,11 +7617,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7936,38 +7691,31 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (votingParamsBuilder_ == null) {
-          votingParams_ = null;
-        } else {
-          votingParams_ = null;
+        bitField0_ = 0;
+        votingParams_ = null;
+        if (votingParamsBuilder_ != null) {
+          votingParamsBuilder_.dispose();
           votingParamsBuilder_ = null;
         }
-        if (depositParamsBuilder_ == null) {
-          depositParams_ = null;
-        } else {
-          depositParams_ = null;
+        depositParams_ = null;
+        if (depositParamsBuilder_ != null) {
+          depositParamsBuilder_.dispose();
           depositParamsBuilder_ = null;
         }
-        if (tallyParamsBuilder_ == null) {
-          tallyParams_ = null;
-        } else {
-          tallyParams_ = null;
+        tallyParams_ = null;
+        if (tallyParamsBuilder_ != null) {
+          tallyParamsBuilder_.dispose();
           tallyParamsBuilder_ = null;
         }
         return this;
@@ -7996,23 +7744,28 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse result = new cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse(this);
-        if (votingParamsBuilder_ == null) {
-          result.votingParams_ = votingParams_;
-        } else {
-          result.votingParams_ = votingParamsBuilder_.build();
-        }
-        if (depositParamsBuilder_ == null) {
-          result.depositParams_ = depositParams_;
-        } else {
-          result.depositParams_ = depositParamsBuilder_.build();
-        }
-        if (tallyParamsBuilder_ == null) {
-          result.tallyParams_ = tallyParams_;
-        } else {
-          result.tallyParams_ = tallyParamsBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.votingParams_ = votingParamsBuilder_ == null
+              ? votingParams_
+              : votingParamsBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.depositParams_ = depositParamsBuilder_ == null
+              ? depositParams_
+              : depositParamsBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.tallyParams_ = tallyParamsBuilder_ == null
+              ? tallyParams_
+              : tallyParamsBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -8068,7 +7821,7 @@ public final class QueryOuterClass {
         if (other.hasTallyParams()) {
           mergeTallyParams(other.getTallyParams());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -8083,19 +7836,54 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getVotingParamsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getDepositParamsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                input.readMessage(
+                    getTallyParamsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryParamsResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private cosmos.gov.v1beta1.Gov.VotingParams votingParams_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -8109,7 +7897,7 @@ public final class QueryOuterClass {
        * @return Whether the votingParams field is set.
        */
       public boolean hasVotingParams() {
-        return votingParamsBuilder_ != null || votingParams_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -8139,11 +7927,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           votingParams_ = value;
-          onChanged();
         } else {
           votingParamsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -8157,11 +7945,11 @@ public final class QueryOuterClass {
           cosmos.gov.v1beta1.Gov.VotingParams.Builder builderForValue) {
         if (votingParamsBuilder_ == null) {
           votingParams_ = builderForValue.build();
-          onChanged();
         } else {
           votingParamsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -8173,17 +7961,18 @@ public final class QueryOuterClass {
        */
       public Builder mergeVotingParams(cosmos.gov.v1beta1.Gov.VotingParams value) {
         if (votingParamsBuilder_ == null) {
-          if (votingParams_ != null) {
-            votingParams_ =
-              cosmos.gov.v1beta1.Gov.VotingParams.newBuilder(votingParams_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            votingParams_ != null &&
+            votingParams_ != cosmos.gov.v1beta1.Gov.VotingParams.getDefaultInstance()) {
+            getVotingParamsBuilder().mergeFrom(value);
           } else {
             votingParams_ = value;
           }
-          onChanged();
         } else {
           votingParamsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -8194,14 +7983,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.VotingParams voting_params = 1 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearVotingParams() {
-        if (votingParamsBuilder_ == null) {
-          votingParams_ = null;
-          onChanged();
-        } else {
-          votingParams_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        votingParams_ = null;
+        if (votingParamsBuilder_ != null) {
+          votingParamsBuilder_.dispose();
           votingParamsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -8212,7 +8000,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.VotingParams voting_params = 1 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.VotingParams.Builder getVotingParamsBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getVotingParamsFieldBuilder().getBuilder();
       }
@@ -8264,7 +8052,7 @@ public final class QueryOuterClass {
        * @return Whether the depositParams field is set.
        */
       public boolean hasDepositParams() {
-        return depositParamsBuilder_ != null || depositParams_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -8294,11 +8082,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           depositParams_ = value;
-          onChanged();
         } else {
           depositParamsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -8312,11 +8100,11 @@ public final class QueryOuterClass {
           cosmos.gov.v1beta1.Gov.DepositParams.Builder builderForValue) {
         if (depositParamsBuilder_ == null) {
           depositParams_ = builderForValue.build();
-          onChanged();
         } else {
           depositParamsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -8328,17 +8116,18 @@ public final class QueryOuterClass {
        */
       public Builder mergeDepositParams(cosmos.gov.v1beta1.Gov.DepositParams value) {
         if (depositParamsBuilder_ == null) {
-          if (depositParams_ != null) {
-            depositParams_ =
-              cosmos.gov.v1beta1.Gov.DepositParams.newBuilder(depositParams_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            depositParams_ != null &&
+            depositParams_ != cosmos.gov.v1beta1.Gov.DepositParams.getDefaultInstance()) {
+            getDepositParamsBuilder().mergeFrom(value);
           } else {
             depositParams_ = value;
           }
-          onChanged();
         } else {
           depositParamsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -8349,14 +8138,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.DepositParams deposit_params = 2 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearDepositParams() {
-        if (depositParamsBuilder_ == null) {
-          depositParams_ = null;
-          onChanged();
-        } else {
-          depositParams_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        depositParams_ = null;
+        if (depositParamsBuilder_ != null) {
+          depositParamsBuilder_.dispose();
           depositParamsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -8367,7 +8155,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.DepositParams deposit_params = 2 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.DepositParams.Builder getDepositParamsBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getDepositParamsFieldBuilder().getBuilder();
       }
@@ -8419,7 +8207,7 @@ public final class QueryOuterClass {
        * @return Whether the tallyParams field is set.
        */
       public boolean hasTallyParams() {
-        return tallyParamsBuilder_ != null || tallyParams_ != null;
+        return ((bitField0_ & 0x00000004) != 0);
       }
       /**
        * <pre>
@@ -8449,11 +8237,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           tallyParams_ = value;
-          onChanged();
         } else {
           tallyParamsBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -8467,11 +8255,11 @@ public final class QueryOuterClass {
           cosmos.gov.v1beta1.Gov.TallyParams.Builder builderForValue) {
         if (tallyParamsBuilder_ == null) {
           tallyParams_ = builderForValue.build();
-          onChanged();
         } else {
           tallyParamsBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -8483,17 +8271,18 @@ public final class QueryOuterClass {
        */
       public Builder mergeTallyParams(cosmos.gov.v1beta1.Gov.TallyParams value) {
         if (tallyParamsBuilder_ == null) {
-          if (tallyParams_ != null) {
-            tallyParams_ =
-              cosmos.gov.v1beta1.Gov.TallyParams.newBuilder(tallyParams_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000004) != 0) &&
+            tallyParams_ != null &&
+            tallyParams_ != cosmos.gov.v1beta1.Gov.TallyParams.getDefaultInstance()) {
+            getTallyParamsBuilder().mergeFrom(value);
           } else {
             tallyParams_ = value;
           }
-          onChanged();
         } else {
           tallyParamsBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000004;
+        onChanged();
         return this;
       }
       /**
@@ -8504,14 +8293,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.TallyParams tally_params = 3 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearTallyParams() {
-        if (tallyParamsBuilder_ == null) {
-          tallyParams_ = null;
-          onChanged();
-        } else {
-          tallyParams_ = null;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        tallyParams_ = null;
+        if (tallyParamsBuilder_ != null) {
+          tallyParamsBuilder_.dispose();
           tallyParamsBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -8522,7 +8310,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.TallyParams tally_params = 3 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.TallyParams.Builder getTallyParamsBuilder() {
-        
+        bitField0_ |= 0x00000004;
         onChanged();
         return getTallyParamsFieldBuilder().getBuilder();
       }
@@ -8594,7 +8382,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryParamsResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -8675,59 +8474,6 @@ public final class QueryOuterClass {
       return new QueryDepositRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryDepositRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              proposalId_ = input.readUInt64();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              depositor_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryDepositRequest_descriptor;
@@ -8742,7 +8488,7 @@ public final class QueryOuterClass {
     }
 
     public static final int PROPOSAL_ID_FIELD_NUMBER = 1;
-    private long proposalId_;
+    private long proposalId_ = 0L;
     /**
      * <pre>
      * proposal_id defines the unique id of the proposal.
@@ -8757,7 +8503,8 @@ public final class QueryOuterClass {
     }
 
     public static final int DEPOSITOR_FIELD_NUMBER = 2;
-    private volatile java.lang.Object depositor_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object depositor_ = "";
     /**
      * <pre>
      * depositor defines the deposit addresses from the proposals.
@@ -8819,10 +8566,10 @@ public final class QueryOuterClass {
       if (proposalId_ != 0L) {
         output.writeUInt64(1, proposalId_);
       }
-      if (!getDepositorBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(depositor_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, depositor_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -8835,10 +8582,10 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, proposalId_);
       }
-      if (!getDepositorBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(depositor_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, depositor_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -8857,7 +8604,7 @@ public final class QueryOuterClass {
           != other.getProposalId()) return false;
       if (!getDepositor()
           .equals(other.getDepositor())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -8873,7 +8620,7 @@ public final class QueryOuterClass {
           getProposalId());
       hash = (37 * hash) + DEPOSITOR_FIELD_NUMBER;
       hash = (53 * hash) + getDepositor().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -8922,11 +8669,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8994,26 +8743,20 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         proposalId_ = 0L;
-
         depositor_ = "";
-
         return this;
       }
 
@@ -9040,10 +8783,19 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest result = new cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest(this);
-        result.proposalId_ = proposalId_;
-        result.depositor_ = depositor_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.proposalId_ = proposalId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.depositor_ = depositor_;
+        }
       }
 
       @java.lang.Override
@@ -9095,9 +8847,10 @@ public final class QueryOuterClass {
         }
         if (!other.getDepositor().isEmpty()) {
           depositor_ = other.depositor_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -9112,19 +8865,43 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                proposalId_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                depositor_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryDepositRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long proposalId_ ;
       /**
@@ -9149,8 +8926,9 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder setProposalId(long value) {
-        
+
         proposalId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -9163,7 +8941,7 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearProposalId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         proposalId_ = 0L;
         onChanged();
         return this;
@@ -9222,11 +9000,9 @@ public final class QueryOuterClass {
        */
       public Builder setDepositor(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         depositor_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -9239,8 +9015,8 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearDepositor() {
-        
         depositor_ = getDefaultInstance().getDepositor();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -9255,12 +9031,10 @@ public final class QueryOuterClass {
        */
       public Builder setDepositorBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         depositor_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -9297,7 +9071,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryDepositRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -9374,61 +9159,6 @@ public final class QueryOuterClass {
       return new QueryDepositResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryDepositResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.gov.v1beta1.Gov.Deposit.Builder subBuilder = null;
-              if (deposit_ != null) {
-                subBuilder = deposit_.toBuilder();
-              }
-              deposit_ = input.readMessage(cosmos.gov.v1beta1.Gov.Deposit.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(deposit_);
-                deposit_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryDepositResponse_descriptor;
@@ -9477,7 +9207,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.gov.v1beta1.Gov.DepositOrBuilder getDepositOrBuilder() {
-      return getDeposit();
+      return deposit_ == null ? cosmos.gov.v1beta1.Gov.Deposit.getDefaultInstance() : deposit_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -9497,7 +9227,7 @@ public final class QueryOuterClass {
       if (deposit_ != null) {
         output.writeMessage(1, getDeposit());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -9510,7 +9240,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getDeposit());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -9530,7 +9260,7 @@ public final class QueryOuterClass {
         if (!getDeposit()
             .equals(other.getDeposit())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -9545,7 +9275,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + DEPOSIT_FIELD_NUMBER;
         hash = (53 * hash) + getDeposit().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -9594,11 +9324,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9666,26 +9398,21 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (depositBuilder_ == null) {
-          deposit_ = null;
-        } else {
-          deposit_ = null;
+        bitField0_ = 0;
+        deposit_ = null;
+        if (depositBuilder_ != null) {
+          depositBuilder_.dispose();
           depositBuilder_ = null;
         }
         return this;
@@ -9714,13 +9441,18 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse result = new cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse(this);
-        if (depositBuilder_ == null) {
-          result.deposit_ = deposit_;
-        } else {
-          result.deposit_ = depositBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.deposit_ = depositBuilder_ == null
+              ? deposit_
+              : depositBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -9770,7 +9502,7 @@ public final class QueryOuterClass {
         if (other.hasDeposit()) {
           mergeDeposit(other.getDeposit());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -9785,19 +9517,40 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getDepositFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryDepositResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private cosmos.gov.v1beta1.Gov.Deposit deposit_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -9811,7 +9564,7 @@ public final class QueryOuterClass {
        * @return Whether the deposit field is set.
        */
       public boolean hasDeposit() {
-        return depositBuilder_ != null || deposit_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -9841,11 +9594,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           deposit_ = value;
-          onChanged();
         } else {
           depositBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -9859,11 +9612,11 @@ public final class QueryOuterClass {
           cosmos.gov.v1beta1.Gov.Deposit.Builder builderForValue) {
         if (depositBuilder_ == null) {
           deposit_ = builderForValue.build();
-          onChanged();
         } else {
           depositBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -9875,17 +9628,18 @@ public final class QueryOuterClass {
        */
       public Builder mergeDeposit(cosmos.gov.v1beta1.Gov.Deposit value) {
         if (depositBuilder_ == null) {
-          if (deposit_ != null) {
-            deposit_ =
-              cosmos.gov.v1beta1.Gov.Deposit.newBuilder(deposit_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            deposit_ != null &&
+            deposit_ != cosmos.gov.v1beta1.Gov.Deposit.getDefaultInstance()) {
+            getDepositBuilder().mergeFrom(value);
           } else {
             deposit_ = value;
           }
-          onChanged();
         } else {
           depositBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -9896,14 +9650,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.Deposit deposit = 1 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearDeposit() {
-        if (depositBuilder_ == null) {
-          deposit_ = null;
-          onChanged();
-        } else {
-          deposit_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        deposit_ = null;
+        if (depositBuilder_ != null) {
+          depositBuilder_.dispose();
           depositBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -9914,7 +9667,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.Deposit deposit = 1 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.Deposit.Builder getDepositBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getDepositFieldBuilder().getBuilder();
       }
@@ -9986,7 +9739,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryDepositResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -10073,66 +9837,6 @@ public final class QueryOuterClass {
       return new QueryDepositsRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryDepositsRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              proposalId_ = input.readUInt64();
-              break;
-            }
-            case 18: {
-              cosmos.base.query.v1beta1.Pagination.PageRequest.Builder subBuilder = null;
-              if (pagination_ != null) {
-                subBuilder = pagination_.toBuilder();
-              }
-              pagination_ = input.readMessage(cosmos.base.query.v1beta1.Pagination.PageRequest.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pagination_);
-                pagination_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryDepositsRequest_descriptor;
@@ -10147,7 +9851,7 @@ public final class QueryOuterClass {
     }
 
     public static final int PROPOSAL_ID_FIELD_NUMBER = 1;
-    private long proposalId_;
+    private long proposalId_ = 0L;
     /**
      * <pre>
      * proposal_id defines the unique id of the proposal.
@@ -10196,7 +9900,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.base.query.v1beta1.Pagination.PageRequestOrBuilder getPaginationOrBuilder() {
-      return getPagination();
+      return pagination_ == null ? cosmos.base.query.v1beta1.Pagination.PageRequest.getDefaultInstance() : pagination_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -10219,7 +9923,7 @@ public final class QueryOuterClass {
       if (pagination_ != null) {
         output.writeMessage(2, getPagination());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -10236,7 +9940,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getPagination());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -10258,7 +9962,7 @@ public final class QueryOuterClass {
         if (!getPagination()
             .equals(other.getPagination())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -10276,7 +9980,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + PAGINATION_FIELD_NUMBER;
         hash = (53 * hash) + getPagination().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -10325,11 +10029,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -10397,28 +10103,22 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         proposalId_ = 0L;
-
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-        } else {
-          pagination_ = null;
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
         return this;
@@ -10447,14 +10147,21 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest result = new cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest(this);
-        result.proposalId_ = proposalId_;
-        if (paginationBuilder_ == null) {
-          result.pagination_ = pagination_;
-        } else {
-          result.pagination_ = paginationBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.proposalId_ = proposalId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.pagination_ = paginationBuilder_ == null
+              ? pagination_
+              : paginationBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -10507,7 +10214,7 @@ public final class QueryOuterClass {
         if (other.hasPagination()) {
           mergePagination(other.getPagination());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -10522,19 +10229,45 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                proposalId_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                input.readMessage(
+                    getPaginationFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long proposalId_ ;
       /**
@@ -10559,8 +10292,9 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder setProposalId(long value) {
-        
+
         proposalId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -10573,7 +10307,7 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearProposalId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         proposalId_ = 0L;
         onChanged();
         return this;
@@ -10591,7 +10325,7 @@ public final class QueryOuterClass {
        * @return Whether the pagination field is set.
        */
       public boolean hasPagination() {
-        return paginationBuilder_ != null || pagination_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -10621,11 +10355,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           pagination_ = value;
-          onChanged();
         } else {
           paginationBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -10639,11 +10373,11 @@ public final class QueryOuterClass {
           cosmos.base.query.v1beta1.Pagination.PageRequest.Builder builderForValue) {
         if (paginationBuilder_ == null) {
           pagination_ = builderForValue.build();
-          onChanged();
         } else {
           paginationBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -10655,17 +10389,18 @@ public final class QueryOuterClass {
        */
       public Builder mergePagination(cosmos.base.query.v1beta1.Pagination.PageRequest value) {
         if (paginationBuilder_ == null) {
-          if (pagination_ != null) {
-            pagination_ =
-              cosmos.base.query.v1beta1.Pagination.PageRequest.newBuilder(pagination_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            pagination_ != null &&
+            pagination_ != cosmos.base.query.v1beta1.Pagination.PageRequest.getDefaultInstance()) {
+            getPaginationBuilder().mergeFrom(value);
           } else {
             pagination_ = value;
           }
-          onChanged();
         } else {
           paginationBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -10676,14 +10411,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 2;</code>
        */
       public Builder clearPagination() {
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-          onChanged();
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -10694,7 +10428,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 2;</code>
        */
       public cosmos.base.query.v1beta1.Pagination.PageRequest.Builder getPaginationBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getPaginationFieldBuilder().getBuilder();
       }
@@ -10766,7 +10500,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryDepositsRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -10868,74 +10613,6 @@ public final class QueryOuterClass {
       return new QueryDepositsResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryDepositsResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                deposits_ = new java.util.ArrayList<cosmos.gov.v1beta1.Gov.Deposit>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              deposits_.add(
-                  input.readMessage(cosmos.gov.v1beta1.Gov.Deposit.parser(), extensionRegistry));
-              break;
-            }
-            case 18: {
-              cosmos.base.query.v1beta1.Pagination.PageResponse.Builder subBuilder = null;
-              if (pagination_ != null) {
-                subBuilder = pagination_.toBuilder();
-              }
-              pagination_ = input.readMessage(cosmos.base.query.v1beta1.Pagination.PageResponse.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(pagination_);
-                pagination_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          deposits_ = java.util.Collections.unmodifiableList(deposits_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryDepositsResponse_descriptor;
@@ -10950,6 +10627,7 @@ public final class QueryOuterClass {
     }
 
     public static final int DEPOSITS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
     private java.util.List<cosmos.gov.v1beta1.Gov.Deposit> deposits_;
     /**
      * <code>repeated .cosmos.gov.v1beta1.Deposit deposits = 1 [(.gogoproto.nullable) = false];</code>
@@ -11024,7 +10702,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.base.query.v1beta1.Pagination.PageResponseOrBuilder getPaginationOrBuilder() {
-      return getPagination();
+      return pagination_ == null ? cosmos.base.query.v1beta1.Pagination.PageResponse.getDefaultInstance() : pagination_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -11047,7 +10725,7 @@ public final class QueryOuterClass {
       if (pagination_ != null) {
         output.writeMessage(2, getPagination());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -11064,7 +10742,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getPagination());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -11086,7 +10764,7 @@ public final class QueryOuterClass {
         if (!getPagination()
             .equals(other.getPagination())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -11105,7 +10783,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + PAGINATION_FIELD_NUMBER;
         hash = (53 * hash) + getPagination().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -11154,11 +10832,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -11226,33 +10906,28 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getDepositsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         if (depositsBuilder_ == null) {
           deposits_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
+          deposits_ = null;
           depositsBuilder_.clear();
         }
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
         return this;
@@ -11281,7 +10956,13 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsResponse buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsResponse result = new cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsResponse(this);
-        int from_bitField0_ = bitField0_;
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsResponse result) {
         if (depositsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             deposits_ = java.util.Collections.unmodifiableList(deposits_);
@@ -11291,13 +10972,15 @@ public final class QueryOuterClass {
         } else {
           result.deposits_ = depositsBuilder_.build();
         }
-        if (paginationBuilder_ == null) {
-          result.pagination_ = pagination_;
-        } else {
-          result.pagination_ = paginationBuilder_.build();
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.pagination_ = paginationBuilder_ == null
+              ? pagination_
+              : paginationBuilder_.build();
         }
-        onBuilt();
-        return result;
       }
 
       @java.lang.Override
@@ -11373,7 +11056,7 @@ public final class QueryOuterClass {
         if (other.hasPagination()) {
           mergePagination(other.getPagination());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -11388,17 +11071,50 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                cosmos.gov.v1beta1.Gov.Deposit m =
+                    input.readMessage(
+                        cosmos.gov.v1beta1.Gov.Deposit.parser(),
+                        extensionRegistry);
+                if (depositsBuilder_ == null) {
+                  ensureDepositsIsMutable();
+                  deposits_.add(m);
+                } else {
+                  depositsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getPaginationFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryDepositsResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
       private int bitField0_;
@@ -11655,7 +11371,7 @@ public final class QueryOuterClass {
        * @return Whether the pagination field is set.
        */
       public boolean hasPagination() {
-        return paginationBuilder_ != null || pagination_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
        * <pre>
@@ -11685,11 +11401,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           pagination_ = value;
-          onChanged();
         } else {
           paginationBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -11703,11 +11419,11 @@ public final class QueryOuterClass {
           cosmos.base.query.v1beta1.Pagination.PageResponse.Builder builderForValue) {
         if (paginationBuilder_ == null) {
           pagination_ = builderForValue.build();
-          onChanged();
         } else {
           paginationBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -11719,17 +11435,18 @@ public final class QueryOuterClass {
        */
       public Builder mergePagination(cosmos.base.query.v1beta1.Pagination.PageResponse value) {
         if (paginationBuilder_ == null) {
-          if (pagination_ != null) {
-            pagination_ =
-              cosmos.base.query.v1beta1.Pagination.PageResponse.newBuilder(pagination_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            pagination_ != null &&
+            pagination_ != cosmos.base.query.v1beta1.Pagination.PageResponse.getDefaultInstance()) {
+            getPaginationBuilder().mergeFrom(value);
           } else {
             pagination_ = value;
           }
-          onChanged();
         } else {
           paginationBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -11740,14 +11457,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
        */
       public Builder clearPagination() {
-        if (paginationBuilder_ == null) {
-          pagination_ = null;
-          onChanged();
-        } else {
-          pagination_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        pagination_ = null;
+        if (paginationBuilder_ != null) {
+          paginationBuilder_.dispose();
           paginationBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -11758,7 +11474,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
        */
       public cosmos.base.query.v1beta1.Pagination.PageResponse.Builder getPaginationBuilder() {
-        
+        bitField0_ |= 0x00000002;
         onChanged();
         return getPaginationFieldBuilder().getBuilder();
       }
@@ -11830,7 +11546,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryDepositsResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -11890,53 +11617,6 @@ public final class QueryOuterClass {
       return new QueryTallyResultRequest();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryTallyResultRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              proposalId_ = input.readUInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryTallyResultRequest_descriptor;
@@ -11951,7 +11631,7 @@ public final class QueryOuterClass {
     }
 
     public static final int PROPOSAL_ID_FIELD_NUMBER = 1;
-    private long proposalId_;
+    private long proposalId_ = 0L;
     /**
      * <pre>
      * proposal_id defines the unique id of the proposal.
@@ -11982,7 +11662,7 @@ public final class QueryOuterClass {
       if (proposalId_ != 0L) {
         output.writeUInt64(1, proposalId_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -11995,7 +11675,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, proposalId_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -12012,7 +11692,7 @@ public final class QueryOuterClass {
 
       if (getProposalId()
           != other.getProposalId()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -12026,7 +11706,7 @@ public final class QueryOuterClass {
       hash = (37 * hash) + PROPOSAL_ID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getProposalId());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -12075,11 +11755,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultRequest parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultRequest parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12147,24 +11829,19 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         proposalId_ = 0L;
-
         return this;
       }
 
@@ -12191,9 +11868,16 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultRequest buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultRequest result = new cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultRequest(this);
-        result.proposalId_ = proposalId_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultRequest result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.proposalId_ = proposalId_;
+        }
       }
 
       @java.lang.Override
@@ -12243,7 +11927,7 @@ public final class QueryOuterClass {
         if (other.getProposalId() != 0L) {
           setProposalId(other.getProposalId());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -12258,19 +11942,38 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultRequest parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                proposalId_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultRequest) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long proposalId_ ;
       /**
@@ -12295,8 +11998,9 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder setProposalId(long value) {
-        
+
         proposalId_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -12309,7 +12013,7 @@ public final class QueryOuterClass {
        * @return This builder for chaining.
        */
       public Builder clearProposalId() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         proposalId_ = 0L;
         onChanged();
         return this;
@@ -12347,7 +12051,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryTallyResultRequest(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -12424,61 +12139,6 @@ public final class QueryOuterClass {
       return new QueryTallyResultResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private QueryTallyResultResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              cosmos.gov.v1beta1.Gov.TallyResult.Builder subBuilder = null;
-              if (tally_ != null) {
-                subBuilder = tally_.toBuilder();
-              }
-              tally_ = input.readMessage(cosmos.gov.v1beta1.Gov.TallyResult.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(tally_);
-                tally_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.gov.v1beta1.QueryOuterClass.internal_static_cosmos_gov_v1beta1_QueryTallyResultResponse_descriptor;
@@ -12527,7 +12187,7 @@ public final class QueryOuterClass {
      */
     @java.lang.Override
     public cosmos.gov.v1beta1.Gov.TallyResultOrBuilder getTallyOrBuilder() {
-      return getTally();
+      return tally_ == null ? cosmos.gov.v1beta1.Gov.TallyResult.getDefaultInstance() : tally_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -12547,7 +12207,7 @@ public final class QueryOuterClass {
       if (tally_ != null) {
         output.writeMessage(1, getTally());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -12560,7 +12220,7 @@ public final class QueryOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getTally());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -12580,7 +12240,7 @@ public final class QueryOuterClass {
         if (!getTally()
             .equals(other.getTally())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -12595,7 +12255,7 @@ public final class QueryOuterClass {
         hash = (37 * hash) + TALLY_FIELD_NUMBER;
         hash = (53 * hash) + getTally().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -12644,11 +12304,13 @@ public final class QueryOuterClass {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -12716,26 +12378,21 @@ public final class QueryOuterClass {
 
       // Construct using cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (tallyBuilder_ == null) {
-          tally_ = null;
-        } else {
-          tally_ = null;
+        bitField0_ = 0;
+        tally_ = null;
+        if (tallyBuilder_ != null) {
+          tallyBuilder_.dispose();
           tallyBuilder_ = null;
         }
         return this;
@@ -12764,13 +12421,18 @@ public final class QueryOuterClass {
       @java.lang.Override
       public cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse buildPartial() {
         cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse result = new cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse(this);
-        if (tallyBuilder_ == null) {
-          result.tally_ = tally_;
-        } else {
-          result.tally_ = tallyBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.tally_ = tallyBuilder_ == null
+              ? tally_
+              : tallyBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -12820,7 +12482,7 @@ public final class QueryOuterClass {
         if (other.hasTally()) {
           mergeTally(other.getTally());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -12835,19 +12497,40 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getTallyFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.gov.v1beta1.QueryOuterClass.QueryTallyResultResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private cosmos.gov.v1beta1.Gov.TallyResult tally_;
       private com.google.protobuf.SingleFieldBuilderV3<
@@ -12861,7 +12544,7 @@ public final class QueryOuterClass {
        * @return Whether the tally field is set.
        */
       public boolean hasTally() {
-        return tallyBuilder_ != null || tally_ != null;
+        return ((bitField0_ & 0x00000001) != 0);
       }
       /**
        * <pre>
@@ -12891,11 +12574,11 @@ public final class QueryOuterClass {
             throw new NullPointerException();
           }
           tally_ = value;
-          onChanged();
         } else {
           tallyBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -12909,11 +12592,11 @@ public final class QueryOuterClass {
           cosmos.gov.v1beta1.Gov.TallyResult.Builder builderForValue) {
         if (tallyBuilder_ == null) {
           tally_ = builderForValue.build();
-          onChanged();
         } else {
           tallyBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -12925,17 +12608,18 @@ public final class QueryOuterClass {
        */
       public Builder mergeTally(cosmos.gov.v1beta1.Gov.TallyResult value) {
         if (tallyBuilder_ == null) {
-          if (tally_ != null) {
-            tally_ =
-              cosmos.gov.v1beta1.Gov.TallyResult.newBuilder(tally_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000001) != 0) &&
+            tally_ != null &&
+            tally_ != cosmos.gov.v1beta1.Gov.TallyResult.getDefaultInstance()) {
+            getTallyBuilder().mergeFrom(value);
           } else {
             tally_ = value;
           }
-          onChanged();
         } else {
           tallyBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -12946,14 +12630,13 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.TallyResult tally = 1 [(.gogoproto.nullable) = false];</code>
        */
       public Builder clearTally() {
-        if (tallyBuilder_ == null) {
-          tally_ = null;
-          onChanged();
-        } else {
-          tally_ = null;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        tally_ = null;
+        if (tallyBuilder_ != null) {
+          tallyBuilder_.dispose();
           tallyBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
@@ -12964,7 +12647,7 @@ public final class QueryOuterClass {
        * <code>.cosmos.gov.v1beta1.TallyResult tally = 1 [(.gogoproto.nullable) = false];</code>
        */
       public cosmos.gov.v1beta1.Gov.TallyResult.Builder getTallyBuilder() {
-        
+        bitField0_ |= 0x00000001;
         onChanged();
         return getTallyFieldBuilder().getBuilder();
       }
@@ -13036,7 +12719,18 @@ public final class QueryOuterClass {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new QueryTallyResultResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -13157,12 +12851,12 @@ public final class QueryOuterClass {
       "os.gov.v1beta1.ProposalStatus\022\r\n\005voter\030\002" +
       " \001(\t\022\021\n\tdepositor\030\003 \001(\t\022:\n\npagination\030\004 " +
       "\001(\0132&.cosmos.base.query.v1beta1.PageRequ" +
-      "est:\010\350\240\037\000\210\240\037\000\"\214\001\n\026QueryProposalsResponse" +
+      "est:\010\210\240\037\000\350\240\037\000\"\214\001\n\026QueryProposalsResponse" +
       "\0225\n\tproposals\030\001 \003(\0132\034.cosmos.gov.v1beta1" +
       ".ProposalB\004\310\336\037\000\022;\n\npagination\030\002 \001(\0132\'.co" +
       "smos.base.query.v1beta1.PageResponse\"@\n\020" +
       "QueryVoteRequest\022\023\n\013proposal_id\030\001 \001(\004\022\r\n" +
-      "\005voter\030\002 \001(\t:\010\350\240\037\000\210\240\037\000\"A\n\021QueryVoteRespo" +
+      "\005voter\030\002 \001(\t:\010\210\240\037\000\350\240\037\000\"A\n\021QueryVoteRespo" +
       "nse\022,\n\004vote\030\001 \001(\0132\030.cosmos.gov.v1beta1.V" +
       "oteB\004\310\336\037\000\"d\n\021QueryVotesRequest\022\023\n\013propos" +
       "al_id\030\001 \001(\004\022:\n\npagination\030\002 \001(\0132&.cosmos" +
@@ -13227,7 +12921,7 @@ public final class QueryOuterClass {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           cosmos.base.query.v1beta1.Pagination.getDescriptor(),
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           com.google.api.AnnotationsProto.getDescriptor(),
           cosmos.gov.v1beta1.Gov.getDescriptor(),
         });
@@ -13329,14 +13023,14 @@ public final class QueryOuterClass {
         new java.lang.String[] { "Tally", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.equal);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGetters);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.equal);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGetters);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     registry.add(com.google.api.AnnotationsProto.http);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
     cosmos.base.query.v1beta1.Pagination.getDescriptor();
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     com.google.api.AnnotationsProto.getDescriptor();
     cosmos.gov.v1beta1.Gov.getDescriptor();
   }

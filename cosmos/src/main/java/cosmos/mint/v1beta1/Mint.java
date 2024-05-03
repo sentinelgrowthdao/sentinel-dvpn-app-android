@@ -86,60 +86,6 @@ public final class Mint {
       return new Minter();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Minter(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              inflation_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              annualProvisions_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.mint.v1beta1.Mint.internal_static_cosmos_mint_v1beta1_Minter_descriptor;
@@ -154,7 +100,8 @@ public final class Mint {
     }
 
     public static final int INFLATION_FIELD_NUMBER = 1;
-    private volatile java.lang.Object inflation_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object inflation_ = "";
     /**
      * <pre>
      * current annual inflation rate
@@ -200,7 +147,8 @@ public final class Mint {
     }
 
     public static final int ANNUAL_PROVISIONS_FIELD_NUMBER = 2;
-    private volatile java.lang.Object annualProvisions_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object annualProvisions_ = "";
     /**
      * <pre>
      * current annual expected provisions
@@ -259,13 +207,13 @@ public final class Mint {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getInflationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflation_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, inflation_);
       }
-      if (!getAnnualProvisionsBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(annualProvisions_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, annualProvisions_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -274,13 +222,13 @@ public final class Mint {
       if (size != -1) return size;
 
       size = 0;
-      if (!getInflationBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflation_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, inflation_);
       }
-      if (!getAnnualProvisionsBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(annualProvisions_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, annualProvisions_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -299,7 +247,7 @@ public final class Mint {
           .equals(other.getInflation())) return false;
       if (!getAnnualProvisions()
           .equals(other.getAnnualProvisions())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -314,7 +262,7 @@ public final class Mint {
       hash = (53 * hash) + getInflation().hashCode();
       hash = (37 * hash) + ANNUAL_PROVISIONS_FIELD_NUMBER;
       hash = (53 * hash) + getAnnualProvisions().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -363,11 +311,13 @@ public final class Mint {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.mint.v1beta1.Mint.Minter parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.mint.v1beta1.Mint.Minter parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -435,26 +385,20 @@ public final class Mint {
 
       // Construct using cosmos.mint.v1beta1.Mint.Minter.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         inflation_ = "";
-
         annualProvisions_ = "";
-
         return this;
       }
 
@@ -481,10 +425,19 @@ public final class Mint {
       @java.lang.Override
       public cosmos.mint.v1beta1.Mint.Minter buildPartial() {
         cosmos.mint.v1beta1.Mint.Minter result = new cosmos.mint.v1beta1.Mint.Minter(this);
-        result.inflation_ = inflation_;
-        result.annualProvisions_ = annualProvisions_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.mint.v1beta1.Mint.Minter result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.inflation_ = inflation_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.annualProvisions_ = annualProvisions_;
+        }
       }
 
       @java.lang.Override
@@ -533,13 +486,15 @@ public final class Mint {
         if (other == cosmos.mint.v1beta1.Mint.Minter.getDefaultInstance()) return this;
         if (!other.getInflation().isEmpty()) {
           inflation_ = other.inflation_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getAnnualProvisions().isEmpty()) {
           annualProvisions_ = other.annualProvisions_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -554,19 +509,43 @@ public final class Mint {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.mint.v1beta1.Mint.Minter parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                inflation_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                annualProvisions_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.mint.v1beta1.Mint.Minter) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object inflation_ = "";
       /**
@@ -621,11 +600,9 @@ public final class Mint {
        */
       public Builder setInflation(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         inflation_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -638,8 +615,8 @@ public final class Mint {
        * @return This builder for chaining.
        */
       public Builder clearInflation() {
-        
         inflation_ = getDefaultInstance().getInflation();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -654,12 +631,10 @@ public final class Mint {
        */
       public Builder setInflationBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         inflation_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -717,11 +692,9 @@ public final class Mint {
        */
       public Builder setAnnualProvisions(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         annualProvisions_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -734,8 +707,8 @@ public final class Mint {
        * @return This builder for chaining.
        */
       public Builder clearAnnualProvisions() {
-        
         annualProvisions_ = getDefaultInstance().getAnnualProvisions();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -750,12 +723,10 @@ public final class Mint {
        */
       public Builder setAnnualProvisionsBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         annualProvisions_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -792,7 +763,18 @@ public final class Mint {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Minter(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -957,83 +939,6 @@ public final class Mint {
       return new Params();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Params(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              mintDenom_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              inflationRateChange_ = s;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              inflationMax_ = s;
-              break;
-            }
-            case 34: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              inflationMin_ = s;
-              break;
-            }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              goalBonded_ = s;
-              break;
-            }
-            case 48: {
-
-              blocksPerYear_ = input.readUInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.mint.v1beta1.Mint.internal_static_cosmos_mint_v1beta1_Params_descriptor;
@@ -1048,7 +953,8 @@ public final class Mint {
     }
 
     public static final int MINT_DENOM_FIELD_NUMBER = 1;
-    private volatile java.lang.Object mintDenom_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object mintDenom_ = "";
     /**
      * <pre>
      * type of coin to mint
@@ -1094,7 +1000,8 @@ public final class Mint {
     }
 
     public static final int INFLATION_RATE_CHANGE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object inflationRateChange_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object inflationRateChange_ = "";
     /**
      * <pre>
      * maximum annual change in inflation rate
@@ -1140,7 +1047,8 @@ public final class Mint {
     }
 
     public static final int INFLATION_MAX_FIELD_NUMBER = 3;
-    private volatile java.lang.Object inflationMax_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object inflationMax_ = "";
     /**
      * <pre>
      * maximum inflation rate
@@ -1186,7 +1094,8 @@ public final class Mint {
     }
 
     public static final int INFLATION_MIN_FIELD_NUMBER = 4;
-    private volatile java.lang.Object inflationMin_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object inflationMin_ = "";
     /**
      * <pre>
      * minimum inflation rate
@@ -1232,7 +1141,8 @@ public final class Mint {
     }
 
     public static final int GOAL_BONDED_FIELD_NUMBER = 5;
-    private volatile java.lang.Object goalBonded_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object goalBonded_ = "";
     /**
      * <pre>
      * goal of percent bonded atoms
@@ -1278,7 +1188,7 @@ public final class Mint {
     }
 
     public static final int BLOCKS_PER_YEAR_FIELD_NUMBER = 6;
-    private long blocksPerYear_;
+    private long blocksPerYear_ = 0L;
     /**
      * <pre>
      * expected blocks per year
@@ -1306,25 +1216,25 @@ public final class Mint {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getMintDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mintDenom_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, mintDenom_);
       }
-      if (!getInflationRateChangeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationRateChange_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, inflationRateChange_);
       }
-      if (!getInflationMaxBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationMax_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, inflationMax_);
       }
-      if (!getInflationMinBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationMin_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, inflationMin_);
       }
-      if (!getGoalBondedBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(goalBonded_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, goalBonded_);
       }
       if (blocksPerYear_ != 0L) {
         output.writeUInt64(6, blocksPerYear_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -1333,26 +1243,26 @@ public final class Mint {
       if (size != -1) return size;
 
       size = 0;
-      if (!getMintDenomBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(mintDenom_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, mintDenom_);
       }
-      if (!getInflationRateChangeBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationRateChange_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, inflationRateChange_);
       }
-      if (!getInflationMaxBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationMax_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, inflationMax_);
       }
-      if (!getInflationMinBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(inflationMin_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, inflationMin_);
       }
-      if (!getGoalBondedBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(goalBonded_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, goalBonded_);
       }
       if (blocksPerYear_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(6, blocksPerYear_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -1379,7 +1289,7 @@ public final class Mint {
           .equals(other.getGoalBonded())) return false;
       if (getBlocksPerYear()
           != other.getBlocksPerYear()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -1403,7 +1313,7 @@ public final class Mint {
       hash = (37 * hash) + BLOCKS_PER_YEAR_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getBlocksPerYear());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1452,11 +1362,13 @@ public final class Mint {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.mint.v1beta1.Mint.Params parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.mint.v1beta1.Mint.Params parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1524,34 +1436,24 @@ public final class Mint {
 
       // Construct using cosmos.mint.v1beta1.Mint.Params.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         mintDenom_ = "";
-
         inflationRateChange_ = "";
-
         inflationMax_ = "";
-
         inflationMin_ = "";
-
         goalBonded_ = "";
-
         blocksPerYear_ = 0L;
-
         return this;
       }
 
@@ -1578,14 +1480,31 @@ public final class Mint {
       @java.lang.Override
       public cosmos.mint.v1beta1.Mint.Params buildPartial() {
         cosmos.mint.v1beta1.Mint.Params result = new cosmos.mint.v1beta1.Mint.Params(this);
-        result.mintDenom_ = mintDenom_;
-        result.inflationRateChange_ = inflationRateChange_;
-        result.inflationMax_ = inflationMax_;
-        result.inflationMin_ = inflationMin_;
-        result.goalBonded_ = goalBonded_;
-        result.blocksPerYear_ = blocksPerYear_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.mint.v1beta1.Mint.Params result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.mintDenom_ = mintDenom_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.inflationRateChange_ = inflationRateChange_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.inflationMax_ = inflationMax_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.inflationMin_ = inflationMin_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.goalBonded_ = goalBonded_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.blocksPerYear_ = blocksPerYear_;
+        }
       }
 
       @java.lang.Override
@@ -1634,28 +1553,33 @@ public final class Mint {
         if (other == cosmos.mint.v1beta1.Mint.Params.getDefaultInstance()) return this;
         if (!other.getMintDenom().isEmpty()) {
           mintDenom_ = other.mintDenom_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (!other.getInflationRateChange().isEmpty()) {
           inflationRateChange_ = other.inflationRateChange_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (!other.getInflationMax().isEmpty()) {
           inflationMax_ = other.inflationMax_;
+          bitField0_ |= 0x00000004;
           onChanged();
         }
         if (!other.getInflationMin().isEmpty()) {
           inflationMin_ = other.inflationMin_;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
         if (!other.getGoalBonded().isEmpty()) {
           goalBonded_ = other.goalBonded_;
+          bitField0_ |= 0x00000010;
           onChanged();
         }
         if (other.getBlocksPerYear() != 0L) {
           setBlocksPerYear(other.getBlocksPerYear());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1670,19 +1594,63 @@ public final class Mint {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.mint.v1beta1.Mint.Params parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                mintDenom_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                inflationRateChange_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                inflationMax_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 34: {
+                inflationMin_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 42: {
+                goalBonded_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 48: {
+                blocksPerYear_ = input.readUInt64();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.mint.v1beta1.Mint.Params) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object mintDenom_ = "";
       /**
@@ -1737,11 +1705,9 @@ public final class Mint {
        */
       public Builder setMintDenom(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         mintDenom_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1754,8 +1720,8 @@ public final class Mint {
        * @return This builder for chaining.
        */
       public Builder clearMintDenom() {
-        
         mintDenom_ = getDefaultInstance().getMintDenom();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -1770,12 +1736,10 @@ public final class Mint {
        */
       public Builder setMintDenomBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         mintDenom_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1833,11 +1797,9 @@ public final class Mint {
        */
       public Builder setInflationRateChange(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         inflationRateChange_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1850,8 +1812,8 @@ public final class Mint {
        * @return This builder for chaining.
        */
       public Builder clearInflationRateChange() {
-        
         inflationRateChange_ = getDefaultInstance().getInflationRateChange();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -1866,12 +1828,10 @@ public final class Mint {
        */
       public Builder setInflationRateChangeBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         inflationRateChange_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1929,11 +1889,9 @@ public final class Mint {
        */
       public Builder setInflationMax(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         inflationMax_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -1946,8 +1904,8 @@ public final class Mint {
        * @return This builder for chaining.
        */
       public Builder clearInflationMax() {
-        
         inflationMax_ = getDefaultInstance().getInflationMax();
+        bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
@@ -1962,12 +1920,10 @@ public final class Mint {
        */
       public Builder setInflationMaxBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         inflationMax_ = value;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
@@ -2025,11 +1981,9 @@ public final class Mint {
        */
       public Builder setInflationMin(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         inflationMin_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -2042,8 +1996,8 @@ public final class Mint {
        * @return This builder for chaining.
        */
       public Builder clearInflationMin() {
-        
         inflationMin_ = getDefaultInstance().getInflationMin();
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -2058,12 +2012,10 @@ public final class Mint {
        */
       public Builder setInflationMinBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         inflationMin_ = value;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -2121,11 +2073,9 @@ public final class Mint {
        */
       public Builder setGoalBonded(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         goalBonded_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -2138,8 +2088,8 @@ public final class Mint {
        * @return This builder for chaining.
        */
       public Builder clearGoalBonded() {
-        
         goalBonded_ = getDefaultInstance().getGoalBonded();
+        bitField0_ = (bitField0_ & ~0x00000010);
         onChanged();
         return this;
       }
@@ -2154,12 +2104,10 @@ public final class Mint {
        */
       public Builder setGoalBondedBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         goalBonded_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -2187,8 +2135,9 @@ public final class Mint {
        * @return This builder for chaining.
        */
       public Builder setBlocksPerYear(long value) {
-        
+
         blocksPerYear_ = value;
+        bitField0_ |= 0x00000020;
         onChanged();
         return this;
       }
@@ -2201,7 +2150,7 @@ public final class Mint {
        * @return This builder for chaining.
        */
       public Builder clearBlocksPerYear() {
-        
+        bitField0_ = (bitField0_ & ~0x00000020);
         blocksPerYear_ = 0L;
         onChanged();
         return this;
@@ -2239,7 +2188,18 @@ public final class Mint {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Params(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -2280,21 +2240,21 @@ public final class Mint {
     java.lang.String[] descriptorData = {
       "\n\036cosmos/mint/v1beta1/mint.proto\022\023cosmos" +
       ".mint.v1beta1\032\024gogoproto/gogo.proto\"\262\001\n\006" +
-      "Minter\022A\n\tinflation\030\001 \001(\tB.\332\336\037&github.co" +
-      "m/cosmos/cosmos-sdk/types.Dec\310\336\037\000\022e\n\021ann" +
-      "ual_provisions\030\002 \001(\tBJ\362\336\037\030yaml:\"annual_p" +
-      "rovisions\"\332\336\037&github.com/cosmos/cosmos-s" +
-      "dk/types.Dec\310\336\037\000\"\337\003\n\006Params\022\022\n\nmint_deno" +
+      "Minter\022A\n\tinflation\030\001 \001(\tB.\310\336\037\000\332\336\037&githu" +
+      "b.com/cosmos/cosmos-sdk/types.Dec\022e\n\021ann" +
+      "ual_provisions\030\002 \001(\tBJ\310\336\037\000\332\336\037&github.com" +
+      "/cosmos/cosmos-sdk/types.Dec\362\336\037\030yaml:\"an" +
+      "nual_provisions\"\"\337\003\n\006Params\022\022\n\nmint_deno" +
       "m\030\001 \001(\t\022m\n\025inflation_rate_change\030\002 \001(\tBN" +
-      "\362\336\037\034yaml:\"inflation_rate_change\"\332\336\037&gith" +
-      "ub.com/cosmos/cosmos-sdk/types.Dec\310\336\037\000\022]" +
-      "\n\rinflation_max\030\003 \001(\tBF\362\336\037\024yaml:\"inflati" +
-      "on_max\"\332\336\037&github.com/cosmos/cosmos-sdk/" +
-      "types.Dec\310\336\037\000\022]\n\rinflation_min\030\004 \001(\tBF\362\336" +
-      "\037\024yaml:\"inflation_min\"\332\336\037&github.com/cos" +
-      "mos/cosmos-sdk/types.Dec\310\336\037\000\022Y\n\013goal_bon" +
-      "ded\030\005 \001(\tBD\362\336\037\022yaml:\"goal_bonded\"\332\336\037&git" +
-      "hub.com/cosmos/cosmos-sdk/types.Dec\310\336\037\000\022" +
+      "\310\336\037\000\332\336\037&github.com/cosmos/cosmos-sdk/typ" +
+      "es.Dec\362\336\037\034yaml:\"inflation_rate_change\"\022]" +
+      "\n\rinflation_max\030\003 \001(\tBF\310\336\037\000\332\336\037&github.co" +
+      "m/cosmos/cosmos-sdk/types.Dec\362\336\037\024yaml:\"i" +
+      "nflation_max\"\022]\n\rinflation_min\030\004 \001(\tBF\310\336" +
+      "\037\000\332\336\037&github.com/cosmos/cosmos-sdk/types" +
+      ".Dec\362\336\037\024yaml:\"inflation_min\"\022Y\n\013goal_bon" +
+      "ded\030\005 \001(\tBD\310\336\037\000\332\336\037&github.com/cosmos/cos" +
+      "mos-sdk/types.Dec\362\336\037\022yaml:\"goal_bonded\"\022" +
       "3\n\017blocks_per_year\030\006 \001(\004B\032\362\336\037\026yaml:\"bloc" +
       "ks_per_year\":\004\230\240\037\000B+Z)github.com/cosmos/" +
       "cosmos-sdk/x/mint/typesb\006proto3"
@@ -2302,7 +2262,7 @@ public final class Mint {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
         });
     internal_static_cosmos_mint_v1beta1_Minter_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -2318,13 +2278,13 @@ public final class Mint {
         new java.lang.String[] { "MintDenom", "InflationRateChange", "InflationMax", "InflationMin", "GoalBonded", "BlocksPerYear", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.customtype);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoStringer);
-    registry.add(com.google.protobuf2.GoGoProtos.moretags);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.customtype);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoStringer);
+    registry.add(com.google.protobuf.GoGoProtos.moretags);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

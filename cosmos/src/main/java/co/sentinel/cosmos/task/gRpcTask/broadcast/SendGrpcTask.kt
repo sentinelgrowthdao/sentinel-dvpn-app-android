@@ -70,7 +70,7 @@ class SendGrpcTask(
       mResult.resultData = response.txResponse.txhash
       if (response.txResponse.code > 0) {
         mResult.errorCode = response.txResponse.code
-        mResult.errorMsg = response.txResponse.raTimber
+        mResult.errorMsg = response.txResponse.rawLog
         mResult.isSuccess = false
       } else {
         mResult.isSuccess = true

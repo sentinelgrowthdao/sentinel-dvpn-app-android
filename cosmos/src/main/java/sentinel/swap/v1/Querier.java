@@ -68,7 +68,6 @@ public final class Querier {
               sentinel.swap.v1.Querier.QuerySwapsRequest.class, sentinel.swap.v1.Querier.QuerySwapsRequest.Builder.class);
     }
 
-    private int bitField0_;
     public static final int PAGINATION_FIELD_NUMBER = 1;
     private cosmos.base.query.v1beta1.Pagination.PageRequest pagination_;
     /**
@@ -77,7 +76,7 @@ public final class Querier {
      */
     @java.lang.Override
     public boolean hasPagination() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return pagination_ != null;
     }
     /**
      * <code>.cosmos.base.query.v1beta1.PageRequest pagination = 1;</code>
@@ -109,7 +108,7 @@ public final class Querier {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (pagination_ != null) {
         output.writeMessage(1, getPagination());
       }
       getUnknownFields().writeTo(output);
@@ -121,7 +120,7 @@ public final class Querier {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (pagination_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getPagination());
       }
@@ -279,19 +278,13 @@ public final class Querier {
 
       // Construct using sentinel.swap.v1.Querier.QuerySwapsRequest.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getPaginationFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -335,14 +328,11 @@ public final class Querier {
 
       private void buildPartial0(sentinel.swap.v1.Querier.QuerySwapsRequest result) {
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.pagination_ = paginationBuilder_ == null
               ? pagination_
               : paginationBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -508,10 +498,8 @@ public final class Querier {
         } else {
           paginationBuilder_.mergeFrom(value);
         }
-        if (pagination_ != null) {
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -1579,7 +1567,6 @@ public final class Querier {
               sentinel.swap.v1.Querier.QuerySwapsResponse.class, sentinel.swap.v1.Querier.QuerySwapsResponse.Builder.class);
     }
 
-    private int bitField0_;
     public static final int SWAPS_FIELD_NUMBER = 1;
     @SuppressWarnings("serial")
     private java.util.List<sentinel.swap.v1.SwapOuterClass.Swap> swaps_;
@@ -1629,7 +1616,7 @@ public final class Querier {
      */
     @java.lang.Override
     public boolean hasPagination() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return pagination_ != null;
     }
     /**
      * <code>.cosmos.base.query.v1beta1.PageResponse pagination = 2;</code>
@@ -1664,7 +1651,7 @@ public final class Querier {
       for (int i = 0; i < swaps_.size(); i++) {
         output.writeMessage(1, swaps_.get(i));
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (pagination_ != null) {
         output.writeMessage(2, getPagination());
       }
       getUnknownFields().writeTo(output);
@@ -1680,7 +1667,7 @@ public final class Querier {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, swaps_.get(i));
       }
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (pagination_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getPagination());
       }
@@ -1844,20 +1831,13 @@ public final class Querier {
 
       // Construct using sentinel.swap.v1.Querier.QuerySwapsResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getSwapsFieldBuilder();
-          getPaginationFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -1921,14 +1901,11 @@ public final class Querier {
 
       private void buildPartial0(sentinel.swap.v1.Querier.QuerySwapsResponse result) {
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.pagination_ = paginationBuilder_ == null
               ? pagination_
               : paginationBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -2373,10 +2350,8 @@ public final class Querier {
         } else {
           paginationBuilder_.mergeFrom(value);
         }
-        if (pagination_ != null) {
-          bitField0_ |= 0x00000002;
-          onChanged();
-        }
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
@@ -2545,7 +2520,6 @@ public final class Querier {
               sentinel.swap.v1.Querier.QuerySwapResponse.class, sentinel.swap.v1.Querier.QuerySwapResponse.Builder.class);
     }
 
-    private int bitField0_;
     public static final int SWAP_FIELD_NUMBER = 1;
     private sentinel.swap.v1.SwapOuterClass.Swap swap_;
     /**
@@ -2554,7 +2528,7 @@ public final class Querier {
      */
     @java.lang.Override
     public boolean hasSwap() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return swap_ != null;
     }
     /**
      * <code>.sentinel.swap.v1.Swap swap = 1 [(.gogoproto.nullable) = false];</code>
@@ -2586,7 +2560,7 @@ public final class Querier {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (swap_ != null) {
         output.writeMessage(1, getSwap());
       }
       getUnknownFields().writeTo(output);
@@ -2598,7 +2572,7 @@ public final class Querier {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (swap_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getSwap());
       }
@@ -2756,19 +2730,13 @@ public final class Querier {
 
       // Construct using sentinel.swap.v1.Querier.QuerySwapResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getSwapFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -2812,14 +2780,11 @@ public final class Querier {
 
       private void buildPartial0(sentinel.swap.v1.Querier.QuerySwapResponse result) {
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.swap_ = swapBuilder_ == null
               ? swap_
               : swapBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -2985,10 +2950,8 @@ public final class Querier {
         } else {
           swapBuilder_.mergeFrom(value);
         }
-        if (swap_ != null) {
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3157,7 +3120,6 @@ public final class Querier {
               sentinel.swap.v1.Querier.QueryParamsResponse.class, sentinel.swap.v1.Querier.QueryParamsResponse.Builder.class);
     }
 
-    private int bitField0_;
     public static final int PARAMS_FIELD_NUMBER = 1;
     private sentinel.swap.v1.ParamsOuterClass.Params params_;
     /**
@@ -3166,7 +3128,7 @@ public final class Querier {
      */
     @java.lang.Override
     public boolean hasParams() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return params_ != null;
     }
     /**
      * <code>.sentinel.swap.v1.Params params = 1 [(.gogoproto.nullable) = false];</code>
@@ -3198,7 +3160,7 @@ public final class Querier {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (params_ != null) {
         output.writeMessage(1, getParams());
       }
       getUnknownFields().writeTo(output);
@@ -3210,7 +3172,7 @@ public final class Querier {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (params_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getParams());
       }
@@ -3368,19 +3330,13 @@ public final class Querier {
 
       // Construct using sentinel.swap.v1.Querier.QueryParamsResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getParamsFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -3424,14 +3380,11 @@ public final class Querier {
 
       private void buildPartial0(sentinel.swap.v1.Querier.QueryParamsResponse result) {
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.params_ = paramsBuilder_ == null
               ? params_
               : paramsBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -3597,10 +3550,8 @@ public final class Querier {
         } else {
           paramsBuilder_.mergeFrom(value);
         }
-        if (params_ != null) {
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -3786,7 +3737,7 @@ public final class Querier {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           cosmos.base.query.v1beta1.Pagination.getDescriptor(),
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           com.google.api.AnnotationsProto.getDescriptor(),
           sentinel.swap.v1.SwapOuterClass.getDescriptor(),
           sentinel.swap.v1.ParamsOuterClass.getDescriptor(),
@@ -3829,14 +3780,14 @@ public final class Querier {
         new java.lang.String[] { "Params", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
     registry.add(com.google.api.AnnotationsProto.http);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
     cosmos.base.query.v1beta1.Pagination.getDescriptor();
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     com.google.api.AnnotationsProto.getDescriptor();
     sentinel.swap.v1.SwapOuterClass.getDescriptor();
     sentinel.swap.v1.ParamsOuterClass.getDescriptor();

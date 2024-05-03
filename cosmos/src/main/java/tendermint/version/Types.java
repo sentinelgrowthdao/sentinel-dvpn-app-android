@@ -28,7 +28,7 @@ public final class Types {
      * <code>string software = 2;</code>
      * @return The software.
      */
-    String getSoftware();
+    java.lang.String getSoftware();
     /**
      * <code>string software = 2;</code>
      * @return The bytes for software.
@@ -58,105 +58,53 @@ public final class Types {
       software_ = "";
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new App();
     }
 
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private App(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              protocol_ = input.readUInt64();
-              break;
-            }
-            case 18: {
-              String s = input.readStringRequireUtf8();
-
-              software_ = s;
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Types.internal_static_tendermint_version_App_descriptor;
+      return tendermint.version.Types.internal_static_tendermint_version_App_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Types.internal_static_tendermint_version_App_fieldAccessorTable
+      return tendermint.version.Types.internal_static_tendermint_version_App_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              App.class, Builder.class);
+              tendermint.version.Types.App.class, tendermint.version.Types.App.Builder.class);
     }
 
     public static final int PROTOCOL_FIELD_NUMBER = 1;
-    private long protocol_;
+    private long protocol_ = 0L;
     /**
      * <code>uint64 protocol = 1;</code>
      * @return The protocol.
      */
-    @Override
+    @java.lang.Override
     public long getProtocol() {
       return protocol_;
     }
 
     public static final int SOFTWARE_FIELD_NUMBER = 2;
-    private volatile Object software_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object software_ = "";
     /**
      * <code>string software = 2;</code>
      * @return The software.
      */
-    @Override
-    public String getSoftware() {
-      Object ref = software_;
-      if (ref instanceof String) {
-        return (String) ref;
+    @java.lang.Override
+    public java.lang.String getSoftware() {
+      java.lang.Object ref = software_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         software_ = s;
         return s;
       }
@@ -165,14 +113,14 @@ public final class Types {
      * <code>string software = 2;</code>
      * @return The bytes for software.
      */
-    @Override
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getSoftwareBytes() {
-      Object ref = software_;
-      if (ref instanceof String) {
+      java.lang.Object ref = software_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         software_ = b;
         return b;
       } else {
@@ -181,7 +129,7 @@ public final class Types {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -191,19 +139,19 @@ public final class Types {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (protocol_ != 0L) {
         output.writeUInt64(1, protocol_);
       }
-      if (!getSoftwareBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(software_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, software_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -213,33 +161,33 @@ public final class Types {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(1, protocol_);
       }
-      if (!getSoftwareBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(software_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, software_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof App)) {
+      if (!(obj instanceof tendermint.version.Types.App)) {
         return super.equals(obj);
       }
-      App other = (App) obj;
+      tendermint.version.Types.App other = (tendermint.version.Types.App) obj;
 
       if (getProtocol()
           != other.getProtocol()) return false;
       if (!getSoftware()
           .equals(other.getSoftware())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -251,74 +199,76 @@ public final class Types {
           getProtocol());
       hash = (37 * hash) + SOFTWARE_FIELD_NUMBER;
       hash = (53 * hash) + getSoftware().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static App parseFrom(
+    public static tendermint.version.Types.App parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static App parseFrom(
+    public static tendermint.version.Types.App parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static App parseFrom(
+    public static tendermint.version.Types.App parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static App parseFrom(
+    public static tendermint.version.Types.App parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static App parseFrom(byte[] data)
+    public static tendermint.version.Types.App parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static App parseFrom(
+    public static tendermint.version.Types.App parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static App parseFrom(java.io.InputStream input)
+    public static tendermint.version.Types.App parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static App parseFrom(
+    public static tendermint.version.Types.App parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static App parseDelimitedFrom(java.io.InputStream input)
+
+    public static tendermint.version.Types.App parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static App parseDelimitedFrom(
+
+    public static tendermint.version.Types.App parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static App parseFrom(
+    public static tendermint.version.Types.App parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static App parseFrom(
+    public static tendermint.version.Types.App parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -326,23 +276,23 @@ public final class Types {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(App prototype) {
+    public static Builder newBuilder(tendermint.version.Types.App prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -358,160 +308,188 @@ public final class Types {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:tendermint.version.App)
-        AppOrBuilder {
+        tendermint.version.Types.AppOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Types.internal_static_tendermint_version_App_descriptor;
+        return tendermint.version.Types.internal_static_tendermint_version_App_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Types.internal_static_tendermint_version_App_fieldAccessorTable
+        return tendermint.version.Types.internal_static_tendermint_version_App_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                App.class, Builder.class);
+                tendermint.version.Types.App.class, tendermint.version.Types.App.Builder.class);
       }
 
       // Construct using tendermint.version.Types.App.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
+
       }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         protocol_ = 0L;
-
         software_ = "";
-
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Types.internal_static_tendermint_version_App_descriptor;
+        return tendermint.version.Types.internal_static_tendermint_version_App_descriptor;
       }
 
-      @Override
-      public App getDefaultInstanceForType() {
-        return App.getDefaultInstance();
+      @java.lang.Override
+      public tendermint.version.Types.App getDefaultInstanceForType() {
+        return tendermint.version.Types.App.getDefaultInstance();
       }
 
-      @Override
-      public App build() {
-        App result = buildPartial();
+      @java.lang.Override
+      public tendermint.version.Types.App build() {
+        tendermint.version.Types.App result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public App buildPartial() {
-        App result = new App(this);
-        result.protocol_ = protocol_;
-        result.software_ = software_;
+      @java.lang.Override
+      public tendermint.version.Types.App buildPartial() {
+        tendermint.version.Types.App result = new tendermint.version.Types.App(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @Override
+      private void buildPartial0(tendermint.version.Types.App result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.protocol_ = protocol_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.software_ = software_;
+        }
+      }
+
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof App) {
-          return mergeFrom((App)other);
+        if (other instanceof tendermint.version.Types.App) {
+          return mergeFrom((tendermint.version.Types.App)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(App other) {
-        if (other == App.getDefaultInstance()) return this;
+      public Builder mergeFrom(tendermint.version.Types.App other) {
+        if (other == tendermint.version.Types.App.getDefaultInstance()) return this;
         if (other.getProtocol() != 0L) {
           setProtocol(other.getProtocol());
         }
         if (!other.getSoftware().isEmpty()) {
           software_ = other.software_;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        App parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                protocol_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                software_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (App) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long protocol_ ;
       /**
        * <code>uint64 protocol = 1;</code>
        * @return The protocol.
        */
-      @Override
+      @java.lang.Override
       public long getProtocol() {
         return protocol_;
       }
@@ -521,8 +499,9 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder setProtocol(long value) {
-        
+
         protocol_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -531,27 +510,27 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder clearProtocol() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         protocol_ = 0L;
         onChanged();
         return this;
       }
 
-      private Object software_ = "";
+      private java.lang.Object software_ = "";
       /**
        * <code>string software = 2;</code>
        * @return The software.
        */
-      public String getSoftware() {
-        Object ref = software_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getSoftware() {
+        java.lang.Object ref = software_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           software_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -560,11 +539,11 @@ public final class Types {
        */
       public com.google.protobuf.ByteString
           getSoftwareBytes() {
-        Object ref = software_;
+        java.lang.Object ref = software_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           software_ = b;
           return b;
         } else {
@@ -577,12 +556,10 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder setSoftware(
-          String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
         software_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -591,8 +568,8 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder clearSoftware() {
-        
         software_ = getDefaultInstance().getSoftware();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -603,22 +580,20 @@ public final class Types {
        */
       public Builder setSoftwareBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         software_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -629,23 +604,34 @@ public final class Types {
     }
 
     // @@protoc_insertion_point(class_scope:tendermint.version.App)
-    private static final App DEFAULT_INSTANCE;
+    private static final tendermint.version.Types.App DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new App();
+      DEFAULT_INSTANCE = new tendermint.version.Types.App();
     }
 
-    public static App getDefaultInstance() {
+    public static tendermint.version.Types.App getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<App>
         PARSER = new com.google.protobuf.AbstractParser<App>() {
-      @Override
+      @java.lang.Override
       public App parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new App(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -653,13 +639,13 @@ public final class Types {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<App> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public App getDefaultInstanceForType() {
+    @java.lang.Override
+    public tendermint.version.Types.App getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -702,102 +688,50 @@ public final class Types {
     private Consensus() {
     }
 
-    @Override
+    @java.lang.Override
     @SuppressWarnings({"unused"})
-    protected Object newInstance(
+    protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
       return new Consensus();
     }
 
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Consensus(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              block_ = input.readUInt64();
-              break;
-            }
-            case 16: {
-
-              app_ = input.readUInt64();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Types.internal_static_tendermint_version_Consensus_descriptor;
+      return tendermint.version.Types.internal_static_tendermint_version_Consensus_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Types.internal_static_tendermint_version_Consensus_fieldAccessorTable
+      return tendermint.version.Types.internal_static_tendermint_version_Consensus_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              Consensus.class, Builder.class);
+              tendermint.version.Types.Consensus.class, tendermint.version.Types.Consensus.Builder.class);
     }
 
     public static final int BLOCK_FIELD_NUMBER = 1;
-    private long block_;
+    private long block_ = 0L;
     /**
      * <code>uint64 block = 1;</code>
      * @return The block.
      */
-    @Override
+    @java.lang.Override
     public long getBlock() {
       return block_;
     }
 
     public static final int APP_FIELD_NUMBER = 2;
-    private long app_;
+    private long app_ = 0L;
     /**
      * <code>uint64 app = 2;</code>
      * @return The app.
      */
-    @Override
+    @java.lang.Override
     public long getApp() {
       return app_;
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -807,7 +741,7 @@ public final class Types {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (block_ != 0L) {
@@ -816,10 +750,10 @@ public final class Types {
       if (app_ != 0L) {
         output.writeUInt64(2, app_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -833,30 +767,30 @@ public final class Types {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(2, app_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof Consensus)) {
+      if (!(obj instanceof tendermint.version.Types.Consensus)) {
         return super.equals(obj);
       }
-      Consensus other = (Consensus) obj;
+      tendermint.version.Types.Consensus other = (tendermint.version.Types.Consensus) obj;
 
       if (getBlock()
           != other.getBlock()) return false;
       if (getApp()
           != other.getApp()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -869,74 +803,76 @@ public final class Types {
       hash = (37 * hash) + APP_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getApp());
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static Consensus parseFrom(
+    public static tendermint.version.Types.Consensus parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Consensus parseFrom(
+    public static tendermint.version.Types.Consensus parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Consensus parseFrom(
+    public static tendermint.version.Types.Consensus parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Consensus parseFrom(
+    public static tendermint.version.Types.Consensus parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Consensus parseFrom(byte[] data)
+    public static tendermint.version.Types.Consensus parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Consensus parseFrom(
+    public static tendermint.version.Types.Consensus parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Consensus parseFrom(java.io.InputStream input)
+    public static tendermint.version.Types.Consensus parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Consensus parseFrom(
+    public static tendermint.version.Types.Consensus parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Consensus parseDelimitedFrom(java.io.InputStream input)
+
+    public static tendermint.version.Types.Consensus parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static Consensus parseDelimitedFrom(
+
+    public static tendermint.version.Types.Consensus parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Consensus parseFrom(
+    public static tendermint.version.Types.Consensus parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static Consensus parseFrom(
+    public static tendermint.version.Types.Consensus parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -944,23 +880,23 @@ public final class Types {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Consensus prototype) {
+    public static Builder newBuilder(tendermint.version.Types.Consensus prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -976,159 +912,186 @@ public final class Types {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:tendermint.version.Consensus)
-        ConsensusOrBuilder {
+        tendermint.version.Types.ConsensusOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return Types.internal_static_tendermint_version_Consensus_descriptor;
+        return tendermint.version.Types.internal_static_tendermint_version_Consensus_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return Types.internal_static_tendermint_version_Consensus_fieldAccessorTable
+        return tendermint.version.Types.internal_static_tendermint_version_Consensus_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                Consensus.class, Builder.class);
+                tendermint.version.Types.Consensus.class, tendermint.version.Types.Consensus.Builder.class);
       }
 
       // Construct using tendermint.version.Types.Consensus.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
+
       }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         block_ = 0L;
-
         app_ = 0L;
-
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return Types.internal_static_tendermint_version_Consensus_descriptor;
+        return tendermint.version.Types.internal_static_tendermint_version_Consensus_descriptor;
       }
 
-      @Override
-      public Consensus getDefaultInstanceForType() {
-        return Consensus.getDefaultInstance();
+      @java.lang.Override
+      public tendermint.version.Types.Consensus getDefaultInstanceForType() {
+        return tendermint.version.Types.Consensus.getDefaultInstance();
       }
 
-      @Override
-      public Consensus build() {
-        Consensus result = buildPartial();
+      @java.lang.Override
+      public tendermint.version.Types.Consensus build() {
+        tendermint.version.Types.Consensus result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      @Override
-      public Consensus buildPartial() {
-        Consensus result = new Consensus(this);
-        result.block_ = block_;
-        result.app_ = app_;
+      @java.lang.Override
+      public tendermint.version.Types.Consensus buildPartial() {
+        tendermint.version.Types.Consensus result = new tendermint.version.Types.Consensus(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      @Override
+      private void buildPartial0(tendermint.version.Types.Consensus result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.block_ = block_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.app_ = app_;
+        }
+      }
+
+      @java.lang.Override
       public Builder clone() {
         return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Consensus) {
-          return mergeFrom((Consensus)other);
+        if (other instanceof tendermint.version.Types.Consensus) {
+          return mergeFrom((tendermint.version.Types.Consensus)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(Consensus other) {
-        if (other == Consensus.getDefaultInstance()) return this;
+      public Builder mergeFrom(tendermint.version.Types.Consensus other) {
+        if (other == tendermint.version.Types.Consensus.getDefaultInstance()) return this;
         if (other.getBlock() != 0L) {
           setBlock(other.getBlock());
         }
         if (other.getApp() != 0L) {
           setApp(other.getApp());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        Consensus parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                block_ = input.readUInt64();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                app_ = input.readUInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Consensus) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private long block_ ;
       /**
        * <code>uint64 block = 1;</code>
        * @return The block.
        */
-      @Override
+      @java.lang.Override
       public long getBlock() {
         return block_;
       }
@@ -1138,8 +1101,9 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder setBlock(long value) {
-        
+
         block_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1148,7 +1112,7 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder clearBlock() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         block_ = 0L;
         onChanged();
         return this;
@@ -1159,7 +1123,7 @@ public final class Types {
        * <code>uint64 app = 2;</code>
        * @return The app.
        */
-      @Override
+      @java.lang.Override
       public long getApp() {
         return app_;
       }
@@ -1169,8 +1133,9 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder setApp(long value) {
-        
+
         app_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -1179,18 +1144,18 @@ public final class Types {
        * @return This builder for chaining.
        */
       public Builder clearApp() {
-        
+        bitField0_ = (bitField0_ & ~0x00000002);
         app_ = 0L;
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1201,23 +1166,34 @@ public final class Types {
     }
 
     // @@protoc_insertion_point(class_scope:tendermint.version.Consensus)
-    private static final Consensus DEFAULT_INSTANCE;
+    private static final tendermint.version.Types.Consensus DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new Consensus();
+      DEFAULT_INSTANCE = new tendermint.version.Types.Consensus();
     }
 
-    public static Consensus getDefaultInstance() {
+    public static tendermint.version.Types.Consensus getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
     private static final com.google.protobuf.Parser<Consensus>
         PARSER = new com.google.protobuf.AbstractParser<Consensus>() {
-      @Override
+      @java.lang.Override
       public Consensus parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Consensus(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1225,13 +1201,13 @@ public final class Types {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Consensus> getParserForType() {
       return PARSER;
     }
 
-    @Override
-    public Consensus getDefaultInstanceForType() {
+    @java.lang.Override
+    public tendermint.version.Types.Consensus getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1255,7 +1231,7 @@ public final class Types {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\036tendermint/version/types.proto\022\022tender" +
       "mint.version\032\024gogoproto/gogo.proto\")\n\003Ap" +
       "p\022\020\n\010protocol\030\001 \001(\004\022\020\n\010software\030\002 \001(\t\"-\n" +
@@ -1266,26 +1242,26 @@ public final class Types {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
         });
     internal_static_tendermint_version_App_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_tendermint_version_App_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tendermint_version_App_descriptor,
-        new String[] { "Protocol", "Software", });
+        new java.lang.String[] { "Protocol", "Software", });
     internal_static_tendermint_version_Consensus_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_tendermint_version_Consensus_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_tendermint_version_Consensus_descriptor,
-        new String[] { "Block", "App", });
+        new java.lang.String[] { "Block", "App", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.equal);
+    registry.add(com.google.protobuf.GoGoProtos.equal);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

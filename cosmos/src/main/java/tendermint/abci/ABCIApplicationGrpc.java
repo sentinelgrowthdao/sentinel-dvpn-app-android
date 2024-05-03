@@ -1,17 +1,13 @@
 package tendermint.abci;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: tendermint/abci/types.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class ABCIApplicationGrpc {
 
   private ABCIApplicationGrpc() {}
@@ -19,29 +15,29 @@ public final class ABCIApplicationGrpc {
   public static final String SERVICE_NAME = "tendermint.abci.ABCIApplication";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<Types.RequestEcho,
-      Types.ResponseEcho> getEchoMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestEcho,
+      tendermint.abci.Types.ResponseEcho> getEchoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Echo",
-      requestType = Types.RequestEcho.class,
-      responseType = Types.ResponseEcho.class,
+      requestType = tendermint.abci.Types.RequestEcho.class,
+      responseType = tendermint.abci.Types.ResponseEcho.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestEcho,
-      Types.ResponseEcho> getEchoMethod() {
-    io.grpc.MethodDescriptor<Types.RequestEcho, Types.ResponseEcho> getEchoMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestEcho,
+      tendermint.abci.Types.ResponseEcho> getEchoMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestEcho, tendermint.abci.Types.ResponseEcho> getEchoMethod;
     if ((getEchoMethod = ABCIApplicationGrpc.getEchoMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getEchoMethod = ABCIApplicationGrpc.getEchoMethod) == null) {
           ABCIApplicationGrpc.getEchoMethod = getEchoMethod =
-              io.grpc.MethodDescriptor.<Types.RequestEcho, Types.ResponseEcho>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestEcho, tendermint.abci.Types.ResponseEcho>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Echo"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestEcho.getDefaultInstance()))
+                  tendermint.abci.Types.RequestEcho.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseEcho.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseEcho.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("Echo"))
               .build();
         }
@@ -50,29 +46,29 @@ public final class ABCIApplicationGrpc {
     return getEchoMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestFlush,
-      Types.ResponseFlush> getFlushMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestFlush,
+      tendermint.abci.Types.ResponseFlush> getFlushMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Flush",
-      requestType = Types.RequestFlush.class,
-      responseType = Types.ResponseFlush.class,
+      requestType = tendermint.abci.Types.RequestFlush.class,
+      responseType = tendermint.abci.Types.ResponseFlush.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestFlush,
-      Types.ResponseFlush> getFlushMethod() {
-    io.grpc.MethodDescriptor<Types.RequestFlush, Types.ResponseFlush> getFlushMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestFlush,
+      tendermint.abci.Types.ResponseFlush> getFlushMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestFlush, tendermint.abci.Types.ResponseFlush> getFlushMethod;
     if ((getFlushMethod = ABCIApplicationGrpc.getFlushMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getFlushMethod = ABCIApplicationGrpc.getFlushMethod) == null) {
           ABCIApplicationGrpc.getFlushMethod = getFlushMethod =
-              io.grpc.MethodDescriptor.<Types.RequestFlush, Types.ResponseFlush>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestFlush, tendermint.abci.Types.ResponseFlush>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Flush"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestFlush.getDefaultInstance()))
+                  tendermint.abci.Types.RequestFlush.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseFlush.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseFlush.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("Flush"))
               .build();
         }
@@ -81,29 +77,29 @@ public final class ABCIApplicationGrpc {
     return getFlushMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestInfo,
-      Types.ResponseInfo> getInfoMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestInfo,
+      tendermint.abci.Types.ResponseInfo> getInfoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Info",
-      requestType = Types.RequestInfo.class,
-      responseType = Types.ResponseInfo.class,
+      requestType = tendermint.abci.Types.RequestInfo.class,
+      responseType = tendermint.abci.Types.ResponseInfo.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestInfo,
-      Types.ResponseInfo> getInfoMethod() {
-    io.grpc.MethodDescriptor<Types.RequestInfo, Types.ResponseInfo> getInfoMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestInfo,
+      tendermint.abci.Types.ResponseInfo> getInfoMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestInfo, tendermint.abci.Types.ResponseInfo> getInfoMethod;
     if ((getInfoMethod = ABCIApplicationGrpc.getInfoMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getInfoMethod = ABCIApplicationGrpc.getInfoMethod) == null) {
           ABCIApplicationGrpc.getInfoMethod = getInfoMethod =
-              io.grpc.MethodDescriptor.<Types.RequestInfo, Types.ResponseInfo>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestInfo, tendermint.abci.Types.ResponseInfo>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Info"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestInfo.getDefaultInstance()))
+                  tendermint.abci.Types.RequestInfo.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseInfo.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseInfo.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("Info"))
               .build();
         }
@@ -112,29 +108,29 @@ public final class ABCIApplicationGrpc {
     return getInfoMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestSetOption,
-      Types.ResponseSetOption> getSetOptionMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestSetOption,
+      tendermint.abci.Types.ResponseSetOption> getSetOptionMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "SetOption",
-      requestType = Types.RequestSetOption.class,
-      responseType = Types.ResponseSetOption.class,
+      requestType = tendermint.abci.Types.RequestSetOption.class,
+      responseType = tendermint.abci.Types.ResponseSetOption.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestSetOption,
-      Types.ResponseSetOption> getSetOptionMethod() {
-    io.grpc.MethodDescriptor<Types.RequestSetOption, Types.ResponseSetOption> getSetOptionMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestSetOption,
+      tendermint.abci.Types.ResponseSetOption> getSetOptionMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestSetOption, tendermint.abci.Types.ResponseSetOption> getSetOptionMethod;
     if ((getSetOptionMethod = ABCIApplicationGrpc.getSetOptionMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getSetOptionMethod = ABCIApplicationGrpc.getSetOptionMethod) == null) {
           ABCIApplicationGrpc.getSetOptionMethod = getSetOptionMethod =
-              io.grpc.MethodDescriptor.<Types.RequestSetOption, Types.ResponseSetOption>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestSetOption, tendermint.abci.Types.ResponseSetOption>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SetOption"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestSetOption.getDefaultInstance()))
+                  tendermint.abci.Types.RequestSetOption.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseSetOption.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseSetOption.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("SetOption"))
               .build();
         }
@@ -143,29 +139,29 @@ public final class ABCIApplicationGrpc {
     return getSetOptionMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestDeliverTx,
-      Types.ResponseDeliverTx> getDeliverTxMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestDeliverTx,
+      tendermint.abci.Types.ResponseDeliverTx> getDeliverTxMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "DeliverTx",
-      requestType = Types.RequestDeliverTx.class,
-      responseType = Types.ResponseDeliverTx.class,
+      requestType = tendermint.abci.Types.RequestDeliverTx.class,
+      responseType = tendermint.abci.Types.ResponseDeliverTx.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestDeliverTx,
-      Types.ResponseDeliverTx> getDeliverTxMethod() {
-    io.grpc.MethodDescriptor<Types.RequestDeliverTx, Types.ResponseDeliverTx> getDeliverTxMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestDeliverTx,
+      tendermint.abci.Types.ResponseDeliverTx> getDeliverTxMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestDeliverTx, tendermint.abci.Types.ResponseDeliverTx> getDeliverTxMethod;
     if ((getDeliverTxMethod = ABCIApplicationGrpc.getDeliverTxMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getDeliverTxMethod = ABCIApplicationGrpc.getDeliverTxMethod) == null) {
           ABCIApplicationGrpc.getDeliverTxMethod = getDeliverTxMethod =
-              io.grpc.MethodDescriptor.<Types.RequestDeliverTx, Types.ResponseDeliverTx>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestDeliverTx, tendermint.abci.Types.ResponseDeliverTx>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DeliverTx"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestDeliverTx.getDefaultInstance()))
+                  tendermint.abci.Types.RequestDeliverTx.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseDeliverTx.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseDeliverTx.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("DeliverTx"))
               .build();
         }
@@ -174,29 +170,29 @@ public final class ABCIApplicationGrpc {
     return getDeliverTxMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestCheckTx,
-      Types.ResponseCheckTx> getCheckTxMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestCheckTx,
+      tendermint.abci.Types.ResponseCheckTx> getCheckTxMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "CheckTx",
-      requestType = Types.RequestCheckTx.class,
-      responseType = Types.ResponseCheckTx.class,
+      requestType = tendermint.abci.Types.RequestCheckTx.class,
+      responseType = tendermint.abci.Types.ResponseCheckTx.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestCheckTx,
-      Types.ResponseCheckTx> getCheckTxMethod() {
-    io.grpc.MethodDescriptor<Types.RequestCheckTx, Types.ResponseCheckTx> getCheckTxMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestCheckTx,
+      tendermint.abci.Types.ResponseCheckTx> getCheckTxMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestCheckTx, tendermint.abci.Types.ResponseCheckTx> getCheckTxMethod;
     if ((getCheckTxMethod = ABCIApplicationGrpc.getCheckTxMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getCheckTxMethod = ABCIApplicationGrpc.getCheckTxMethod) == null) {
           ABCIApplicationGrpc.getCheckTxMethod = getCheckTxMethod =
-              io.grpc.MethodDescriptor.<Types.RequestCheckTx, Types.ResponseCheckTx>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestCheckTx, tendermint.abci.Types.ResponseCheckTx>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CheckTx"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestCheckTx.getDefaultInstance()))
+                  tendermint.abci.Types.RequestCheckTx.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseCheckTx.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseCheckTx.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("CheckTx"))
               .build();
         }
@@ -205,29 +201,29 @@ public final class ABCIApplicationGrpc {
     return getCheckTxMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestQuery,
-      Types.ResponseQuery> getQueryMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestQuery,
+      tendermint.abci.Types.ResponseQuery> getQueryMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Query",
-      requestType = Types.RequestQuery.class,
-      responseType = Types.ResponseQuery.class,
+      requestType = tendermint.abci.Types.RequestQuery.class,
+      responseType = tendermint.abci.Types.ResponseQuery.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestQuery,
-      Types.ResponseQuery> getQueryMethod() {
-    io.grpc.MethodDescriptor<Types.RequestQuery, Types.ResponseQuery> getQueryMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestQuery,
+      tendermint.abci.Types.ResponseQuery> getQueryMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestQuery, tendermint.abci.Types.ResponseQuery> getQueryMethod;
     if ((getQueryMethod = ABCIApplicationGrpc.getQueryMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getQueryMethod = ABCIApplicationGrpc.getQueryMethod) == null) {
           ABCIApplicationGrpc.getQueryMethod = getQueryMethod =
-              io.grpc.MethodDescriptor.<Types.RequestQuery, Types.ResponseQuery>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestQuery, tendermint.abci.Types.ResponseQuery>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Query"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestQuery.getDefaultInstance()))
+                  tendermint.abci.Types.RequestQuery.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseQuery.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseQuery.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("Query"))
               .build();
         }
@@ -236,29 +232,29 @@ public final class ABCIApplicationGrpc {
     return getQueryMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestCommit,
-      Types.ResponseCommit> getCommitMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestCommit,
+      tendermint.abci.Types.ResponseCommit> getCommitMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Commit",
-      requestType = Types.RequestCommit.class,
-      responseType = Types.ResponseCommit.class,
+      requestType = tendermint.abci.Types.RequestCommit.class,
+      responseType = tendermint.abci.Types.ResponseCommit.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestCommit,
-      Types.ResponseCommit> getCommitMethod() {
-    io.grpc.MethodDescriptor<Types.RequestCommit, Types.ResponseCommit> getCommitMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestCommit,
+      tendermint.abci.Types.ResponseCommit> getCommitMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestCommit, tendermint.abci.Types.ResponseCommit> getCommitMethod;
     if ((getCommitMethod = ABCIApplicationGrpc.getCommitMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getCommitMethod = ABCIApplicationGrpc.getCommitMethod) == null) {
           ABCIApplicationGrpc.getCommitMethod = getCommitMethod =
-              io.grpc.MethodDescriptor.<Types.RequestCommit, Types.ResponseCommit>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestCommit, tendermint.abci.Types.ResponseCommit>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Commit"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestCommit.getDefaultInstance()))
+                  tendermint.abci.Types.RequestCommit.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseCommit.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseCommit.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("Commit"))
               .build();
         }
@@ -267,29 +263,29 @@ public final class ABCIApplicationGrpc {
     return getCommitMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestInitChain,
-      Types.ResponseInitChain> getInitChainMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestInitChain,
+      tendermint.abci.Types.ResponseInitChain> getInitChainMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "InitChain",
-      requestType = Types.RequestInitChain.class,
-      responseType = Types.ResponseInitChain.class,
+      requestType = tendermint.abci.Types.RequestInitChain.class,
+      responseType = tendermint.abci.Types.ResponseInitChain.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestInitChain,
-      Types.ResponseInitChain> getInitChainMethod() {
-    io.grpc.MethodDescriptor<Types.RequestInitChain, Types.ResponseInitChain> getInitChainMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestInitChain,
+      tendermint.abci.Types.ResponseInitChain> getInitChainMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestInitChain, tendermint.abci.Types.ResponseInitChain> getInitChainMethod;
     if ((getInitChainMethod = ABCIApplicationGrpc.getInitChainMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getInitChainMethod = ABCIApplicationGrpc.getInitChainMethod) == null) {
           ABCIApplicationGrpc.getInitChainMethod = getInitChainMethod =
-              io.grpc.MethodDescriptor.<Types.RequestInitChain, Types.ResponseInitChain>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestInitChain, tendermint.abci.Types.ResponseInitChain>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "InitChain"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestInitChain.getDefaultInstance()))
+                  tendermint.abci.Types.RequestInitChain.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseInitChain.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseInitChain.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("InitChain"))
               .build();
         }
@@ -298,29 +294,29 @@ public final class ABCIApplicationGrpc {
     return getInitChainMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestBeginBlock,
-      Types.ResponseBeginBlock> getBeginBlockMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestBeginBlock,
+      tendermint.abci.Types.ResponseBeginBlock> getBeginBlockMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "BeginBlock",
-      requestType = Types.RequestBeginBlock.class,
-      responseType = Types.ResponseBeginBlock.class,
+      requestType = tendermint.abci.Types.RequestBeginBlock.class,
+      responseType = tendermint.abci.Types.ResponseBeginBlock.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestBeginBlock,
-      Types.ResponseBeginBlock> getBeginBlockMethod() {
-    io.grpc.MethodDescriptor<Types.RequestBeginBlock, Types.ResponseBeginBlock> getBeginBlockMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestBeginBlock,
+      tendermint.abci.Types.ResponseBeginBlock> getBeginBlockMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestBeginBlock, tendermint.abci.Types.ResponseBeginBlock> getBeginBlockMethod;
     if ((getBeginBlockMethod = ABCIApplicationGrpc.getBeginBlockMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getBeginBlockMethod = ABCIApplicationGrpc.getBeginBlockMethod) == null) {
           ABCIApplicationGrpc.getBeginBlockMethod = getBeginBlockMethod =
-              io.grpc.MethodDescriptor.<Types.RequestBeginBlock, Types.ResponseBeginBlock>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestBeginBlock, tendermint.abci.Types.ResponseBeginBlock>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "BeginBlock"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestBeginBlock.getDefaultInstance()))
+                  tendermint.abci.Types.RequestBeginBlock.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseBeginBlock.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseBeginBlock.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("BeginBlock"))
               .build();
         }
@@ -329,29 +325,29 @@ public final class ABCIApplicationGrpc {
     return getBeginBlockMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestEndBlock,
-      Types.ResponseEndBlock> getEndBlockMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestEndBlock,
+      tendermint.abci.Types.ResponseEndBlock> getEndBlockMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "EndBlock",
-      requestType = Types.RequestEndBlock.class,
-      responseType = Types.ResponseEndBlock.class,
+      requestType = tendermint.abci.Types.RequestEndBlock.class,
+      responseType = tendermint.abci.Types.ResponseEndBlock.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestEndBlock,
-      Types.ResponseEndBlock> getEndBlockMethod() {
-    io.grpc.MethodDescriptor<Types.RequestEndBlock, Types.ResponseEndBlock> getEndBlockMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestEndBlock,
+      tendermint.abci.Types.ResponseEndBlock> getEndBlockMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestEndBlock, tendermint.abci.Types.ResponseEndBlock> getEndBlockMethod;
     if ((getEndBlockMethod = ABCIApplicationGrpc.getEndBlockMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getEndBlockMethod = ABCIApplicationGrpc.getEndBlockMethod) == null) {
           ABCIApplicationGrpc.getEndBlockMethod = getEndBlockMethod =
-              io.grpc.MethodDescriptor.<Types.RequestEndBlock, Types.ResponseEndBlock>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestEndBlock, tendermint.abci.Types.ResponseEndBlock>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "EndBlock"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestEndBlock.getDefaultInstance()))
+                  tendermint.abci.Types.RequestEndBlock.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseEndBlock.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseEndBlock.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("EndBlock"))
               .build();
         }
@@ -360,29 +356,29 @@ public final class ABCIApplicationGrpc {
     return getEndBlockMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestListSnapshots,
-      Types.ResponseListSnapshots> getListSnapshotsMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestListSnapshots,
+      tendermint.abci.Types.ResponseListSnapshots> getListSnapshotsMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "ListSnapshots",
-      requestType = Types.RequestListSnapshots.class,
-      responseType = Types.ResponseListSnapshots.class,
+      requestType = tendermint.abci.Types.RequestListSnapshots.class,
+      responseType = tendermint.abci.Types.ResponseListSnapshots.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestListSnapshots,
-      Types.ResponseListSnapshots> getListSnapshotsMethod() {
-    io.grpc.MethodDescriptor<Types.RequestListSnapshots, Types.ResponseListSnapshots> getListSnapshotsMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestListSnapshots,
+      tendermint.abci.Types.ResponseListSnapshots> getListSnapshotsMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestListSnapshots, tendermint.abci.Types.ResponseListSnapshots> getListSnapshotsMethod;
     if ((getListSnapshotsMethod = ABCIApplicationGrpc.getListSnapshotsMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getListSnapshotsMethod = ABCIApplicationGrpc.getListSnapshotsMethod) == null) {
           ABCIApplicationGrpc.getListSnapshotsMethod = getListSnapshotsMethod =
-              io.grpc.MethodDescriptor.<Types.RequestListSnapshots, Types.ResponseListSnapshots>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestListSnapshots, tendermint.abci.Types.ResponseListSnapshots>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ListSnapshots"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestListSnapshots.getDefaultInstance()))
+                  tendermint.abci.Types.RequestListSnapshots.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseListSnapshots.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseListSnapshots.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("ListSnapshots"))
               .build();
         }
@@ -391,29 +387,29 @@ public final class ABCIApplicationGrpc {
     return getListSnapshotsMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestOfferSnapshot,
-      Types.ResponseOfferSnapshot> getOfferSnapshotMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestOfferSnapshot,
+      tendermint.abci.Types.ResponseOfferSnapshot> getOfferSnapshotMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "OfferSnapshot",
-      requestType = Types.RequestOfferSnapshot.class,
-      responseType = Types.ResponseOfferSnapshot.class,
+      requestType = tendermint.abci.Types.RequestOfferSnapshot.class,
+      responseType = tendermint.abci.Types.ResponseOfferSnapshot.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestOfferSnapshot,
-      Types.ResponseOfferSnapshot> getOfferSnapshotMethod() {
-    io.grpc.MethodDescriptor<Types.RequestOfferSnapshot, Types.ResponseOfferSnapshot> getOfferSnapshotMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestOfferSnapshot,
+      tendermint.abci.Types.ResponseOfferSnapshot> getOfferSnapshotMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestOfferSnapshot, tendermint.abci.Types.ResponseOfferSnapshot> getOfferSnapshotMethod;
     if ((getOfferSnapshotMethod = ABCIApplicationGrpc.getOfferSnapshotMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getOfferSnapshotMethod = ABCIApplicationGrpc.getOfferSnapshotMethod) == null) {
           ABCIApplicationGrpc.getOfferSnapshotMethod = getOfferSnapshotMethod =
-              io.grpc.MethodDescriptor.<Types.RequestOfferSnapshot, Types.ResponseOfferSnapshot>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestOfferSnapshot, tendermint.abci.Types.ResponseOfferSnapshot>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "OfferSnapshot"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestOfferSnapshot.getDefaultInstance()))
+                  tendermint.abci.Types.RequestOfferSnapshot.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseOfferSnapshot.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseOfferSnapshot.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("OfferSnapshot"))
               .build();
         }
@@ -422,29 +418,29 @@ public final class ABCIApplicationGrpc {
     return getOfferSnapshotMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestLoadSnapshotChunk,
-      Types.ResponseLoadSnapshotChunk> getLoadSnapshotChunkMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestLoadSnapshotChunk,
+      tendermint.abci.Types.ResponseLoadSnapshotChunk> getLoadSnapshotChunkMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "LoadSnapshotChunk",
-      requestType = Types.RequestLoadSnapshotChunk.class,
-      responseType = Types.ResponseLoadSnapshotChunk.class,
+      requestType = tendermint.abci.Types.RequestLoadSnapshotChunk.class,
+      responseType = tendermint.abci.Types.ResponseLoadSnapshotChunk.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestLoadSnapshotChunk,
-      Types.ResponseLoadSnapshotChunk> getLoadSnapshotChunkMethod() {
-    io.grpc.MethodDescriptor<Types.RequestLoadSnapshotChunk, Types.ResponseLoadSnapshotChunk> getLoadSnapshotChunkMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestLoadSnapshotChunk,
+      tendermint.abci.Types.ResponseLoadSnapshotChunk> getLoadSnapshotChunkMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestLoadSnapshotChunk, tendermint.abci.Types.ResponseLoadSnapshotChunk> getLoadSnapshotChunkMethod;
     if ((getLoadSnapshotChunkMethod = ABCIApplicationGrpc.getLoadSnapshotChunkMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getLoadSnapshotChunkMethod = ABCIApplicationGrpc.getLoadSnapshotChunkMethod) == null) {
           ABCIApplicationGrpc.getLoadSnapshotChunkMethod = getLoadSnapshotChunkMethod =
-              io.grpc.MethodDescriptor.<Types.RequestLoadSnapshotChunk, Types.ResponseLoadSnapshotChunk>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestLoadSnapshotChunk, tendermint.abci.Types.ResponseLoadSnapshotChunk>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "LoadSnapshotChunk"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestLoadSnapshotChunk.getDefaultInstance()))
+                  tendermint.abci.Types.RequestLoadSnapshotChunk.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseLoadSnapshotChunk.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseLoadSnapshotChunk.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("LoadSnapshotChunk"))
               .build();
         }
@@ -453,29 +449,29 @@ public final class ABCIApplicationGrpc {
     return getLoadSnapshotChunkMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Types.RequestApplySnapshotChunk,
-      Types.ResponseApplySnapshotChunk> getApplySnapshotChunkMethod;
+  private static volatile io.grpc.MethodDescriptor<tendermint.abci.Types.RequestApplySnapshotChunk,
+      tendermint.abci.Types.ResponseApplySnapshotChunk> getApplySnapshotChunkMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "ApplySnapshotChunk",
-      requestType = Types.RequestApplySnapshotChunk.class,
-      responseType = Types.ResponseApplySnapshotChunk.class,
+      requestType = tendermint.abci.Types.RequestApplySnapshotChunk.class,
+      responseType = tendermint.abci.Types.ResponseApplySnapshotChunk.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Types.RequestApplySnapshotChunk,
-      Types.ResponseApplySnapshotChunk> getApplySnapshotChunkMethod() {
-    io.grpc.MethodDescriptor<Types.RequestApplySnapshotChunk, Types.ResponseApplySnapshotChunk> getApplySnapshotChunkMethod;
+  public static io.grpc.MethodDescriptor<tendermint.abci.Types.RequestApplySnapshotChunk,
+      tendermint.abci.Types.ResponseApplySnapshotChunk> getApplySnapshotChunkMethod() {
+    io.grpc.MethodDescriptor<tendermint.abci.Types.RequestApplySnapshotChunk, tendermint.abci.Types.ResponseApplySnapshotChunk> getApplySnapshotChunkMethod;
     if ((getApplySnapshotChunkMethod = ABCIApplicationGrpc.getApplySnapshotChunkMethod) == null) {
       synchronized (ABCIApplicationGrpc.class) {
         if ((getApplySnapshotChunkMethod = ABCIApplicationGrpc.getApplySnapshotChunkMethod) == null) {
           ABCIApplicationGrpc.getApplySnapshotChunkMethod = getApplySnapshotChunkMethod =
-              io.grpc.MethodDescriptor.<Types.RequestApplySnapshotChunk, Types.ResponseApplySnapshotChunk>newBuilder()
+              io.grpc.MethodDescriptor.<tendermint.abci.Types.RequestApplySnapshotChunk, tendermint.abci.Types.ResponseApplySnapshotChunk>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ApplySnapshotChunk"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.RequestApplySnapshotChunk.getDefaultInstance()))
+                  tendermint.abci.Types.RequestApplySnapshotChunk.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Types.ResponseApplySnapshotChunk.getDefaultInstance()))
+                  tendermint.abci.Types.ResponseApplySnapshotChunk.getDefaultInstance()))
               .setSchemaDescriptor(new ABCIApplicationMethodDescriptorSupplier("ApplySnapshotChunk"))
               .build();
         }
@@ -490,7 +486,7 @@ public final class ABCIApplicationGrpc {
   public static ABCIApplicationStub newStub(io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<ABCIApplicationStub> factory =
       new io.grpc.stub.AbstractStub.StubFactory<ABCIApplicationStub>() {
-        @Override
+        @java.lang.Override
         public ABCIApplicationStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
           return new ABCIApplicationStub(channel, callOptions);
         }
@@ -505,7 +501,7 @@ public final class ABCIApplicationGrpc {
       io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<ABCIApplicationBlockingStub> factory =
       new io.grpc.stub.AbstractStub.StubFactory<ABCIApplicationBlockingStub>() {
-        @Override
+        @java.lang.Override
         public ABCIApplicationBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
           return new ABCIApplicationBlockingStub(channel, callOptions);
         }
@@ -520,7 +516,7 @@ public final class ABCIApplicationGrpc {
       io.grpc.Channel channel) {
     io.grpc.stub.AbstractStub.StubFactory<ABCIApplicationFutureStub> factory =
       new io.grpc.stub.AbstractStub.StubFactory<ABCIApplicationFutureStub>() {
-        @Override
+        @java.lang.Override
         public ABCIApplicationFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
           return new ABCIApplicationFutureStub(channel, callOptions);
         }
@@ -530,233 +526,136 @@ public final class ABCIApplicationGrpc {
 
   /**
    */
-  public static abstract class ABCIApplicationImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      */
-    public void echo(Types.RequestEcho request,
-                     io.grpc.stub.StreamObserver<Types.ResponseEcho> responseObserver) {
-      asyncUnimplementedUnaryCall(getEchoMethod(), responseObserver);
+    default void echo(tendermint.abci.Types.RequestEcho request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseEcho> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEchoMethod(), responseObserver);
     }
 
     /**
      */
-    public void flush(Types.RequestFlush request,
-                      io.grpc.stub.StreamObserver<Types.ResponseFlush> responseObserver) {
-      asyncUnimplementedUnaryCall(getFlushMethod(), responseObserver);
+    default void flush(tendermint.abci.Types.RequestFlush request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseFlush> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getFlushMethod(), responseObserver);
     }
 
     /**
      */
-    public void info(Types.RequestInfo request,
-                     io.grpc.stub.StreamObserver<Types.ResponseInfo> responseObserver) {
-      asyncUnimplementedUnaryCall(getInfoMethod(), responseObserver);
+    default void info(tendermint.abci.Types.RequestInfo request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseInfo> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getInfoMethod(), responseObserver);
     }
 
     /**
      */
-    public void setOption(Types.RequestSetOption request,
-                          io.grpc.stub.StreamObserver<Types.ResponseSetOption> responseObserver) {
-      asyncUnimplementedUnaryCall(getSetOptionMethod(), responseObserver);
+    default void setOption(tendermint.abci.Types.RequestSetOption request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseSetOption> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSetOptionMethod(), responseObserver);
     }
 
     /**
      */
-    public void deliverTx(Types.RequestDeliverTx request,
-                          io.grpc.stub.StreamObserver<Types.ResponseDeliverTx> responseObserver) {
-      asyncUnimplementedUnaryCall(getDeliverTxMethod(), responseObserver);
+    default void deliverTx(tendermint.abci.Types.RequestDeliverTx request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseDeliverTx> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeliverTxMethod(), responseObserver);
     }
 
     /**
      */
-    public void checkTx(Types.RequestCheckTx request,
-                        io.grpc.stub.StreamObserver<Types.ResponseCheckTx> responseObserver) {
-      asyncUnimplementedUnaryCall(getCheckTxMethod(), responseObserver);
+    default void checkTx(tendermint.abci.Types.RequestCheckTx request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseCheckTx> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCheckTxMethod(), responseObserver);
     }
 
     /**
      */
-    public void query(Types.RequestQuery request,
-                      io.grpc.stub.StreamObserver<Types.ResponseQuery> responseObserver) {
-      asyncUnimplementedUnaryCall(getQueryMethod(), responseObserver);
+    default void query(tendermint.abci.Types.RequestQuery request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseQuery> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getQueryMethod(), responseObserver);
     }
 
     /**
      */
-    public void commit(Types.RequestCommit request,
-                       io.grpc.stub.StreamObserver<Types.ResponseCommit> responseObserver) {
-      asyncUnimplementedUnaryCall(getCommitMethod(), responseObserver);
+    default void commit(tendermint.abci.Types.RequestCommit request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseCommit> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCommitMethod(), responseObserver);
     }
 
     /**
      */
-    public void initChain(Types.RequestInitChain request,
-                          io.grpc.stub.StreamObserver<Types.ResponseInitChain> responseObserver) {
-      asyncUnimplementedUnaryCall(getInitChainMethod(), responseObserver);
+    default void initChain(tendermint.abci.Types.RequestInitChain request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseInitChain> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getInitChainMethod(), responseObserver);
     }
 
     /**
      */
-    public void beginBlock(Types.RequestBeginBlock request,
-                           io.grpc.stub.StreamObserver<Types.ResponseBeginBlock> responseObserver) {
-      asyncUnimplementedUnaryCall(getBeginBlockMethod(), responseObserver);
+    default void beginBlock(tendermint.abci.Types.RequestBeginBlock request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseBeginBlock> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getBeginBlockMethod(), responseObserver);
     }
 
     /**
      */
-    public void endBlock(Types.RequestEndBlock request,
-                         io.grpc.stub.StreamObserver<Types.ResponseEndBlock> responseObserver) {
-      asyncUnimplementedUnaryCall(getEndBlockMethod(), responseObserver);
+    default void endBlock(tendermint.abci.Types.RequestEndBlock request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseEndBlock> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEndBlockMethod(), responseObserver);
     }
 
     /**
      */
-    public void listSnapshots(Types.RequestListSnapshots request,
-                              io.grpc.stub.StreamObserver<Types.ResponseListSnapshots> responseObserver) {
-      asyncUnimplementedUnaryCall(getListSnapshotsMethod(), responseObserver);
+    default void listSnapshots(tendermint.abci.Types.RequestListSnapshots request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseListSnapshots> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getListSnapshotsMethod(), responseObserver);
     }
 
     /**
      */
-    public void offerSnapshot(Types.RequestOfferSnapshot request,
-                              io.grpc.stub.StreamObserver<Types.ResponseOfferSnapshot> responseObserver) {
-      asyncUnimplementedUnaryCall(getOfferSnapshotMethod(), responseObserver);
+    default void offerSnapshot(tendermint.abci.Types.RequestOfferSnapshot request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseOfferSnapshot> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getOfferSnapshotMethod(), responseObserver);
     }
 
     /**
      */
-    public void loadSnapshotChunk(Types.RequestLoadSnapshotChunk request,
-                                  io.grpc.stub.StreamObserver<Types.ResponseLoadSnapshotChunk> responseObserver) {
-      asyncUnimplementedUnaryCall(getLoadSnapshotChunkMethod(), responseObserver);
+    default void loadSnapshotChunk(tendermint.abci.Types.RequestLoadSnapshotChunk request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseLoadSnapshotChunk> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getLoadSnapshotChunkMethod(), responseObserver);
     }
 
     /**
      */
-    public void applySnapshotChunk(Types.RequestApplySnapshotChunk request,
-                                   io.grpc.stub.StreamObserver<Types.ResponseApplySnapshotChunk> responseObserver) {
-      asyncUnimplementedUnaryCall(getApplySnapshotChunkMethod(), responseObserver);
-    }
-
-    @Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getEchoMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestEcho,
-                Types.ResponseEcho>(
-                  this, METHODID_ECHO)))
-          .addMethod(
-            getFlushMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestFlush,
-                Types.ResponseFlush>(
-                  this, METHODID_FLUSH)))
-          .addMethod(
-            getInfoMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestInfo,
-                Types.ResponseInfo>(
-                  this, METHODID_INFO)))
-          .addMethod(
-            getSetOptionMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestSetOption,
-                Types.ResponseSetOption>(
-                  this, METHODID_SET_OPTION)))
-          .addMethod(
-            getDeliverTxMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestDeliverTx,
-                Types.ResponseDeliverTx>(
-                  this, METHODID_DELIVER_TX)))
-          .addMethod(
-            getCheckTxMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestCheckTx,
-                Types.ResponseCheckTx>(
-                  this, METHODID_CHECK_TX)))
-          .addMethod(
-            getQueryMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestQuery,
-                Types.ResponseQuery>(
-                  this, METHODID_QUERY)))
-          .addMethod(
-            getCommitMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestCommit,
-                Types.ResponseCommit>(
-                  this, METHODID_COMMIT)))
-          .addMethod(
-            getInitChainMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestInitChain,
-                Types.ResponseInitChain>(
-                  this, METHODID_INIT_CHAIN)))
-          .addMethod(
-            getBeginBlockMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestBeginBlock,
-                Types.ResponseBeginBlock>(
-                  this, METHODID_BEGIN_BLOCK)))
-          .addMethod(
-            getEndBlockMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestEndBlock,
-                Types.ResponseEndBlock>(
-                  this, METHODID_END_BLOCK)))
-          .addMethod(
-            getListSnapshotsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestListSnapshots,
-                Types.ResponseListSnapshots>(
-                  this, METHODID_LIST_SNAPSHOTS)))
-          .addMethod(
-            getOfferSnapshotMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestOfferSnapshot,
-                Types.ResponseOfferSnapshot>(
-                  this, METHODID_OFFER_SNAPSHOT)))
-          .addMethod(
-            getLoadSnapshotChunkMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestLoadSnapshotChunk,
-                Types.ResponseLoadSnapshotChunk>(
-                  this, METHODID_LOAD_SNAPSHOT_CHUNK)))
-          .addMethod(
-            getApplySnapshotChunkMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                Types.RequestApplySnapshotChunk,
-                Types.ResponseApplySnapshotChunk>(
-                  this, METHODID_APPLY_SNAPSHOT_CHUNK)))
-          .build();
+    default void applySnapshotChunk(tendermint.abci.Types.RequestApplySnapshotChunk request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseApplySnapshotChunk> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getApplySnapshotChunkMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service ABCIApplication.
    */
-  public static final class ABCIApplicationStub extends io.grpc.stub.AbstractAsyncStub<ABCIApplicationStub> {
+  public static abstract class ABCIApplicationImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return ABCIApplicationGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service ABCIApplication.
+   */
+  public static final class ABCIApplicationStub
+      extends io.grpc.stub.AbstractAsyncStub<ABCIApplicationStub> {
     private ABCIApplicationStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected ABCIApplicationStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new ABCIApplicationStub(channel, callOptions);
@@ -764,134 +663,136 @@ public final class ABCIApplicationGrpc {
 
     /**
      */
-    public void echo(Types.RequestEcho request,
-                     io.grpc.stub.StreamObserver<Types.ResponseEcho> responseObserver) {
-      asyncUnaryCall(
+    public void echo(tendermint.abci.Types.RequestEcho request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseEcho> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getEchoMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void flush(Types.RequestFlush request,
-                      io.grpc.stub.StreamObserver<Types.ResponseFlush> responseObserver) {
-      asyncUnaryCall(
+    public void flush(tendermint.abci.Types.RequestFlush request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseFlush> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getFlushMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void info(Types.RequestInfo request,
-                     io.grpc.stub.StreamObserver<Types.ResponseInfo> responseObserver) {
-      asyncUnaryCall(
+    public void info(tendermint.abci.Types.RequestInfo request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseInfo> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getInfoMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void setOption(Types.RequestSetOption request,
-                          io.grpc.stub.StreamObserver<Types.ResponseSetOption> responseObserver) {
-      asyncUnaryCall(
+    public void setOption(tendermint.abci.Types.RequestSetOption request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseSetOption> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSetOptionMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void deliverTx(Types.RequestDeliverTx request,
-                          io.grpc.stub.StreamObserver<Types.ResponseDeliverTx> responseObserver) {
-      asyncUnaryCall(
+    public void deliverTx(tendermint.abci.Types.RequestDeliverTx request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseDeliverTx> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDeliverTxMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void checkTx(Types.RequestCheckTx request,
-                        io.grpc.stub.StreamObserver<Types.ResponseCheckTx> responseObserver) {
-      asyncUnaryCall(
+    public void checkTx(tendermint.abci.Types.RequestCheckTx request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseCheckTx> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCheckTxMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void query(Types.RequestQuery request,
-                      io.grpc.stub.StreamObserver<Types.ResponseQuery> responseObserver) {
-      asyncUnaryCall(
+    public void query(tendermint.abci.Types.RequestQuery request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseQuery> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getQueryMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void commit(Types.RequestCommit request,
-                       io.grpc.stub.StreamObserver<Types.ResponseCommit> responseObserver) {
-      asyncUnaryCall(
+    public void commit(tendermint.abci.Types.RequestCommit request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseCommit> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCommitMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void initChain(Types.RequestInitChain request,
-                          io.grpc.stub.StreamObserver<Types.ResponseInitChain> responseObserver) {
-      asyncUnaryCall(
+    public void initChain(tendermint.abci.Types.RequestInitChain request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseInitChain> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getInitChainMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void beginBlock(Types.RequestBeginBlock request,
-                           io.grpc.stub.StreamObserver<Types.ResponseBeginBlock> responseObserver) {
-      asyncUnaryCall(
+    public void beginBlock(tendermint.abci.Types.RequestBeginBlock request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseBeginBlock> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getBeginBlockMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void endBlock(Types.RequestEndBlock request,
-                         io.grpc.stub.StreamObserver<Types.ResponseEndBlock> responseObserver) {
-      asyncUnaryCall(
+    public void endBlock(tendermint.abci.Types.RequestEndBlock request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseEndBlock> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getEndBlockMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void listSnapshots(Types.RequestListSnapshots request,
-                              io.grpc.stub.StreamObserver<Types.ResponseListSnapshots> responseObserver) {
-      asyncUnaryCall(
+    public void listSnapshots(tendermint.abci.Types.RequestListSnapshots request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseListSnapshots> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getListSnapshotsMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void offerSnapshot(Types.RequestOfferSnapshot request,
-                              io.grpc.stub.StreamObserver<Types.ResponseOfferSnapshot> responseObserver) {
-      asyncUnaryCall(
+    public void offerSnapshot(tendermint.abci.Types.RequestOfferSnapshot request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseOfferSnapshot> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getOfferSnapshotMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void loadSnapshotChunk(Types.RequestLoadSnapshotChunk request,
-                                  io.grpc.stub.StreamObserver<Types.ResponseLoadSnapshotChunk> responseObserver) {
-      asyncUnaryCall(
+    public void loadSnapshotChunk(tendermint.abci.Types.RequestLoadSnapshotChunk request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseLoadSnapshotChunk> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getLoadSnapshotChunkMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void applySnapshotChunk(Types.RequestApplySnapshotChunk request,
-                                   io.grpc.stub.StreamObserver<Types.ResponseApplySnapshotChunk> responseObserver) {
-      asyncUnaryCall(
+    public void applySnapshotChunk(tendermint.abci.Types.RequestApplySnapshotChunk request,
+        io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseApplySnapshotChunk> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getApplySnapshotChunkMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service ABCIApplication.
    */
-  public static final class ABCIApplicationBlockingStub extends io.grpc.stub.AbstractBlockingStub<ABCIApplicationBlockingStub> {
+  public static final class ABCIApplicationBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<ABCIApplicationBlockingStub> {
     private ABCIApplicationBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected ABCIApplicationBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new ABCIApplicationBlockingStub(channel, callOptions);
@@ -899,119 +800,121 @@ public final class ABCIApplicationGrpc {
 
     /**
      */
-    public Types.ResponseEcho echo(Types.RequestEcho request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseEcho echo(tendermint.abci.Types.RequestEcho request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getEchoMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseFlush flush(Types.RequestFlush request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseFlush flush(tendermint.abci.Types.RequestFlush request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getFlushMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseInfo info(Types.RequestInfo request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseInfo info(tendermint.abci.Types.RequestInfo request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getInfoMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseSetOption setOption(Types.RequestSetOption request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseSetOption setOption(tendermint.abci.Types.RequestSetOption request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSetOptionMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseDeliverTx deliverTx(Types.RequestDeliverTx request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseDeliverTx deliverTx(tendermint.abci.Types.RequestDeliverTx request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDeliverTxMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseCheckTx checkTx(Types.RequestCheckTx request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseCheckTx checkTx(tendermint.abci.Types.RequestCheckTx request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCheckTxMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseQuery query(Types.RequestQuery request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseQuery query(tendermint.abci.Types.RequestQuery request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getQueryMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseCommit commit(Types.RequestCommit request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseCommit commit(tendermint.abci.Types.RequestCommit request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCommitMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseInitChain initChain(Types.RequestInitChain request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseInitChain initChain(tendermint.abci.Types.RequestInitChain request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getInitChainMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseBeginBlock beginBlock(Types.RequestBeginBlock request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseBeginBlock beginBlock(tendermint.abci.Types.RequestBeginBlock request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getBeginBlockMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseEndBlock endBlock(Types.RequestEndBlock request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseEndBlock endBlock(tendermint.abci.Types.RequestEndBlock request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getEndBlockMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseListSnapshots listSnapshots(Types.RequestListSnapshots request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseListSnapshots listSnapshots(tendermint.abci.Types.RequestListSnapshots request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getListSnapshotsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseOfferSnapshot offerSnapshot(Types.RequestOfferSnapshot request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseOfferSnapshot offerSnapshot(tendermint.abci.Types.RequestOfferSnapshot request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getOfferSnapshotMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseLoadSnapshotChunk loadSnapshotChunk(Types.RequestLoadSnapshotChunk request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseLoadSnapshotChunk loadSnapshotChunk(tendermint.abci.Types.RequestLoadSnapshotChunk request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getLoadSnapshotChunkMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Types.ResponseApplySnapshotChunk applySnapshotChunk(Types.RequestApplySnapshotChunk request) {
-      return blockingUnaryCall(
+    public tendermint.abci.Types.ResponseApplySnapshotChunk applySnapshotChunk(tendermint.abci.Types.RequestApplySnapshotChunk request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getApplySnapshotChunkMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service ABCIApplication.
    */
-  public static final class ABCIApplicationFutureStub extends io.grpc.stub.AbstractFutureStub<ABCIApplicationFutureStub> {
+  public static final class ABCIApplicationFutureStub
+      extends io.grpc.stub.AbstractFutureStub<ABCIApplicationFutureStub> {
     private ABCIApplicationFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected ABCIApplicationFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new ABCIApplicationFutureStub(channel, callOptions);
@@ -1019,121 +922,121 @@ public final class ABCIApplicationGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseEcho> echo(
-        Types.RequestEcho request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseEcho> echo(
+        tendermint.abci.Types.RequestEcho request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getEchoMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseFlush> flush(
-        Types.RequestFlush request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseFlush> flush(
+        tendermint.abci.Types.RequestFlush request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getFlushMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseInfo> info(
-        Types.RequestInfo request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseInfo> info(
+        tendermint.abci.Types.RequestInfo request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getInfoMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseSetOption> setOption(
-        Types.RequestSetOption request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseSetOption> setOption(
+        tendermint.abci.Types.RequestSetOption request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSetOptionMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseDeliverTx> deliverTx(
-        Types.RequestDeliverTx request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseDeliverTx> deliverTx(
+        tendermint.abci.Types.RequestDeliverTx request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDeliverTxMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseCheckTx> checkTx(
-        Types.RequestCheckTx request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseCheckTx> checkTx(
+        tendermint.abci.Types.RequestCheckTx request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCheckTxMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseQuery> query(
-        Types.RequestQuery request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseQuery> query(
+        tendermint.abci.Types.RequestQuery request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getQueryMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseCommit> commit(
-        Types.RequestCommit request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseCommit> commit(
+        tendermint.abci.Types.RequestCommit request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCommitMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseInitChain> initChain(
-        Types.RequestInitChain request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseInitChain> initChain(
+        tendermint.abci.Types.RequestInitChain request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getInitChainMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseBeginBlock> beginBlock(
-        Types.RequestBeginBlock request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseBeginBlock> beginBlock(
+        tendermint.abci.Types.RequestBeginBlock request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getBeginBlockMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseEndBlock> endBlock(
-        Types.RequestEndBlock request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseEndBlock> endBlock(
+        tendermint.abci.Types.RequestEndBlock request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getEndBlockMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseListSnapshots> listSnapshots(
-        Types.RequestListSnapshots request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseListSnapshots> listSnapshots(
+        tendermint.abci.Types.RequestListSnapshots request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getListSnapshotsMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseOfferSnapshot> offerSnapshot(
-        Types.RequestOfferSnapshot request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseOfferSnapshot> offerSnapshot(
+        tendermint.abci.Types.RequestOfferSnapshot request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getOfferSnapshotMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseLoadSnapshotChunk> loadSnapshotChunk(
-        Types.RequestLoadSnapshotChunk request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseLoadSnapshotChunk> loadSnapshotChunk(
+        tendermint.abci.Types.RequestLoadSnapshotChunk request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getLoadSnapshotChunkMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Types.ResponseApplySnapshotChunk> applySnapshotChunk(
-        Types.RequestApplySnapshotChunk request) {
-      return futureUnaryCall(
+    public com.google.common.util.concurrent.ListenableFuture<tendermint.abci.Types.ResponseApplySnapshotChunk> applySnapshotChunk(
+        tendermint.abci.Types.RequestApplySnapshotChunk request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getApplySnapshotChunkMethod(), getCallOptions()), request);
     }
   }
@@ -1159,85 +1062,85 @@ public final class ABCIApplicationGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final ABCIApplicationImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(ABCIApplicationImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
+    @java.lang.Override
+    @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_ECHO:
-          serviceImpl.echo((Types.RequestEcho) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseEcho>) responseObserver);
+          serviceImpl.echo((tendermint.abci.Types.RequestEcho) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseEcho>) responseObserver);
           break;
         case METHODID_FLUSH:
-          serviceImpl.flush((Types.RequestFlush) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseFlush>) responseObserver);
+          serviceImpl.flush((tendermint.abci.Types.RequestFlush) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseFlush>) responseObserver);
           break;
         case METHODID_INFO:
-          serviceImpl.info((Types.RequestInfo) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseInfo>) responseObserver);
+          serviceImpl.info((tendermint.abci.Types.RequestInfo) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseInfo>) responseObserver);
           break;
         case METHODID_SET_OPTION:
-          serviceImpl.setOption((Types.RequestSetOption) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseSetOption>) responseObserver);
+          serviceImpl.setOption((tendermint.abci.Types.RequestSetOption) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseSetOption>) responseObserver);
           break;
         case METHODID_DELIVER_TX:
-          serviceImpl.deliverTx((Types.RequestDeliverTx) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseDeliverTx>) responseObserver);
+          serviceImpl.deliverTx((tendermint.abci.Types.RequestDeliverTx) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseDeliverTx>) responseObserver);
           break;
         case METHODID_CHECK_TX:
-          serviceImpl.checkTx((Types.RequestCheckTx) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseCheckTx>) responseObserver);
+          serviceImpl.checkTx((tendermint.abci.Types.RequestCheckTx) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseCheckTx>) responseObserver);
           break;
         case METHODID_QUERY:
-          serviceImpl.query((Types.RequestQuery) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseQuery>) responseObserver);
+          serviceImpl.query((tendermint.abci.Types.RequestQuery) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseQuery>) responseObserver);
           break;
         case METHODID_COMMIT:
-          serviceImpl.commit((Types.RequestCommit) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseCommit>) responseObserver);
+          serviceImpl.commit((tendermint.abci.Types.RequestCommit) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseCommit>) responseObserver);
           break;
         case METHODID_INIT_CHAIN:
-          serviceImpl.initChain((Types.RequestInitChain) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseInitChain>) responseObserver);
+          serviceImpl.initChain((tendermint.abci.Types.RequestInitChain) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseInitChain>) responseObserver);
           break;
         case METHODID_BEGIN_BLOCK:
-          serviceImpl.beginBlock((Types.RequestBeginBlock) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseBeginBlock>) responseObserver);
+          serviceImpl.beginBlock((tendermint.abci.Types.RequestBeginBlock) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseBeginBlock>) responseObserver);
           break;
         case METHODID_END_BLOCK:
-          serviceImpl.endBlock((Types.RequestEndBlock) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseEndBlock>) responseObserver);
+          serviceImpl.endBlock((tendermint.abci.Types.RequestEndBlock) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseEndBlock>) responseObserver);
           break;
         case METHODID_LIST_SNAPSHOTS:
-          serviceImpl.listSnapshots((Types.RequestListSnapshots) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseListSnapshots>) responseObserver);
+          serviceImpl.listSnapshots((tendermint.abci.Types.RequestListSnapshots) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseListSnapshots>) responseObserver);
           break;
         case METHODID_OFFER_SNAPSHOT:
-          serviceImpl.offerSnapshot((Types.RequestOfferSnapshot) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseOfferSnapshot>) responseObserver);
+          serviceImpl.offerSnapshot((tendermint.abci.Types.RequestOfferSnapshot) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseOfferSnapshot>) responseObserver);
           break;
         case METHODID_LOAD_SNAPSHOT_CHUNK:
-          serviceImpl.loadSnapshotChunk((Types.RequestLoadSnapshotChunk) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseLoadSnapshotChunk>) responseObserver);
+          serviceImpl.loadSnapshotChunk((tendermint.abci.Types.RequestLoadSnapshotChunk) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseLoadSnapshotChunk>) responseObserver);
           break;
         case METHODID_APPLY_SNAPSHOT_CHUNK:
-          serviceImpl.applySnapshotChunk((Types.RequestApplySnapshotChunk) request,
-              (io.grpc.stub.StreamObserver<Types.ResponseApplySnapshotChunk>) responseObserver);
+          serviceImpl.applySnapshotChunk((tendermint.abci.Types.RequestApplySnapshotChunk) request,
+              (io.grpc.stub.StreamObserver<tendermint.abci.Types.ResponseApplySnapshotChunk>) responseObserver);
           break;
         default:
           throw new AssertionError();
       }
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
+    @java.lang.Override
+    @java.lang.SuppressWarnings("unchecked")
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
@@ -1247,16 +1150,126 @@ public final class ABCIApplicationGrpc {
     }
   }
 
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getEchoMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestEcho,
+              tendermint.abci.Types.ResponseEcho>(
+                service, METHODID_ECHO)))
+        .addMethod(
+          getFlushMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestFlush,
+              tendermint.abci.Types.ResponseFlush>(
+                service, METHODID_FLUSH)))
+        .addMethod(
+          getInfoMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestInfo,
+              tendermint.abci.Types.ResponseInfo>(
+                service, METHODID_INFO)))
+        .addMethod(
+          getSetOptionMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestSetOption,
+              tendermint.abci.Types.ResponseSetOption>(
+                service, METHODID_SET_OPTION)))
+        .addMethod(
+          getDeliverTxMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestDeliverTx,
+              tendermint.abci.Types.ResponseDeliverTx>(
+                service, METHODID_DELIVER_TX)))
+        .addMethod(
+          getCheckTxMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestCheckTx,
+              tendermint.abci.Types.ResponseCheckTx>(
+                service, METHODID_CHECK_TX)))
+        .addMethod(
+          getQueryMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestQuery,
+              tendermint.abci.Types.ResponseQuery>(
+                service, METHODID_QUERY)))
+        .addMethod(
+          getCommitMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestCommit,
+              tendermint.abci.Types.ResponseCommit>(
+                service, METHODID_COMMIT)))
+        .addMethod(
+          getInitChainMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestInitChain,
+              tendermint.abci.Types.ResponseInitChain>(
+                service, METHODID_INIT_CHAIN)))
+        .addMethod(
+          getBeginBlockMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestBeginBlock,
+              tendermint.abci.Types.ResponseBeginBlock>(
+                service, METHODID_BEGIN_BLOCK)))
+        .addMethod(
+          getEndBlockMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestEndBlock,
+              tendermint.abci.Types.ResponseEndBlock>(
+                service, METHODID_END_BLOCK)))
+        .addMethod(
+          getListSnapshotsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestListSnapshots,
+              tendermint.abci.Types.ResponseListSnapshots>(
+                service, METHODID_LIST_SNAPSHOTS)))
+        .addMethod(
+          getOfferSnapshotMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestOfferSnapshot,
+              tendermint.abci.Types.ResponseOfferSnapshot>(
+                service, METHODID_OFFER_SNAPSHOT)))
+        .addMethod(
+          getLoadSnapshotChunkMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestLoadSnapshotChunk,
+              tendermint.abci.Types.ResponseLoadSnapshotChunk>(
+                service, METHODID_LOAD_SNAPSHOT_CHUNK)))
+        .addMethod(
+          getApplySnapshotChunkMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              tendermint.abci.Types.RequestApplySnapshotChunk,
+              tendermint.abci.Types.ResponseApplySnapshotChunk>(
+                service, METHODID_APPLY_SNAPSHOT_CHUNK)))
+        .build();
+  }
+
   private static abstract class ABCIApplicationBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     ABCIApplicationBaseDescriptorSupplier() {}
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return Types.getDescriptor();
+      return tendermint.abci.Types.getDescriptor();
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
       return getFileDescriptor().findServiceByName("ABCIApplication");
     }
@@ -1276,7 +1289,7 @@ public final class ABCIApplicationGrpc {
       this.methodName = methodName;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }

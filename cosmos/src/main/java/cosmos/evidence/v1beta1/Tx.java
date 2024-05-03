@@ -31,19 +31,19 @@ public final class Tx {
         getSubmitterBytes();
 
     /**
-     * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+     * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
      * @return Whether the evidence field is set.
      */
     boolean hasEvidence();
     /**
-     * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+     * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
      * @return The evidence.
      */
-    com.google.protobuf2.Any getEvidence();
+    com.google.protobuf.Any getEvidence();
     /**
-     * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+     * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
      */
-    com.google.protobuf2.AnyOrBuilder getEvidenceOrBuilder();
+    com.google.protobuf.AnyOrBuilder getEvidenceOrBuilder();
   }
   /**
    * <pre>
@@ -73,67 +73,6 @@ public final class Tx {
       return new MsgSubmitEvidence();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private MsgSubmitEvidence(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              submitter_ = s;
-              break;
-            }
-            case 18: {
-              com.google.protobuf2.Any.Builder subBuilder = null;
-              if (evidence_ != null) {
-                subBuilder = evidence_.toBuilder();
-              }
-              evidence_ = input.readMessage(com.google.protobuf2.Any.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(evidence_);
-                evidence_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.evidence.v1beta1.Tx.internal_static_cosmos_evidence_v1beta1_MsgSubmitEvidence_descriptor;
@@ -148,7 +87,8 @@ public final class Tx {
     }
 
     public static final int SUBMITTER_FIELD_NUMBER = 1;
-    private volatile java.lang.Object submitter_;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object submitter_ = "";
     /**
      * <code>string submitter = 1;</code>
      * @return The submitter.
@@ -186,9 +126,9 @@ public final class Tx {
     }
 
     public static final int EVIDENCE_FIELD_NUMBER = 2;
-    private com.google.protobuf2.Any evidence_;
+    private com.google.protobuf.Any evidence_;
     /**
-     * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+     * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
      * @return Whether the evidence field is set.
      */
     @java.lang.Override
@@ -196,19 +136,19 @@ public final class Tx {
       return evidence_ != null;
     }
     /**
-     * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+     * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
      * @return The evidence.
      */
     @java.lang.Override
-    public com.google.protobuf2.Any getEvidence() {
-      return evidence_ == null ? com.google.protobuf2.Any.getDefaultInstance() : evidence_;
+    public com.google.protobuf.Any getEvidence() {
+      return evidence_ == null ? com.google.protobuf.Any.getDefaultInstance() : evidence_;
     }
     /**
-     * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+     * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
      */
     @java.lang.Override
-    public com.google.protobuf2.AnyOrBuilder getEvidenceOrBuilder() {
-      return getEvidence();
+    public com.google.protobuf.AnyOrBuilder getEvidenceOrBuilder() {
+      return evidence_ == null ? com.google.protobuf.Any.getDefaultInstance() : evidence_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -225,13 +165,13 @@ public final class Tx {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getSubmitterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(submitter_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, submitter_);
       }
       if (evidence_ != null) {
         output.writeMessage(2, getEvidence());
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -240,14 +180,14 @@ public final class Tx {
       if (size != -1) return size;
 
       size = 0;
-      if (!getSubmitterBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(submitter_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, submitter_);
       }
       if (evidence_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getEvidence());
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -269,7 +209,7 @@ public final class Tx {
         if (!getEvidence()
             .equals(other.getEvidence())) return false;
       }
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -286,7 +226,7 @@ public final class Tx {
         hash = (37 * hash) + EVIDENCE_FIELD_NUMBER;
         hash = (53 * hash) + getEvidence().hashCode();
       }
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -335,11 +275,13 @@ public final class Tx {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.evidence.v1beta1.Tx.MsgSubmitEvidence parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.evidence.v1beta1.Tx.MsgSubmitEvidence parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -408,28 +350,22 @@ public final class Tx {
 
       // Construct using cosmos.evidence.v1beta1.Tx.MsgSubmitEvidence.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         submitter_ = "";
-
-        if (evidenceBuilder_ == null) {
-          evidence_ = null;
-        } else {
-          evidence_ = null;
+        evidence_ = null;
+        if (evidenceBuilder_ != null) {
+          evidenceBuilder_.dispose();
           evidenceBuilder_ = null;
         }
         return this;
@@ -458,14 +394,21 @@ public final class Tx {
       @java.lang.Override
       public cosmos.evidence.v1beta1.Tx.MsgSubmitEvidence buildPartial() {
         cosmos.evidence.v1beta1.Tx.MsgSubmitEvidence result = new cosmos.evidence.v1beta1.Tx.MsgSubmitEvidence(this);
-        result.submitter_ = submitter_;
-        if (evidenceBuilder_ == null) {
-          result.evidence_ = evidence_;
-        } else {
-          result.evidence_ = evidenceBuilder_.build();
-        }
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.evidence.v1beta1.Tx.MsgSubmitEvidence result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.submitter_ = submitter_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.evidence_ = evidenceBuilder_ == null
+              ? evidence_
+              : evidenceBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -514,12 +457,13 @@ public final class Tx {
         if (other == cosmos.evidence.v1beta1.Tx.MsgSubmitEvidence.getDefaultInstance()) return this;
         if (!other.getSubmitter().isEmpty()) {
           submitter_ = other.submitter_;
+          bitField0_ |= 0x00000001;
           onChanged();
         }
         if (other.hasEvidence()) {
           mergeEvidence(other.getEvidence());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -534,19 +478,45 @@ public final class Tx {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.evidence.v1beta1.Tx.MsgSubmitEvidence parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                submitter_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getEvidenceFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.evidence.v1beta1.Tx.MsgSubmitEvidence) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private java.lang.Object submitter_ = "";
       /**
@@ -589,11 +559,9 @@ public final class Tx {
        */
       public Builder setSubmitter(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         submitter_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -602,8 +570,8 @@ public final class Tx {
        * @return This builder for chaining.
        */
       public Builder clearSubmitter() {
-        
         submitter_ = getDefaultInstance().getSubmitter();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
@@ -614,127 +582,125 @@ public final class Tx {
        */
       public Builder setSubmitterBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
         submitter_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf2.Any evidence_;
+      private com.google.protobuf.Any evidence_;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> evidenceBuilder_;
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> evidenceBuilder_;
       /**
-       * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+       * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
        * @return Whether the evidence field is set.
        */
       public boolean hasEvidence() {
-        return evidenceBuilder_ != null || evidence_ != null;
+        return ((bitField0_ & 0x00000002) != 0);
       }
       /**
-       * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+       * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
        * @return The evidence.
        */
-      public com.google.protobuf2.Any getEvidence() {
+      public com.google.protobuf.Any getEvidence() {
         if (evidenceBuilder_ == null) {
-          return evidence_ == null ? com.google.protobuf2.Any.getDefaultInstance() : evidence_;
+          return evidence_ == null ? com.google.protobuf.Any.getDefaultInstance() : evidence_;
         } else {
           return evidenceBuilder_.getMessage();
         }
       }
       /**
-       * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+       * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
        */
-      public Builder setEvidence(com.google.protobuf2.Any value) {
+      public Builder setEvidence(com.google.protobuf.Any value) {
         if (evidenceBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
           evidence_ = value;
-          onChanged();
         } else {
           evidenceBuilder_.setMessage(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+       * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
        */
       public Builder setEvidence(
-          com.google.protobuf2.Any.Builder builderForValue) {
+          com.google.protobuf.Any.Builder builderForValue) {
         if (evidenceBuilder_ == null) {
           evidence_ = builderForValue.build();
-          onChanged();
         } else {
           evidenceBuilder_.setMessage(builderForValue.build());
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+       * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
        */
-      public Builder mergeEvidence(com.google.protobuf2.Any value) {
+      public Builder mergeEvidence(com.google.protobuf.Any value) {
         if (evidenceBuilder_ == null) {
-          if (evidence_ != null) {
-            evidence_ =
-              com.google.protobuf2.Any.newBuilder(evidence_).mergeFrom(value).buildPartial();
+          if (((bitField0_ & 0x00000002) != 0) &&
+            evidence_ != null &&
+            evidence_ != com.google.protobuf.Any.getDefaultInstance()) {
+            getEvidenceBuilder().mergeFrom(value);
           } else {
             evidence_ = value;
           }
-          onChanged();
         } else {
           evidenceBuilder_.mergeFrom(value);
         }
-
+        bitField0_ |= 0x00000002;
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+       * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
        */
       public Builder clearEvidence() {
-        if (evidenceBuilder_ == null) {
-          evidence_ = null;
-          onChanged();
-        } else {
-          evidence_ = null;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        evidence_ = null;
+        if (evidenceBuilder_ != null) {
+          evidenceBuilder_.dispose();
           evidenceBuilder_ = null;
         }
-
+        onChanged();
         return this;
       }
       /**
-       * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+       * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
        */
-      public com.google.protobuf2.Any.Builder getEvidenceBuilder() {
-        
+      public com.google.protobuf.Any.Builder getEvidenceBuilder() {
+        bitField0_ |= 0x00000002;
         onChanged();
         return getEvidenceFieldBuilder().getBuilder();
       }
       /**
-       * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+       * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
        */
-      public com.google.protobuf2.AnyOrBuilder getEvidenceOrBuilder() {
+      public com.google.protobuf.AnyOrBuilder getEvidenceOrBuilder() {
         if (evidenceBuilder_ != null) {
           return evidenceBuilder_.getMessageOrBuilder();
         } else {
           return evidence_ == null ?
-              com.google.protobuf2.Any.getDefaultInstance() : evidence_;
+              com.google.protobuf.Any.getDefaultInstance() : evidence_;
         }
       }
       /**
-       * <code>.google.protobuf2.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
+       * <code>.google.protobuf.Any evidence = 2 [(.cosmos_proto.accepts_interface) = "Evidence"];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder> 
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
           getEvidenceFieldBuilder() {
         if (evidenceBuilder_ == null) {
           evidenceBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf2.Any, com.google.protobuf2.Any.Builder, com.google.protobuf2.AnyOrBuilder>(
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
                   getEvidence(),
                   getParentForChildren(),
                   isClean());
@@ -775,7 +741,18 @@ public final class Tx {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MsgSubmitEvidence(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -836,53 +813,6 @@ public final class Tx {
       return new MsgSubmitEvidenceResponse();
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private MsgSubmitEvidenceResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 34: {
-
-              hash_ = input.readBytes();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return cosmos.evidence.v1beta1.Tx.internal_static_cosmos_evidence_v1beta1_MsgSubmitEvidenceResponse_descriptor;
@@ -897,7 +827,7 @@ public final class Tx {
     }
 
     public static final int HASH_FIELD_NUMBER = 4;
-    private com.google.protobuf.ByteString hash_;
+    private com.google.protobuf.ByteString hash_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * hash defines the hash of the evidence.
@@ -928,7 +858,7 @@ public final class Tx {
       if (!hash_.isEmpty()) {
         output.writeBytes(4, hash_);
       }
-      unknownFields.writeTo(output);
+      getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -941,7 +871,7 @@ public final class Tx {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(4, hash_);
       }
-      size += unknownFields.getSerializedSize();
+      size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
     }
@@ -958,7 +888,7 @@ public final class Tx {
 
       if (!getHash()
           .equals(other.getHash())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
 
@@ -971,7 +901,7 @@ public final class Tx {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + HASH_FIELD_NUMBER;
       hash = (53 * hash) + getHash().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
     }
@@ -1020,11 +950,13 @@ public final class Tx {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
+
     public static cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
+
     public static cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1092,24 +1024,19 @@ public final class Tx {
 
       // Construct using cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
         hash_ = com.google.protobuf.ByteString.EMPTY;
-
         return this;
       }
 
@@ -1136,9 +1063,16 @@ public final class Tx {
       @java.lang.Override
       public cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse buildPartial() {
         cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse result = new cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse(this);
-        result.hash_ = hash_;
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.hash_ = hash_;
+        }
       }
 
       @java.lang.Override
@@ -1188,7 +1122,7 @@ public final class Tx {
         if (other.getHash() != com.google.protobuf.ByteString.EMPTY) {
           setHash(other.getHash());
         }
-        this.mergeUnknownFields(other.unknownFields);
+        this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
       }
@@ -1203,19 +1137,38 @@ public final class Tx {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse parsedMessage = null;
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
         try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 34: {
+                hash_ = input.readBytes();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cosmos.evidence.v1beta1.Tx.MsgSubmitEvidenceResponse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
+          onChanged();
+        } // finally
         return this;
       }
+      private int bitField0_;
 
       private com.google.protobuf.ByteString hash_ = com.google.protobuf.ByteString.EMPTY;
       /**
@@ -1240,11 +1193,9 @@ public final class Tx {
        * @return This builder for chaining.
        */
       public Builder setHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+        if (value == null) { throw new NullPointerException(); }
         hash_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1257,7 +1208,7 @@ public final class Tx {
        * @return This builder for chaining.
        */
       public Builder clearHash() {
-        
+        bitField0_ = (bitField0_ & ~0x00000001);
         hash_ = getDefaultInstance().getHash();
         onChanged();
         return this;
@@ -1295,7 +1246,18 @@ public final class Tx {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MsgSubmitEvidenceResponse(input, extensionRegistry);
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
       }
     };
 
@@ -1336,22 +1298,22 @@ public final class Tx {
     java.lang.String[] descriptorData = {
       "\n cosmos/evidence/v1beta1/tx.proto\022\027cosm" +
       "os.evidence.v1beta1\032\024gogoproto/gogo.prot" +
-      "o\032\032google/protobuf2/any.proto\032\031cosmos_pr" +
-      "oto/cosmos.proto\"g\n\021MsgSubmitEvidence\022\021\n" +
-      "\tsubmitter\030\001 \001(\t\0225\n\010evidence\030\002 \001(\0132\025.goo" +
-      "gle.protobuf2.AnyB\014\312\264-\010Evidence:\010\350\240\037\000\210\240\037" +
-      "\000\")\n\031MsgSubmitEvidenceResponse\022\014\n\004hash\030\004" +
-      " \001(\0142w\n\003Msg\022p\n\016SubmitEvidence\022*.cosmos.e" +
-      "vidence.v1beta1.MsgSubmitEvidence\0322.cosm" +
-      "os.evidence.v1beta1.MsgSubmitEvidenceRes" +
-      "ponseB3Z-github.com/cosmos/cosmos-sdk/x/" +
-      "evidence/types\250\342\036\001b\006proto3"
+      "o\032\031google/protobuf/any.proto\032\031cosmos_pro" +
+      "to/cosmos.proto\"f\n\021MsgSubmitEvidence\022\021\n\t" +
+      "submitter\030\001 \001(\t\0224\n\010evidence\030\002 \001(\0132\024.goog" +
+      "le.protobuf.AnyB\014\312\264-\010Evidence:\010\210\240\037\000\350\240\037\000\"" +
+      ")\n\031MsgSubmitEvidenceResponse\022\014\n\004hash\030\004 \001" +
+      "(\0142w\n\003Msg\022p\n\016SubmitEvidence\022*.cosmos.evi" +
+      "dence.v1beta1.MsgSubmitEvidence\0322.cosmos" +
+      ".evidence.v1beta1.MsgSubmitEvidenceRespo" +
+      "nseB3Z-github.com/cosmos/cosmos-sdk/x/ev" +
+      "idence/types\250\342\036\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
-          com.google.protobuf2.AnyProto.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
+          com.google.protobuf.AnyProto.getDescriptor(),
           cosmos_proto.Cosmos.getDescriptor(),
         });
     internal_static_cosmos_evidence_v1beta1_MsgSubmitEvidence_descriptor =
@@ -1369,13 +1331,13 @@ public final class Tx {
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
     registry.add(cosmos_proto.Cosmos.acceptsInterface);
-    registry.add(com.google.protobuf2.GoGoProtos.equal);
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGetters);
+    registry.add(com.google.protobuf.GoGoProtos.equal);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGetters);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
-    com.google.protobuf2.AnyProto.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
+    com.google.protobuf.AnyProto.getDescriptor();
     cosmos_proto.Cosmos.getDescriptor();
   }
 

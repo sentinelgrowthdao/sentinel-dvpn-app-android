@@ -74,7 +74,6 @@ public final class ParamsOuterClass {
               sentinel.session.v2.ParamsOuterClass.Params.class, sentinel.session.v2.ParamsOuterClass.Params.Builder.class);
     }
 
-    private int bitField0_;
     public static final int STATUS_CHANGE_DELAY_FIELD_NUMBER = 1;
     private com.google.protobuf.Duration statusChangeDelay_;
     /**
@@ -83,7 +82,7 @@ public final class ParamsOuterClass {
      */
     @java.lang.Override
     public boolean hasStatusChangeDelay() {
-      return ((bitField0_ & 0x00000001) != 0);
+      return statusChangeDelay_ != null;
     }
     /**
      * <code>.google.protobuf.Duration status_change_delay = 1 [(.gogoproto.nullable) = false, (.gogoproto.stdduration) = true];</code>
@@ -126,7 +125,7 @@ public final class ParamsOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (statusChangeDelay_ != null) {
         output.writeMessage(1, getStatusChangeDelay());
       }
       if (proofVerificationEnabled_ != false) {
@@ -141,7 +140,7 @@ public final class ParamsOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (statusChangeDelay_ != null) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, getStatusChangeDelay());
       }
@@ -308,19 +307,13 @@ public final class ParamsOuterClass {
 
       // Construct using sentinel.session.v2.ParamsOuterClass.Params.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+
       }
 
       private Builder(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getStatusChangeDelayFieldBuilder();
-        }
+
       }
       @java.lang.Override
       public Builder clear() {
@@ -365,17 +358,14 @@ public final class ParamsOuterClass {
 
       private void buildPartial0(sentinel.session.v2.ParamsOuterClass.Params result) {
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.statusChangeDelay_ = statusChangeDelayBuilder_ == null
               ? statusChangeDelay_
               : statusChangeDelayBuilder_.build();
-          to_bitField0_ |= 0x00000001;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
           result.proofVerificationEnabled_ = proofVerificationEnabled_;
         }
-        result.bitField0_ |= to_bitField0_;
       }
 
       @java.lang.Override
@@ -549,10 +539,8 @@ public final class ParamsOuterClass {
         } else {
           statusChangeDelayBuilder_.mergeFrom(value);
         }
-        if (statusChangeDelay_ != null) {
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
+        bitField0_ |= 0x00000001;
+        onChanged();
         return this;
       }
       /**
@@ -725,7 +713,7 @@ public final class ParamsOuterClass {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf2.GoGoProtos.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
           com.google.protobuf.DurationProto.getDescriptor(),
         });
     internal_static_sentinel_session_v2_Params_descriptor =
@@ -736,13 +724,13 @@ public final class ParamsOuterClass {
         new java.lang.String[] { "StatusChangeDelay", "ProofVerificationEnabled", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    registry.add(com.google.protobuf2.GoGoProtos.equalAll);
-    registry.add(com.google.protobuf2.GoGoProtos.goprotoGettersAll);
-    registry.add(com.google.protobuf2.GoGoProtos.nullable);
-    registry.add(com.google.protobuf2.GoGoProtos.stdduration);
+    registry.add(com.google.protobuf.GoGoProtos.equalAll);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoGettersAll);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.stdduration);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    com.google.protobuf2.GoGoProtos.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();
   }
 

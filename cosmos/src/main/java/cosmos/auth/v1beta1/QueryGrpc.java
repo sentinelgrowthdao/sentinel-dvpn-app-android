@@ -1,11 +1,6 @@
 package cosmos.auth.v1beta1;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -13,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.33.1)",
+    value = "by gRPC proto compiler (version 1.55.3)",
     comments = "Source: cosmos/auth/v1beta1/query.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class QueryGrpc {
 
   private QueryGrpc() {}
@@ -22,6 +18,37 @@ public final class QueryGrpc {
   public static final String SERVICE_NAME = "cosmos.auth.v1beta1.Query";
 
   // Static method descriptors that strictly reflect the proto.
+  private static volatile io.grpc.MethodDescriptor<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest,
+      cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse> getAccountsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Accounts",
+      requestType = cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest.class,
+      responseType = cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest,
+      cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse> getAccountsMethod() {
+    io.grpc.MethodDescriptor<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest, cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse> getAccountsMethod;
+    if ((getAccountsMethod = QueryGrpc.getAccountsMethod) == null) {
+      synchronized (QueryGrpc.class) {
+        if ((getAccountsMethod = QueryGrpc.getAccountsMethod) == null) {
+          QueryGrpc.getAccountsMethod = getAccountsMethod =
+              io.grpc.MethodDescriptor.<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest, cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Accounts"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new QueryMethodDescriptorSupplier("Accounts"))
+              .build();
+        }
+      }
+    }
+    return getAccountsMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest,
       cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse> getAccountMethod;
 
@@ -84,6 +111,37 @@ public final class QueryGrpc {
     return getParamsMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest,
+      cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse> getModuleAccountByNameMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ModuleAccountByName",
+      requestType = cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest.class,
+      responseType = cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest,
+      cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse> getModuleAccountByNameMethod() {
+    io.grpc.MethodDescriptor<cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest, cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse> getModuleAccountByNameMethod;
+    if ((getModuleAccountByNameMethod = QueryGrpc.getModuleAccountByNameMethod) == null) {
+      synchronized (QueryGrpc.class) {
+        if ((getModuleAccountByNameMethod = QueryGrpc.getModuleAccountByNameMethod) == null) {
+          QueryGrpc.getModuleAccountByNameMethod = getModuleAccountByNameMethod =
+              io.grpc.MethodDescriptor.<cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest, cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ModuleAccountByName"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new QueryMethodDescriptorSupplier("ModuleAccountByName"))
+              .build();
+        }
+      }
+    }
+    return getModuleAccountByNameMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -133,16 +191,27 @@ public final class QueryGrpc {
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static abstract class QueryImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
+
+    /**
+     * <pre>
+     * Accounts returns all the existing accounts
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     */
+    default void accounts(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest request,
+        io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAccountsMethod(), responseObserver);
+    }
 
     /**
      * <pre>
      * Account returns account details based on address.
      * </pre>
      */
-    public void account(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest request,
+    default void account(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest request,
         io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getAccountMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAccountMethod(), responseObserver);
     }
 
     /**
@@ -150,37 +219,44 @@ public final class QueryGrpc {
      * Params queries all parameters.
      * </pre>
      */
-    public void params(cosmos.auth.v1beta1.QueryOuterClass.QueryParamsRequest request,
+    default void params(cosmos.auth.v1beta1.QueryOuterClass.QueryParamsRequest request,
         io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryParamsResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getParamsMethod(), responseObserver);
     }
 
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getAccountMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest,
-                cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse>(
-                  this, METHODID_ACCOUNT)))
-          .addMethod(
-            getParamsMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                cosmos.auth.v1beta1.QueryOuterClass.QueryParamsRequest,
-                cosmos.auth.v1beta1.QueryOuterClass.QueryParamsResponse>(
-                  this, METHODID_PARAMS)))
-          .build();
+    /**
+     * <pre>
+     * ModuleAccountByName returns the module account info by module name
+     * </pre>
+     */
+    default void moduleAccountByName(cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest request,
+        io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getModuleAccountByNameMethod(), responseObserver);
     }
   }
 
   /**
+   * Base class for the server implementation of the service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryStub extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
+  public static abstract class QueryImplBase
+      implements io.grpc.BindableService, AsyncService {
+
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+      return QueryGrpc.bindService(this);
+    }
+  }
+
+  /**
+   * A stub to allow clients to do asynchronous rpc calls to service Query.
+   * <pre>
+   * Query defines the gRPC querier service.
+   * </pre>
+   */
+  public static final class QueryStub
+      extends io.grpc.stub.AbstractAsyncStub<QueryStub> {
     private QueryStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -194,12 +270,24 @@ public final class QueryGrpc {
 
     /**
      * <pre>
+     * Accounts returns all the existing accounts
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     */
+    public void accounts(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest request,
+        io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getAccountsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
      * Account returns account details based on address.
      * </pre>
      */
     public void account(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest request,
         io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAccountMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -210,17 +298,30 @@ public final class QueryGrpc {
      */
     public void params(cosmos.auth.v1beta1.QueryOuterClass.QueryParamsRequest request,
         io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryParamsResponse> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * ModuleAccountByName returns the module account info by module name
+     * </pre>
+     */
+    public void moduleAccountByName(cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest request,
+        io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getModuleAccountByNameMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryBlockingStub extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
+  public static final class QueryBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<QueryBlockingStub> {
     private QueryBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -234,11 +335,22 @@ public final class QueryGrpc {
 
     /**
      * <pre>
+     * Accounts returns all the existing accounts
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     */
+    public cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse accounts(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getAccountsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Account returns account details based on address.
      * </pre>
      */
     public cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse account(cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAccountMethod(), getCallOptions(), request);
     }
 
@@ -248,17 +360,29 @@ public final class QueryGrpc {
      * </pre>
      */
     public cosmos.auth.v1beta1.QueryOuterClass.QueryParamsResponse params(cosmos.auth.v1beta1.QueryOuterClass.QueryParamsRequest request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getParamsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * ModuleAccountByName returns the module account info by module name
+     * </pre>
+     */
+    public cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse moduleAccountByName(cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getModuleAccountByNameMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Query.
    * <pre>
    * Query defines the gRPC querier service.
    * </pre>
    */
-  public static final class QueryFutureStub extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
+  public static final class QueryFutureStub
+      extends io.grpc.stub.AbstractFutureStub<QueryFutureStub> {
     private QueryFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
@@ -272,12 +396,24 @@ public final class QueryGrpc {
 
     /**
      * <pre>
+     * Accounts returns all the existing accounts
+     * Since: cosmos-sdk 0.43
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse> accounts(
+        cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getAccountsMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
      * Account returns account details based on address.
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse> account(
         cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAccountMethod(), getCallOptions()), request);
     }
 
@@ -288,23 +424,36 @@ public final class QueryGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<cosmos.auth.v1beta1.QueryOuterClass.QueryParamsResponse> params(
         cosmos.auth.v1beta1.QueryOuterClass.QueryParamsRequest request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getParamsMethod(), getCallOptions()), request);
+    }
+
+    /**
+     * <pre>
+     * ModuleAccountByName returns the module account info by module name
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse> moduleAccountByName(
+        cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getModuleAccountByNameMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_ACCOUNT = 0;
-  private static final int METHODID_PARAMS = 1;
+  private static final int METHODID_ACCOUNTS = 0;
+  private static final int METHODID_ACCOUNT = 1;
+  private static final int METHODID_PARAMS = 2;
+  private static final int METHODID_MODULE_ACCOUNT_BY_NAME = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final QueryImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(QueryImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -313,6 +462,10 @@ public final class QueryGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_ACCOUNTS:
+          serviceImpl.accounts((cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest) request,
+              (io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse>) responseObserver);
+          break;
         case METHODID_ACCOUNT:
           serviceImpl.account((cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest) request,
               (io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse>) responseObserver);
@@ -320,6 +473,10 @@ public final class QueryGrpc {
         case METHODID_PARAMS:
           serviceImpl.params((cosmos.auth.v1beta1.QueryOuterClass.QueryParamsRequest) request,
               (io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryParamsResponse>) responseObserver);
+          break;
+        case METHODID_MODULE_ACCOUNT_BY_NAME:
+          serviceImpl.moduleAccountByName((cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest) request,
+              (io.grpc.stub.StreamObserver<cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -335,6 +492,39 @@ public final class QueryGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getAccountsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsRequest,
+              cosmos.auth.v1beta1.QueryOuterClass.QueryAccountsResponse>(
+                service, METHODID_ACCOUNTS)))
+        .addMethod(
+          getAccountMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.auth.v1beta1.QueryOuterClass.QueryAccountRequest,
+              cosmos.auth.v1beta1.QueryOuterClass.QueryAccountResponse>(
+                service, METHODID_ACCOUNT)))
+        .addMethod(
+          getParamsMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.auth.v1beta1.QueryOuterClass.QueryParamsRequest,
+              cosmos.auth.v1beta1.QueryOuterClass.QueryParamsResponse>(
+                service, METHODID_PARAMS)))
+        .addMethod(
+          getModuleAccountByNameMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameRequest,
+              cosmos.auth.v1beta1.QueryOuterClass.QueryModuleAccountByNameResponse>(
+                service, METHODID_MODULE_ACCOUNT_BY_NAME)))
+        .build();
   }
 
   private static abstract class QueryBaseDescriptorSupplier
@@ -382,8 +572,10 @@ public final class QueryGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new QueryFileDescriptorSupplier())
+              .addMethod(getAccountsMethod())
               .addMethod(getAccountMethod())
               .addMethod(getParamsMethod())
+              .addMethod(getModuleAccountByNameMethod())
               .build();
         }
       }
